@@ -1,6 +1,14 @@
 #+TITLE: andersch.dev
 #+OPTIONS: title:nil
 
+#+begin_export html
+<section class="home-intro" aria-labelledby="intro-title">
+  <p class="eyebrow">A personal notebook on programming</p>
+  <h1 id="intro-title">Code, systems, and<br>everything in between.</h1>
+  <p>Explorations in programming, computer graphics, and the things I build along the way.</p>
+</section>
+#+end_export
+
 #+NAME: latest-article
 #+BEGIN_SRC emacs-lisp :eval no :exports results :results raw drawer :var list='() folder="" :noweb yes
 (defun format-entry-as-image-link (entry type) ; of the form ("article.org" (("TITLE" "Article Title") ("TAGS" "tag1 tag2")))
@@ -77,7 +85,7 @@
           "#+END_EXPORT\n"))
 #+END_SRC
 
-* [[./article/index.org][Latest articles]]
+* [[./article/index.org][Recent articles]]
 :PROPERTIES:
 :CUSTOM_ID: latest-articles
 :END:

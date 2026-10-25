@@ -1,25 +1,28 @@
 document.querySelectorAll('h2, h3, h4').forEach(item => {
-    item.addEventListener('click', () => {
-        // don't collapse if clicking on a link inside the heading
-        if (event.target.tagName === 'A') { return; }
-        const content = item.parentElement;
-        for (let i = 0; i < content.children.length; i++) {
-            if (i === 0) {
-                continue; // Skip the first child
-            }
+    const children = Array.from(item.parentElement.children)
+        .filter(child => child !== item && child.tagName !== 'SCRIPT');
+    if (!children.length) { return; }
 
-            const child = content.children[i];
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'section-toggle';
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', `Toggle ${item.textContent.trim()}`);
+    item.append(toggle);
 
-            // don't render display <script> elements
-            if (child.tagName === 'SCRIPT') { return; }
-
-            if (child.style.display === "none") {
-                child.style.display = "block";
-            } else {
-                child.style.display = "none";
-            }
-        }
+    item.addEventListener('click', event => {
+        // Heading links still navigate; the button also works with Enter/Space.
+        if (event.target.closest('a')) { return; }
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        children.forEach(child => { child.hidden = expanded; });
+        toggle.setAttribute('aria-expanded', String(!expanded));
     });
+});
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    if (window.location.pathname.split('/')[1] === link.getAttribute('href').slice(1)) {
+        link.setAttribute('aria-current', 'page');
+    }
 });
 
 function XorCoder(key) {

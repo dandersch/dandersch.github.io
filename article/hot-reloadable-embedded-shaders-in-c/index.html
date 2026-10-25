@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,26 +199,26 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-link" href="/article">Articles</a>
+    <a class="nav-link" href="/project">Projects</a>
+    <a class="nav-link" href="/other">Other</a>
+    <a class="nav-link" href="/notes">Wiki</a>
+  </nav>
 </div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
-</div>
-</header>
 </header>
 <main id="content" class="content">
-<div class="tags-date-box"><div class="date"><span class="timestamp"><2024-05-29></span></div><div class="tags"><code>[ <a href="/tag/opengl.html">opengl</a> <a href="/tag/graphics.html">graphics</a> <a href="/tag/cpp.html">cpp</a> <a href="/tag/c.html">c</a> ]</code></div></div><h1>#include "shader.glsl"</h1><h1 class="subtitle">How to leverage the C preprocessor to write reusable, hot-reloadable shader code</h2>
+<div class="tags-date-box"><div class="date"><span class="timestamp"><2024-05-29></span></div><div class="tags"><code>[ <a href="/tag/opengl.html">opengl</a> <a href="/tag/graphics.html">graphics</a> <a href="/tag/cpp.html">cpp</a> <a href="/tag/c.html">c</a> ]</code></div></div><h1>#include "shader.glsl"</h1><p class="subtitle">How to leverage the C preprocessor to write reusable, hot-reloadable shader code</p>
 <div class="figure"><img src="/article/hot-reloadable-embedded-shaders-in-c/preview.jpg" alt=""></div>
 <p>
 OpenGL tutorials usually skip over any file I/O code by telling you to write out
@@ -225,17 +226,17 @@ your very first shader as a string literal like this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">vertex_shader_source</span> = <span class="org-string">"#version 330 core\n"</span>
+<pre class="src src-cpp"><code><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">vertex_shader_source</span> = <span class="org-string">"#version 330 core\n"</span>
     <span class="org-string">"layout(location = 0) in vec3 aPos;\n"</span>
     <span class="org-string">"void main() {\n"</span>
     <span class="org-string">"    gl_Position = vec4(aPos, 1.0);\n"</span>
     <span class="org-string">"}\0"</span>;
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">...or using raw string literals (&gt;C++11):</span>
-<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">fragment_shader_source</span> = R"<span class="org-string">(#version 330 core</span>
-<span class="org-string">    layout(location = 0) in vec3 aPos;</span>
-<span class="org-string">    /* ... */)</span>";
-</pre>
+<span class="org-comment-delimiter">// </span><span class="org-comment">...or using raw string literals (&gt;C++11):
+</span><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">fragment_shader_source</span> = R"<span class="org-string">(#version 330 core
+    layout(location = 0) in vec3 aPos;
+    /* ... */)</span>";
+</code></pre>
 </div>
 
 <p>
@@ -284,10 +285,10 @@ We make use a <code>STRINGIFY</code> macro:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-variable-name">SHADER_VERSION_STRING</span> <span class="org-string">"#version 330 core\n"</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">SHADER_VERSION_STRING</span> <span class="org-string">"#version 330 core\n"</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_STRINGIFY</span>(...) #__VA_ARGS__
 <span class="org-preprocessor">#define</span> <span class="org-function-name">S</span>(...)          _STRINGIFY(__VA_ARGS__)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -296,15 +297,15 @@ highlighter should also do a decent job of highlighting the GLSL code:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">option 1: shader src code as an inlined string</span>
-<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">inline_shader</span> = SHADER_VERSION_STRING S(
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">option 1: shader src code as an inlined string
+</span><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">inline_shader</span> = SHADER_VERSION_STRING S(
     layout(location = 0) in <span class="org-type">vec3</span> <span class="org-variable-name">aPos</span>;
     <span class="org-type">void</span> <span class="org-function-name">main</span>()
     {
         gl_Position = vec4(aPos, 1);
     }
 );
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -313,7 +314,7 @@ the stringify macro. In C/C++ we then <code>#include</code> that<sup><a id="fnr.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-comment-delimiter">/* </span><span class="org-comment">shader.glsl</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-glsl"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">shader.glsl</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">SHADER_VERSION_STRING</span>
 <span class="org-function-name">S</span>(
 <span class="org-keyword">layout</span>(location = 0) <span class="org-keyword">in</span> <span class="org-type">vec3</span> <span class="org-variable-name">aPos</span>;
@@ -322,15 +323,15 @@ the stringify macro. In C/C++ we then <code>#include</code> that<sup><a id="fnr.
     <span class="org-glsl-shader-variable-name">gl_Position</span> = <span class="org-type">vec4</span>(aPos, 1);
 }
 )
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">option 2: shader src code as an included file</span>
-<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">shader_src</span> =
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">option 2: shader src code as an included file
+</span><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">shader_src</span> =
 <span class="org-preprocessor">                         #include</span> <span class="org-string">"shader.glsl"</span>
                        ;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -343,26 +344,26 @@ invoke the C preprocessor:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-type">SHADER_VERSION_STRING</span>
+<pre class="src src-glsl"><code><span class="org-type">SHADER_VERSION_STRING</span>
 <span class="org-preprocessor">#if</span> <span class="org-preprocessor">defined</span>(VERT_SHADER)
 <span class="org-function-name">S</span>(
-    <span class="org-comment-delimiter">// </span><span class="org-comment">vertex shader code</span>
-)
+    <span class="org-comment-delimiter">// </span><span class="org-comment">vertex shader code
+</span>)
 <span class="org-preprocessor">#elif</span> <span class="org-preprocessor">defined</span>(FRAG_SHADER)
 S(
-    <span class="org-comment-delimiter">// </span><span class="org-comment">fragment shader code</span>
-)
+    <span class="org-comment-delimiter">// </span><span class="org-comment">fragment shader code
+</span>)
 <span class="org-preprocessor">#endif</span>
 <span class="org-preprocessor">#undef</span> VERT_SHADER
 <span class="org-preprocessor">#undef</span> FRAG_SHADER
-</pre>
+</code></pre>
 </div>
 
 <p>
 To include the shaders in C:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">vertex_shader_src</span> =
+<pre class="src src-C"><code><span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">vertex_shader_src</span> =
 <span class="org-preprocessor">                                #define</span> <span class="org-variable-name">VERT_SHADER</span>
 <span class="org-preprocessor">                                #include</span> <span class="org-string">"shader.glsl"</span>
                               ;
@@ -371,7 +372,7 @@ To include the shaders in C:
 <span class="org-preprocessor">                                  #define</span> <span class="org-variable-name">FRAG_SHADER</span>
 <span class="org-preprocessor">                                  #include</span> <span class="org-string">"shader.glsl"</span>
                                 ;
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -380,7 +381,7 @@ enable/disable certain parts of the code<sup><a id="fnr.directives-within-macro"
 </p>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-type">SHADER_VERSION_STRING</span>
+<pre class="src src-glsl"><code><span class="org-type">SHADER_VERSION_STRING</span>
 <span class="org-function-name">S</span>(
 <span class="org-keyword">uniform</span> <span class="org-type">float</span> <span class="org-variable-name">time</span>;
 <span class="org-keyword">out</span> <span class="org-type">vec4</span> <span class="org-variable-name">FragColor</span>;
@@ -400,11 +401,11 @@ enable/disable certain parts of the code<sup><a id="fnr.directives-within-macro"
 }
 )
 <span class="org-preprocessor">#undef</span> SHADER_FEATURE
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">shader features (can't be an enum)</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">shader features (can't be an enum)</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span>    <span class="org-variable-name">SHADER_NONE</span>        (     0)
 <span class="org-preprocessor">#define</span>    <span class="org-variable-name">SHADER_RED_PULSE</span>   (1 &lt;&lt; 0)
 <span class="org-preprocessor">#define</span>    <span class="org-variable-name">SHADER_GREEN_PULSE</span> (1 &lt;&lt; 1)
@@ -416,7 +417,7 @@ enable/disable certain parts of the code<sup><a id="fnr.directives-within-macro"
 <span class="org-preprocessor">                       #define</span> <span class="org-variable-name">SHADER_FEATURE</span> (SHADER_RED_PULSE | SHADER_GREEN_PULSE)
 <span class="org-preprocessor">                       #include</span> <span class="org-string">"shader.glsl"</span>
                      ;
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -424,15 +425,15 @@ We can still invoke the GLSL preprocessor by wrapping a directive in <code>\n</c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-type">SHADER_VERSION_STRING</span>
+<pre class="src src-glsl"><code><span class="org-type">SHADER_VERSION_STRING</span>
 <span class="org-function-name">S</span>(
-\n#pragma optimize(on)\n <span class="org-comment-delimiter">// </span><span class="org-comment">enable optimizations</span>
-<span class="org-type">void</span> main()
+\n#pragma optimize(on)\n <span class="org-comment-delimiter">// </span><span class="org-comment">enable optimizations
+</span><span class="org-type">void</span> main()
 {
     <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span>
 }
 )
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -450,12 +451,12 @@ We start by writing out our helper or utility functions in a <code>.glsl</code> 
 <code>#version</code> directive:
 </p>
 <div class="org-src-container">
-<pre class="src src-glsl">S(
+<pre class="src src-glsl"><code>S(
 <span class="org-type">float</span> <span class="org-function-name">diffuse</span>(<span class="org-type">vec3</span> <span class="org-variable-name">normal</span>, <span class="org-type">vec3</span> <span class="org-variable-name">lightDir</span>) {
     <span class="org-keyword">return</span> <span class="org-glsl-builtins">max</span>(<span class="org-glsl-builtins">dot</span>(<span class="org-glsl-builtins">normalize</span>(normal), <span class="org-glsl-builtins">normalize</span>(lightDir)), 0.0);
 }
 )
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -463,15 +464,15 @@ Shaders can then <code>#include</code> this file and call the functions like so:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-type">SHADER_VERSION_STRING</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">"common.glsl"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">shared code between shaders</span>
-<span class="org-function-name">S</span>(
+<pre class="src src-glsl"><code><span class="org-type">SHADER_VERSION_STRING</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">"common.glsl"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">shared code between shaders
+</span><span class="org-function-name">S</span>(
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
     <span class="org-comment-delimiter">/* </span><span class="org-comment">use helpers</span><span class="org-comment-delimiter"> */</span>
     <span class="org-type">float</span> <span class="org-variable-name">albedo</span> = diffuse(...);
 }
 )
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -484,14 +485,14 @@ the host application. For example:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">common.h</span><span class="org-comment-delimiter"> */</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">WORK_GROUP_SIZE_X</span> 16 <span class="org-comment-delimiter">// </span><span class="org-comment">glDispatchCompute / local_size_x</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">WORK_GROUP_SIZE_Y</span> 16 <span class="org-comment-delimiter">// </span><span class="org-comment">glDispatchCompute / local_size_y</span>
-</pre>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">common.h</span><span class="org-comment-delimiter"> */</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">WORK_GROUP_SIZE_X</span> 16 <span class="org-comment-delimiter">// </span><span class="org-comment">glDispatchCompute / local_size_x
+</span><span class="org-preprocessor">#define</span> <span class="org-variable-name">WORK_GROUP_SIZE_Y</span> 16 <span class="org-comment-delimiter">// </span><span class="org-comment">glDispatchCompute / local_size_y</span>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-comment-delimiter">/* </span><span class="org-comment">compute.glsl</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-glsl"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">compute.glsl</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">SHADER_VERSION_STRING</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span>
 <span class="org-function-name">S</span>(
@@ -499,22 +500,22 @@ the host application. For example:
         local_size_y = WORK_GROUP_SIZE_Y,
         local_size_z = 1) <span class="org-keyword">in</span>;
 <span class="org-type">void</span> <span class="org-function-name">main</span>() {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-}
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>}
 )
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">main.c</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">main.c</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span>
 
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-    glDispatchCompute(WINDOW_WIDTH/WORK_GROUP_SIZE_X, WINDOW_HEIGHT/WORK_GROUP_SIZE_Y, 1);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-}
-</pre>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>    glDispatchCompute(WINDOW_WIDTH/WORK_GROUP_SIZE_X, WINDOW_HEIGHT/WORK_GROUP_SIZE_Y, 1);
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>}
+</code></pre>
 </div>
 
 <p>
@@ -523,33 +524,33 @@ We can even keep <code>struct</code> definitions in sync between both parts of t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">common.h</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">common.h</span><span class="org-comment-delimiter"> */</span>
 <span class="org-function-name">T</span>(<span class="org-type">camera_t</span>,  { <span class="org-type">vec4</span> <span class="org-variable-name">pos</span>;  <span class="org-type">vec4</span> <span class="org-variable-name">dir</span>; })
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">main.c</span><span class="org-comment-delimiter"> */</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">T</span>(<span class="org-variable-name">name</span>, <span class="org-variable-name">def</span>) <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">name</span> <span class="org-type">def</span> name;
-<span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">typedef struct camera_t { vec4 pos; vec4 dir; } camera_t;</span>
-
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">main.c</span><span class="org-comment-delimiter"> */</span>
+<span class="org-preprocessor">#define</span> <span class="org-function-name">T</span>(<span class="org-variable-name">name</span>, <span class="org-variable-name">def</span>) <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">name</span> <span class="org-type">def</span> <span class="org-type">name</span>;
+<span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">typedef struct camera_t { vec4 pos; vec4 dir; } camera_t;
+</span>
 <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">shader_src</span> =
 <span class="org-preprocessor">                        #define</span> <span class="org-function-name">T</span>(<span class="org-variable-name">name</span>,<span class="org-variable-name">def</span>) <span class="org-string">"struct "</span> #name <span class="org-string">" "</span> #def <span class="org-string">";\n"</span>
 <span class="org-preprocessor">                        #include</span> <span class="org-string">"shader.glsl"</span>
 <span class="org-preprocessor">                        #undef</span> T
                         ;
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-glsl"><span class="org-comment-delimiter">/* </span><span class="org-comment">shader.glsl</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-glsl"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">shader.glsl</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">SHADER_VERSION_STRING</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">struct camera_t { vec4 pos; vec4 dir; };</span>
-<span class="org-function-name">S</span>(
+<span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">struct camera_t { vec4 pos; vec4 dir; };
+</span><span class="org-function-name">S</span>(
 <span class="org-keyword">uniform</span> <span class="org-type">camera_t</span> <span class="org-variable-name">camera</span>;
 <span class="org-type">int</span> <span class="org-function-name">main</span>() { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
 )
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -572,7 +573,7 @@ loaded in the new DLL:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">void</span>* <span class="org-variable-name">dll_handle</span> = dlopen(<span class="org-string">"code.dll"</span>, RTLD_NOW);
+<pre class="src src-C"><code><span class="org-type">void</span>* <span class="org-variable-name">dll_handle</span> = dlopen(<span class="org-string">"code.dll"</span>, RTLD_NOW);
 
 <span class="org-keyword">if</span> (dll_handle == <span class="org-constant">NULL</span>) { printf(<span class="org-string">"Opening DLL failed. Trying again...\n"</span>); }
 <span class="org-keyword">while</span> (dll_handle  == <span class="org-constant">NULL</span>)
@@ -580,12 +581,12 @@ loaded in the new DLL:
     dll_handle = dlopen(DLL_FILENAME, RTLD_NOW);
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">fill function pointers</span>
-create_shaders = (<span class="org-type">void</span> (*)(<span class="org-type">state_t</span>*)) <span class="org-function-name">dlsym</span>(dll_handle, <span class="org-string">"create_shaders"</span>);
+<span class="org-comment-delimiter">// </span><span class="org-comment">fill function pointers
+</span>create_shaders = (<span class="org-type">void</span> (*)(<span class="org-type">state_t</span>*)) <span class="org-function-name">dlsym</span>(dll_handle, <span class="org-string">"create_shaders"</span>);
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">reload all shaders</span>
-create_shaders(&amp;state);
-</pre>
+<span class="org-comment-delimiter">// </span><span class="org-comment">reload all shaders
+</span>create_shaders(&amp;state);
+</code></pre>
 </div>
 
 
@@ -615,18 +616,18 @@ out at the end of the shader file. However, using the version without the
 semicolon at the end lets us use initializers:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">shader_t</span>
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">shader_t</span>
 {
-    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">name</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">shader name</span>
-    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">code</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">shader source code as a string</span>
-} <span class="org-type">shader_t</span>;
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">name</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">shader name
+</span>    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">code</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">shader source code as a string
+</span>} <span class="org-type">shader_t</span>;
 
 <span class="org-type">shader_t</span> <span class="org-variable-name">shader</span> =
 {
     <span class="org-string">"Shader Name"</span>,
 <span class="org-preprocessor">    #include</span> <span class="org-string">"shader.vert"</span>
 };
-</pre>
+</code></pre>
 </div></div></div>
 
 <div class="footdef"><sup><a id="fn.directives-within-macro" class="footnum" href="#fnr.directives-within-macro" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">

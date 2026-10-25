@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
               (insert "]</code></div>"))
         (insert "</div>"))
       (when title (insert (format "<h1>%s</h1>" title)))
-      (when description (insert (format "<h1 class=\"subtitle\">%s</h2>" description)))
+      (when description (insert (format "<p class=\"subtitle\">%s</p>" description)))
       (insert "\n#+end_export\n")
       )
     )

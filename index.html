@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -197,27 +198,32 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-link" href="/article">Articles</a>
+    <a class="nav-link" href="/project">Projects</a>
+    <a class="nav-link" href="/other">Other</a>
+    <a class="nav-link" href="/notes">Wiki</a>
+  </nav>
 </div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
-</div>
-</header>
 </header>
 <main id="content" class="content">
+<section class="home-intro" aria-labelledby="intro-title">
+  <p class="eyebrow">A personal notebook on programming</p>
+  <h1 id="intro-title">Code, systems, and<br>everything in between.</h1>
+  <p>Explorations in programming, computer graphics, and the things I build along the way.</p>
+</section>
 <div id="outline-container-latest-articles" class="outline-2">
-<h2 id="latest-articles"><a href="#latest-articles"><a href="./article">Latest articles</a></a></h2>
+<h2 id="latest-articles"><a href="#latest-articles"><a href="./article">Recent articles</a></a></h2>
 <div class="outline-text-2" id="text-latest-articles">
 <div class="image-container">
 <a href="./article/embedding-binary-files-in-c">
@@ -301,41 +307,7 @@
 <div id="outline-container-latest-wiki" class="outline-2">
 <h2 id="latest-wiki"><a href="#latest-wiki"><a href="./notes">Latest notes</a></a></h2>
 <div class="outline-text-2" id="text-latest-wiki">
-<div class="image-container">
-<a href="./notes/daisyui.html">
-<div class="overlay">
-<div class="title">daisyUI</div>
-</div>
-</a>
-</div>
-<div class="image-container">
-<a href="./notes/netcode.html">
-<div class="overlay">
-<div class="title">Netcode</div>
-</div>
-</a>
-</div>
-<div class="image-container">
-<a href="./notes/datastar.html">
-<div class="overlay">
-<div class="title">Datastar</div>
-</div>
-</a>
-</div>
-<div class="image-container">
-<a href="./notes/feature_checklist_for_desktop_apps.html">
-<div class="overlay">
-<div class="title">Feature Checklist for Desktop Apps</div>
-</div>
-</a>
-</div>
-<div class="image-container">
-<a href="./notes/api.html">
-<div class="overlay">
-<div class="title">API (Application Programming Interface)</div>
-</div>
-</a>
-</div>
+
 </div>
 </div>
 </main>

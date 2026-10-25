@@ -573,7 +573,7 @@ Gets called by ~org-publish~ before the main publishing step.
               (insert "]</code></div>"))
         (insert "</div>"))
       (when title (insert (format "<h1>%s</h1>" title)))
-      (when description (insert (format "<h1 class=\"subtitle\">%s</h2>" description)))
+      (when description (insert (format "<p class=\"subtitle\">%s</p>" description)))
       (insert "\n#+end_export\n")
       )
     )
@@ -754,8 +754,9 @@ TODO only used to generate preview image, move to filter function
     (setq image-fmt-string "%s")
     (setq image-path ""))
   (progn
-    ; TODO hardcoded
-    (setq image-path (string-replace "/index.org" "" (string-replace "/home/da/dev/andersch.dev/" "" (buffer-file-name))))
+    (setq image-path (string-replace "/index.org" ""
+                      (file-relative-name (buffer-file-name)
+                        (locate-dominating-file (buffer-file-name) "build.sh"))))
     (setq image-fmt-string "<div class=\"figure\"><img src=\"/%s/%s\" alt=\"\"></div>")))
 
 (format (concat image-fmt-string) image-path (cadr (assoc "IMAGE" keywords)))
