@@ -19,8 +19,19 @@ document.querySelectorAll('h2, h3, h4').forEach(item => {
     });
 });
 
+// Match the focus order of the shared header in older wiki exports too.
+document.querySelectorAll('#top > header').forEach(header => {
+    const nav = header.querySelector('.nav');
+    const wrapper = nav.parentElement;
+    header.querySelector('.icons').before(nav);
+    wrapper.remove();
+});
+
 document.querySelectorAll('.nav-link').forEach(link => {
-    if (window.location.pathname.split('/')[1] === link.getAttribute('href').slice(1)) {
+    // Also normalize older wiki exports whose Org sources live outside this repo.
+    const section = link.getAttribute('href').split('/')[1];
+    link.textContent = `${section}/`;
+    if (window.location.pathname.split('/')[1] === section) {
         link.setAttribute('aria-current', 'page');
     }
 });
