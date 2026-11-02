@@ -47,7 +47,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .icons a:hover, .icons a:focus-visible { background: var(--surface); }
 .icons img { width: 19px; height: 19px; opacity: .8; }
 #icon-mail { position: relative; }
-.email { position: absolute; z-index: 2; right: 0; top: 44px; padding: 8px 14px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); white-space: nowrap; font-size: 13px; opacity: 0; visibility: hidden; }
+.email { position: absolute; z-index: 2; right: 0; top: 36px; padding: 8px 14px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); white-space: nowrap; font-size: 13px; cursor: text; user-select: text; opacity: 0; visibility: hidden; }
+/* Bridge the gap to the icon so the address stays open while selecting it. */
+.email::before { content: ""; position: absolute; bottom: 100%; left: -8px; right: -8px; height: 16px; }
 #icon-mail:hover .email, #icon-mail:focus .email { opacity: 1; visibility: visible; }
 .email.hidden, .email b:nth-child(2) { display: none; }
 .email b { font-weight: normal; }
