@@ -165,7 +165,7 @@ th { background: var(--surface); font-weight: 500; }
 #comment-section-title { font: 12px/1.5 var(--mono); text-transform: uppercase; letter-spacing: 1px; }
 @keyframes loading { from { opacity: 1; } to { opacity: .5; } }
 
-@container (min-width: 52rem) {
+@container (min-width: 36rem) {
   .site-header, #top > header { grid-template-columns: auto minmax(0, 1fr) auto; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
   .nav { grid-column: 2; grid-row: 1; justify-content: center; margin-top: 0; border-bottom: 0; }
   .nav-link { padding: 12px 0; margin-bottom: 0; }
