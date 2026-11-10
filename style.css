@@ -6,6 +6,14 @@
   src: url("/dejavuserif.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Ubuntu Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ubuntumono.woff2") format("woff2");
+}
+
 :root {
   color-scheme: dark;
   --paper: #232426;
@@ -19,6 +27,7 @@
   --serif: "DejaVu Serif", Georgia, serif;
   --sans: "Ubuntu", "Trebuchet MS", Arial, sans-serif;
   --mono: ui-monospace, "DejaVu Sans Mono", monospace;
+  --nav: "Ubuntu Mono", var(--mono);
 }
 
 * { box-sizing: border-box; }
@@ -40,7 +49,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .site-name { color: var(--gold); font: 32px/1.2 var(--sans); letter-spacing: -1.6px; text-decoration: none; position: relative; top: -7px; }
 .site-name span { color: var(--gold); }
 .nav { grid-column: 1 / -1; grid-row: 2; display: flex; gap: 32px; margin-top: 30px; border-bottom: 1px solid var(--line); }
-.nav-link { padding: 0 0 14px; color: var(--accent); font: 14px/1.75 var(--mono); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.nav-link { padding: 0 0 14px; color: var(--accent); font: 15px/1.75 var(--nav); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
 .nav-link:hover, .nav-link[aria-current="page"] { color: var(--accent); border-color: var(--accent); }
 .icons { grid-column: 2; grid-row: 1; display: flex; align-items: center; gap: 8px; }
 .icons a { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; }
