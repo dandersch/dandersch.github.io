@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ; insert after :PROPERTY: drawer
   (if (string-match-p ":PROPERTIES:" (thing-at-point 'line t))
      (progn (search-forward ":END:" nil t) (forward-line 1)))
-  (unless (string= (org-get-title) "andersch.dev") ; NOTE: hardcoded workaround
+  (unless (member (org-get-title) '("andersch.dev" "Articles" "Projects" "Other" "Notes"))
   (when (eq backend 'html)
     (let* ((tags (if org-file-tags org-file-tags nil))
            (date (cadar (org-collect-keywords '("DATE"))))
