@@ -184,8 +184,8 @@ th { background: var(--surface); font-weight: 500; }
   .nav { gap: 28px; margin-top: 24px; }
   .index-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "meta"; row-gap: 3px; padding: 11px 0; }
   .index-meta { display: flex; grid-area: meta; gap: 12px; }
-  .index-date { order: 2; margin-left: auto; }
-  .index-tags { order: 1; text-align: left; }
+  .index-date { order: 1; }
+  .index-tags { order: 2; margin-left: auto; text-align: right; }
   .index-more { display: block; padding: 11px 0; }
   .index-more::before { margin-right: 10px; }
   .column-entry { grid-template-columns: 148px minmax(0, 1fr); gap: 20px; }
