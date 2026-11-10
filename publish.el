@@ -495,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                      (postamble "footer" "postamble"))
              :html-html5-fancy     t
              ; TODO head defined else where and noweb it here
-             :html-head            (concat "<link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n"
+             :html-head            (concat "<link rel=\"icon\" type=\"image/png\" href=\"/favicon.png?v=2\">\n"
                                            "<link rel=\"stylesheet\" href=\"/style.css\">\n"
                                            ; NOTE import ubuntu font for now TODO embed in repo
                                            "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin\">"
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function() {
              :html-html5-fancy     t
              ; TODO head defined else where and noweb it here
              :html-head            (concat "<title>andersch.dev</title>\n"
-                                           "<link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n"
+                                           "<link rel=\"icon\" type=\"image/png\" href=\"/favicon.png?v=2\">\n"
                                            "<link rel=\"stylesheet\" href=\"/style.css\">\n"
                                            ; NOTE import ubuntu font for now TODO embed in repo
                                            "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin\">"
