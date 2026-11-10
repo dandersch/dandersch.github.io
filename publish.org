@@ -788,32 +788,41 @@ TODO only used to generate preview image, move to filter function
 #+END_SRC
 
 ** Generate a dated index
-One line per entry: full date, title, tags. Used by the homepage.
+One line per entry: full date, title, tags. Used by the homepage. Each section
+shows only its newest entries; the rest stay on the section page, and the
+heading says so when the list was cut.
 
 #+NAME: generate-dated-index
-#+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var sections='()
+#+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var sections='() :var limit=5
 (mapconcat
  (lambda (section) ; ("article" "article/" article-keyword-list)
-   (concat "<section class=\"index-section\">\n"
-           (format "<h2><a href=\"/%s\">%s</a></h2>\n" (car section) (cadr section))
-           "<div class=\"index-list\">\n"
-           (mapconcat
-            (lambda (entry)
-              (format "<a class=\"index-row\" href=\"%s\"><span class=\"index-date\">%s</span><span class=\"index-title\">%s</span><span class=\"index-tags\">%s</span></a>\n"
-                      (entry-href entry)
-                      (or (entry-date entry) "")
-                      (keyword-value entry "TITLE")
-                      (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
-                                 (or (entry-tags entry) '()) "")))
-            (caddr section) "")
-           "</div>\n</section>\n"))
+   (let* ((entries (caddr section))
+          (shown (seq-take entries limit))
+          (rest (- (length entries) (length shown))))
+     (concat "<section class=\"index-section\">\n"
+             (format "<h2><a href=\"/%s\">%s</a></h2>\n" (car section) (cadr section))
+             "<div class=\"index-list\">\n"
+             (mapconcat
+              (lambda (entry)
+                (format "<a class=\"index-row\" href=\"%s\"><span class=\"index-date\">%s</span><span class=\"index-title\">%s</span><span class=\"index-tags\">%s</span></a>\n"
+                        (entry-href entry)
+                        (or (entry-date entry) "")
+                        (keyword-value entry "TITLE")
+                        (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
+                                   (or (entry-tags entry) '()) "")))
+              shown "")
+             "</div>\n"
+             (when (> rest 0)
+               (format "<a class=\"index-more\" href=\"/%s\">%d more</a>\n" (car section) rest))
+             "</section>\n")))
  sections "")
 #+END_SRC
 
 ** Generate a reading column
-Preview on the left with the date below it, title and description on the right.
-Used by the article/, project/ and other/ indexes. Tags are text, not links,
-because the whole row is already one link.
+Preview on the left, title and date on the right. Used by the article/,
+project/ and other/ indexes. Tags are text, not links, because the whole row
+is already one link. The page title comes from the export hook, so this does
+not emit a heading.
 
 #+NAME: generate-reading-column
 #+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var list='()
@@ -821,13 +830,13 @@ because the whole row is already one link.
         (mapconcat
          (lambda (entry)
            (let ((image (keyword-value entry "IMAGE")))
-             (format "<a class=\"column-entry\" href=\"%s\"><span class=\"column-aside\">%s<span class=\"column-date\">%s</span></span><span class=\"column-body\"><span class=\"column-title\">%s</span><span class=\"column-desc\">%s</span><span class=\"column-tags\">%s</span></span></a>\n"
+             (format "<a class=\"column-entry\" href=\"%s\"><span class=\"column-aside\">%s</span><span class=\"column-body\"><span class=\"column-heading\"><span class=\"column-title\">%s</span><span class=\"column-date\">%s</span></span><span class=\"column-desc\">%s</span><span class=\"column-tags\">%s</span></span></a>\n"
                      (entry-href entry)
                      (if (and image (not (string-empty-p image)))
                          (format "<img src=\"%s/%s\" alt=\"\">" (entry-href entry) image)
                        "")
-                     (or (entry-date entry) "")
                      (keyword-value entry "TITLE")
+                     (or (entry-date entry) "")
                      (or (keyword-value entry "DESCRIPTION") "")
                      (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
                                 (or (entry-tags entry) '()) ""))))

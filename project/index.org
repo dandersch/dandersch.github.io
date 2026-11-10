@@ -1,8 +1,4 @@
 #+TITLE:   Projects
 #+OPTIONS: title:nil
 
-#+begin_export html
-<h1>Projects</h1>
-#+end_export
-
 #+CALL: ../publish.org:generate-reading-column[:eval yes](list=(get-project-keyword-list))

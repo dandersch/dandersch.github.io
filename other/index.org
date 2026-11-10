@@ -1,8 +1,4 @@
 #+TITLE:   Other
 #+OPTIONS: title:nil
 
-#+begin_export html
-<h1>Other</h1>
-#+end_export
-
 #+CALL: ../publish.org:generate-reading-column[:eval yes](list=(get-other-keyword-list))
