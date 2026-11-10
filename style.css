@@ -126,7 +126,7 @@ ul, ol { padding-left: 1.4em; }
 li { margin: .4em 0; }
 li > p { margin: .5em 0; }
 blockquote { margin: 28px 0; padding: 2px 0 2px 24px; border-left: 3px solid var(--accent); color: var(--muted); }
-code, kbd, pre { font-family: var(--mono); }
+code, kbd, pre { font-family: var(--nav); }
 code { font-size: .85em; color: #d5b28e; padding: .15em .35em; background: var(--surface); border-radius: 3px; overflow-wrap: anywhere; }
 pre { white-space: pre; overflow-x: auto; tab-size: 4; }
 .org-src-container { min-width: 0; }
