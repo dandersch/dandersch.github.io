@@ -804,10 +804,10 @@ heading says so when the list was cut.
              "<div class=\"index-list\">\n"
              (mapconcat
               (lambda (entry)
-                (format "<a class=\"index-row\" href=\"%s\"><span class=\"index-date\">%s</span><span class=\"index-title\">%s</span><span class=\"index-tags\">%s</span></a>\n"
+                (format "<a class=\"index-row\" href=\"%s\"><span class=\"index-title\">%s</span><span class=\"index-meta\"><span class=\"index-date\">%s</span><span class=\"index-tags\">%s</span></span></a>\n"
                         (entry-href entry)
-                        (or (entry-date entry) "")
                         (keyword-value entry "TITLE")
+                        (or (entry-date entry) "")
                         (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
                                    (or (entry-tags entry) '()) "")))
               shown "")
