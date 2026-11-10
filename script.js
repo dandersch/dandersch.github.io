@@ -1,4 +1,6 @@
 document.querySelectorAll('h2, h3, h4').forEach(item => {
+    // The homepage sections are an index, not foldable article headings.
+    if (item.closest('.index-section')) { return; }
     const children = Array.from(item.parentElement.children)
         .filter(child => child !== item && child.tagName !== 'SCRIPT');
     if (!children.length) { return; }

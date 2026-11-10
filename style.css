@@ -86,17 +86,20 @@ h2, h3, h4 { position: relative; padding-right: 36px; }
 .index-title { font: 17px/1.4 var(--serif); }
 .index-tags { color: var(--accent); font: 12px/1.5 var(--mono); text-align: right; }
 .index-tags span + span::before { content: " "; }
+.index-more { display: inline-block; margin-top: 10px; color: var(--muted); font: 12px/1.5 var(--mono); text-decoration: none; }
+.index-more:hover { color: var(--accent); }
 
-/* Section indexes: preview on the left, date under it, prose on the right. */
+/* Section indexes: preview on the left, date beside the title. */
 .column-list { display: flex; flex-direction: column; margin-top: 8px; }
 .column-entry { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 28px; align-items: start; padding: 28px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
 .column-entry:first-child { padding-top: 8px; }
 .column-aside { display: flex; flex-direction: column; gap: 10px; }
-.column-list.dates-only .column-entry { grid-template-columns: 7.5em minmax(0, 1fr); gap: 20px; }
+.column-list.dates-only .column-entry { grid-template-columns: minmax(0, 1fr); }
 .column-aside img { display: block; width: 100%; height: auto; background: var(--surface); }
-.column-date { color: var(--muted); font: 12px/1.5 var(--mono); }
 .column-body { display: flex; flex-direction: column; min-width: 0; padding-top: 2px; }
+.column-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .column-title { font: 500 22px/1.3 var(--serif); letter-spacing: -.2px; }
+.column-date { flex: none; color: var(--muted); font: 12px/1.5 var(--mono); }
 .column-entry:hover .column-title, .column-entry:focus-visible .column-title { color: var(--accent); }
 .column-desc { margin-top: 8px; color: var(--muted); font: 16px/1.55 var(--serif); max-width: 62ch; }
 .column-tags { margin-top: 12px; color: var(--accent); font: 12px/1.5 var(--mono); }
@@ -196,8 +199,8 @@ th { background: var(--surface); font-weight: 500; }
   .index-row { gap: 4px 12px; }
   .index-title { font-size: 16px; }
   .column-entry { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
-  .column-aside { flex-direction: row; align-items: baseline; }
-  .column-aside img { width: 96px; }
+  .column-aside img { width: 100%; }
+  .column-heading { flex-wrap: wrap; gap: 4px 12px; }
   .column-title { font-size: 19px; }
   .column-desc { font-size: 15px; }
   .org-src-container pre, pre.example { padding: 18px; font-size: 12px; }
