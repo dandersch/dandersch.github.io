@@ -813,7 +813,7 @@ heading says so when the list was cut.
               shown "")
              "</div>\n"
              (when (> rest 0)
-               (format "<a class=\"index-more\" href=\"/%s\">%d more</a>\n" (car section) rest))
+               (format "<a class=\"index-more\" href=\"/%s\"><span>%d more</span></a>\n" (car section) rest))
              "</section>\n")))
  sections "")
 #+END_SRC
