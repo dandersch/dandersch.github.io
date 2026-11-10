@@ -111,7 +111,32 @@ see on this page is [[https://orgmode.org/manual/Extracting-Source-Code.html][ta
 
 (defun article-marked-for-noexport-p (article)
   (string-match-p (regexp-quote "noexport") (cadr (assoc "TAGS[]" (cadr article)))))
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle yes :tangle ../../publish.el
+(defun keyword-value (entry key)
+  "Value of KEY in an entry from the keyword lists, or nil."
+  (cadr (assoc key (cadr entry))))
+
+(defun entry-date (entry)
+  "YYYY-MM-DD from an entry's DATE keyword, dropping the Org brackets and weekday."
+  (when-let ((date (keyword-value entry "DATE")))
+    (and (string-match "\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\)" date)
+         (match-string 1 date))))
+
+(defun entry-tags (entry)
+  "FILETAGS of an entry as a list, without the empty strings the colon syntax produces."
+  (when-let ((filetags (keyword-value entry "FILETAGS")))
+    (cl-remove-if #'string-empty-p (split-string filetags ":"))))
+
+(defun entry-href (entry)
+  "Site path of an entry. Notes live outside the repo, so their path is rewritten."
+  (if (string-prefix-p "~/org/roam" (car entry))
+      (string-replace ".org" ".html" (string-replace "~/org/roam" "/notes" (car entry)))
+    (concat "/" (string-replace "/index.org" "" (car entry)))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :tangle yes :tangle ../../publish.el
 (setq tags-to-ignore '("noexport"
                        "economics"
                        "philosophy"
@@ -762,7 +787,57 @@ TODO only used to generate preview image, move to filter function
 (format (concat image-fmt-string) image-path (cadr (assoc "IMAGE" keywords)))
 #+END_SRC
 
+** Generate a dated index
+One line per entry: full date, title, tags. Used by the homepage.
+
+#+NAME: generate-dated-index
+#+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var sections='()
+(mapconcat
+ (lambda (section) ; ("article" "article/" article-keyword-list)
+   (concat "<section class=\"index-section\">\n"
+           (format "<h2><a href=\"/%s\">%s</a></h2>\n" (car section) (cadr section))
+           "<div class=\"index-list\">\n"
+           (mapconcat
+            (lambda (entry)
+              (format "<a class=\"index-row\" href=\"%s\"><span class=\"index-date\">%s</span><span class=\"index-title\">%s</span><span class=\"index-tags\">%s</span></a>\n"
+                      (entry-href entry)
+                      (or (entry-date entry) "")
+                      (keyword-value entry "TITLE")
+                      (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
+                                 (or (entry-tags entry) '()) "")))
+            (caddr section) "")
+           "</div>\n</section>\n"))
+ sections "")
+#+END_SRC
+
+** Generate a reading column
+Preview on the left with the date below it, title and description on the right.
+Used by the article/, project/ and other/ indexes. Tags are text, not links,
+because the whole row is already one link.
+
+#+NAME: generate-reading-column
+#+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var list='()
+(concat "<div class=\"column-list\">\n"
+        (mapconcat
+         (lambda (entry)
+           (let ((image (keyword-value entry "IMAGE")))
+             (format "<a class=\"column-entry\" href=\"%s\"><span class=\"column-aside\">%s<span class=\"column-date\">%s</span></span><span class=\"column-body\"><span class=\"column-title\">%s</span><span class=\"column-desc\">%s</span><span class=\"column-tags\">%s</span></span></a>\n"
+                     (entry-href entry)
+                     (if (and image (not (string-empty-p image)))
+                         (format "<img src=\"%s/%s\" alt=\"\">" (entry-href entry) image)
+                       "")
+                     (or (entry-date entry) "")
+                     (keyword-value entry "TITLE")
+                     (or (keyword-value entry "DESCRIPTION") "")
+                     (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
+                                (or (entry-tags entry) '()) ""))))
+         list "")
+        "</div>\n")
+#+END_SRC
+
 ** Generate Article Snippets
+Kept for the per-article export. The section indexes no longer call this.
+
 #+NAME: generate-article-snippets
 #+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var list='()
 (setq article-snippets '())

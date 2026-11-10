@@ -1,3 +1,8 @@
 #+TITLE:   Articles
 #+OPTIONS: title:nil
-#+CALL: ../publish.org:generate-article-snippets[:eval yes](list=(get-article-keyword-list))
+
+#+begin_export html
+<h1>Articles</h1>
+#+end_export
+
+#+CALL: ../publish.org:generate-reading-column[:eval yes](list=(get-article-keyword-list))

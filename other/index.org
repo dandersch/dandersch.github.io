@@ -1,3 +1,8 @@
 #+TITLE:   Other
 #+OPTIONS: title:nil
-#+CALL: ../publish.org:generate-article-snippets[:eval yes](list=(get-other-keyword-list))
+
+#+begin_export html
+<h1>Other</h1>
+#+end_export
+
+#+CALL: ../publish.org:generate-reading-column[:eval yes](list=(get-other-keyword-list))

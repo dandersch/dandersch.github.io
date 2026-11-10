@@ -1,3 +1,8 @@
 #+TITLE:   Projects
 #+OPTIONS: title:nil
-#+CALL: ../publish.org:generate-article-snippets[:eval yes](list=(get-project-keyword-list))
+
+#+begin_export html
+<h1>Projects</h1>
+#+end_export
+
+#+CALL: ../publish.org:generate-reading-column[:eval yes](list=(get-project-keyword-list))

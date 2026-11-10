@@ -71,6 +71,27 @@
 (defun article-marked-for-noexport-p (article)
   (string-match-p (regexp-quote "noexport") (cadr (assoc "TAGS[]" (cadr article)))))
 
+(defun keyword-value (entry key)
+  "Value of KEY in an entry from the keyword lists, or nil."
+  (cadr (assoc key (cadr entry))))
+
+(defun entry-date (entry)
+  "YYYY-MM-DD from an entry's DATE keyword, dropping the Org brackets and weekday."
+  (when-let ((date (keyword-value entry "DATE")))
+    (and (string-match "\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\)" date)
+         (match-string 1 date))))
+
+(defun entry-tags (entry)
+  "FILETAGS of an entry as a list, without the empty strings the colon syntax produces."
+  (when-let ((filetags (keyword-value entry "FILETAGS")))
+    (cl-remove-if #'string-empty-p (split-string filetags ":"))))
+
+(defun entry-href (entry)
+  "Site path of an entry. Notes live outside the repo, so their path is rewritten."
+  (if (string-prefix-p "~/org/roam" (car entry))
+      (string-replace ".org" ".html" (string-replace "~/org/roam" "/notes" (car entry)))
+    (concat "/" (string-replace "/index.org" "" (car entry)))))
+
 (setq tags-to-ignore '("noexport"
                        "economics"
                        "philosophy"
