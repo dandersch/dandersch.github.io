@@ -90,7 +90,7 @@ h2, h3, h4 { position: relative; padding-right: 36px; }
 .index-section h2 a { color: var(--gold); }
 .index-section h2 a:hover { color: var(--accent); }
 .index-list { display: flex; flex-direction: column; container-type: inline-size; }
-.index-row { display: grid; grid-template-columns: 6.1em minmax(0, 1fr) auto; grid-template-areas: "date title tags"; column-gap: 18px; align-items: start; padding: 7px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; font-size: 17px; }
+.index-row { display: grid; grid-template-columns: 6.1em minmax(0, 1fr) auto; grid-template-areas: "date title tags"; column-gap: 18px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; font-size: 17px; }
 .index-date { grid-area: date; }
 .index-title { grid-area: title; }
 .index-tags { grid-area: tags; }
