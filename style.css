@@ -80,13 +80,15 @@ h2, h3, h4 { position: relative; padding-right: 36px; }
 .index-section h2 a { color: var(--gold); }
 .index-section h2 a:hover { color: var(--accent); }
 .index-list { display: flex; flex-direction: column; }
-.index-row { display: grid; grid-template-columns: 7.5em minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
+.index-row { display: grid; grid-template-columns: 6.1em minmax(0, 1fr) auto; gap: 18px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; font-size: 17px; }
 .index-row:hover .index-title, .index-row:focus-visible .index-title { color: var(--accent); }
 .index-date { color: var(--muted); font: 13px/1.5 var(--mono); }
 .index-title { font: 17px/1.4 var(--serif); }
 .index-tags { color: var(--accent); font: 12px/1.5 var(--mono); text-align: right; }
 .index-tags span + span::before { content: " "; }
-.index-more { display: inline-block; margin-top: 10px; color: var(--muted); font: 12px/1.5 var(--mono); text-decoration: none; }
+.index-more { display: grid; grid-template-columns: 6.1em minmax(0, 1fr); column-gap: 18px; align-items: baseline; padding: 7px 0; color: var(--muted); font: 17px/1.5 var(--mono); text-decoration: none; }
+.index-more::before { content: "…"; grid-column: 1; font-size: 13px; }
+.index-more span { grid-column: 2; font-size: 13px; }
 .index-more:hover { color: var(--accent); }
 
 /* Section indexes: preview on the left, date beside the title. */
@@ -176,7 +178,7 @@ th { background: var(--surface); font-weight: 500; }
   #content { padding: 40px 24px 64px; }
   .site-name { font-size: 28px; }
   .nav { gap: 28px; margin-top: 24px; }
-  .index-row { grid-template-columns: 7.5em minmax(0, 1fr); }
+  .index-row, .index-more { grid-template-columns: 6.1em minmax(0, 1fr); }
   .index-tags { grid-column: 2; text-align: left; }
   .column-entry { grid-template-columns: 148px minmax(0, 1fr); gap: 20px; }
   h1 { font-size: 34px; }
@@ -196,7 +198,7 @@ th { background: var(--surface); font-weight: 500; }
   .icons img { width: 17px; height: 17px; }
   .nav { justify-content: space-between; gap: 16px; }
   .nav-link { font-size: 13px; }
-  .index-row { gap: 4px 12px; }
+  .index-row, .index-more { gap: 4px 12px; }
   .index-title { font-size: 16px; }
   .column-entry { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
   .column-aside img { width: 100%; }
