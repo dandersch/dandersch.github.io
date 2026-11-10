@@ -130,7 +130,7 @@ code, kbd, pre { font-family: var(--nav); }
 code { font-size: .85em; color: #d5b28e; padding: .15em .35em; background: var(--surface); border-radius: 3px; overflow-wrap: anywhere; }
 pre { white-space: pre; overflow-x: auto; tab-size: 4; }
 .org-src-container { min-width: 0; }
-.org-src-container pre, pre.example { color: #eeeee8; background: #18191b; padding: 24px; margin: 24px 0; border: 1px solid var(--line); border-radius: 4px; box-shadow: none; font-size: 13px; line-height: 1.8; }
+.org-src-container pre, pre.example { color: #eeeee8; background: #18191b; padding: 24px; margin: 24px 0; border: 1px solid var(--line); border-radius: 4px; box-shadow: none; font-size: 17px; line-height: 1.65; }
 pre code { padding: 0; color: inherit; background: transparent; overflow-wrap: normal; }
 pre.src::before { background: #3b4540; color: #eee; border: 0; font: 10px/1.5 var(--mono); top: 0; right: 0; padding: 4px 8px; }
 .org-builtin, .org-function-call { color: #e9e8df; }
@@ -220,7 +220,7 @@ th { background: var(--surface); font-weight: 500; }
   .column-heading { flex-wrap: wrap; gap: 4px 12px; }
   .column-title { font-size: 19px; }
   .column-desc { font-size: 15px; }
-  .org-src-container pre, pre.example { padding: 18px; font-size: 12px; }
+  .org-src-container pre, pre.example { padding: 18px; font-size: 14px; }
   #table-of-contents { padding-right: 18px; padding-left: 18px; }
   h1 { font-size: 30px; letter-spacing: -1px; overflow-wrap: anywhere; }
   .article-snippet h1 { font-size: 28px; }
