@@ -161,6 +161,10 @@ table { border-collapse: collapse; width: 100%; margin: 28px 0; font-size: 14px;
 th, td { padding: 12px 14px; border: 1px solid var(--line); text-align: left; }
 th { background: var(--surface); font-weight: 500; }
 .tags-date-box { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font: 11px/1.7 var(--mono); color: var(--muted); margin-bottom: 20px; }
+/* Existing exports put metadata before the title; reserve its own column. */
+#content > .tags-date-box:has(+ h1) { float: right; max-width: 40%; flex-direction: column; align-items: flex-end; gap: 2px; margin: 20px 0 20px 24px; text-align: right; }
+#content > .tags-date-box + h1 { display: flow-root; }
+#content > .tags-date-box + h1 + * { clear: both; }
 .timestamp { color: var(--muted); }
 .tags code { padding: 0; background: none; font-size: inherit; }
 .tags a { color: var(--accent); text-decoration: none; }
@@ -213,6 +217,11 @@ th { background: var(--surface); font-weight: 500; }
   h2 { font-size: 25px; }
   #content .subtitle { font-size: 17px; }
   .tags-date-box { font-size: 10px; }
+}
+
+@media (max-width: 600px) {
+  #content > .tags-date-box:has(+ h1) { float: none; max-width: none; flex-direction: row; align-items: baseline; gap: 8px 12px; margin: 0 0 12px; text-align: left; }
+  #content > .tags-date-box:has(+ h1) .tags { margin-left: auto; text-align: right; }
 }
 
 @media (max-width: 480px) {
