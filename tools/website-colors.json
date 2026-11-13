@@ -1,0 +1,28 @@
+{
+  "name": "My Schwarzwald website",
+  "colors": {
+    "tags": "#99bb66",
+    "tagsHover": "#eeeee8",
+    "links": "#ecbe7b",
+    "linksHover": "#4db5bd",
+    "titles": "#dfdfdf",
+    "titlesHover": "#99bb66",
+    "brand": "#ecbe7b",
+    "brandHover": "#eeeee8",
+    "nav": "#99bb66",
+    "navHover": "#99bb66",
+    "sections": "#5b6268",
+    "sectionsHover": "#99bb66",
+    "heading": "#eeeee8",
+    "subheading": "#eeeee8",
+    "text": "#ffffff",
+    "muted": "#b4b8ae",
+    "inline": "#c4a574",
+    "outer": "#18191b",
+    "paper": "#1c1f24",
+    "surface": "#21242b",
+    "line": "#3f444a",
+    "selection": "#3d5230",
+    "focus": "#99bb66"
+  }
+}
