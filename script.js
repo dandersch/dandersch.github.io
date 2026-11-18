@@ -1,6 +1,36 @@
+const tocHeading = document.querySelector('#table-of-contents > h2');
+const tocLinks = document.getElementById('text-table-of-contents');
+if (tocHeading && tocLinks) {
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.textContent = tocHeading.textContent;
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-controls', tocLinks.id);
+    tocHeading.replaceChildren(toggle);
+    toggle.addEventListener('click', () => {
+        tocLinks.hidden = !tocLinks.hidden;
+        toggle.setAttribute('aria-expanded', String(!tocLinks.hidden));
+    });
+
+    tocLinks.querySelectorAll('li > a').forEach(link => {
+        const first = link.firstChild;
+        if (first?.nodeType !== Node.TEXT_NODE) { return; }
+        const prefix = first.data.match(/^\s*(\d+(?:\.\d+)*\.)\s+/);
+        if (!prefix) { return; }
+
+        first.deleteData(0, prefix[0].length);
+        const number = document.createElement('span');
+        number.className = 'toc-number';
+        number.textContent = `${prefix[1]} `;
+        const title = document.createElement('span');
+        title.append(...link.childNodes);
+        link.append(number, title);
+    });
+}
+
 document.querySelectorAll('h2, h3, h4').forEach(item => {
-    // The homepage sections are an index, not foldable article headings.
-    if (item.closest('.index-section')) { return; }
+    // The homepage is an index; the contents panel has its own toggle.
+    if (item.closest('.index-section, #table-of-contents')) { return; }
     const children = Array.from(item.parentElement.children)
         .filter(child => child !== item && child.tagName !== 'SCRIPT');
     if (!children.length) { return; }
