@@ -262,19 +262,19 @@ avoids file I/O and has some additional advantages.
 <div id="outline-container-Pros%20%26%20Cons" class="outline-2">
 <h2 id="Pros%20%26%20Cons"><span class="section-number-2">1.</span> <a href="#Pros%20%26%20Cons">Pros &amp; Cons</a></h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>✅ Shader code embedded as a C string (no file I/O necessary)</li>
-<li>✅ No additional preprocessing step &amp; portable across C/C++</li>
-<li>✅ Option of having shader code in a separate file or defined inline</li>
-<li>✅ Preserves (most) syntax highlighting in both cases</li>
-<li>✅ Share <code>#define</code>'s between C and GLSL code</li>
-<li>✅ Centralize common helper functions between shaders (e.g. in <code>common.glsl</code>)</li>
-<li>✅ Centralize common struct definitions between GLSL and C (e.g. in <code>common.h</code>)</li>
-<li>✅ Conditional compilation (e.g. having fragment &amp; vertex shader in one file)</li>
-<li>✅ Can pair well with hot-reloading C code</li>
-<li>❌ Newlines are lost, so debug info containing line numbers can be imprecise</li>
-<li>❌ The <code>glsl</code> files become more noisy</li>
-<li>❌ Somewhat ugly use of <code>#include</code> in the C code</li>
+<ul class="org-ul tradeoffs">
+<li>+ Shader code embedded as a C string (no file I/O necessary)</li>
+<li>+ No additional preprocessing step &amp; portable across C/C++</li>
+<li>+ Option of having shader code in a separate file or defined inline</li>
+<li>+ Preserves (most) syntax highlighting in both cases</li>
+<li>+ Share <code>#define</code>'s between C and GLSL code</li>
+<li>+ Centralize common helper functions between shaders (e.g. in <code>common.glsl</code>)</li>
+<li>+ Centralize common struct definitions between GLSL and C (e.g. in <code>common.h</code>)</li>
+<li>+ Conditional compilation (e.g. having fragment &amp; vertex shader in one file)</li>
+<li>+ Can pair well with hot-reloading C code</li>
+<li>− Newlines are lost, so debug info containing line numbers can be imprecise</li>
+<li>− The <code>glsl</code> files become more noisy</li>
+<li>− Somewhat ugly use of <code>#include</code> in the C code</li>
 </ul>
 </div>
 </div>

@@ -1,3 +1,24 @@
+document.querySelectorAll('ul.tradeoffs').forEach(list => {
+    list.setAttribute('role', 'list');
+    list.querySelectorAll(':scope > li').forEach(item => {
+        const first = item.firstChild;
+        if (first?.nodeType !== Node.TEXT_NODE) { return; }
+        const prefix = first.data.match(/^([+−]) /);
+        if (!prefix) { return; }
+
+        const sign = prefix[1];
+        const marker = document.createElement('span');
+        marker.className = sign === '+' ? 'tradeoff-marker' : 'tradeoff-marker drawback';
+        marker.setAttribute('aria-hidden', 'true');
+        marker.textContent = sign;
+        const label = document.createElement('span');
+        label.className = 'tradeoff-label';
+        label.textContent = sign === '+' ? 'Advantage: ' : 'Drawback: ';
+        first.deleteData(0, prefix[0].length);
+        item.prepend(marker, label);
+    });
+});
+
 const tocHeading = document.querySelector('#table-of-contents > h2');
 const tocLinks = document.getElementById('text-table-of-contents');
 if (tocHeading && tocLinks) {

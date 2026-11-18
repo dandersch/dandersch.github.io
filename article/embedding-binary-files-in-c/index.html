@@ -303,14 +303,14 @@ of glsl shaders in source code</a>:
 <div id="outline-container-Pros%20%26%20Cons" class="outline-3">
 <h3 id="Pros%20%26%20Cons"><a href="#Pros%20%26%20Cons">Pros &amp; Cons</a></h3>
 <div class="outline-text-3" id="text-Pros%20%26%20Cons">
-<ul class="org-ul">
-<li>✅ Should work everywhere</li>
-<li>✅ Binaries can be included with their original name</li>
-<li>✅ Buffer as a real array (i.e. <code>sizeof(buffer)</code> works)</li>
-<li>❌ Adds a build dependency</li>
-<li>❌ Adds a precompilation step</li>
-<li>❌ Generated files are larger in size than the binaries</li>
-<li>❌ Slows down build times</li>
+<ul class="org-ul tradeoffs">
+<li>+ Should work everywhere</li>
+<li>+ Binaries can be included with their original name</li>
+<li>+ Buffer as a real array (i.e. <code>sizeof(buffer)</code> works)</li>
+<li>− Adds a build dependency</li>
+<li>− Adds a precompilation step</li>
+<li>− Generated files are larger in size than the binaries</li>
+<li>− Slows down build times</li>
 </ul>
 </div>
 </div>
@@ -422,18 +422,18 @@ Which makes usage look like this:
 <div id="outline-container-Use%20the%20linker--Pros%20%26%20Cons" class="outline-3">
 <h3 id="Use%20the%20linker--Pros%20%26%20Cons"><a href="#Use%20the%20linker--Pros%20%26%20Cons">Pros &amp; Cons</a></h3>
 <div class="outline-text-3" id="text-Use%20the%20linker--Pros%20%26%20Cons">
-<ul class="org-ul">
-<li>✅ No added build dependency (since we already depended on having linker)</li>
-<li>✅ Faster build times than first option</li>
-<li>✅ Can specify different types (not just char)</li>
-<li>✅ Smaller filesizes compared to first option</li>
-<li>✅ Can be cross-platform&hellip;</li>
-<li>❌ &hellip;but may require a different tool for each platform</li>
-<li>❌ Adds a precompilation step (and arguably more complex than first option)</li>
-<li>❌ Memory always <code>const</code> (i.e. needs a <code>memcpy</code> to mutate it)</li>
-<li>❌ No real array, just a pointer and size (i.e. <code>sizeof(buffer)</code> doesn't work)</li>
-<li>❌ No access to <code>extern</code> data or size at compile-time (only after linking)</li>
-<li>❌ Arguably worse ergonomics: <code>MY_INCLUDE(file, ext)</code> vs. <code>#include "file.ext"</code></li>
+<ul class="org-ul tradeoffs">
+<li>+ No added build dependency (since we already depended on having linker)</li>
+<li>+ Faster build times than first option</li>
+<li>+ Can specify different types (not just char)</li>
+<li>+ Smaller filesizes compared to first option</li>
+<li>+ Can be cross-platform&hellip;</li>
+<li>− &hellip;but may require a different tool for each platform</li>
+<li>− Adds a precompilation step (and arguably more complex than first option)</li>
+<li>− Memory always <code>const</code> (i.e. needs a <code>memcpy</code> to mutate it)</li>
+<li>− No real array, just a pointer and size (i.e. <code>sizeof(buffer)</code> doesn't work)</li>
+<li>− No access to <code>extern</code> data or size at compile-time (only after linking)</li>
+<li>− Arguably worse ergonomics: <code>MY_INCLUDE(file, ext)</code> vs. <code>#include "file.ext"</code></li>
 </ul>
 </div>
 </div>
@@ -488,11 +488,11 @@ Usage code becomes:
 <p>
 Same as the linker option, except&hellip;
 </p>
-<ul class="org-ul">
-<li>✅ Choose names of buffer and size</li>
-<li>✅ Better ergonomics: Use buffer and size directly</li>
-<li>✅ No precompilation step</li>
-<li>❌ Not cross-platform (GCC &amp; Clang support <code>.incbin</code>)</li>
+<ul class="org-ul tradeoffs">
+<li>+ Choose names of buffer and size</li>
+<li>+ Better ergonomics: Use buffer and size directly</li>
+<li>+ No precompilation step</li>
+<li>− Not cross-platform (GCC &amp; Clang support <code>.incbin</code>)</li>
 </ul>
 </div>
 </div>
@@ -526,11 +526,11 @@ The usage code looks basically like this:
 <p>
 Same as the <code>.incbin</code> option, except&hellip;
 </p>
-<ul class="org-ul">
-<li>✅ Can be cross-platform</li>
-<li>✅ No precompilation step&hellip;</li>
-<li>❌ &hellip;except for MSVC</li>
-<li>❌ Adds a dependency</li>
+<ul class="org-ul tradeoffs">
+<li>+ Can be cross-platform</li>
+<li>+ No precompilation step&hellip;</li>
+<li>− &hellip;except for MSVC</li>
+<li>− Adds a dependency</li>
 </ul>
 </div>
 </div>
@@ -565,9 +565,9 @@ not be an option for you.
 <div id="outline-container-Using%20~%23embed~--Pros%20%26%20Cons" class="outline-3">
 <h3 id="Using%20~%23embed~--Pros%20%26%20Cons"><a href="#Using%20~%23embed~--Pros%20%26%20Cons">Pros &amp; Cons</a></h3>
 <div class="outline-text-3" id="text-Using%20~%23embed~--Pros%20%26%20Cons">
-<ul class="org-ul">
-<li>✅ Fastest &amp; easiest way</li>
-<li>❌ Requires modern compiler support</li>
+<ul class="org-ul tradeoffs">
+<li>+ Fastest &amp; easiest way</li>
+<li>− Requires modern compiler support</li>
 </ul>
 </div>
 </div>

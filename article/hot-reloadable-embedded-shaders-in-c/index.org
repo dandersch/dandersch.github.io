@@ -34,18 +34,19 @@ avoids file I/O and has some additional advantages.
 #+TOC: headlines
 
 * Pros & Cons
-- ✅ Shader code embedded as a C string (no file I/O necessary)
-- ✅ No additional preprocessing step & portable across C/C++
-- ✅ Option of having shader code in a separate file or defined inline
-- ✅ Preserves (most) syntax highlighting in both cases
-- ✅ Share ~#define~'s between C and GLSL code
-- ✅ Centralize common helper functions between shaders (e.g. in ~common.glsl~)
-- ✅ Centralize common struct definitions between GLSL and C (e.g. in ~common.h~)
-- ✅ Conditional compilation (e.g. having fragment & vertex shader in one file)
-- ✅ Can pair well with hot-reloading C code
-- ❌ Newlines are lost, so debug info containing line numbers can be imprecise
-- ❌ The ~glsl~ files become more noisy
-- ❌ Somewhat ugly use of ~#include~ in the C code
+#+ATTR_HTML: :class tradeoffs
+- + Shader code embedded as a C string (no file I/O necessary)
+- + No additional preprocessing step & portable across C/C++
+- + Option of having shader code in a separate file or defined inline
+- + Preserves (most) syntax highlighting in both cases
+- + Share ~#define~'s between C and GLSL code
+- + Centralize common helper functions between shaders (e.g. in ~common.glsl~)
+- + Centralize common struct definitions between GLSL and C (e.g. in ~common.h~)
+- + Conditional compilation (e.g. having fragment & vertex shader in one file)
+- + Can pair well with hot-reloading C code
+- − Newlines are lost, so debug info containing line numbers can be imprecise
+- − The ~glsl~ files become more noisy
+- − Somewhat ugly use of ~#include~ in the C code
 
 * Approach
 We make use a ~STRINGIFY~ macro:

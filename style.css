@@ -26,6 +26,7 @@
   --muted: #b4b8ae;
   --line: #3f444a;
   --green: #99bb66;
+  --red: #ff6c6b;
   --gold: #ecbe7b;
   --teal: #4db5bd;
   --string: #c4a574;
@@ -134,6 +135,11 @@ h2, h3, h4 { position: relative; padding-right: 36px; }
 hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
 ul, ol { padding-left: 1.4em; }
 li { margin: .4em 0; }
+.tradeoffs:has(> li > .tradeoff-marker) { padding-inline-start: 0; }
+.tradeoffs > li:has(> .tradeoff-marker) { list-style: none; position: relative; padding-inline-start: 1.4em; }
+.tradeoff-marker { position: absolute; inset-inline-start: 0; color: var(--green); font-family: var(--mono); }
+.tradeoff-marker.drawback { color: var(--red); }
+.tradeoff-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 li > p { margin: .5em 0; }
 blockquote { margin: 28px 0; padding: 2px 0 2px 24px; border-left: 3px solid var(--accent); color: var(--muted); }
 code, kbd, pre { font-family: var(--nav); }
@@ -149,7 +155,7 @@ pre .org-preprocessor, pre .org-keyword, pre .org-constant, pre .org-macro, pre 
 pre .org-type, pre .org-css-selector { color: var(--teal); }
 pre .org-comment, pre .org-comment-delimiter, pre .org-doc, pre .org-doc-markup { color: var(--green); }
 pre .org-string, pre .org-sh-heredoc, pre .org-number, pre .org-character, pre .org-escape { color: #b4916d; }
-pre .org-error { color: #ff6c6b; }
+pre .org-error { color: var(--red); }
 pre ::selection { background: #003c64; color: #ffffff; }
 .org-italic { font-style: italic; }
 .org-button, .org-link, .org-link-visited { color: var(--teal); text-decoration: underline; }

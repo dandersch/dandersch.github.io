@@ -60,13 +60,14 @@ unsigned char buffer[] = {
 #+END_SRC
 
 ** Pros & Cons
-- ✅ Should work everywhere
-- ✅ Binaries can be included with their original name
-- ✅ Buffer as a real array (i.e. ~sizeof(buffer)~ works)
-- ❌ Adds a build dependency
-- ❌ Adds a precompilation step
-- ❌ Generated files are larger in size than the binaries
-- ❌ Slows down build times
+#+ATTR_HTML: :class tradeoffs
+- + Should work everywhere
+- + Binaries can be included with their original name
+- + Buffer as a real array (i.e. ~sizeof(buffer)~ works)
+- − Adds a build dependency
+- − Adds a precompilation step
+- − Generated files are larger in size than the binaries
+- − Slows down build times
 
 ** Improving build times with ~strliteral~
 Parsing hex-formatted char arrays from a program like ~xxd~ like above can be slow
@@ -145,17 +146,18 @@ int main()
 #+END_SRC
 
 ** Pros & Cons
-- ✅ No added build dependency (since we already depended on having linker)
-- ✅ Faster build times than first option
-- ✅ Can specify different types (not just char)
-- ✅ Smaller filesizes compared to first option
-- ✅ Can be cross-platform...
-- ❌ ...but may require a different tool for each platform
-- ❌ Adds a precompilation step (and arguably more complex than first option)
-- ❌ Memory always ~const~ (i.e. needs a ~memcpy~ to mutate it)
-- ❌ No real array, just a pointer and size (i.e. ~sizeof(buffer)~ doesn't work)
-- ❌ No access to ~extern~ data or size at compile-time (only after linking)
-- ❌ Arguably worse ergonomics: ~MY_INCLUDE(file, ext)~ vs. ~#include "file.ext"~
+#+ATTR_HTML: :class tradeoffs
+- + No added build dependency (since we already depended on having linker)
+- + Faster build times than first option
+- + Can specify different types (not just char)
+- + Smaller filesizes compared to first option
+- + Can be cross-platform...
+- − ...but may require a different tool for each platform
+- − Adds a precompilation step (and arguably more complex than first option)
+- − Memory always ~const~ (i.e. needs a ~memcpy~ to mutate it)
+- − No real array, just a pointer and size (i.e. ~sizeof(buffer)~ doesn't work)
+- − No access to ~extern~ data or size at compile-time (only after linking)
+- − Arguably worse ergonomics: ~MY_INCLUDE(file, ext)~ vs. ~#include "file.ext"~
 
 
 * Inline Assembly using ~.incbin~
@@ -197,10 +199,11 @@ int main()
 
 ** Pros & Cons
 Same as the linker option, except...
-- ✅ Choose names of buffer and size
-- ✅ Better ergonomics: Use buffer and size directly
-- ✅ No precompilation step
-- ❌ Not cross-platform (GCC & Clang support ~.incbin~)
+#+ATTR_HTML: :class tradeoffs
+- + Choose names of buffer and size
+- + Better ergonomics: Use buffer and size directly
+- + No precompilation step
+- − Not cross-platform (GCC & Clang support ~.incbin~)
 
 
 * Use a library
@@ -223,10 +226,11 @@ INCBIN(song, "music.mp3"); // defines song_data, song_end and song_size
 
 ** Pros & Cons
 Same as the ~.incbin~ option, except...
-- ✅ Can be cross-platform
-- ✅ No precompilation step...
-- ❌ ...except for MSVC
-- ❌ Adds a dependency
+#+ATTR_HTML: :class tradeoffs
+- + Can be cross-platform
+- + No precompilation step...
+- − ...except for MSVC
+- − Adds a dependency
 
 
 * Using ~#embed~
@@ -249,8 +253,9 @@ implementation of ~#embed~ in current compilers is not yet wide spread, so it ma
 not be an option for you.
 
 ** Pros & Cons
-- ✅ Fastest & easiest way
-- ❌ Requires modern compiler support
+#+ATTR_HTML: :class tradeoffs
+- + Fastest & easiest way
+- − Requires modern compiler support
 
 
 * Resources
