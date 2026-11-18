@@ -49,27 +49,6 @@ if (tocHeading && tocLinks) {
     });
 }
 
-document.querySelectorAll('h2, h3, h4').forEach(item => {
-    // The homepage is an index; the contents panel has its own toggle.
-    if (item.closest('.index-section, #table-of-contents')) { return; }
-    const children = Array.from(item.parentElement.children)
-        .filter(child => child !== item && child.tagName !== 'SCRIPT');
-    if (!children.length) { return; }
-
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'section-toggle';
-    toggle.setAttribute('aria-expanded', 'true');
-    toggle.setAttribute('aria-label', `Toggle ${item.textContent.trim()}`);
-    item.append(toggle);
-
-    toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        children.forEach(child => { child.hidden = expanded; });
-        toggle.setAttribute('aria-expanded', String(!expanded));
-    });
-});
-
 // Match the focus order of the shared header in older wiki exports too.
 document.querySelectorAll('#top > header').forEach(header => {
     const nav = header.querySelector('.nav');
