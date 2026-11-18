@@ -212,7 +212,7 @@ de unique when necessary."
 <div id='comment-section'>
 <h3 id='comment-section-title'>Comments</h3>
 <script src='https://utteranc.es/client.js'
-       repo='dandersch/andersch.dev'
+       repo='dandersch/dandersch.github.io'
        issue-term='pathname'
        label='.💬'
        theme='photon-dark'
