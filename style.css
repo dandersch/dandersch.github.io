@@ -50,12 +50,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 #top { max-width: 820px; margin: auto; padding: 0 40px; container-type: inline-size; }
 .site-header, #top > header { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 24px; padding-top: 40px; }
 /* Published wiki sources live outside this repo; support their existing masthead. */
-#top > header > .title { text-align: left; font: 32px/1.2 var(--sans); color: var(--gold); letter-spacing: -1.6px; margin: 0; position: relative; top: -7px; }
+#top > header > .title { text-align: left; font: 32px/1.2 var(--sans); color: var(--gold); letter-spacing: -1.6px; margin: 0; }
 #icon-github span { display: none; }
 #icon-feed span:empty { display: none; }
 .masthead { display: contents; }
-.site-name, #top > header > .title { grid-column: 1; grid-row: 1; }
-.site-name { color: var(--gold); font: 32px/1.2 var(--sans); letter-spacing: -1.6px; text-decoration: none; position: relative; top: -7px; }
+/* Optically center the larger lettering against the navigation and icons. */
+.site-name, #top > header > .title { grid-column: 1; grid-row: 1; position: relative; top: -2px; }
+.site-name { color: var(--gold); font: 32px/1.2 var(--sans); letter-spacing: -1.6px; text-decoration: none; }
 .site-name span { color: var(--gold); }
 .site-name:hover, .site-name:hover span, #top > header > .title a:hover { color: var(--ink); }
 .nav { grid-column: 1 / -1; grid-row: 2; display: flex; gap: 32px; margin-top: 30px; border-bottom: 1px solid var(--line); }
