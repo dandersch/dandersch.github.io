@@ -163,11 +163,12 @@ pre .org-error { color: var(--red); }
 pre ::selection { background: #003c64; color: #ffffff; }
 .org-italic { font-style: italic; }
 .org-button, .org-link, .org-link-visited { color: var(--teal); text-decoration: underline; }
-.figure { margin: 32px 0; text-align: center; padding: 0; }
-.figure img, #content img { max-width: 100%; height: auto; }
-.figure img { border-radius: 3px; }
-.figure > p { text-align: center !important; }
-.figure .figure-number, .figure p:last-child:not(:first-child) { color: var(--muted); font-size: 13px; }
+#content img { max-width: 100%; height: auto; }
+#content .figure { width: fit-content; max-width: min(100%, 420px); margin: 32px auto; padding: 0; }
+#content .figure img { display: block; max-height: 240px; border-radius: 3px; }
+#content .figure > p { margin: 0; }
+/* Keep the caption from making the figure wider than its image. */
+#content .figure > p:last-child:not(:first-child) { contain: inline-size; margin-top: 8px; border-left: 2px solid var(--accent); padding-left: 9px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
 table { border-collapse: collapse; width: 100%; margin: 28px 0; font-size: 14px; }
 th, td { padding: 12px 14px; border: 1px solid var(--line); text-align: left; }
 th { background: var(--surface); font-weight: 500; }
@@ -202,7 +203,6 @@ th { background: var(--surface); font-weight: 500; }
 .footpara { display: inline; }
 .article-snippet { padding: 0 0 28px; }
 .article-snippet h1 { font-size: 32px; }
-.article-snippet .figure img { max-height: 360px; width: auto; }
 .read-more { margin-top: 20px; }
 .read-more a { font: 12px/1.5 var(--mono); letter-spacing: 1px; text-transform: uppercase; text-decoration: none; }
 .read-more a::after { content: " ↗"; }
