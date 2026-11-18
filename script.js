@@ -63,9 +63,7 @@ document.querySelectorAll('h2, h3, h4').forEach(item => {
     toggle.setAttribute('aria-label', `Toggle ${item.textContent.trim()}`);
     item.append(toggle);
 
-    item.addEventListener('click', event => {
-        // Heading links still navigate; the button also works with Enter/Space.
-        if (event.target.closest('a')) { return; }
+    toggle.addEventListener('click', () => {
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
         children.forEach(child => { child.hidden = expanded; });
         toggle.setAttribute('aria-expanded', String(!expanded));
