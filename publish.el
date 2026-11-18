@@ -215,7 +215,7 @@ de unique when necessary."
        repo='dandersch/dandersch.github.io'
        issue-term='pathname'
        label='.💬'
-       theme='photon-dark'
+       theme='gruvbox-dark'
        crossorigin='anonymous'
        async>
 </script>
