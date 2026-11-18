@@ -241,6 +241,8 @@ th { background: var(--surface); font-weight: 500; }
   .tags-date-box { font-size: 10px; }
 }
 
+#content:where(:has(> .tags-date-box + h1)) { padding-top: 24px; }
+
 @media (max-width: 600px) {
   #content > .tags-date-box:has(+ h1) { float: none; max-width: none; flex-direction: row; align-items: baseline; gap: 8px 12px; margin: 0 0 12px; text-align: left; }
   #content > .tags-date-box:has(+ h1) .tags { margin-left: auto; text-align: right; }
