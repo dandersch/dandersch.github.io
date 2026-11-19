@@ -808,9 +808,9 @@ indexes. The homepage limits each section; tag indexes show every match.
 
 ** Generate a reading column
 Preview on the left, title and date on the right. Used by the article/,
-project/ and other/ indexes. Tags are text, not links, because the whole row
-is already one link. The page title comes from the export hook, so this does
-not emit a heading.
+project/ and other/ indexes. The title link covers the row, and tag links
+sit above it so each can be opened separately. The page title comes from
+the export hook, so this does not emit a heading.
 
 #+NAME: generate-reading-column
 #+BEGIN_SRC emacs-lisp :eval no :exports results :results html :var list='()
@@ -818,16 +818,16 @@ not emit a heading.
         (mapconcat
          (lambda (entry)
            (let ((image (keyword-value entry "IMAGE")))
-             (format "<a class=\"column-entry\" href=\"%s\"><span class=\"column-aside\">%s</span><span class=\"column-body\"><span class=\"column-heading\"><span class=\"column-title\">%s</span><span class=\"column-date\">%s</span></span><span class=\"column-desc\">%s</span><span class=\"column-tags\">%s</span></span></a>\n"
-                     (entry-href entry)
+             (format "<div class=\"column-entry\"><span class=\"column-aside\">%s</span><span class=\"column-body\"><span class=\"column-heading\"><a class=\"column-title\" href=\"%s\">%s</a><span class=\"column-date\">%s</span></span><span class=\"column-desc\">%s</span><span class=\"column-tags\">%s</span></span></div>\n"
                      (if (and image (not (string-empty-p image)))
                          (format "<img src=\"%s/%s\" alt=\"\">" (entry-href entry) image)
                        "")
+                     (entry-href entry)
                      (keyword-value entry "TITLE")
                      (or (entry-date entry) "")
                      (or (keyword-value entry "DESCRIPTION") "")
-                     (mapconcat (lambda (tag) (format "<span>%s</span>" tag))
-                                (or (entry-tags entry) '()) ""))))
+                     (mapconcat (lambda (tag) (format "<a href=\"/tag/%s.html\">%s</a>" tag tag))
+                                (entry-tags entry) " "))))
          list "")
         "</div>\n")
 #+END_SRC

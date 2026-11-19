@@ -137,10 +137,17 @@ h2 a:hover, h3 a:hover, h4 a:hover { color: var(--accent); }
 .column-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .column-title { color: var(--title); font: 500 22px/1.3 var(--sans); letter-spacing: -.2px; }
 .column-date { flex: none; color: var(--muted); font: 12px/1.5 var(--mono); }
-.column-entry:hover .column-title, .column-entry:focus-visible .column-title { color: var(--accent); }
+.column-entry:has(a.column-title) { position: relative; }
+a.column-title { text-decoration: none; }
+/* Stretch the title link over the card without covering the separate tag links. */
+a.column-title::after { content: ""; position: absolute; inset: 0; }
+a.column-title:hover, .column-entry:focus-visible .column-title, a.column-title:focus-visible,
+a.column-entry:hover .column-title { color: var(--accent); }
 .column-desc { margin-top: 8px; color: var(--muted); font: 16px/1.55 var(--sans); max-width: 62ch; }
 .column-tags { margin-top: 12px; color: var(--accent); font: 12px/1.5 var(--mono); }
 .column-tags span + span::before { content: " "; }
+.column-tags a { position: relative; z-index: 1; color: inherit; text-decoration: none; }
+.column-tags a:hover, .column-tags a:focus-visible { color: var(--ink); text-decoration: underline; }
 
 /* Long-form content, archives, and Org exports. */
 hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
