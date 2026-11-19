@@ -1,4 +1,13 @@
 #+TITLE: Pages tagged art
-* Notes tagged ~art~
-- [[../notes/3_point_lighting.org][Three-point Lighting]]
-- [[../notes/pixel_art.org][Pixel Art]]
+#+TAG_INDEX: art
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>art</span></h1><span class="tag-count">2 pages</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2025-06-09</span><a class="index-title" href="/notes/3_point_lighting.html">Three-point Lighting</a><span class="index-tags"><a href="/tag/art.html">art</a><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/pixel_art.html">Pixel Art</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a><a href="/tag/art.html">art</a></span></div>
+</div>
+</section>
+#+end_export

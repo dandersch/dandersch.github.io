@@ -1,5 +1,18 @@
 #+TITLE: Pages tagged opengl
-* Articles tagged ~opengl~
-- [[../article/hot-reloadable-embedded-shaders-in-c/index.org][#include "shader.glsl"]]
-* Projects tagged ~opengl~
-- [[../project/planetarium/index.org][Planetarium]]
+#+TAG_INDEX: opengl
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>opengl</span></h1><span class="tag-count">2 pages</span></div>
+<section class="index-section">
+<h2><a href="/article">article/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2024-05-29</span><a class="index-title" href="/article/hot-reloadable-embedded-shaders-in-c">#include "shader.glsl"</a><span class="index-tags"><a href="/tag/opengl.html">opengl</a><a href="/tag/graphics.html">graphics</a><a href="/tag/cpp.html">cpp</a><a href="/tag/c.html">c</a></span></div>
+</div>
+</section>
+<section class="index-section">
+<h2><a href="/project">project/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2020-11-20</span><a class="index-title" href="/project/planetarium">Planetarium</a><span class="index-tags"><a href="/tag/opengl.html">opengl</a><a href="/tag/graphics.html">graphics</a><a href="/tag/cpp.html">cpp</a></span></div>
+</div>
+</section>
+#+end_export

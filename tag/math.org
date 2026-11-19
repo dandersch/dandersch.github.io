@@ -1,17 +1,26 @@
 #+TITLE: Pages tagged math
-* Notes tagged ~math~
-- [[../notes/bayes_theorem.org][Bayes' Theorem]]
-- [[../notes/linear_regression.org][Linear Regression]]
-- [[../notes/tensor.org][Tensor]]
-- [[../notes/integration.org][Integration rules]]
-- [[../notes/gradient_descent.org][Gradient Descent]]
-- [[../notes/derivate.org][Derivative (Differentiation)]]
-- [[../notes/cost_function.org][Loss/Cost Function]]
-- [[../notes/sdf.org][Signed Distance Function]]
-- [[../notes/interpolation.org][Interpolation]]
-- [[../notes/model_view_projection.org][MVP (Model View Projection) Matrix]]
-- [[../notes/taylor_series.org][Taylor Series]]
-- [[../notes/calculus.org][Calculus]]
-- [[../notes/math.org][Mathematics]]
-- [[../notes/fourier_transform.org][Fourier Transform (FT)]]
-- [[../notes/convolution.org][Convolution]]
+#+TAG_INDEX: math
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>math</span></h1><span class="tag-count">15 pages</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2025-03-14</span><a class="index-title" href="/notes/bayes_theorem.html">Bayes' Theorem</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-11-01</span><a class="index-title" href="/notes/linear_regression.html">Linear Regression</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/cost_function.html">Loss/Cost Function</a><span class="index-tags"><a href="/tag/ai.html">ai</a><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/derivate.html">Derivative (Differentiation)</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/gradient_descent.html">Gradient Descent</a><span class="index-tags"><a href="/tag/ai.html">ai</a><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/integration.html">Integration rules</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/tensor.html">Tensor</a><span class="index-tags"><a href="/tag/ai.html">ai</a><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-07-07</span><a class="index-title" href="/notes/sdf.html">Signed Distance Function</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-07-03</span><a class="index-title" href="/notes/interpolation.html">Interpolation</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-05-30</span><a class="index-title" href="/notes/model_view_projection.html">MVP (Model View Projection) Matrix</a><span class="index-tags"><a href="/tag/math.html">math</a><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2024-01-01</span><a class="index-title" href="/notes/calculus.html">Calculus</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2024-01-01</span><a class="index-title" href="/notes/taylor_series.html">Taylor Series</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-28</span><a class="index-title" href="/notes/math.html">Mathematics</a><span class="index-tags"><a href="/tag/math.html">math</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/convolution.html">Convolution</a><span class="index-tags"><a href="/tag/math.html">math</a><a href="/tag/dsp.html">dsp</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/fourier_transform.html">Fourier Transform (FT)</a><span class="index-tags"><a href="/tag/dsp.html">dsp</a><a href="/tag/math.html">math</a></span></div>
+</div>
+</section>
+#+end_export

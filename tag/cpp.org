@@ -1,10 +1,23 @@
 #+TITLE: Pages tagged cpp
-* Articles tagged ~cpp~
-- [[../article/embedding-binary-files-in-c/index.org][Embedding Binaries in C(++)]]
-- [[../article/hot-reloadable-embedded-shaders-in-c/index.org][#include "shader.glsl"]]
-* Projects tagged ~cpp~
-- [[../project/trusted-peripherals/index.org][Trusted Peripherals in TrustZone-M]]
-- [[../project/game2d/index.org][game2d]]
-- [[../project/checkbox/index.org][CHECKBOX]]
-- [[../project/planetarium/index.org][Planetarium]]
-- [[../project/raytracer/index.org][Compute Raytracer]]
+#+TAG_INDEX: cpp
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>cpp</span></h1><span class="tag-count">7 pages</span></div>
+<section class="index-section">
+<h2><a href="/article">article/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2024-05-31</span><a class="index-title" href="/article/embedding-binary-files-in-c">Embedding Binaries in C(++)</a><span class="index-tags"><a href="/tag/cpp.html">cpp</a><a href="/tag/c.html">c</a></span></div>
+<div class="index-row"><span class="index-date">2024-05-29</span><a class="index-title" href="/article/hot-reloadable-embedded-shaders-in-c">#include "shader.glsl"</a><span class="index-tags"><a href="/tag/opengl.html">opengl</a><a href="/tag/graphics.html">graphics</a><a href="/tag/cpp.html">cpp</a><a href="/tag/c.html">c</a></span></div>
+</div>
+</section>
+<section class="index-section">
+<h2><a href="/project">project/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2023-09-01</span><a class="index-title" href="/project/trusted-peripherals">Trusted Peripherals in TrustZone-M</a><span class="index-tags"><a href="/tag/cpp.html">cpp</a><a href="/tag/embedded.html">embedded</a><a href="/tag/arm.html">arm</a></span></div>
+<div class="index-row"><span class="index-date">2022-01-01</span><a class="index-title" href="/project/game2d">game2d</a><span class="index-tags"><a href="/tag/cpp.html">cpp</a><a href="/tag/gamedev.html">gamedev</a></span></div>
+<div class="index-row"><span class="index-date">2020-12-10</span><a class="index-title" href="/project/checkbox">CHECKBOX</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a><a href="/tag/cpp.html">cpp</a></span></div>
+<div class="index-row"><span class="index-date">2020-11-20</span><a class="index-title" href="/project/planetarium">Planetarium</a><span class="index-tags"><a href="/tag/opengl.html">opengl</a><a href="/tag/graphics.html">graphics</a><a href="/tag/cpp.html">cpp</a></span></div>
+<div class="index-row"><span class="index-date">2020-03-05</span><a class="index-title" href="/project/raytracer">Compute Raytracer</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a><a href="/tag/cpp.html">cpp</a></span></div>
+</div>
+</section>
+#+end_export

@@ -1,6 +1,15 @@
 #+TITLE: Pages tagged audio
-* Notes tagged ~audio~
-- [[../notes/audio_programming.org][Audio Programming]]
-- [[../notes/wave.org][WAVE (File format)]]
-- [[../notes/sfx.org][Sound Effects (SFX)]]
-- [[../notes/vst.org][Virtual Studio Technology (VST)]]
+#+TAG_INDEX: audio
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>audio</span></h1><span class="tag-count">4 pages</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2023-10-30</span><a class="index-title" href="/notes/audio_programming.html">Audio Programming</a><span class="index-tags"><a href="/tag/dsp.html">dsp</a><a href="/tag/audio.html">audio</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-10</span><a class="index-title" href="/notes/wave.html">WAVE (File format)</a><span class="index-tags"><a href="/tag/data.html">data</a><a href="/tag/audio.html">audio</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-08</span><a class="index-title" href="/notes/sfx.html">Sound Effects (SFX)</a><span class="index-tags"><a href="/tag/audio.html">audio</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-04</span><a class="index-title" href="/notes/vst.html">Virtual Studio Technology (VST)</a><span class="index-tags"><a href="/tag/audio.html">audio</a></span></div>
+</div>
+</section>
+#+end_export

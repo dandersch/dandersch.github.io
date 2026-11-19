@@ -1,3 +1,12 @@
 #+TITLE: Pages tagged security
-* Notes tagged ~security~
-- [[../notes/keyserver.org][Keyserver]]
+#+TAG_INDEX: security
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>security</span></h1><span class="tag-count">1 page</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2025-05-09</span><a class="index-title" href="/notes/keyserver.html">Keyserver</a><span class="index-tags"><a href="/tag/security.html">security</a></span></div>
+</div>
+</section>
+#+end_export

@@ -1,4 +1,13 @@
 #+TITLE: Pages tagged text
-* Notes tagged ~text~
-- [[../notes/utf_8.org][UTF-8]]
-- [[../notes/ascii.org][ASCII]]
+#+TAG_INDEX: text
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>text</span></h1><span class="tag-count">2 pages</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2025-10-04</span><a class="index-title" href="/notes/utf_8.html">UTF-8</a><span class="index-tags"><a href="/tag/text.html">text</a><a href="/tag/data.html">data</a></span></div>
+<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/ascii.html">ASCII</a><span class="index-tags"><a href="/tag/text.html">text</a></span></div>
+</div>
+</section>
+#+end_export

@@ -1,3 +1,12 @@
 #+TITLE: Pages tagged algorithm
-* Notes tagged ~algorithm~
-- [[../notes/hashtable.org][Hashtable]]
+#+TAG_INDEX: algorithm
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>algorithm</span></h1><span class="tag-count">1 page</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2024-06-17</span><a class="index-title" href="/notes/hashtable.html">Hashtable</a><span class="index-tags"><a href="/tag/datastructure.html">datastructure</a><a href="/tag/algorithm.html">algorithm</a></span></div>
+</div>
+</section>
+#+end_export

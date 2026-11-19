@@ -1,3 +1,12 @@
 #+TITLE: Pages tagged org
-* Other tagged ~org~
-- [[../other/publish/index.org][The Publishing Script of this Website]]
+#+TAG_INDEX: org
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>org</span></h1><span class="tag-count">1 page</span></div>
+<section class="index-section">
+<h2><a href="/other">other/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2024-06-02</span><a class="index-title" href="/other/publish">The Publishing Script of this Website</a><span class="index-tags"><a href="/tag/lisp.html">lisp</a><a href="/tag/org.html">org</a><a href="/tag/web.html">web</a></span></div>
+</div>
+</section>
+#+end_export

@@ -1,3 +1,12 @@
 #+TITLE: Pages tagged embedded
-* Projects tagged ~embedded~
-- [[../project/trusted-peripherals/index.org][Trusted Peripherals in TrustZone-M]]
+#+TAG_INDEX: embedded
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>embedded</span></h1><span class="tag-count">1 page</span></div>
+<section class="index-section">
+<h2><a href="/project">project/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2023-09-01</span><a class="index-title" href="/project/trusted-peripherals">Trusted Peripherals in TrustZone-M</a><span class="index-tags"><a href="/tag/cpp.html">cpp</a><a href="/tag/embedded.html">embedded</a><a href="/tag/arm.html">arm</a></span></div>
+</div>
+</section>
+#+end_export

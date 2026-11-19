@@ -356,6 +356,31 @@ document.addEventListener('DOMContentLoaded', function() {
   ; rss ending
   (write-region "</channel>\n</rss>" nil "feed.xml" 'append))
 
+(defun generate-dated-index (sections &optional limit)
+  "Render SECTIONS as dated rows, optionally showing only LIMIT entries per section."
+  (mapconcat
+   (lambda (section)
+     (let* ((entries (caddr section))
+            (shown (if limit (seq-take entries limit) entries))
+            (rest (- (length entries) (length shown))))
+       (concat "<section class=\"index-section\">\n"
+               (format "<h2><a href=\"/%s\">%s</a></h2>\n" (car section) (cadr section))
+               "<div class=\"index-list\">\n"
+               (mapconcat
+                (lambda (entry)
+                  (format "<div class=\"index-row\"><span class=\"index-date\">%s</span><a class=\"index-title\" href=\"%s\">%s</a><span class=\"index-tags\">%s</span></div>\n"
+                          (or (entry-date entry) "")
+                          (entry-href entry)
+                          (keyword-value entry "TITLE")
+                          (mapconcat (lambda (tag) (format "<a href=\"/tag/%s.html\">%s</a>" tag tag))
+                                     (or (entry-tags entry) '()) "")))
+                shown "")
+               "</div>\n"
+               (when (> rest 0)
+                 (format "<a class=\"index-more\" href=\"/%s\"><span>%d more</span></a>\n" (car section) rest))
+               "</section>\n")))
+   sections ""))
+
 (defun generate-tag-files ()
 
   ; collect all tags
@@ -384,48 +409,31 @@ document.addEventListener('DOMContentLoaded', function() {
   (setq all-tags (cl-concatenate 'list article-tags project-tags other-tags notes-tags))
   (delete-dups all-tags)
 
-  ; generate .org files for all tags
   (dolist (tag all-tags)
-    (with-temp-file (format "tag/%s.org" tag)
-      (insert (format "#+TITLE: Pages tagged %s\n" tag))))
-
-  ; append "* Articles" headline
-  (dolist (tag article-tags)
-    (write-region (format "* Articles tagged ~%s~\n" tag) nil (format "tag/%s.org" tag) 'append))
-  ; add entry of an article to its tag.org's
-  (dolist (article article-keyword-list)
-    (dolist (tag (split-string (cadr (assoc "TAGS[]" (cadr article)))  " +"))
-      (write-region (format "- [[../%s][%s]]\n" (car article) (cadr (assoc "TITLE" (cadr article))))
-                    nil (format "tag/%s.org" tag) 'append)))
-
-  ; append "* Projects" headline
-  (dolist (tag project-tags)
-    (write-region (format "* Projects tagged ~%s~\n" tag) nil (format "tag/%s.org" tag) 'append))
-  ; add entry of a project to its tag.org's
-  (dolist (project project-keyword-list)
-    (dolist (tag (split-string (cadr (assoc "TAGS[]" (cadr project)))  " +"))
-      (write-region (format "- [[../%s][%s]]\n" (car project) (cadr (assoc "TITLE" (cadr project))))
-                    nil (format "tag/%s.org" tag) 'append)))
-
-  ; append "* Other" headline
-  (dolist (tag other-tags)
-    (write-region (format "* Other tagged ~%s~\n" tag) nil (format "tag/%s.org" tag) 'append))
-  ; add entry of other to its tag.org's
-  (dolist (other other-keyword-list)
-    (dolist (tag (split-string (cadr (assoc "TAGS[]" (cadr other)))  " +"))
-      (write-region (format "- [[../%s][%s]]\n" (car other) (cadr (assoc "TITLE" (cadr other))))
-                    nil (format "tag/%s.org" tag) 'append)))
-
-  ; append "* Notes" headline
-  (dolist (tag notes-tags)
-    (write-region (format "* Notes tagged ~%s~\n" tag) nil (format "tag/%s.org" tag) 'append))
-  ; add entry of notes to its tag.org's
-  (dolist (notes notes-keyword-list)
-    (dolist (tag (cl-remove-if #'string-empty-p (split-string (cadr (assoc "FILETAGS" (cadr notes)))  ":")))
-      ; TODO hardcoded string-replace
-      (write-region (format "- [[../%s][%s]]\n" (string-replace "~/org/roam" "notes" (car notes)) (cadr (assoc "TITLE" (cadr notes))))
-                    nil (format "tag/%s.org" tag) 'append)))
-  )
+    (let* ((sections
+            (delq nil
+                 (mapcar
+                  (lambda (section)
+                    (let ((entries
+                           (cl-remove-if-not
+                            (lambda (entry)
+                              (member tag (if (equal (car section) "notes")
+                                              (entry-tags entry)
+                                            (split-string (keyword-value entry "TAGS[]") " +"))))
+                            (caddr section))))
+                      (when entries (list (car section) (cadr section) entries))))
+                  (list (list "article" "article/" article-keyword-list)
+                        (list "project" "project/" project-keyword-list)
+                        (list "other" "other/" other-keyword-list)
+                        (list "notes" "notes/" notes-keyword-list)))))
+           (count (apply #'+ (mapcar (lambda (section) (length (caddr section))) sections))))
+      (with-temp-file (format "tag/%s.org" tag)
+        (insert (format "#+TITLE: Pages tagged %s\n#+TAG_INDEX: %s\n\n#+begin_export html\n" tag tag))
+        (insert (format "<div class=\"tag-heading\"><h1>Pages tagged <span>%s</span></h1><span class=\"tag-count\">%d %s</span></div>\n"
+                        (org-html-encode-plain-text tag)
+                        count (if (= count 1) "page" "pages")))
+        (insert (generate-dated-index sections))
+        (insert "#+end_export\n")))))
 
 (defun  prepare-publishing (project-properties)
   (fill-keyword-lists)
@@ -453,7 +461,9 @@ document.addEventListener('DOMContentLoaded', function() {
   ; insert after :PROPERTY: drawer
   (if (string-match-p ":PROPERTIES:" (thing-at-point 'line t))
      (progn (search-forward ":END:" nil t) (forward-line 1)))
-  (unless (member (org-get-title) '("andersch.dev" "Articles" "Projects" "Other" "Notes"))
+  ; section indexes are lists, so they get no heading; articles still do
+  (unless (or (member (org-get-title) '("andersch.dev" "Articles" "Projects" "Other" "Notes"))
+              (assoc "TAG_INDEX" (org-collect-keywords '("TAG_INDEX"))))
   (when (eq backend 'html)
     (let* ((tags (if org-file-tags org-file-tags nil))
            (date (cadar (org-collect-keywords '("DATE"))))

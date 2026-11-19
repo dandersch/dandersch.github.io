@@ -1,14 +1,23 @@
 #+TITLE: Pages tagged hardware
-* Notes tagged ~hardware~
-- [[../notes/simt.org][SIMT (Single Instruction, Multiple Threads)]]
-- [[../notes/ic.org][Integrated Circuits (ICs)]]
-- [[../notes/hdl.org][Hardware Description Language (HDL)]]
-- [[../notes/simd.org][SIMD (Single Instruction, Multiple Data)]]
-- [[../notes/gpu.org][GPU (Graphic Processing Unit)]]
-- [[../notes/cpu.org][Central Processing Unit (CPU)]]
-- [[../notes/serial_communication.org][Serial Communication]]
-- [[../notes/x86.org][x86]]
-- [[../notes/mips.org][MIPS]]
-- [[../notes/assembly.org][Assembly language]]
-- [[../notes/gpu_passthrough.org][GPU Passthrough]]
-- [[../notes/egpu.org][External GPU (eGPU)]]
+#+TAG_INDEX: hardware
+
+#+begin_export html
+<div class="tag-heading"><h1>Pages tagged <span>hardware</span></h1><span class="tag-count">12 pages</span></div>
+<section class="index-section">
+<h2><a href="/notes">notes/</a></h2>
+<div class="index-list">
+<div class="index-row"><span class="index-date">2025-03-31</span><a class="index-title" href="/notes/simt.html">SIMT (Single Instruction, Multiple Threads)</a><span class="index-tags"><a href="/tag/concurrency.html">concurrency</a><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/hdl.html">Hardware Description Language (HDL)</a><span class="index-tags"><a href="/tag/electronics.html">electronics</a><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/ic.html">Integrated Circuits (ICs)</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a><a href="/tag/electronics.html">electronics</a></span></div>
+<div class="index-row"><span class="index-date">2024-07-03</span><a class="index-title" href="/notes/simd.html">SIMD (Single Instruction, Multiple Data)</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/cpu.html">Central Processing Unit (CPU)</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/gpu.html">GPU (Graphic Processing Unit)</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2023-06-24</span><a class="index-title" href="/notes/serial_communication.html">Serial Communication</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-10</span><a class="index-title" href="/notes/assembly.html">Assembly language</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a><a href="/tag/programming.html">programming</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-10</span><a class="index-title" href="/notes/mips.html">MIPS</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a><a href="/tag/os.html">os</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-10</span><a class="index-title" href="/notes/x86.html">x86</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-08</span><a class="index-title" href="/notes/egpu.html">External GPU (eGPU)</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a></span></div>
+<div class="index-row"><span class="index-date">2023-04-08</span><a class="index-title" href="/notes/gpu_passthrough.html">GPU Passthrough</a><span class="index-tags"><a href="/tag/os.html">os</a><a href="/tag/hardware.html">hardware</a></span></div>
+</div>
+</section>
+#+end_export
