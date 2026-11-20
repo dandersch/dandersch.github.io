@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-01-08 Mon></span></div><div class="tags"><code>[ <a href="/tag/datastructure.html">datastructure</a> ]</code></div></div><h1>Data structure</h1>
@@ -230,10 +231,10 @@ The most fundamental data structures are:
 <ul class="org-ul">
 <li>Array</li>
 <li><a href="linked_list.html#ID-89d96e97-c5dd-4123-947f-de3a66a91e42">Linked List</a></li>
-<li><a href="hashtable.html#ID-d835c859-c9a5-436e-9738-a296c1df2a60">Hash Table</a></li>
+<li><a href="#ID-d835c859-c9a5-436e-9738-a296c1df2a60">Hash Table</a></li>
 <li>Stack</li>
 <li>Graph</li>
-<li><a href="tree.html#ID-3a46ec5a-8dfd-4291-9721-31686ed1a854">Tree</a></li>
+<li><a href="#ID-3a46ec5a-8dfd-4291-9721-31686ed1a854">Tree</a></li>
 </ul>
 <div id="outline-container-ID-8719322b-3669-45c8-ab2f-171dce254d38" class="outline-2">
 <h2 id="ID-8719322b-3669-45c8-ab2f-171dce254d38"><a href="#ID-8719322b-3669-45c8-ab2f-171dce254d38">Dynamic Arrays</a></h2>
@@ -246,11 +247,78 @@ Resources:
 </ul>
 </div>
 </div>
+<div id="outline-container-ID-d835c859-c9a5-436e-9738-a296c1df2a60" class="outline-2">
+<h2 id="ID-d835c859-c9a5-436e-9738-a296c1df2a60"><a href="#ID-d835c859-c9a5-436e-9738-a296c1df2a60">Hashtable&nbsp;&nbsp;&nbsp<span class="tag"><span class="algorithm">algorithm</span></span></a></h2>
+<div class="outline-text-2" id="text-Hashtable">
+<p>
+A hash table (or hash map) is a data structure that represents an associative
+array (or dictionary). It is able to store an arbitrary value for a given key
+(most commonly a <a href="string.html#ID-d07b6a31-874d-4837-8ffd-567c481608e5">string</a>). The user of the hash table then can retrieve the value
+with the key.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-e4f56646-8e53-41f8-a58b-eccdac42d9ec" class="outline-2">
+<h2 id="ID-e4f56646-8e53-41f8-a58b-eccdac42d9ec"><a href="#ID-e4f56646-8e53-41f8-a58b-eccdac42d9ec">Stack</a></h2>
+<div class="outline-text-2" id="text-Stack">
+<p>
+A stack is a <a href="data_structure.html#ID-c2e9cf1b-7487-4758-8163-2e8b6285d3d9">data structure</a> that follows the last-in, first-out (LIFO)
+principle, where elements are pushed onto and popped off from the top of the
+stack.
+</p>
+</div>
+<div id="outline-container-API" class="outline-3">
+<h3 id="API"><a href="#API">API</a></h3>
+<div class="outline-text-3" id="text-API">
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">stack_t</span> {
+    <span class="org-type">int</span> <span class="org-variable-name">top</span>;
+<span class="org-preprocessor">    #define</span> <span class="org-variable-name">MAX_STACK_SIZE</span> 100
+    <span class="org-type">int</span> <span class="org-variable-name">items</span>[MAX];
+} <span class="org-type">stack_t</span>;
+
+<span class="org-type">void</span> <span class="org-function-name">stack_push</span>(<span class="org-type">stack_t</span>* <span class="org-variable-name">stack</span>, <span class="org-type">int</span> <span class="org-variable-name">item</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">add new top element
+</span><span class="org-type">int</span>  <span class="org-function-name">stack_pop</span>(<span class="org-type">stack_t</span>* <span class="org-variable-name">stack</span>);            <span class="org-comment-delimiter">// </span><span class="org-comment">remove top element
+</span><span class="org-type">int</span>  <span class="org-function-name">stack_peek</span>(<span class="org-type">stack_t</span>* <span class="org-variable-name">stack</span>);           <span class="org-comment-delimiter">// </span><span class="org-comment">peek top without popping</span>
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-3a46ec5a-8dfd-4291-9721-31686ed1a854" class="outline-2">
+<h2 id="ID-3a46ec5a-8dfd-4291-9721-31686ed1a854"><a href="#ID-3a46ec5a-8dfd-4291-9721-31686ed1a854">Tree&nbsp;&nbsp;&nbsp<span class="tag"><span class="compsci">compsci</span></span></a></h2>
+<div class="outline-text-2" id="text-Tree">
+<p>
+A tree is a data type that represents a hierarchical tree structure with a set
+of connected nodes. It is a type of graph that does not allow cycles and every
+node must be connected to one parent.
+</p>
+</div>
+<div id="outline-container-Encoding%20n-ary%20trees%20as%20binary%20trees" class="outline-3">
+<h3 id="Encoding%20n-ary%20trees%20as%20binary%20trees"><a href="#Encoding%20n-ary%20trees%20as%20binary%20trees">Encoding n-ary trees as binary trees</a></h3>
+<div class="outline-text-3" id="text-Encoding%20n-ary%20trees%20as%20binary%20trees">
+<p>
+Any n-ary tree can be converted to a binary tree that is fully traversable. Only
+the semantic meaning of the connected nodes for the binary tree change.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">Node</span>
+{
+    <span class="org-type">Node</span>* <span class="org-variable-name">first</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">first child of the node (instead of 'left')
+</span>    <span class="org-type">Node</span>* <span class="org-variable-name">next</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">next sibling of the node (instead of 'right')
+</span>};
+</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div id="outline-container-Resources" class="outline-2">
 <h2 id="Resources"><a href="#Resources">Resources</a></h2>
 <div class="outline-text-2" id="text-Resources">
 <ul class="org-ul">
 <li><a href="https://www.snellman.net/blog/archive/2016-12-13-ring-buffers/">I've been writing ring buffers wrong all these years</a></li>
+<li><a href="https://github.com/RandyGaul/cute_framework/blob/master/include/cute_hashtable.h">https://github.com/RandyGaul/cute_framework/blob/master/include/cute_hashtable.h</a></li>
 </ul>
 </div>
 </div>

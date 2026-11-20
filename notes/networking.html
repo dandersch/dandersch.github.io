@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,31 +199,181 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/networking.html">networking</a> ]</code></div></div><h1>Networking</h1>
 <p>
-Networking refers to the field of <a href="compsci.html#ID-3512a9ef-b085-44cd-b6a2-8d15e6468b79">computer science</a> that concerns itself with
+Networking refers to the field of computer science that concerns itself with
 computer networks and communication between nodes in these networks.
 </p>
+<div id="outline-container-ID-e7684b06-cbb4-4d38-be71-49dbf837341b" class="outline-2">
+<h2 id="ID-e7684b06-cbb4-4d38-be71-49dbf837341b"><a href="#ID-e7684b06-cbb4-4d38-be71-49dbf837341b">Distributed Hash Table (DHT)&nbsp;&nbsp;&nbsp<span class="tag"><span class="datastructure">datastructure</span></span></a></h2>
+<div class="outline-text-2" id="text-Distributed%20Hash%20Table%20%28DHT%29">
+<p>
+A Distributed <a href="data_structure.html#ID-d835c859-c9a5-436e-9738-a296c1df2a60">Hash Table</a> (DHT), is a decentralized data structure that provides
+a way to store and retrieve key-value pairs in a distributed network. Data in
+the DHT can be accessed by nodes in the network without having to rely on a
+central authority, thus they are commonly used in peer-to-peer networks.
+</p>
+
+<p>
+Features:
+</p>
+<ul class="org-ul">
+<li><b>Decentralization</b>: No single point of failure</li>
+<li><b>Scalability</b>: Can handle large number of nodes and data entries</li>
+<li><b>Fault Tolerance</b>: System continues to function when some nodes fail</li>
+<li><b>Efficiency</b>: Can find entries in logarithmic time relative to number of nodes</li>
+</ul>
+</div>
+<div id="outline-container-Implementation" class="outline-3">
+<h3 id="Implementation"><a href="#Implementation">Implementation</a></h3>
+<div class="outline-text-3" id="text-Implementation">
+<p>
+Structure:
+</p>
+<ul class="org-ul">
+<li>Each node in the network is assigned an ID using a hash function</li>
+<li>This unique identifier is used to determine the node's position in the DHT</li>
+<li>DHT uses key-value pairs. The key is a hash used to find the value in the DHT</li>
+<li>Routing Table: Each node maintains a routing table about the network.
+<ul class="org-ul">
+<li>Helps nodes efficiently locate other nodes nd the data they store.</li>
+<li>Includes a list of known nodes and their IDs</li>
+<li>Includes info about the distance to these nodes</li>
+</ul></li>
+</ul>
+
+<p>
+Data storage:
+</p>
+<ul class="org-ul">
+<li>A node wants to store a key-value pair</li>
+<li>It hashes the key to find the node responsible for it</li>
+<li>The data is then sent to that node for storage.</li>
+</ul>
+
+<p>
+Lookup Process:
+</p>
+<ul class="org-ul">
+<li>A node wants to retrieve a value from a key</li>
+<li>It hashes the key to find the responsible node</li>
+<li>Routing table is used to navigate the network</li>
+<li>Queries nodes along the way until the target node is reached</li>
+</ul>
+
+<p>
+Nodes Joining:
+</p>
+<ul class="org-ul">
+<li>A new node joins the network</li>
+<li>It finds existing nodes and updates its routing table</li>
+<li>Existing nodes are found via a bootstrapping mechanism</li>
+<li>It then claims a portion of the keyspace (range of keys it will manage)</li>
+</ul>
+
+<p>
+Bootstrapping mechanisms:
+</p>
+<ul class="org-ul">
+<li><i>Hardcoded Bootstrap Nodes</i>, i.e. nodes that are known to be always online</li>
+<li><i>DNS Seeders</i>, i.e. domain names that resolve to IPs of known nodes</li>
+<li><i>Peer Discovery Protocols</i>, i.e. allowing nodes to advertise their presence</li>
+<li><i>Previous Connections</i>: memory of previous connection can be used to find a node</li>
+<li><i>Public Nodes</i>: Nodes that are advertised on forums, websites, etc.</li>
+</ul>
+
+<p>
+Nodes Leaving:
+</p>
+<ul class="org-ul">
+<li>When a node leaves, its data must be redistributed</li>
+<li>It transfers data to its successor or other nodes</li>
+<li>If the node leaves without doing this, it's a failed node</li>
+</ul>
+
+<p>
+Replication and Fault Tolerance:
+</p>
+<ul class="org-ul">
+<li>Data replication is often implemented</li>
+<li>Copies of data are stored on multiple nodes.</li>
+</ul>
+
+<p>
+Consistency and Maintenance:
+</p>
+<ul class="org-ul">
+<li>Mechanisms needed to maintain consistency and handle changes in the network</li>
+<li>Can involve periodic updates to routing tables and data rebalancing</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-57bfe430-52b3-436c-aa3c-503ec346227a" class="outline-2">
+<h2 id="ID-57bfe430-52b3-436c-aa3c-503ec346227a"><a href="#ID-57bfe430-52b3-436c-aa3c-503ec346227a">Network Address Translation (NAT)</a></h2>
+<div class="outline-text-2" id="text-Network%20Address%20Translation%20%28NAT%29">
+<p>
+NAT (Network Address Translation) maps one IP address space into another. This
+is usually done by a router to map a global IP to a local one. This allows
+multiple devices on a private network to share a single public IP address.
+</p>
+
+<p>
+Motivation:
+</p>
+<ul class="org-ul">
+<li><i>IPv4 Conservation</i>: NAT conserves the limited number of IPv4 addresses</li>
+<li><i>Security</i>: NAT hides internal IP addresses</li>
+</ul>
+</div>
+<div id="outline-container-NAT%20Traversal" class="outline-3">
+<h3 id="NAT%20Traversal"><a href="#NAT%20Traversal">NAT Traversal</a></h3>
+<div class="outline-text-3" id="text-NAT%20Traversal">
+<p>
+To allow communication of devices behind NAT, different techniques exist:
+</p>
+<ul class="org-ul">
+<li>STUN/TURN</li>
+<li>UPnP</li>
+<li>NAT-PMP</li>
+<li>Teredo</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Types%20of%20NAT" class="outline-3">
+<h3 id="Types%20of%20NAT"><a href="#Types%20of%20NAT">Types of NAT</a></h3>
+<div class="outline-text-3" id="text-Types%20of%20NAT">
+<p>
+Different NAT types have their own use cases and mapping rules
+</p>
+<ul class="org-ul">
+<li>Static NAT</li>
+<li>Dynamic NAT</li>
+<li>Port Address Translation (PAT)</li>
+</ul>
+</div>
+</div>
+</div>
 <div id="outline-container-Resources" class="outline-2">
 <h2 id="Resources"><a href="#Resources">Resources</a></h2>
 <div class="outline-text-2" id="text-Resources">
@@ -231,6 +382,7 @@ computer networks and communication between nodes in these networks.
 <li><a href="https://beej.us/guide/bgnet/html/">Beej's Guide to Network Programming</a></li>
 <li><a href="https://mas-bandwidth.com/about/">Más Bandwidth - Articles on Game Networking</a></li>
 <li><a href="https://zenodo.org/records/14179366">Entire Linux Network stack diagram</a></li>
+<li><a href="https://tailscale.com/blog/how-nat-traversal-works">Tailscale - How NAT traversal works</a></li>
 </ul>
 </div>
 </div>

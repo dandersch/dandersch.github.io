@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,29 +199,29 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-08 Sun></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Immediate mode GUI (IMGUI)</h1>
 <p>
-An immediate mode graphic <a href="ui.html#ID-1aec063c-db9f-49f6-ba65-b1d0e7fe3bb4">user interface</a> (IMGUI) is a GUI design paradigm that
+An immediate mode graphic user interface (IMGUI) is a GUI design paradigm that
 stands opposed to the more common style of retained mode GUIs.
 </p>
 
@@ -240,12 +241,12 @@ performance reasons.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-function-name">glBegin</span>(GL_TRIANGLES);
+<pre class="src src-C"><code><span class="org-function-name">glBegin</span>(<span class="org-type">GL_TRIANGLES</span>);
     glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(0.0f,   1.0f);
     glColor3f(0.0f, 1.0f, 0.0f);   glVertex2f(0.87f,  -0.5f);
     glColor3f(0.0f, 0.0f, 1.0f);   glVertex2f(-0.87f, -0.5f);
 <span class="org-function-name">glEnd</span>();
-</pre>
+</code></pre>
 </div>
 <div id="outline-container-ID-92daeeb1-93c7-4dde-840d-82659f92402f" class="outline-2">
 <h2 id="ID-92daeeb1-93c7-4dde-840d-82659f92402f"><a href="#ID-92daeeb1-93c7-4dde-840d-82659f92402f">RectCut - Simple UI Layouts</a></h2>
@@ -263,32 +264,32 @@ it. They also modify the input rectangle.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">Rect</span> { <span class="org-type">float</span> <span class="org-variable-name">minx</span>, <span class="org-variable-name">miny</span>, <span class="org-variable-name">maxx</span>, <span class="org-variable-name">maxy</span>; };
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">Rect</span> { <span class="org-type">float</span> <span class="org-variable-name">minx</span>, <span class="org-variable-name">miny</span>, <span class="org-variable-name">maxx</span>, <span class="org-variable-name">maxy</span>; };
 
 <span class="org-type">Rect</span> <span class="org-function-name">cut_left</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>) {
     <span class="org-type">float</span> <span class="org-variable-name">minx</span> = rect-&gt;minx;
     rect-&gt;minx = min(rect-&gt;max.x, rect-&gt;minx + a);
-    <span class="org-keyword">return</span> (Rect){ minx, rect-&gt;miny, rect-&gt;minx, rect-&gt;maxy };
+    <span class="org-keyword">return</span> (<span class="org-type">Rect</span>){ minx, rect-&gt;miny, rect-&gt;minx, rect-&gt;maxy };
 }
 
 <span class="org-type">Rect</span> <span class="org-function-name">cut_right</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>) {
     <span class="org-type">float</span> <span class="org-variable-name">maxx</span> = rect-&gt;maxx;
     rect-&gt;maxx = max(rect-&gt;minx, rect-&gt;maxx - a);
-    <span class="org-keyword">return</span> (Rect){ rect-&gt;maxx, rect-&gt;miny, maxx, rect-&gt;maxy };
+    <span class="org-keyword">return</span> (<span class="org-type">Rect</span>){ rect-&gt;maxx, rect-&gt;miny, maxx, rect-&gt;maxy };
 }
 
 <span class="org-type">Rect</span> <span class="org-function-name">cut_top</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>) {
     <span class="org-type">float</span> <span class="org-variable-name">miny</span> = rect-&gt;miny;
     rect-&gt;miny = min(rect-&gt;max.y, rect-&gt;miny + a);
-    <span class="org-keyword">return</span> (Rect){ rect-&gt;minx, miny, rect-&gt;maxx, rect-&gt;miny };
+    <span class="org-keyword">return</span> (<span class="org-type">Rect</span>){ rect-&gt;minx, miny, rect-&gt;maxx, rect-&gt;miny };
 }
 
 <span class="org-type">Rect</span> <span class="org-function-name">cut_bottom</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>) {
     <span class="org-type">float</span> <span class="org-variable-name">maxy</span> = rect-&gt;maxy;
     rect-&gt;maxy = max(rect-&gt;miny, rect-&gt;maxy - a);
-    <span class="org-keyword">return</span> (Rect){ rect-&gt;minx, rect-&gt;maxy, rect-&gt;maxx, maxy };
+    <span class="org-keyword">return</span> (<span class="org-type">Rect</span>){ rect-&gt;minx, rect-&gt;maxy, rect-&gt;maxx, maxy };
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -296,7 +297,7 @@ it. They also modify the input rectangle.
 <h3 id="Example%3A%20Toolbar"><a href="#Example%3A%20Toolbar">Example: Toolbar</a></h3>
 <div class="outline-text-3" id="text-Example%3A%20Toolbar">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">Rect</span> <span class="org-variable-name">layout</span> = { 0, 0, 180, 16 };
+<pre class="src src-C"><code><span class="org-type">Rect</span> <span class="org-variable-name">layout</span> = { 0, 0, 180, 16 };
 
 <span class="org-type">Rect</span> <span class="org-variable-name">r1</span> = cut_left(&amp;layout, 16);
 <span class="org-type">Rect</span> <span class="org-variable-name">r2</span> = cut_left(&amp;layout, 16);
@@ -304,7 +305,7 @@ it. They also modify the input rectangle.
 
 <span class="org-type">Rect</span> <span class="org-variable-name">r4</span> = cut_right(&amp;layout, 16);
 <span class="org-type">Rect</span> <span class="org-variable-name">r5</span> = cut_right(&amp;layout, 16);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -312,20 +313,20 @@ it. They also modify the input rectangle.
 <h3 id="Example%3A%20Two%20panel%20application"><a href="#Example%3A%20Two%20panel%20application">Example: Two panel application</a></h3>
 <div class="outline-text-3" id="text-Example%3A%20Two%20panel%20application">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">Top bar with icons and title</span>
-<span class="org-type">Rect</span> <span class="org-variable-name">top</span> = cut_top(&amp;layout, 16);
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">Top bar with icons and title
+</span><span class="org-type">Rect</span> <span class="org-variable-name">top</span> = cut_top(&amp;layout, 16);
     <span class="org-type">Rect</span> <span class="org-variable-name">button_close</span> = cut_right(&amp;top, 16);
     <span class="org-type">Rect</span> <span class="org-variable-name">button_maximize</span> = cut_right(&amp;top, 16);
     <span class="org-type">Rect</span> <span class="org-variable-name">button_minimize</span> = cut_right(&amp;top, 16);
     <span class="org-type">Rect</span> <span class="org-variable-name">title</span> = top;
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Bottom bar.</span>
-<span class="org-type">Rect</span> <span class="org-variable-name">bottom</span> = cut_bottom(&amp;layout, 16);
+<span class="org-comment-delimiter">// </span><span class="org-comment">Bottom bar.
+</span><span class="org-type">Rect</span> <span class="org-variable-name">bottom</span> = cut_bottom(&amp;layout, 16);
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Left and right panels.</span>
-<span class="org-type">Rect</span> <span class="org-variable-name">panel_left</span> = cut_left(&amp;layout, w / 2);
+<span class="org-comment-delimiter">// </span><span class="org-comment">Left and right panels.
+</span><span class="org-type">Rect</span> <span class="org-variable-name">panel_left</span> = cut_left(&amp;layout, w / 2);
 <span class="org-type">Rect</span> <span class="org-variable-name">panel_right</span> = layout;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -340,13 +341,13 @@ it. They also modify the input rectangle.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">bool</span> <span class="org-function-name">button</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">layout</span>, <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">label</span>) {
+<pre class="src src-C"><code><span class="org-type">bool</span> <span class="org-function-name">button</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">layout</span>, <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">label</span>) {
     <span class="org-type">float</span> <span class="org-variable-name">size</span> = measure_text(label);
     <span class="org-type">Rect</span> <span class="org-variable-name">rect</span> = cut_left(layout, size);
     <span class="org-comment-delimiter">/* </span><span class="org-comment">interaction with button</span><span class="org-comment-delimiter"> */</span>
     <span class="org-comment-delimiter">/* </span><span class="org-comment">draw the button</span><span class="org-comment-delimiter"> */</span>
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -359,7 +360,7 @@ inside a new <code>RectCut</code> struct.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">enum</span> <span class="org-type">RectCutSide</span> {
+<pre class="src src-C"><code><span class="org-keyword">enum</span> <span class="org-type">RectCutSide</span> {
     <span class="org-variable-name">RectCut_Left</span>,
     <span class="org-variable-name">RectCut_Right</span>,
     <span class="org-variable-name">RectCut_Top</span>,
@@ -367,7 +368,7 @@ inside a new <code>RectCut</code> struct.
 };
 
 <span class="org-keyword">struct</span> <span class="org-type">RectCut</span> { <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>; <span class="org-type">RectCutSide</span> <span class="org-variable-name">side</span>; };
-<span class="org-type">RectCut</span> <span class="org-function-name">rectcut</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">RectCutSide</span> <span class="org-variable-name">side</span>) { <span class="org-keyword">return</span> (RectCut) { .rect = rect, .side = side }; } <span class="org-comment-delimiter">/* </span><span class="org-comment">constructor</span><span class="org-comment-delimiter"> */</span>
+<span class="org-type">RectCut</span> <span class="org-function-name">rectcut</span>(<span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">RectCutSide</span> <span class="org-variable-name">side</span>) { <span class="org-keyword">return</span> (<span class="org-type">RectCut</span>) { .rect = rect, .side = side }; } <span class="org-comment-delimiter">/* </span><span class="org-comment">constructor</span><span class="org-comment-delimiter"> */</span>
 
 <span class="org-type">Rect</span> <span class="org-function-name">rectcut_cut</span>(<span class="org-type">RectCut</span> <span class="org-variable-name">rectcut</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>) {
     <span class="org-keyword">switch</span> (rectcut.side)
@@ -380,22 +381,22 @@ inside a new <code>RectCut</code> struct.
     }
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Same as cut, except they keep the input rect intact.</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">Useful for decorations (9-patch-much?).</span>
-<span class="org-type">Rect</span> <span class="org-function-name">get_left</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
+<span class="org-comment-delimiter">// </span><span class="org-comment">Same as cut, except they keep the input rect intact.
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">Useful for decorations (9-patch-much?).
+</span><span class="org-type">Rect</span> <span class="org-function-name">get_left</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 <span class="org-type">Rect</span> <span class="org-function-name">get_right</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 <span class="org-type">Rect</span> <span class="org-function-name">get_top</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 <span class="org-type">Rect</span> <span class="org-function-name">get_bottom</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">These will add a rectangle outside of the input rectangle.</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">Useful for tooltips and other overlay elements.</span>
-<span class="org-type">Rect</span> <span class="org-function-name">add_left</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
+<span class="org-comment-delimiter">// </span><span class="org-comment">These will add a rectangle outside of the input rectangle.
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">Useful for tooltips and other overlay elements.
+</span><span class="org-type">Rect</span> <span class="org-function-name">add_left</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 <span class="org-type">Rect</span> <span class="org-function-name">add_right</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 <span class="org-type">Rect</span> <span class="org-function-name">add_top</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 <span class="org-type">Rect</span> <span class="org-function-name">add_bottom</span>(<span class="org-keyword">const</span> <span class="org-type">Rect</span>* <span class="org-variable-name">rect</span>, <span class="org-type">float</span> <span class="org-variable-name">a</span>);
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">Further you can implement extend and contract functions for Rect that are useful for borders and overhangs.</span><span class="org-comment-delimiter"> */</span>
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -408,7 +409,7 @@ inside a new <code>RectCut</code> struct.
 <h3 id="Widgets%20API"><a href="#Widgets%20API">Widgets API</a></h3>
 <div class="outline-text-3" id="text-Widgets%20API">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">basic widgets</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">basic widgets</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">UI_Signal</span> <span class="org-function-name">UI_Label</span>(<span class="org-type">String8</span> <span class="org-variable-name">string</span>);
 <span class="org-type">UI_Signal</span> <span class="org-function-name">UI_Image</span>(<span class="org-type">R_Slice2F32</span> <span class="org-variable-name">slice</span>, <span class="org-type">String8</span> <span class="org-variable-name">string</span>);
 <span class="org-type">void</span>      <span class="org-function-name">UI_Spacer</span>(<span class="org-type">UI_Size</span> <span class="org-variable-name">size</span>);
@@ -437,7 +438,7 @@ inside a new <code>RectCut</code> struct.
 <span class="org-preprocessor">#define</span> <span class="org-function-name">UI_NamedRow</span>(<span class="org-variable-name">s</span>) DeferLoop(UI_NamedRowBegin(s), UI_RowEnd())
 <span class="org-preprocessor">#define</span> <span class="org-function-name">UI_NamedRowF</span>(...) DeferLoop(UI_NamedRowBeginF(__VA_ARGS__), UI_RowEnd())
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">UI_Row</span> DeferLoop(UI_RowBegin(), UI_RowEnd())
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -469,7 +470,7 @@ from state that must be managed).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C">UI_Slider(&amp;my_float, 0.0f, 100.0f, <span class="org-string">"My Float"</span>);
+<pre class="src src-C"><code>UI_Slider(&amp;my_float, 0.0f, 100.0f, <span class="org-string">"My Float"</span>);
 UI_Checkbox(&amp;my_bool, <span class="org-string">"My Bool"</span>);
 UI_Radio(&amp;radio, 0, <span class="org-string">"Radio 0"</span>);
 UI_Radio(&amp;radio, 1, <span class="org-string">"Radio 1"</span>);
@@ -483,11 +484,11 @@ UI_Checkbox(&amp;show_buttons, <span class="org-string">"Show Buttons"</span>);
     UI_Button(<span class="org-string">"Bar"</span>);
     UI_Button(<span class="org-string">"Baz"</span>);
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
-As we see, IMGUI code&#x2026;
+As we see, IMGUI code&hellip;
 </p>
 <ul class="org-ul">
 <li>shrinks and centralizes code for each widget</li>
@@ -505,11 +506,11 @@ all encoded in the same location</li>
 <li>Adding new widgets in the middle now requires adjustments</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">if</span>(UI_Button(0, 0, 200, 30, <span class="org-string">"Foo"</span>)) <span class="org-comment-delimiter">// </span><span class="org-comment">draw a 200 by 30 button at (0,0)</span>
-{
+<pre class="src src-C"><code><span class="org-keyword">if</span>(UI_Button(0, 0, 200, 30, <span class="org-string">"Foo"</span>)) <span class="org-comment-delimiter">// </span><span class="org-comment">draw a 200 by 30 button at (0,0)
+</span>{
   <span class="org-comment-delimiter">/* </span><span class="org-comment">clicked</span><span class="org-comment-delimiter"> */</span>
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -517,7 +518,7 @@ all encoded in the same location</li>
 <h3 id="Encapsulate%20layout%20in%20a%20structure"><a href="#Encapsulate%20layout%20in%20a%20structure">Encapsulate layout in a structure</a></h3>
 <div class="outline-text-3" id="text-Encapsulate%20layout%20in%20a%20structure">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">UI_Layout</span> <span class="org-variable-name">layout</span> = UI_MakeLayout(...);
+<pre class="src src-C"><code><span class="org-type">UI_Layout</span> <span class="org-variable-name">layout</span> = UI_MakeLayout(...);
 <span class="org-keyword">if</span>(UI_Button(&amp;layout, <span class="org-string">"Foo"</span>)) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">or</span><span class="org-comment-delimiter"> */</span>
@@ -525,7 +526,7 @@ all encoded in the same location</li>
 <span class="org-type">UI_Layout</span> <span class="org-variable-name">layout</span> = UI_MakeLayout(...);
 UI_SelectLayout(&amp;layout);
 <span class="org-keyword">if</span>(UI_Button(<span class="org-string">"Foo"</span>)) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -543,12 +544,12 @@ widgets.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">UI_Layout</span> <span class="org-variable-name">layout</span> = UI_MakeLayout(...);
+<pre class="src src-C"><code><span class="org-type">UI_Layout</span> <span class="org-variable-name">layout</span> = UI_MakeLayout(...);
 UI_PushLayout(&amp;layout);
 <span class="org-keyword">if</span>(UI_Button(<span class="org-string">"Foo"</span>)) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
 <span class="org-keyword">if</span>(UI_Button(<span class="org-string">"Bar"</span>)) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
 <span class="org-function-name">UI_PopLayout</span>();
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -571,12 +572,12 @@ a button widget).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">UI_Widget</span> *<span class="org-variable-name">parent</span> = ...;
-<span class="org-function-name">UI_PushParent</span>(parent);
+<pre class="src src-C"><code><span class="org-type">UI_Widget</span> *<span class="org-variable-name">parent</span> = ...;
+<span class="org-function-name">UI_PushParent</span>(<span class="org-type">parent</span>);
 <span class="org-keyword">if</span>(UI_Button(<span class="org-string">"Foo"</span>)) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
 <span class="org-keyword">if</span>(UI_Button(<span class="org-string">"Bar"</span>)) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
-<span class="org-function-name">UI_PopParent</span>(parent);
-</pre>
+<span class="org-function-name">UI_PopParent</span>(<span class="org-type">parent</span>);
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -626,21 +627,21 @@ Here's how semantic sizes are expressed in this algorithm:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">enum</span> <span class="org-type">UI_SizeKind</span>
+<pre class="src src-C"><code><span class="org-keyword">enum</span> <span class="org-type">UI_SizeKind</span>
 {
   <span class="org-variable-name">UI_SizeKind_Null</span>,
-  <span class="org-variable-name">UI_SizeKind_Pixels</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">encode a direct size in pixels</span>
-  <span class="org-variable-name">UI_SizeKind_TextContent</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">size is determined by, e.g., a label string</span>
-  <span class="org-variable-name">UI_SizeKind_PercentOfParent</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">percentage value of parent widget's size on same axis</span>
-  <span class="org-variable-name">UI_SizeKind_ChildrenSum</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">size on a given axis is sum of the sizes of children widgets</span>
-};
+  <span class="org-variable-name">UI_SizeKind_Pixels</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">encode a direct size in pixels
+</span>  <span class="org-variable-name">UI_SizeKind_TextContent</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">size is determined by, e.g., a label string
+</span>  <span class="org-variable-name">UI_SizeKind_PercentOfParent</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">percentage value of parent widget's size on same axis
+</span>  <span class="org-variable-name">UI_SizeKind_ChildrenSum</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">size on a given axis is sum of the sizes of children widgets
+</span>};
 
 <span class="org-keyword">struct</span> <span class="org-type">UI_Size</span>
 {
   <span class="org-type">UI_SizeKind</span> <span class="org-variable-name">kind</span>;
-  <span class="org-type">F32</span> <span class="org-variable-name">value</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">unused when kind is ChildrenSum</span>
-  <span class="org-type">F32</span> <span class="org-variable-name">strictness</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">percentage of size you refuse to give up</span>
-};
+  <span class="org-type">F32</span> <span class="org-variable-name">value</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">unused when kind is ChildrenSum
+</span>  <span class="org-type">F32</span> <span class="org-variable-name">strictness</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">percentage of size you refuse to give up
+</span>};
 
 <span class="org-keyword">enum</span> <span class="org-type">Axis2</span>
 {
@@ -651,23 +652,23 @@ Here's how semantic sizes are expressed in this algorithm:
 
 <span class="org-keyword">struct</span> <span class="org-type">UI_Widget</span>
 {
-  <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-  <span class="org-type">UI_Size</span> <span class="org-variable-name">semantic_size</span>[Axis2_COUNT];
+  <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>  <span class="org-type">UI_Size</span> <span class="org-variable-name">semantic_size</span>[Axis2_COUNT];
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">recomputed every frame</span>
-  <span class="org-type">F32</span> <span class="org-variable-name">computed_rel_position</span>[Axis2_COUNT]; <span class="org-comment-delimiter">// </span><span class="org-comment">pos relative to the parent pos</span>
-  <span class="org-type">F32</span> <span class="org-variable-name">computed_size</span>[Axis2_COUNT]; <span class="org-comment-delimiter">// </span><span class="org-comment">size in pixels</span>
-  <span class="org-type">Rng2F32</span> <span class="org-variable-name">rect</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">final on-screen rect coordinates</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
-</pre>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">recomputed every frame
+</span>  <span class="org-type">F32</span> <span class="org-variable-name">computed_rel_position</span>[Axis2_COUNT]; <span class="org-comment-delimiter">// </span><span class="org-comment">pos relative to the parent pos
+</span>  <span class="org-type">F32</span> <span class="org-variable-name">computed_size</span>[Axis2_COUNT]; <span class="org-comment-delimiter">// </span><span class="org-comment">size in pixels
+</span>  <span class="org-type">Rng2F32</span> <span class="org-variable-name">rect</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">final on-screen rect coordinates
+</span>  <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
+</code></pre>
 </div>
 
 <ul class="org-ul">
 <li>The input (the semantic size) and output (the computed position, size, and
 final rectangle) of the autolayout algorithm are all in the same type.</li>
 
-<li>The rect member can be used in&#x2026;
+<li>The rect member can be used in&hellip;
 <ul class="org-ul">
 <li>input event consumption on the frame following that of the autolayout pass</li>
 <li>the rendering pass of the current frame.</li>
@@ -727,18 +728,18 @@ screen-coordinates rectangle.</li>
 <h3 id="The%20Tree%20hierarchy"><a href="#The%20Tree%20hierarchy">The Tree hierarchy</a></h3>
 <div class="outline-text-3" id="text-The%20Tree%20hierarchy">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">UI_Widget</span>
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">UI_Widget</span>
 {
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">first</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">first child</span>
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">next</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">next sibling</span>
+  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">first</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">first child
+</span>  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">next</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">next sibling
+</span>
+  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">last</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">useful for appending
+</span>  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">prev</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">enables traversal in reverse
+</span>  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">parent</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">iterating upwards
+</span>  <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
 
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">last</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">useful for appending</span>
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">prev</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">enables traversal in reverse</span>
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">parent</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">iterating upwards</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
-
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -747,17 +748,17 @@ persistent data across frames. What does that look like?
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">UI_Key</span> { ... }; <span class="org-comment-delimiter">// </span><span class="org-comment">some keying mechanism</span>
-
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">UI_Key</span> { ... }; <span class="org-comment-delimiter">// </span><span class="org-comment">some keying mechanism
+</span>
 <span class="org-keyword">struct</span> <span class="org-type">UI_Widget</span>
 {
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">hash_next</span>;
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">hash_prev</span>;
   <span class="org-type">UI_Key</span> <span class="org-variable-name">key</span>;
   <span class="org-type">U64</span> <span class="org-variable-name">last_frame_touched_index</span>;
-  <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
-</pre>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
+</code></pre>
 </div>
 
 <p>
@@ -768,26 +769,26 @@ index increments), then that widget should be “pruned”.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">UI_Widget</span>
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">UI_Widget</span>
 {
-  <span class="org-comment-delimiter">// </span><span class="org-comment">tree links</span>
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">first</span>;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">tree links
+</span>  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">first</span>;
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">last</span>;
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">next</span>;
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">prev</span>;
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">parent</span>;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">hash links</span>
-  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">hash_next</span>;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">hash links
+</span>  <span class="org-type">UI_Widget</span> *<span class="org-variable-name">hash_next</span>;
   <span class="org-type">UI_Widget</span> *<span class="org-variable-name">hash_prev</span>;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">key+generation info</span>
-  <span class="org-type">UI_Key</span> <span class="org-variable-name">key</span>;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">key+generation info
+</span>  <span class="org-type">UI_Key</span> <span class="org-variable-name">key</span>;
   <span class="org-type">U64</span> <span class="org-variable-name">last_frame_touched_index</span>;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
-</pre>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
+</code></pre>
 </div>
 
 <p>
@@ -812,11 +813,11 @@ expansion) as a way to generate keys. But that, then, raises the question of
 what happens here:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 100; i += 1)
+<pre class="src src-C"><code><span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 100; i += 1)
 {
     UI_Button(<span class="org-string">"I am a button!"</span>);
 }
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -826,11 +827,11 @@ only anything before it is displayed</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 100; i += 1)
+<pre class="src src-C"><code><span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 100; i += 1)
 {
     UI_Button(<span class="org-string">"I am a button!##%i"</span>, i);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -845,6 +846,15 @@ only anything before it is displayed</li>
 <li><a href="https://nakst.gitlab.io/tutorial/ui-part-1.html">UI Tutorial (by nakst)</a></li>
 <li><a href="https://wassimulator.com/blog/programming/av-racer/devlog_6.html">AV-Racer Devlog (6): A Simple Function-Based Menu System</a></li>
 </ul>
+</div>
+<div id="outline-container-User%20interface%20%28UI%29" class="outline-3">
+<h3 id="User%20interface%20%28UI%29"><a href="#User%20interface%20%28UI%29">User interface (UI)</a></h3>
+<div class="outline-text-3" id="text-User%20interface%20%28UI%29">
+<ul class="org-ul">
+<li><a href="https://rxi.github.io/textbox_behaviour.html">https://rxi.github.io/textbox_behaviour.html</a></li>
+<li><a href="https://www.gameuidatabase.com/index.php">Game UI Database</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

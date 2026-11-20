@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-07-03 Wed></span></div><div class="tags"><code>[ <a href="/tag/concurrency.html">concurrency</a> ]</code></div></div><h1>Concurrency</h1>
@@ -227,7 +228,7 @@ out-of-order interleaved (single-threaded) or in parallel (<a href="multithreadi
 <h2 id="Diagram"><a href="#Diagram">Diagram</a></h2>
 <div class="outline-text-2" id="text-Diagram">
 
-<div id="org9ee6216" class="figure">
+<div id="orgdbf43ac" class="figure">
 <p><img src="./concurrency-diagram.svg" alt="concurrency-diagram.svg" class="org-svg" />
 </p>
 </div>
@@ -267,8 +268,47 @@ Fiber:
 <h2 id="Concurrency%20in%20C"><a href="#Concurrency%20in%20C">Concurrency in C</a></h2>
 <div class="outline-text-2" id="text-Concurrency%20in%20C">
 <ul class="org-ul">
-<li><a href="https://libdill.org/">libdill</a>: C library that makes writing structured concurrent programs easy</li>
+<li><a href="https://sustrik.github.io/libdill/">libdill</a>: C library that makes writing structured concurrent programs easy</li>
 <li><a href="https://libcsp.dev/installation/">libcsp</a>: concurrency in C using Communicating sequential processes (CSP) model</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-ID-96b9e335-38fe-479b-9b74-2ee5af05eee4" class="outline-2">
+<h2 id="ID-96b9e335-38fe-479b-9b74-2ee5af05eee4"><a href="#ID-96b9e335-38fe-479b-9b74-2ee5af05eee4">Producer-Consumer Problem</a></h2>
+<div class="outline-text-2" id="text-Producer-Consumer%20Problem">
+<p>
+The Producer-Consumer problem is a synchronization problem in <a href="concurrency.html#ID-ae158974-7fdb-4d57-a098-3c00200a2320">concurrent
+computing</a> where:
+</p>
+<ul class="org-ul">
+<li>Producers create data items and place them in a shared buffer</li>
+<li>Consumers remove and process these items from the buffer</li>
+</ul>
+
+<p>
+The system must ensure:
+</p>
+<ul class="org-ul">
+<li>Producers don't add to a full buffer</li>
+<li>Consumers don't remove from an empty buffer</li>
+<li>No data corruption from simultaneous access to the buffer</li>
+</ul>
+
+<p>
+This problem demonstrates the need for synchronization mechanisms like
+semaphores, monitors, or concurrent data structures in <a href="multithreading.html#ID-08c89846-0c43-460d-931a-9c824b3980ad">multi-threaded</a>
+environments. Solutions must handle <a href="multithreading.html#ID-e183ef2b-cfb8-4c43-bcd4-fbc3a618ebd1">race conditions</a>, <a href="deadlock.html#ID-791d3bb9-f468-4120-96c8-1c59e16cb5c7">deadlocks</a>, and resource
+constraints while maintaining throughput.
+</p>
+
+<p>
+Types:
+</p>
+<ul class="org-ul">
+<li>SPSC: Single Producer, Single Consumer</li>
+<li>MPSC: Multiple Producers, Single Consumer</li>
+<li>SPMC: Single Producer, Multiple Consumers</li>
+<li>MPMC: Multiple Producers, Multiple Consumers</li>
 </ul>
 </div>
 </div>

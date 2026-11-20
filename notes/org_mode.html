@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -230,43 +231,43 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-01-01 Mon></span></div><div class="tags"><code>[ <a href="/tag/data.html">data</a> ]</code></div></div><h1>Org-mode</h1>
 <p>
-Org-mode describes a <a href="markup_language.html#ID-25a92a14-f838-4333-8004-c721a66bbdf6">markup language</a> and an associated ecosystem that lives
+Org-mode describes a markup language and an associated ecosystem that lives
 inside of emacs.
 </p>
 <div id="outline-container-Use%20cases" class="outline-2">
 <h2 id="Use%20cases"><a href="#Use%20cases">Use cases</a></h2>
 <div class="outline-text-2" id="text-Use%20cases">
 <p>
-<a href="markup_language.html#ID-25a92a14-f838-4333-8004-c721a66bbdf6">Markup Language</a>
+Markup Language
 </p>
 <ul class="org-ul">
 <li><b>Bold</b>, <span class="underline">underlined</span>, <i>cursive</i>, etc. and <a href="http://www.example.com">hyperlinks</a></li>
 <li><code>[1/2]</code> Checklists
 <ul class="org-ul">
 <li class="on"><code>[X]</code> do 1</li>
-<li class="off"><code>[&#xa0;]</code> do 2</li>
+<li class="off"><code>[&nbsp;]</code> do 2</li>
 </ul></li>
 <li>Inline images</li>
 <li>Inline latex \(f(x) = x^2 + 3\)</li>
@@ -295,13 +296,13 @@ Documents
 </p>
 <ul class="org-ul">
 <li>Thesis, Papers, Articles</li>
-<li>Export to PDF, HTML, <a href="markdown.html#ID-97c4a5fb-70ac-4450-b207-e62752a44166">Markdown</a></li>
+<li>Export to PDF, HTML, Markdown</li>
 <li>Presentations using <code>org-beamer</code></li>
 <li>HTML mails using <code>org-mime-org-htmlize</code></li>
 </ul>
 
 <p>
-<a href="pkm.html#ID-324586c0-1281-48d1-baf6-e535f335a562">PKM</a>/Zettelkasten/Digital Garden
+PKM/Zettelkasten/Digital Garden
 </p>
 <ul class="org-ul">
 <li>Roam clone with <a href="#ID-cb90595b-7c68-4d6a-87d1-adbb92dfaa6c">org-roam</a></li>
@@ -313,8 +314,8 @@ Programming
 </p>
 <ul class="org-ul">
 <li>Literate programming using <code>org-babel-tangle</code></li>
-<li><a href="jupyter.html#ID-118ec2d6-0767-43fb-9f2a-4fb83383fda9">Jupyter</a>-like notebooks using <code>org-babel</code></li>
-<li><code>README.org</code> (supported by GitHub, &#x2026;)</li>
+<li>Jupyter-like notebooks using <code>org-babel</code></li>
+<li><code>README.org</code> (supported by GitHub, &hellip;)</li>
 <li>TODOs tracking with filelinks</li>
 </ul>
 
@@ -440,7 +441,7 @@ referencing external resources.
 <h2 id="Syntax"><a href="#Syntax">Syntax</a></h2>
 <div class="outline-text-2" id="text-Syntax">
 <div class="org-src-container">
-<pre class="src src-org"><span class="org-org-meta-line">#+OPTION: file-wide options</span>
+<pre class="src src-org"><code><span class="org-org-meta-line">#+OPTION: file-wide options</span>
 ,# Comments that won't get exported
 <span class="org-org-level-1">* </span><span class="org-org-level-1"><span class="org-org-todo">TODO</span></span><span class="org-org-level-1"> </span><span class="org-org-level-1"><span class="org-org-priority">[#B]</span></span><span class="org-org-level-1"> Headline                                   </span><span class="org-org-level-1"><span class="org-org-tag">:tag1:tag2:specialtag:</span></span>
 <span class="org-org-special-keyword">CLOSED:</span> <span class="org-org-date">[2020-01-01 Wed]</span>
@@ -451,15 +452,15 @@ referencing external resources.
 <span class="org-org-drawer">:CUSTOM_DRAWER:</span>
 can contain anything and can be folded away
 <span class="org-org-drawer">:END:</span>
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 <div id="outline-container-ID-cb90595b-7c68-4d6a-87d1-adbb92dfaa6c" class="outline-2">
-<h2 id="ID-cb90595b-7c68-4d6a-87d1-adbb92dfaa6c"><a href="#ID-cb90595b-7c68-4d6a-87d1-adbb92dfaa6c">org-roam&#xa0;&#xa0;&#xa0;<span class="tag"><span class="software">software</span></span></a></h2>
+<h2 id="ID-cb90595b-7c68-4d6a-87d1-adbb92dfaa6c"><a href="#ID-cb90595b-7c68-4d6a-87d1-adbb92dfaa6c">org-roam&nbsp;&nbsp;&nbsp<span class="tag"><span class="software">software</span></span></a></h2>
 <div class="outline-text-2" id="text-org-roam">
 <p>
-Org-roam is a plain-text <a href="pkm.html#ID-324586c0-1281-48d1-baf6-e535f335a562">personal knowledge management</a> system inspired by Roam.
+Org-roam is a plain-text personal knowledge management system inspired by Roam.
 It is built on top of <a href="org_mode.html#ID-a1458aa8-24dc-401b-933d-ba02dd5042d0">Org-mode</a> and thus offers all of its features as well as
 bidirectional linking, graph visualization (via <code>org-roam-ui</code>), tagging and
 searching.

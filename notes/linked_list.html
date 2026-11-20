@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-01-08 Mon></span></div><div class="tags"><code>[ <a href="/tag/datastructure.html">datastructure</a> ]</code></div></div><h1>Linked List</h1>
@@ -242,7 +243,7 @@ For doubly-linked lists, hardcode the structure member names (i.e the nodes to
 link) to "prev" and "next".
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">item_t</span> <span class="org-type">item_t</span>;
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">item_t</span> <span class="org-type">item_t</span>;
 <span class="org-keyword">struct</span> <span class="org-type">item_t</span> {
     <span class="org-type">int</span> <span class="org-variable-name">foo</span>;
     <span class="org-type">float</span> <span class="org-variable-name">bar</span>;
@@ -250,14 +251,14 @@ link) to "prev" and "next".
     <span class="org-type">item_t</span>* <span class="org-variable-name">prev</span>;
     <span class="org-type">item_t</span>* <span class="org-variable-name">next</span>;
 };
-</pre>
+</code></pre>
 </div>
 
 <p>
 The macro-based API then can look like this:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">DL_FOREACH</span>(<span class="org-variable-name">head</span>,<span class="org-variable-name">el</span>) \
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">DL_FOREACH</span>(<span class="org-variable-name">head</span>,<span class="org-variable-name">el</span>) \
     <span class="org-keyword">for</span> ((el) = (head); el; (el) = (el)-&gt;next)
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">DL_APPEND</span>(<span class="org-variable-name">head</span>,<span class="org-variable-name">add</span>)          \
@@ -293,7 +294,7 @@ The macro-based API then can look like this:
       }                                    \
   }                                        \
 } <span class="org-keyword">while</span> (0)
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -305,7 +306,7 @@ The Linux kernel approach to having linked lists is a type of intrusive linked
 list where the links are embedded in the struct that is being linked:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">list_head</span> {
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">list_head</span> {
     <span class="org-keyword">struct</span> <span class="org-type">list_head</span> *<span class="org-variable-name">next</span>, *<span class="org-variable-name">prev</span>;
 };
 
@@ -320,12 +321,12 @@ list where the links are embedded in the struct that is being linked:
 <span class="org-type">int</span>  <span class="org-function-name">list_is_head</span>(<span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">list_head</span> *<span class="org-variable-name">list</span>, <span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">list_head</span> *<span class="org-variable-name">head</span>);
 <span class="org-type">int</span>  <span class="org-function-name">list_empty</span>(<span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">list_head</span> *<span class="org-variable-name">head</span>);
 
-<span class="org-preprocessor">#define</span> <span class="org-function-name">list_entry</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>)          container_of(ptr, type, member)                        <span class="org-comment-delimiter">// </span><span class="org-comment">get struct of the entry</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">list_first_entry</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>)    list_entry((ptr)-&gt;next, type, member)                  <span class="org-comment-delimiter">// </span><span class="org-comment">get first element from list</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">list_next_entry</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">member</span>)           list_entry((pos)-&gt;member.next, <span class="org-keyword">typeof</span>(*(pos)), member) <span class="org-comment-delimiter">// </span><span class="org-comment">get next element in list</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">list_entry_is_head</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">head</span>, <span class="org-variable-name">member</span>)  (&amp;pos-&gt;member == (head))                               <span class="org-comment-delimiter">// </span><span class="org-comment">test if entry is head of list</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">list_for_each_entry</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">head</span>, <span class="org-variable-name">member</span>)                    \   <span class="org-comment-delimiter">// </span><span class="org-comment">iterate over list of given type</span>
-        <span class="org-keyword">for</span> (pos = list_first_entry(head, <span class="org-keyword">typeof</span>(*pos), member);  \
+<span class="org-preprocessor">#define</span> <span class="org-function-name">list_entry</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>)          container_of(ptr, type, member)                        <span class="org-comment-delimiter">// </span><span class="org-comment">get struct of the entry
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">list_first_entry</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>)    list_entry((ptr)-&gt;next, type, member)                  <span class="org-comment-delimiter">// </span><span class="org-comment">get first element from list
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">list_next_entry</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">member</span>)           list_entry((pos)-&gt;member.next, <span class="org-keyword">typeof</span>(*(pos)), member) <span class="org-comment-delimiter">// </span><span class="org-comment">get next element in list
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">list_entry_is_head</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">head</span>, <span class="org-variable-name">member</span>)  (&amp;pos-&gt;member == (head))                               <span class="org-comment-delimiter">// </span><span class="org-comment">test if entry is head of list
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">list_for_each_entry</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">head</span>, <span class="org-variable-name">member</span>)                    \   <span class="org-comment-delimiter">// </span><span class="org-comment">iterate over list of given type
+</span>        <span class="org-keyword">for</span> (pos = list_first_entry(head, <span class="org-keyword">typeof</span>(*pos), member);  \
              <span class="org-negation-char">!</span>list_entry_is_head(pos, head, member);              \
              pos = list_next_entry(pos, member))
 <span class="org-preprocessor">#define</span> <span class="org-function-name">list_for_each_entry_safe</span>(<span class="org-variable-name">pos</span>, <span class="org-variable-name">n</span>, <span class="org-variable-name">head</span>, <span class="org-variable-name">member</span>)           \
@@ -334,11 +335,11 @@ list where the links are embedded in the struct that is being linked:
              <span class="org-negation-char">!</span>list_entry_is_head(pos, head, member);             \
              pos = n, n = list_next_entry(n, member))
 
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">usage code</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">usage code</span><span class="org-comment-delimiter"> */</span>
 <span class="org-keyword">struct</span> <span class="org-type">mdev_state</span> {
     <span class="org-keyword">struct</span> <span class="org-type">vfio_device</span> <span class="org-variable-name">vdev</span>;
     <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span>
@@ -396,7 +397,7 @@ list where the links are embedded in the struct that is being linked:
         }
     }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

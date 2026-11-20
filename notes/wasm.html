@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-08 Sun></span></div><div class="tags"><code>[ <a href="/tag/web.html">web</a> ]</code></div></div><h1>WebAssembly (wasm)</h1>
@@ -225,7 +226,7 @@ language to bytecode that can run in a virtual machine on a web browser.
 </p>
 
 <p>
-Without it, arbitrary code in a browser can only run with <a href="javascript.html#ID-a0222a34-b3ec-4ed1-906c-195c89bf9b4c">JavaScript</a>. However,
+Without it, arbitrary code in a browser can only run with JavaScript. However,
 WASM itself has no external interfaces (no printing/logging or manipulation of
 the <a href="dom.html#ID-37c8079d-ecc0-48ab-bdd3-b9f06252808f">DOM</a>) so JS functions need to be imported.
 </p>
@@ -257,10 +258,10 @@ denotes comments).
 </ul>
 
 <p>
-<i>WASM compiler</i>: Convert high-level language to low-level WASM (e.g. <a href="clang.html#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">Clang</a>)
+<i>WASM compiler</i>: Convert high-level language to low-level WASM (e.g. <a href="c.html#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">Clang</a>)
 </p>
 <ul class="org-ul">
-<li>Requires <a href="abi.html#ID-09cac5ef-b737-453a-9f6d-95d0a93407e0">ABI</a> to map high-level language concepts onto the machine</li>
+<li>Requires <a href="os.html#ID-09cac5ef-b737-453a-9f6d-95d0a93407e0">ABI</a> to map high-level language concepts onto the machine</li>
 <li>Function indices yet unknown, so references patched in by the linker</li>
 </ul>
 
@@ -285,36 +286,36 @@ denotes comments).
 <h2 id="Using%20WASM%20in%20JavaScript"><a href="#Using%20WASM%20in%20JavaScript">Using WASM in JavaScript</a></h2>
 <div class="outline-text-2" id="text-Using%20WASM%20in%20JavaScript">
 <div class="org-src-container">
-<pre class="src src-js"><span class="org-keyword">let</span> <span class="org-variable-name">imports</span> = {
+<pre class="src src-js"><code><span class="org-keyword">let</span> <span class="org-variable-name">imports</span> = {
     math : { callback : x =&gt; console.log(<span class="org-string">"result is"</span>, x) }
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">instantiate wasm module while passing it JS functions to import</span>
-<span class="org-keyword">let</span> <span class="org-variable-name">wasm_module</span> = <span class="org-keyword">await</span> WebAssembly.instantiateStreaming(fetch(<span class="org-string">'main.wasm'</span>), imports)
+<span class="org-comment-delimiter">// </span><span class="org-comment">instantiate wasm module while passing it JS functions to import
+</span><span class="org-keyword">let</span> <span class="org-variable-name">wasm_module</span> = <span class="org-keyword">await</span> WebAssembly.instantiateStreaming(fetch(<span class="org-string">'main.wasm'</span>), imports)
 
 <span class="org-keyword">let</span> <span class="org-variable-name">x</span> = wasm_module.instance.exports.add(5,10)
 <span class="org-keyword">let</span> <span class="org-variable-name">y</span> = wasm_module.instance.exports.mult(2,5)
-</pre>
+</code></pre>
 </div>
 
 <p>
 The corresponding wasm code (in the <code>.wat</code> text format):
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">wasm comments look like this</span>
-(module
+<pre class="src src-lisp"><code><span class="org-comment-delimiter">;; </span><span class="org-comment">wasm comments look like this
+</span>(module
     (import <span class="org-string">"math"</span> <span class="org-string">"callback"</span> (func $callback))
 
     (export <span class="org-string">"add"</span> (func $add))
     (export <span class="org-string">"mult"</span> (func $mult))
 
     (func $add (param $a i32) (param $b i32) (result i32)
-        <span class="org-comment-delimiter">;; </span><span class="org-comment">WASM is stack-based:</span>
-        local.get $a <span class="org-comment-delimiter">;; </span><span class="org-comment">push a on to the stack</span>
-        local.get $b <span class="org-comment-delimiter">;; </span><span class="org-comment">push b</span>
-        i32.add      <span class="org-comment-delimiter">;; </span><span class="org-comment">pop the last two values off as arguments to add,</span>
-                     <span class="org-comment-delimiter">;; </span><span class="org-comment">then push on the result</span>
-    )
+        <span class="org-comment-delimiter">;; </span><span class="org-comment">WASM is stack-based:
+</span>        local.get $a <span class="org-comment-delimiter">;; </span><span class="org-comment">push a on to the stack
+</span>        local.get $b <span class="org-comment-delimiter">;; </span><span class="org-comment">push b
+</span>        i32.add      <span class="org-comment-delimiter">;; </span><span class="org-comment">pop the last two values off as arguments to add,
+</span>                     <span class="org-comment-delimiter">;; </span><span class="org-comment">then push on the result
+</span>    )
 
     (func $mult (param $a i32) (param $b i32) (result i32)
         local.get $a
@@ -322,7 +323,7 @@ The corresponding wasm code (in the <code>.wat</code> text format):
         i32.mul
     )
 )
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -330,23 +331,23 @@ The corresponding wasm code (in the <code>.wat</code> text format):
 <h2 id="Compiling%20C%20to%20~wasm~%20using%20Clang"><a href="#Compiling%20C%20to%20~wasm~%20using%20Clang">Compiling C to <code>wasm</code> using Clang</a></h2>
 <div class="outline-text-2" id="text-Compiling%20C%20to%20~wasm~%20using%20Clang">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">add.c</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">add.c</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">int</span> <span class="org-function-name">add</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>, <span class="org-type">int</span> <span class="org-variable-name">b</span>) { <span class="org-keyword">return</span> a * a + b; }
-</pre>
+</code></pre>
 </div>
 
 <p>
 To output a <code>add.wasm</code> using Clang:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">clang <span class="org-sh-escaped-newline">\</span>
+<pre class="src src-bash"><code>clang <span class="org-sh-escaped-newline">\</span>
   --target=wasm32 <span class="org-sh-escaped-newline">\</span>
   -nostdlib <span class="org-sh-quoted-exec">`# Don&#8217;t try and link against a standard library`</span> <span class="org-sh-escaped-newline">\</span>
   -Wl,--no-entry <span class="org-sh-quoted-exec">`# Flags passed to the linker`</span> <span class="org-string">\`</span>
   -Wl,--export-all <span class="org-sh-escaped-newline">\</span>
   -o add.wasm <span class="org-sh-escaped-newline">\</span>
   add.c
-</pre>
+</code></pre>
 </div>
 
 
@@ -376,12 +377,12 @@ The stack size thus is limited to <code>__heap_base - __data_end</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nil">+---------+------------------+-----------------+
+<pre class="src src-nil"><code>+---------+------------------+-----------------+
 | Data    |        &lt;-- Stack | Heap --&gt;        |
 +---------+------------------+-----------------+
 ^         ^                  ^                 ^
 0    __data_end         __heap_base           max
-</pre>
+</code></pre>
 </div></li>
 </ul>
 
@@ -394,7 +395,7 @@ Stack size value can be configured using <code>-Wl,-z,stack-size=$[8 * 1024 * 10
 <h2 id="Custom%20allocator%20using%20an%20arena"><a href="#Custom%20allocator%20using%20an%20arena">Custom allocator using an arena</a></h2>
 <div class="outline-text-2" id="text-Custom%20allocator%20using%20an%20arena">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">extern</span> <span class="org-type">unsigned</span> <span class="org-type">char</span> <span class="org-variable-name">__heap_base</span>;
+<pre class="src src-C"><code><span class="org-keyword">extern</span> <span class="org-type">unsigned</span> <span class="org-type">char</span> <span class="org-variable-name">__heap_base</span>;
 
 <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">bump_pointer</span> = &amp;__heap_base;
 <span class="org-type">void</span>* <span class="org-function-name">malloc</span>(<span class="org-type">int</span> <span class="org-variable-name">n</span>) {
@@ -402,7 +403,7 @@ Stack size value can be configured using <code>-Wl,-z,stack-size=$[8 * 1024 * 10
     bump_pointer += n;
     <span class="org-keyword">return</span> (<span class="org-type">void</span>*) r;
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -411,25 +412,25 @@ the address:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-js"><span class="org-keyword">async</span> <span class="org-keyword">function</span> init() {
+<pre class="src src-js"><code><span class="org-keyword">async</span> <span class="org-keyword">function</span> init() {
   <span class="org-keyword">const</span> { instance } = <span class="org-keyword">await</span> WebAssembly.instantiateStreaming(fetch(<span class="org-string">"./add.wasm"</span>));
 
   <span class="org-keyword">const</span> <span class="org-variable-name">jsArray</span> = [1, 2, 3, 4, 5];
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Allocate memory for 5 32-bit integers and return get starting address.</span>
-  <span class="org-keyword">const</span> <span class="org-variable-name">cArrayPointer</span> = instance.exports.malloc(jsArray.length * 4);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Allocate memory for 5 32-bit integers and return get starting address.
+</span>  <span class="org-keyword">const</span> <span class="org-variable-name">cArrayPointer</span> = instance.exports.malloc(jsArray.length * 4);
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Convert into a Uint32Array, starting at that address.</span>
-  <span class="org-keyword">const</span> <span class="org-variable-name">cArray</span> = <span class="org-keyword">new</span> <span class="org-type">Uint32Array</span>(instance.exports.memory.buffer, cArrayPointer, jsArray.length);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Convert into a Uint32Array, starting at that address.
+</span>  <span class="org-keyword">const</span> <span class="org-variable-name">cArray</span> = <span class="org-keyword">new</span> <span class="org-type">Uint32Array</span>(instance.exports.memory.buffer, cArrayPointer, jsArray.length);
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Copy the values from JS to C.</span>
-  cArray.set(jsArray);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Copy the values from JS to C.
+</span>  cArray.set(jsArray);
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Run the function, passing the starting address and length.</span>
-  console.log(instance.exports.sum(cArrayPointer, cArray.length));
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Run the function, passing the starting address and length.
+</span>  console.log(instance.exports.sum(cArrayPointer, cArray.length));
 }
 init();
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

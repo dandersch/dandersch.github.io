@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2025-01-07 Tue></span></div><div class="tags"><code>[ <a href="/tag/database.html">database</a> ]</code></div></div><h1>SQL</h1>
@@ -237,7 +238,7 @@ The language consists of following subsets:
 Database management systems that use SQL are
 </p>
 <ul class="org-ul">
-<li><a href="postgresql.html#ID-4195bfc7-9837-4f0c-9530-c8bad757c869">PostgreSQL</a></li>
+<li>PostgreSQL</li>
 <li>SQLite</li>
 <li>MySQL</li>
 </ul>
@@ -254,10 +255,10 @@ boundaries by controlling access at the schema level.
 Example in PostgreSQL:
 </p>
 <div class="org-src-container">
-<pre class="src src-sql"><span class="org-keyword">CREATE</span> <span class="org-keyword">SCHEMA</span> billing;
+<pre class="src src-sql"><code><span class="org-keyword">CREATE</span> <span class="org-keyword">SCHEMA</span> billing;
 <span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">billing.invoices</span> (id SERIAL <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span>);
 <span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">billing.payments</span> (id SERIAL <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span>);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -289,14 +290,14 @@ etc., while down migrations involve dropping tables, removing columns and so on.
 Example for a migration file:
 </p>
 <div class="org-src-container">
-<pre class="src src-sql"><span class="org-comment-delimiter">-- </span><span class="org-comment">Migration: 001_add_user_phone_number.sql</span>
+<pre class="src src-sql"><code><span class="org-comment-delimiter">-- </span><span class="org-comment">Migration: 001_add_user_phone_number.sql
+</span>
+<span class="org-comment-delimiter">-- </span><span class="org-comment">UP
+</span><span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">ADD</span> <span class="org-keyword">COLUMN</span> phone <span class="org-type">VARCHAR</span>(15);
 
-<span class="org-comment-delimiter">-- </span><span class="org-comment">UP</span>
-<span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">ADD</span> <span class="org-keyword">COLUMN</span> phone <span class="org-type">VARCHAR</span>(15);
-
-<span class="org-comment-delimiter">-- </span><span class="org-comment">DOWN</span>
-<span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">DROP</span> <span class="org-keyword">COLUMN</span> phone;
-</pre>
+<span class="org-comment-delimiter">-- </span><span class="org-comment">DOWN
+</span><span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">DROP</span> <span class="org-keyword">COLUMN</span> phone;
+</code></pre>
 </div>
 
 <p>
@@ -309,16 +310,16 @@ For example, following migration requires custom logic to reverse:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span class="org-comment-delimiter">-- </span><span class="org-comment">UP: Split name into first/last</span>
-<span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">ADD</span> first_name <span class="org-type">VARCHAR</span>(50), last_name <span class="org-type">VARCHAR</span>(50);
+<pre class="src src-sql"><code><span class="org-comment-delimiter">-- </span><span class="org-comment">UP: Split name into first/last
+</span><span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">ADD</span> first_name <span class="org-type">VARCHAR</span>(50), last_name <span class="org-type">VARCHAR</span>(50);
 <span class="org-keyword">UPDATE</span> users <span class="org-keyword">SET</span> first_name = SPLIT_PART(<span class="org-keyword">name</span>, <span class="org-string">' '</span>, 1), last_name = SPLIT_PART(<span class="org-keyword">name</span>, <span class="org-string">' '</span>, 2);
 <span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">DROP</span> <span class="org-keyword">COLUMN</span> <span class="org-keyword">name</span>;
 
-<span class="org-comment-delimiter">-- </span><span class="org-comment">DOWN: Merge first/last back into name (custom logic needed)</span>
-<span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">ADD</span> <span class="org-keyword">name</span> <span class="org-type">VARCHAR</span>(100);
+<span class="org-comment-delimiter">-- </span><span class="org-comment">DOWN: Merge first/last back into name (custom logic needed)
+</span><span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">ADD</span> <span class="org-keyword">name</span> <span class="org-type">VARCHAR</span>(100);
 <span class="org-keyword">UPDATE</span> users <span class="org-keyword">SET</span> <span class="org-keyword">name</span> = CONCAT(first_name, <span class="org-string">' '</span>, last_name);
 <span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">users</span> <span class="org-keyword">DROP</span> <span class="org-keyword">COLUMN</span> first_name, last_name;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

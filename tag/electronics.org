@@ -2,13 +2,11 @@
 #+TAG_INDEX: electronics
 
 #+begin_export html
-<div class="tag-heading"><h1>Pages tagged <span>electronics</span></h1><span class="tag-count">3 pages</span></div>
+<div class="tag-heading"><h1>Pages tagged <span>electronics</span></h1><span class="tag-count">1 page</span></div>
 <section class="index-section">
 <h2><a href="/notes">notes/</a></h2>
 <div class="index-list">
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/hdl.html">Hardware Description Language (HDL)</a><span class="index-tags"><a href="/tag/electronics.html">electronics</a><a href="/tag/hardware.html">hardware</a></span></div>
 <div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/ic.html">Integrated Circuits (ICs)</a><span class="index-tags"><a href="/tag/hardware.html">hardware</a><a href="/tag/electronics.html">electronics</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-01</span><a class="index-title" href="/notes/rfid.html">Radio-frequency identification (RFID)</a><span class="index-tags"><a href="/tag/electronics.html">electronics</a></span></div>
 </div>
 </section>
 #+end_export

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-06-08 Sat></span></div><div class="tags"><code>[ <a href="/tag/hardware.html">hardware</a> ]</code></div></div><h1>Central Processing Unit (CPU)</h1>
@@ -244,6 +245,106 @@ Resources
 <li><a href="https://overbyte.com.au/misc/Lesson3/CacheFun.html">Demonstration of cache speeds</a></li>
 <li>Gregory, Jason. Game Engine Architecture. 2019. Section 3.5.4</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-ID-01c09cff-4fd0-4ec4-bd84-f69a234c5941" class="outline-2">
+<h2 id="ID-01c09cff-4fd0-4ec4-bd84-f69a234c5941"><a href="#ID-01c09cff-4fd0-4ec4-bd84-f69a234c5941">SIMD (Single Instruction, Multiple Data)</a></h2>
+<div class="outline-text-2" id="text-SIMD%20%28Single%20Instruction%2C%20Multiple%20Data%29">
+<p>
+Single Instruction, Multiple Data (SIMD) is an execution model that allows for
+parallel processing. It is accessible through a hardware's instruction set
+architecture (ISA).
+</p>
+
+<p>
+SIMD instructions can perform the same operation on multiple data points and can
+thus increase performance considerably - especially for mathematical operations
+on matrices and vectors.
+</p>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://mitchellh.com/writing/everyone-should-know-simd">Everyone Should Know SIMD – Mitchell Hashimoto</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-55e908fa-3d21-4f2c-ae12-938178232a9c" class="outline-2">
+<h2 id="ID-55e908fa-3d21-4f2c-ae12-938178232a9c"><a href="#ID-55e908fa-3d21-4f2c-ae12-938178232a9c">x86</a></h2>
+<div class="outline-text-2" id="text-x86">
+<p>
+x86 (also known as 8086) is a family of complex instruction set computer (CISC)
+instruction set architectures created by Intel. The x86 assembly language
+produces object code for the x86 class of processors.
+</p>
+
+<p>
+While the original 8086 was 16-bit, x86 now refers most commonly to 32-bit based
+systems. It was later extended to 64-bit architectures by AMD as amd64, but is
+most commonly referred to as x86<sub>64</sub>.
+</p>
+</div>
+<div id="outline-container-~Hello%20World~%20in%20x86%20assembly" class="outline-3">
+<h3 id="~Hello%20World~%20in%20x86%20assembly"><a href="#~Hello%20World~%20in%20x86%20assembly"><code>Hello World</code> in x86 assembly</a></h3>
+<div class="outline-text-3" id="text-~Hello%20World~%20in%20x86%20assembly">
+<div class="org-src-container">
+<pre class="src src-asm"><code><span class="org-function-name">BITS</span> <span class="org-keyword">64</span>
+
+<span class="org-function-name">%define</span> <span class="org-keyword">SYS</span>_exit 60
+<span class="org-function-name">%define</span> <span class="org-keyword">SYS</span>_write 1
+<span class="org-function-name">%define</span> <span class="org-keyword">STDOUT</span> 1
+
+<span class="org-function-name">segment</span> .text
+<span class="org-function-name">global</span> _start
+<span class="org-function-name">_start</span>:
+    <span class="org-keyword">mov</span> rax, SYS_write
+    <span class="org-keyword">mov</span> rdi, STDOUT
+    <span class="org-keyword">mov</span> rsi, buf
+    <span class="org-keyword">mov</span> rdx, buf_sz
+    <span class="org-keyword">syscall</span>
+
+    <span class="org-keyword">mov</span> rax, SYS_exit
+    <span class="org-keyword">mov</span> rdi, 0
+    <span class="org-keyword">syscall</span>
+
+<span class="org-function-name">segment</span> .data
+<span class="org-function-name">buf</span>: <span class="org-keyword">db</span> <span class="org-string">"Hello World"</span>, 10
+<span class="org-function-name">buf_sz</span>: <span class="org-keyword">equ</span> $-buf
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-Terminology" class="outline-3">
+<h3 id="Terminology"><a href="#Terminology">Terminology</a></h3>
+<div class="outline-text-3" id="text-Terminology">
+<ul class="org-ul">
+<li><code>Real mode</code>: the mode x86 processors start in</li>
+<li><code>Protected mode</code>: mode with 32-bit support, paging and multitasking. Supports
+16-bit and 32-bit sub-modes.</li>
+<li><code>Long mode</code>: mode with 64-bit support. Supports 16-bit, 32-bit and 64-bit
+sub-modes.</li>
+<li><code>80x86, x86</code>: the line of 8086-compatible processors. Sometimes means the same
+thing as IA-32.</li>
+<li><code>i386</code>: the line of 80386-compatible processors. Sometimes means the same thing
+as IA-32.</li>
+<li><code>IA-32, i386, 386, x86</code>: 80386-compatible 32-bit ISA</li>
+<li><code>IA-64</code>: Not important</li>
+<li><code>x86-64, x86_64, x64, AMD64, Intel 64, IA-32e, EM64T</code> - 64-bit x86 ISA.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Resource" class="outline-3">
+<h3 id="Resource"><a href="#Resource">Resource</a></h3>
+<div class="outline-text-3" id="text-Resource">
+<ul class="org-ul">
+<li><a href="https://www.felixcloutier.com/x86/">x86 and amd64 instruction reference</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLZCIHSjpQ12woLj0sjsnqDH8yVuXwTy3p">Handmade Linux x86 executables</a></li>
+<li><a href="https://handmade.network/forums/articles/t/8269-x86__the_history_of_naming">x86: the history of naming</a></li>
+<li><a href="https://www.youtube.com/watch?v=or3j4UohEOk">A whirlwind look at CPU Microarchitectures</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

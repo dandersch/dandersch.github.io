@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,31 +199,31 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2023-04-09 Sun></span></div><div class="tags"><code>[ <a href="/tag/gamedev.html">gamedev</a> ]</code></div></div><h1>2D Physics</h1>
 <p>
 2D physics refers to the simulation of physical behavior and interactions in
 two-dimensional spaces. These behaviours can include movement, collision, and
-gravity. This is achieved using a <a href="physics_engine.html#ID-92d28569-4319-4031-bd53-22277c438672">physics engine</a>.
+gravity. This is achieved using a physics engine.
 </p>
 <div id="outline-container-List%20of%202D%20physics%20engines" class="outline-2">
 <h2 id="List%20of%202D%20physics%20engines"><a href="#List%20of%202D%20physics%20engines">List of 2D physics engines</a></h2>
@@ -319,24 +320,24 @@ impulse.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-function-name">collision_resolve</span>(<span class="org-type">object_t</span> <span class="org-variable-name">A</span>, <span class="org-type">object_t</span> <span class="org-variable-name">B</span> )
+<pre class="src src-C++"><code><span class="org-type">void</span> <span class="org-function-name">collision_resolve</span>(<span class="org-type">object_t</span> <span class="org-variable-name">A</span>, <span class="org-type">object_t</span> <span class="org-variable-name">B</span> )
 {
   <span class="org-type">vec2</span> <span class="org-variable-name">rel_velocity</span> = B.velocity - A.velocity;
-  <span class="org-type">float</span> <span class="org-variable-name">velAlongNormal</span> = DotProduct(rv, normal);  <span class="org-comment-delimiter">// </span><span class="org-comment">calculate rel. velocity in terms of normal direction</span>
-  <span class="org-keyword">if</span>(velAlongNormal &gt; 0) { <span class="org-keyword">return</span>; }              <span class="org-comment-delimiter">// </span><span class="org-comment">don't resolve if velocities are separating</span>
-
+  <span class="org-type">float</span> <span class="org-variable-name">velAlongNormal</span> = DotProduct(rv, normal);  <span class="org-comment-delimiter">// </span><span class="org-comment">calculate rel. velocity in terms of normal direction
+</span>  <span class="org-keyword">if</span>(velAlongNormal &gt; 0) { <span class="org-keyword">return</span>; }              <span class="org-comment-delimiter">// </span><span class="org-comment">don't resolve if velocities are separating
+</span>
   <span class="org-type">float</span> <span class="org-variable-name">e</span> = min(A.restitution, B.restitution);
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate impulse scalar</span>
-  <span class="org-type">float</span> <span class="org-variable-name">j</span> = -(1 + e) * velAlongNormal;
-  j /= 1 / A.mass + 1 / B.mass;                   <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE: possible speed-up: store inverse mass</span>
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Apply impulse</span>
-  <span class="org-type">vec2</span> <span class="org-variable-name">impulse</span> = j * normal;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate impulse scalar
+</span>  <span class="org-type">float</span> <span class="org-variable-name">j</span> = -(1 + e) * velAlongNormal;
+  j /= 1 / A.mass + 1 / B.mass;                   <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE: possible speed-up: store inverse mass
+</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Apply impulse
+</span>  <span class="org-type">vec2</span> <span class="org-variable-name">impulse</span> = j * normal;
   A.velocity -= 1 / A.mass * impulse;
   B.velocity += 1 / B.mass * impulse;
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -355,21 +356,21 @@ by the collision detection phase.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">Manifold</span>
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">Manifold</span>
 {
   <span class="org-type">Object</span> *<span class="org-variable-name">A</span>;
   <span class="org-type">Object</span> *<span class="org-variable-name">B</span>;
   <span class="org-type">float</span>  <span class="org-variable-name">penetration</span>;
   <span class="org-type">Vec2</span>   <span class="org-variable-name">normal</span>;
 };
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">bool</span> <span class="org-function-name">Circle_vs_Circle</span>(<span class="org-type">Manifold</span> *<span class="org-variable-name">m</span>)
+<pre class="src src-C"><code><span class="org-type">bool</span> <span class="org-function-name">Circle_vs_Circle</span>(<span class="org-type">Manifold</span> *<span class="org-variable-name">m</span>)
 {
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Setup a couple pointers to each object</span>
-  <span class="org-type">Object</span> *<span class="org-variable-name">A</span> = m-&gt;A;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Setup a couple pointers to each object
+</span>  <span class="org-type">Object</span> *<span class="org-variable-name">A</span> = m-&gt;A;
   <span class="org-type">Object</span> *<span class="org-variable-name">B</span> = m-&gt;B;
 
   <span class="org-type">vec2</span> <span class="org-variable-name">n</span>  = B-&gt;pos - A-&gt;pos;
@@ -380,66 +381,66 @@ by the collision detection phase.
 
   <span class="org-comment-delimiter">/* </span><span class="org-comment">Circles have collided, now compute manifold</span><span class="org-comment-delimiter"> */</span>
 
-  <span class="org-type">float</span> <span class="org-variable-name">d</span> = n.Length(); <span class="org-comment-delimiter">// </span><span class="org-comment">perform actual sqrt</span>
-
-  <span class="org-keyword">if</span>(d != 0) <span class="org-comment-delimiter">// </span><span class="org-comment">If distance between circles is not zero</span>
-  {
-    m-&gt;penetration = r - d; <span class="org-comment-delimiter">// </span><span class="org-comment">Distance is difference between radius and distance</span>
-
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Utilize our d since we performed sqrt on it already within Length()</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Points from A to B, and is a unit vector</span>
-    c-&gt;normal = t / d;
+  <span class="org-type">float</span> <span class="org-variable-name">d</span> = n.Length(); <span class="org-comment-delimiter">// </span><span class="org-comment">perform actual sqrt
+</span>
+  <span class="org-keyword">if</span>(d != 0) <span class="org-comment-delimiter">// </span><span class="org-comment">If distance between circles is not zero
+</span>  {
+    m-&gt;penetration = r - d; <span class="org-comment-delimiter">// </span><span class="org-comment">Distance is difference between radius and distance
+</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Utilize our d since we performed sqrt on it already within Length()
+</span>    <span class="org-comment-delimiter">// </span><span class="org-comment">Points from A to B, and is a unit vector
+</span>    c-&gt;normal = t / d;
 
     <span class="org-keyword">return</span> <span class="org-constant">true</span>
   }
   <span class="org-keyword">else</span> <span class="org-comment-delimiter">/* </span><span class="org-comment">Circles are on same position</span><span class="org-comment-delimiter"> */</span>
   {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Choose random (but consistent) values</span>
-    c-&gt;penetration = A-&gt;radius
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Choose random (but consistent) values
+</span>    c-&gt;penetration = A-&gt;radius
     c-&gt;normal = Vec( 1, 0 )
     <span class="org-keyword">return</span> <span class="org-constant">true</span>
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">bool</span> <span class="org-function-name">AABB_vs_AABB</span>(<span class="org-type">Manifold</span> *<span class="org-variable-name">m</span>)
+<pre class="src src-C"><code><span class="org-type">bool</span> <span class="org-function-name">AABB_vs_AABB</span>(<span class="org-type">Manifold</span> *<span class="org-variable-name">m</span>)
 {
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Setup a couple pointers to each object</span>
-  <span class="org-type">Object</span> *<span class="org-variable-name">A</span> = m-&gt;A
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Setup a couple pointers to each object
+</span>  <span class="org-type">Object</span> *<span class="org-variable-name">A</span> = m-&gt;A
   Object *B = m-&gt;B
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Vector from A to B</span>
-  Vec2 n = B-&gt;pos - A-&gt;pos
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Vector from A to B
+</span>  Vec2 n = B-&gt;pos - A-&gt;pos
 
   AABB abox = A-&gt;aabb
   AABB bbox = B-&gt;aabb
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate half extents along x axis for each object</span>
-  <span class="org-type">float</span> a_extent = (abox.max.x - abox.min.x) / 2
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate half extents along x axis for each object
+</span>  <span class="org-type">float</span> a_extent = (abox.max.x - abox.min.x) / 2
   <span class="org-type">float</span> b_extent = (bbox.max.x - bbox.min.x) / 2
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate overlap on x axis</span>
-  <span class="org-type">float</span> x_overlap = a_extent + b_extent - abs( n.x )
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate overlap on x axis
+</span>  <span class="org-type">float</span> x_overlap = a_extent + b_extent - abs( n.x )
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">SAT test on x axis</span>
-  <span class="org-keyword">if</span>(x_overlap &gt; 0)
+  <span class="org-comment-delimiter">// </span><span class="org-comment">SAT test on x axis
+</span>  <span class="org-keyword">if</span>(x_overlap &gt; 0)
   {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate half extents along x axis for each object</span>
-    <span class="org-type">float</span> a_extent = (abox.max.y - abox.min.y) / 2
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate half extents along x axis for each object
+</span>    <span class="org-type">float</span> a_extent = (abox.max.y - abox.min.y) / 2
     <span class="org-type">float</span> b_extent = (bbox.max.y - bbox.min.y) / 2
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate overlap on y axis</span>
-    <span class="org-type">float</span> y_overlap = a_extent + b_extent - abs( n.y )
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate overlap on y axis
+</span>    <span class="org-type">float</span> y_overlap = a_extent + b_extent - abs( n.y )
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">SAT test on y axis</span>
-    <span class="org-keyword">if</span>(y_overlap &gt; 0)
+    <span class="org-comment-delimiter">// </span><span class="org-comment">SAT test on y axis
+</span>    <span class="org-keyword">if</span>(y_overlap &gt; 0)
     {
-      <span class="org-keyword">if</span>(x_overlap &gt; y_overlap) <span class="org-comment-delimiter">// </span><span class="org-comment">Find out which axis is axis of least penetration</span>
-      {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Point towards B knowing that n points from A to B</span>
-        <span class="org-keyword">if</span>(n.x &lt; 0)
+      <span class="org-keyword">if</span>(x_overlap &gt; y_overlap) <span class="org-comment-delimiter">// </span><span class="org-comment">Find out which axis is axis of least penetration
+</span>      {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Point towards B knowing that n points from A to B
+</span>        <span class="org-keyword">if</span>(n.x &lt; 0)
           m-&gt;normal = Vec2( -1, 0 )
         <span class="org-keyword">else</span>
           m-&gt;normal = Vec2( 0, 0 )
@@ -450,8 +451,8 @@ by the collision detection phase.
       }
       <span class="org-keyword">else</span>
       {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Point toward B knowing that n points from A to B</span>
-        <span class="org-keyword">if</span>(n.y &lt; 0)
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Point toward B knowing that n points from A to B
+</span>        <span class="org-keyword">if</span>(n.y &lt; 0)
           m-&gt;normal = Vec2( 0, -1 )
         <span class="org-keyword">else</span>
           m-&gt;normal = Vec2( 0, 1 )
@@ -463,51 +464,51 @@ by the collision detection phase.
     }
   }
 }
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">bool</span> <span class="org-function-name">AABB_vs_Circle</span>(<span class="org-type">Manifold</span>* <span class="org-variable-name">m</span>)
+<pre class="src src-C"><code><span class="org-type">bool</span> <span class="org-function-name">AABB_vs_Circle</span>(<span class="org-type">Manifold</span>* <span class="org-variable-name">m</span>)
 {
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Setup a couple pointers to each object</span>
-  <span class="org-type">Object</span> *<span class="org-variable-name">A</span> = m-&gt;A
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Setup a couple pointers to each object
+</span>  <span class="org-type">Object</span> *<span class="org-variable-name">A</span> = m-&gt;A
   Object *B = m-&gt;B
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Vector from A to B</span>
-  Vec2 n = B-&gt;pos - A-&gt;pos
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Vector from A to B
+</span>  Vec2 n = B-&gt;pos - A-&gt;pos
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Closest point on A to center of B</span>
-  Vec2 closest = n
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Closest point on A to center of B
+</span>  Vec2 closest = n
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate half extents along each axis</span>
-  <span class="org-type">float</span> x_extent = (A-&gt;aabb.max.x - A-&gt;aabb.min.x) / 2
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate half extents along each axis
+</span>  <span class="org-type">float</span> x_extent = (A-&gt;aabb.max.x - A-&gt;aabb.min.x) / 2
   <span class="org-type">float</span> y_extent = (A-&gt;aabb.max.y - A-&gt;aabb.min.y) / 2
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Clamp point to edges of the AABB</span>
-  closest.x = Clamp( -x_extent, x_extent, closest.x )
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Clamp point to edges of the AABB
+</span>  closest.x = Clamp( -x_extent, x_extent, closest.x )
   closest.y = Clamp( -y_extent, y_extent, closest.y )
 
   <span class="org-type">bool</span> <span class="org-variable-name">inside</span> = <span class="org-constant">false</span>
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Circle is inside the AABB, so we need to clamp the circle's center</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">to the closest edge</span>
-  <span class="org-keyword">if</span>(n == closest)
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Circle is inside the AABB, so we need to clamp the circle's center
+</span>  <span class="org-comment-delimiter">// </span><span class="org-comment">to the closest edge
+</span>  <span class="org-keyword">if</span>(n == closest)
   {
     inside = <span class="org-constant">true</span>
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Find closest axis</span>
-    <span class="org-keyword">if</span>(abs( n.x ) &gt; abs( n.y ))
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Find closest axis
+</span>    <span class="org-keyword">if</span>(abs( n.x ) &gt; abs( n.y ))
     {
-      <span class="org-comment-delimiter">// </span><span class="org-comment">Clamp to closest extent</span>
-      <span class="org-keyword">if</span>(closest.x &gt; 0)
+      <span class="org-comment-delimiter">// </span><span class="org-comment">Clamp to closest extent
+</span>      <span class="org-keyword">if</span>(closest.x &gt; 0)
         closest.x = x_extent
       <span class="org-keyword">else</span>
         closest.x = -x_extent
     }
-    <span class="org-keyword">else</span> <span class="org-comment-delimiter">// </span><span class="org-comment">y axis is shorter</span>
-    {
-      <span class="org-comment-delimiter">// </span><span class="org-comment">Clamp to closest extent</span>
-      <span class="org-keyword">if</span>(closest.y &gt; 0)
+    <span class="org-keyword">else</span> <span class="org-comment-delimiter">// </span><span class="org-comment">y axis is shorter
+</span>    {
+      <span class="org-comment-delimiter">// </span><span class="org-comment">Clamp to closest extent
+</span>      <span class="org-keyword">if</span>(closest.y &gt; 0)
         closest.y = y_extent;
       <span class="org-keyword">else</span>
         closest.y = -y_extent;
@@ -518,15 +519,15 @@ by the collision detection phase.
   <span class="org-type">real</span> <span class="org-variable-name">d</span> = normal.LengthSquared();
   <span class="org-type">real</span> <span class="org-variable-name">r</span> = B-&gt;radius;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Early out of the radius is shorter than distance to closest point and</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Circle not inside the AABB</span>
-  <span class="org-keyword">if</span>(d &gt; r * r &amp;&amp; <span class="org-negation-char">!</span>inside) { <span class="org-keyword">return</span> <span class="org-constant">false</span>; }
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Early out of the radius is shorter than distance to closest point and
+</span>  <span class="org-comment-delimiter">// </span><span class="org-comment">Circle not inside the AABB
+</span>  <span class="org-keyword">if</span>(d &gt; r * r &amp;&amp; <span class="org-negation-char">!</span>inside) { <span class="org-keyword">return</span> <span class="org-constant">false</span>; }
 
-  d = sqrt(d); <span class="org-comment-delimiter">// </span><span class="org-comment">Avoided sqrt until needed</span>
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Collision normal needs to be flipped to point outside if circle was</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">inside the AABB</span>
-  <span class="org-keyword">if</span>(inside)
+  d = sqrt(d); <span class="org-comment-delimiter">// </span><span class="org-comment">Avoided sqrt until needed
+</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Collision normal needs to be flipped to point outside if circle was
+</span>  <span class="org-comment-delimiter">// </span><span class="org-comment">inside the AABB
+</span>  <span class="org-keyword">if</span>(inside)
   {
     m-&gt;normal = -n
     m-&gt;penetration = r - d
@@ -539,7 +540,7 @@ by the collision detection phase.
 
   <span class="org-keyword">return</span> <span class="org-constant">true</span>
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -551,6 +552,24 @@ by the collision detection phase.
 <li><a href="https://randygaul.github.io/collision-detection/2019/06/19/Collision-Detection-in-2D-Some-Steps-for-Success.html">Collision Detection in 2D or 3D – Some Steps for Success</a></li>
 <li><a href="https://web.archive.org/web/20220928164633/www.deengames.com/blog/2020/a-primer-on-aabb-collision-resolution.html">A Primer on AABB Collision Resolution</a></li>
 </ul>
+</div>
+<div id="outline-container-Collision%20detection" class="outline-3">
+<h3 id="Collision%20detection"><a href="#Collision%20detection">Collision detection</a></h3>
+<div class="outline-text-3" id="text-Collision%20detection">
+<ul class="org-ul">
+<li><a href="https://www.deengames.com/blog/2020/a-primer-on-aabb-collision-resolution.html">A Primer on AABB Collision Resolution</a></li>
+<li><a href="http://sacredsoftware.net/tutorials/collision.html">Collision Detection Tutorial</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Physics%20Engine" class="outline-3">
+<h3 id="Physics%20Engine"><a href="#Physics%20Engine">Physics Engine</a></h3>
+<div class="outline-text-3" id="text-Physics%20Engine">
+<ul class="org-ul">
+<li><a href="https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/physicstutorials/6accelerationstructures/Physics%20-%20Spatial%20Acceleration%20Structures.pdf">Physics - Broad phase and Narrow phase</a></li>
+<li><a href="https://gafferongames.com/categories/game-physics/">Gaffer on Games - Game Physics</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

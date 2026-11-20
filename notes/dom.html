@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,36 +199,36 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-08 Sun></span></div><div class="tags"><code>[ <a href="/tag/web.html">web</a> ]</code></div></div><h1>Document Object Model (DOM)</h1>
 <p>
-The Document Object Model (DOM) is a hierarchical structure that treats an <a href="html.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a>
-(or XML) document as a <a href="tree.html#ID-3a46ec5a-8dfd-4291-9721-31686ed1a854">tree</a> that consists of nodes that represent parts of the
+The Document Object Model (DOM) is a hierarchical structure that treats an <a href="world_wide_web.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a>
+(or XML) document as a <a href="data_structure.html#ID-3a46ec5a-8dfd-4291-9721-31686ed1a854">tree</a> that consists of nodes that represent parts of the
 document.
 </p>
 
 <p>
 The main use of the DOM is to programmatically change the structure or content
-of a document, e.g. through the use <a href="javascript.html#ID-a0222a34-b3ec-4ed1-906c-195c89bf9b4c">JavaScript</a>. Nodes in the DOM can have event
+of a document, e.g. through the use JavaScript. Nodes in the DOM can have event
 handlers attached to them. This means when a user triggers a certain event on
 that node, code can be executed.
 </p>
@@ -241,15 +242,15 @@ rebuilding it. Approaches to DOM reconciliation include:
 <ul class="org-ul">
 <li>DOM replacement (inefficient)</li>
 <li><a href="#ID-690d8be5-4823-4a0f-a49f-f36be61ec844">Virtual DOM</a> diffing (React's approach)</li>
-<li>Fine-grained reactivity systems (Solid.js, <a href="svelte.html#ID-e27a188e-114e-4b11-8b41-e3065804a48a">Svelte</a>)</li>
-<li><a href="html_over_the_wire.html#ID-58fb8b14-9d55-4d3a-91cd-d04917d58428">HTML-over-the-wire</a> techniques (<a href="htmx.html#ID-3b22908e-c628-42ec-bb2d-9f9b59da2e90">htmx</a>, Hotwire)</li>
+<li>Fine-grained reactivity systems (Solid.js, Svelte)</li>
+<li><a href="htmx.html#ID-58fb8b14-9d55-4d3a-91cd-d04917d58428">HTML-over-the-wire</a> techniques (<a href="htmx.html#ID-3b22908e-c628-42ec-bb2d-9f9b59da2e90">htmx</a>, Hotwire)</li>
 <li>DOM Morphing without Virtual DOMs</li>
 </ul>
 <div id="outline-container-DOM%20Tree%20Diagram" class="outline-2">
 <h2 id="DOM%20Tree%20Diagram"><a href="#DOM%20Tree%20Diagram">DOM Tree Diagram</a></h2>
 <div class="outline-text-2" id="text-DOM%20Tree%20Diagram">
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
+<pre class="src src-html"><code>&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
 &lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
 &lt;<span class="org-function-name">head</span>&gt;
     &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">Sample Page</span></span>&lt;/<span class="org-function-name">title</span>&gt;
@@ -288,7 +289,7 @@ rebuilding it. Approaches to DOM reconciliation include:
     &lt;/<span class="org-function-name">footer</span>&gt;
 &lt;/<span class="org-function-name">body</span>&gt;
 &lt;/<span class="org-function-name">html</span>&gt;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

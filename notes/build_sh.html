@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2025-05-01 Thu></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>build.sh</h1>
@@ -229,26 +230,26 @@ to fully-fledged build systems to automate the process of building software.
 <ul class="org-ul">
 <li><code>[0/3]</code> TODO: things to add
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> use <a href="address_sanitization.html#ID-3013e026-c87a-4e6e-b5f0-e427eb8b92dd">Asan</a> flags</li>
-<li class="off"><code>[&#xa0;]</code> better warnings</li>
-<li class="off"><code>[&#xa0;]</code> integrated file watching when run with dev</li>
+<li class="off"><code>[&nbsp;]</code> use <a href="address_sanitization.html#ID-3013e026-c87a-4e6e-b5f0-e427eb8b92dd">Asan</a> flags</li>
+<li class="off"><code>[&nbsp;]</code> better warnings</li>
+<li class="off"><code>[&nbsp;]</code> integrated file watching when run with dev</li>
 </ul></li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/</span><span class="org-keyword">bash</span>
+<pre class="src src-bash"><code><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/</span><span class="org-keyword">bash</span><span class="org-comment">
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">default values for envars
+</span>: <span class="org-string">"${CC:=clang++}"</span> <span class="org-comment-delimiter"># </span><span class="org-comment">compiler to use
+</span>: <span class="org-string">"${STD:=c++14}"</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">standard to use
+</span>
+<span class="org-builtin">set</span> -e <span class="org-comment-delimiter"># </span><span class="org-comment">stop execution on first fail
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">create needed directories
+</span>mkdir -p build
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">default values for envars</span>
-: <span class="org-string">"${CC:=clang++}"</span> <span class="org-comment-delimiter"># </span><span class="org-comment">compiler to use</span>
-: <span class="org-string">"${STD:=c++14}"</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">standard to use</span>
-
-<span class="org-builtin">set</span> -e <span class="org-comment-delimiter"># </span><span class="org-comment">stop execution on first fail</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">create needed directories</span>
-mkdir -p build
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">if available, bear is used to (re)generate compile_commands.json</span>
-<span class="org-keyword">if</span> [ <span class="org-string">"build.sh"</span> -nt <span class="org-string">"compile_commands.json"</span> ] &amp;&amp; command -v bear &gt;/dev/null; <span class="org-keyword">then</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">if available, bear is used to (re)generate compile_commands.json
+</span><span class="org-keyword">if</span> [ <span class="org-string">"build.sh"</span> -nt <span class="org-string">"compile_commands.json"</span> ] &amp;&amp; command -v bear &gt;/dev/null; <span class="org-keyword">then</span>
     rm --force compile_commands.json
     <span class="org-builtin">echo</span> <span class="org-string">"Regenerating compile_commands.json"</span>
     <span class="org-variable-name">DB</span>=<span class="org-string">"bear --append --"</span>
@@ -256,38 +257,38 @@ mkdir -p build
 
 <span class="org-variable-name">CmnCompilerFlags</span>=<span class="org-string">"-I./src/ -g -DENABLE_ASSERTS -fPIC -fno-rtti -fno-exceptions -std=${STD} "</span>
 <span class="org-variable-name">CmnCompilerFlags</span>+=<span class="org-string">"-Wall -Wfatal-errors -Wno-unused-function -Wno-unused-variable "</span>
-<span class="org-variable-name">CmnLinkerFlags</span>=<span class="org-string">"-L. -Wl,-rpath=."</span> <span class="org-comment-delimiter"># </span><span class="org-comment">look for dynamic libraries in the current working dir</span>
+<span class="org-variable-name">CmnLinkerFlags</span>=<span class="org-string">"-L. -Wl,-rpath=."</span> <span class="org-comment-delimiter"># </span><span class="org-comment">look for dynamic libraries in the current working dir
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">build dll
+</span>${<span class="org-variable-name">DB</span>} ${<span class="org-variable-name">CC</span>} --shared ${<span class="org-variable-name">CmnCompilerFlags</span>} ${<span class="org-variable-name">CmnLinkerFlags</span>} main.cpp -o dylib.so
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">build dll</span>
-${<span class="org-variable-name">DB</span>} ${<span class="org-variable-name">CC</span>} --shared ${<span class="org-variable-name">CmnCompilerFlags</span>} ${<span class="org-variable-name">CmnLinkerFlags</span>} main.cpp -o dylib.so
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">add platform specific flags</span>
-<span class="org-variable-name">CmnCompilerFlags</span>+=<span class="org-string">" $(sdl2-config --cflags)"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">add platform specific flags
+</span><span class="org-variable-name">CmnCompilerFlags</span>+=<span class="org-string">" $(sdl2-config --cflags)"</span>
 <span class="org-variable-name">CmnLinkerFlags</span>+=<span class="org-string">" $(sdl2-config --libs) -ldl"</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">precompiled header</span>
-<span class="org-variable-name">HEADER_FILE</span>=<span class="org-string">"common.h"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">precompiled header
+</span><span class="org-variable-name">HEADER_FILE</span>=<span class="org-string">"common.h"</span>
 <span class="org-variable-name">PCH_FILE</span>=<span class="org-string">"common.pch"</span>
-<span class="org-keyword">if</span> [ <span class="org-string">"$HEADER_FILE"</span> -nt <span class="org-string">"$PCH_FILE"</span> ]; <span class="org-keyword">then</span> <span class="org-comment-delimiter"># </span><span class="org-comment">Check if pch needs to be rebuilt</span>
-  ${<span class="org-variable-name">DB</span>} ${<span class="org-variable-name">CC</span>} -c ${<span class="org-variable-name">CmnCompilerFlags</span>} -x c++-header ${<span class="org-variable-name">HEADER_FILE</span>} -o ${<span class="org-variable-name">PCH_FILE</span>}
+<span class="org-keyword">if</span> [ <span class="org-string">"$HEADER_FILE"</span> -nt <span class="org-string">"$PCH_FILE"</span> ]; <span class="org-keyword">then</span> <span class="org-comment-delimiter"># </span><span class="org-comment">Check if pch needs to be rebuilt
+</span>  ${<span class="org-variable-name">DB</span>} ${<span class="org-variable-name">CC</span>} -c ${<span class="org-variable-name">CmnCompilerFlags</span>} -x c++-header ${<span class="org-variable-name">HEADER_FILE</span>} -o ${<span class="org-variable-name">PCH_FILE</span>}
 <span class="org-keyword">fi</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">use pch when using clang</span>
-<span class="org-keyword">if</span> [ $<span class="org-variable-name">CC</span> == <span class="org-string">"clang++"</span> ]; <span class="org-keyword">then</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">use pch when using clang
+</span><span class="org-keyword">if</span> [ $<span class="org-variable-name">CC</span> == <span class="org-string">"clang++"</span> ]; <span class="org-keyword">then</span>
   <span class="org-variable-name">CmnCompilerFlags</span>+=<span class="org-string">" -include-pch ${PCH_FILE} "</span>
 <span class="org-keyword">fi</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">build executable</span>
-${<span class="org-variable-name">DB</span>} ${<span class="org-variable-name">CC</span>} ${<span class="org-variable-name">CmnCompilerFlags</span>} ${<span class="org-variable-name">CmnLinkerFlags</span>} -lGL ./src/platform.cpp -o ./build/main
-</pre>
+<span class="org-comment-delimiter"># </span><span class="org-comment">build executable
+</span>${<span class="org-variable-name">DB</span>} ${<span class="org-variable-name">CC</span>} ${<span class="org-variable-name">CmnCompilerFlags</span>} ${<span class="org-variable-name">CmnLinkerFlags</span>} -lGL ./src/platform.cpp -o ./build/main
+</code></pre>
 </div>
 
 <p>
 Usage:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span class="org-variable-name">CC</span>=g++ <span class="org-variable-name">STD</span>=c++26 ./build.sh
-</pre>
+<pre class="src src-sh"><code><span class="org-variable-name">CC</span>=g++ <span class="org-variable-name">STD</span>=c++26 ./build.sh
+</code></pre>
 </div>
 </div>
 </div>
@@ -302,10 +303,10 @@ to it.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span class="org-builtin">echo</span> &gt;/dev/null <span class="org-comment-delimiter"># </span><span class="org-comment">&gt;nul &amp; GOTO WINDOWS &amp; rem ^</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">linux compile command</span>
-cc -Wall main.c -o main -lGL
+<pre class="src src-sh"><code><span class="org-builtin">echo</span> &gt;/dev/null <span class="org-comment-delimiter"># </span><span class="org-comment">&gt;nul &amp; GOTO WINDOWS &amp; rem ^
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">linux compile command
+</span>cc -Wall main.c -o main -lGL
 
 <span class="org-keyword">exit</span> 0
 :WINDOWS
@@ -313,7 +314,7 @@ cc -Wall main.c -o main -lGL
 
 REM windows compile command
 clang.exe -Wall main.c -o main.exe -lopengl32
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -324,37 +325,37 @@ clang.exe -Wall main.c -o main.exe -lopengl32
 Download <a href="https://github.com/Data-Oriented-House/PortableBuildTools">PortableBuildTools</a> and run using:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">wine ./PortableBuildTools.exe gui
-</pre>
+<pre class="src src-bash"><code>wine ./PortableBuildTools.exe gui
+</code></pre>
 </div>
 
 <p>
 <code>cl.exe</code> should now be in the PATH when using wine:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">wine cmd /c cl.exe 2&gt;/dev/null
-</pre>
+<pre class="src src-bash"><code>wine cmd /c cl.exe 2&gt;/dev/null
+</code></pre>
 </div>
 
 <p>
 Add following script called wine-batch (or similar):
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/</span><span class="org-keyword">bash</span>
-<span class="org-builtin">export</span> <span class="org-variable-name">WINEDEBUG</span>=-all
+<pre class="src src-bash"><code><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/</span><span class="org-keyword">bash</span><span class="org-comment">
+</span><span class="org-builtin">export</span> <span class="org-variable-name">WINEDEBUG</span>=-all
 <span class="org-builtin">export</span> <span class="org-variable-name">WINEPATH</span>=<span class="org-string">"C:\path\to\cl.exe;C:\path\to\other\tools"</span>
 <span class="org-builtin">export</span> <span class="org-variable-name">INCLUDE</span>=<span class="org-string">"C:\path\to\headers;"</span>
 <span class="org-builtin">export</span> <span class="org-variable-name">LIB</span>=<span class="org-string">"C:\path\to\libs;"</span>
 <span class="org-keyword">exec</span> wine cmd /c <span class="org-string">"$(winepath -w "$1")"</span>
-</pre>
+</code></pre>
 </div>
 
 <p>
 Batch files should now run in your terminal:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">wine-batch build.bat
-</pre>
+<pre class="src src-bash"><code>wine-batch build.bat
+</code></pre>
 </div>
 
 <p>
@@ -369,21 +370,36 @@ executed directly), while other distros seem to need a separate package
 Add <code>binfmt_misc</code> handler to be able to run <code>./build.bat</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-builtin">echo</span> <span class="org-string">':DOSBatch:E::bat::/path/to/wine-batch:'</span> | sudo tee /proc/sys/fs/binfmt_misc/register
-</pre>
+<pre class="src src-bash"><code><span class="org-builtin">echo</span> <span class="org-string">':DOSBatch:E::bat::/path/to/wine-batch:'</span> | sudo tee /proc/sys/fs/binfmt_misc/register
+</code></pre>
 </div>
 
 <p>
 If it works, make it persistent by adding <code>/etc/binfmt.d/bat.conf</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span class="org-comment-delimiter"># </span><span class="org-comment">Associate .bat files with Wine CMD (wine-batch is a wrapper script)</span>
-:DOSBatch:E::bat::/home/da/bin/wine-batch:
-</pre>
+<pre class="src src-conf"><code><span class="org-comment-delimiter"># </span><span class="org-comment">Associate .bat files with Wine CMD (wine-batch is a wrapper script)
+</span>:DOSBatch:E::bat::/home/da/bin/wine-batch:
+</code></pre>
 </div>
 
 <p>
 Now <code>./build.bat</code> should work after calling <code>sudo systemctl restart systemd-binfmt</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-d9a49dde-f079-430f-9c25-c5059137bb32" class="outline-2">
+<h2 id="ID-d9a49dde-f079-430f-9c25-c5059137bb32"><a href="#ID-d9a49dde-f079-430f-9c25-c5059137bb32">Unity Build</a></h2>
+<div class="outline-text-2" id="text-Unity%20Build">
+<p>
+A unity build (or single translation unit build) is a method to speed up compile
+times in <a href="c.html#ID-3a2b1a06-f048-460c-9944-04b11d4fdbcd">C</a> and <a href="c_vs_cpp.html#ID-80c2bb59-9fc3-4d2b-8ae3-574a6b24d089">C++</a> development, where multiple translation units (i.e. <code>.c</code> or
+<code>.cpp</code> files) are combined into a single one that gets compiled. This is usually
+done by <code>#including</code> all source files into a single <code>.c(pp)</code>.
+</p>
+
+<p>
+Their simplicity often pairs well with the use of <a href="build_sh.html#ID-d6821cbd-3f35-4c8f-80fa-32a9bd18963c">build scripts</a>.
 </p>
 </div>
 </div>

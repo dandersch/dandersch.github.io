@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2023-02-23 Thu></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Deferred Rendering</h1>
@@ -243,12 +244,12 @@ are used to perform the actual lighting calculations.
 <li>Roughness/Specular</li>
 <li>Screen Space Ambient Occlusion</li>
 <li>Screen Space Reflections</li>
-<li>&#x2026;</li>
+<li>&hellip;</li>
 </ul>
 </div>
 </div>
 <div id="outline-container-%5B%5Bid%3A3854f976-cf4d-48a2-8cf6-1bbdec8a4e95%5D%5BRender%20Passes%5D%5D%20for%20deferred%20rendering%3A" class="outline-2">
-<h2 id="%5B%5Bid%3A3854f976-cf4d-48a2-8cf6-1bbdec8a4e95%5D%5BRender%20Passes%5D%5D%20for%20deferred%20rendering%3A"><a href="#%5B%5Bid%3A3854f976-cf4d-48a2-8cf6-1bbdec8a4e95%5D%5BRender%20Passes%5D%5D%20for%20deferred%20rendering%3A"><a href="render_pass.html#ID-3854f976-cf4d-48a2-8cf6-1bbdec8a4e95">Render Passes</a> for deferred rendering:</a></h2>
+<h2 id="%5B%5Bid%3A3854f976-cf4d-48a2-8cf6-1bbdec8a4e95%5D%5BRender%20Passes%5D%5D%20for%20deferred%20rendering%3A"><a href="#%5B%5Bid%3A3854f976-cf4d-48a2-8cf6-1bbdec8a4e95%5D%5BRender%20Passes%5D%5D%20for%20deferred%20rendering%3A"><a href="rendering_api.html#ID-3854f976-cf4d-48a2-8cf6-1bbdec8a4e95">Render Passes</a> for deferred rendering:</a></h2>
 <div class="outline-text-2" id="text-%5B%5Bid%3A3854f976-cf4d-48a2-8cf6-1bbdec8a4e95%5D%5BRender%20Passes%5D%5D%20for%20deferred%20rendering%3A">
 <ol class="org-ol">
 <li>Geometry pass</li>

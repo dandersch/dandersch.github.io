@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,38 +199,38 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-04 Wed></span></div><div class="tags"><code>[ <a href="/tag/web.html">web</a> ]</code></div></div><h1>REST (Representational State Transfer)</h1>
 <p>
-REpresentational State Transfer (REST) describes an API design pattern for <a href="http.html#ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0">HTTP</a>
+REpresentational State Transfer (REST) describes an API design pattern for <a href="world_wide_web.html#ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0">HTTP</a>
 requests (so called RESTful APIs). It was proposed in 2000 by Roy T. Fielding
 and became very common in the 2010s.
 </p>
 
 <p>
-Fielding was contrasting the <a href="world_wide_web.html#ID-ce772f45-e356-4d64-9207-4da2b4b392a5">world wide web</a> with <a href="rpc.html#ID-577306d0-62a7-4491-b629-8b3f0f4d54fa">RPC</a>-based network
+Fielding was contrasting the <a href="world_wide_web.html#ID-ce772f45-e356-4d64-9207-4da2b4b392a5">world wide web</a> with RPC-based network
 architectures. This was before the prevalence of JSON, and while today's usage
 of the term often refers to JSON-based APIs over HTTP, one of the original key
-aspects was that they must be <i>self-describing</i>, i.e. use <a href="html.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
+aspects was that they must be <i>self-describing</i>, i.e. use <a href="world_wide_web.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
 </p>
 
 <p>
@@ -255,7 +256,7 @@ Key aspects:
 Neglected aspect:
 </p>
 <ul class="org-ul">
-<li><a href="hateoas.html#ID-5e54b9ac-f972-4443-a90e-e70a26d0282d">HATEOAS</a> (Uniform Interface): API responses are self-describing</li>
+<li><a href="#ID-5e54b9ac-f972-4443-a90e-e70a26d0282d">HATEOAS</a> (Uniform Interface): API responses are self-describing</li>
 </ul>
 </div>
 </div>
@@ -264,11 +265,11 @@ Neglected aspect:
 <div class="outline-text-2" id="text-Richardson%20Maturity%20Model%20%28RMM%29">
 <p>
 The RMM breaks down the elements of a REST API into three levels. These
-introduce resources, http verbs, and <a href="hypermedia.html#ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd">hypermedia</a> controls.
+introduce resources, http verbs, and <a href="world_wide_web.html#ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd">hypermedia</a> controls.
 </p>
 
 
-<div id="org5f353c4" class="figure">
+<div id="org83c187e" class="figure">
 <p><img src="rest-rmm-diagram.png" alt="rest-rmm-diagram.png" />
 </p>
 </div>
@@ -281,9 +282,149 @@ introduce resources, http verbs, and <a href="hypermedia.html#ID-9361ed10-d7fe-4
 </ul>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-81a1393d-e7fe-4d7c-8e33-5720fad26660" class="outline-2">
+<h2 id="ID-81a1393d-e7fe-4d7c-8e33-5720fad26660"><a href="#ID-81a1393d-e7fe-4d7c-8e33-5720fad26660">CRUD&nbsp;&nbsp;&nbsp<span class="tag"><span class="programming">programming</span></span></a></h2>
+<div class="outline-text-2" id="text-CRUD">
+<p>
+CRUD (Create, Read, Update, Delete) are the four basic functions of persistent
+storage. CRUD applications are common in web development, where the main focus
+is on data manipulation rather than complex business logic or user interfaces.
+</p>
+
+<p>
+The operations can be mapped to following <a href="sql.html#ID-06246449-6996-43bc-ad78-10ec126d9f32">SQL</a> statements or HTTP methods in the
+context of <a href="rest.html#ID-8db9d845-d62c-43f4-930c-779acbc36ea2">RESTful</a> APIs:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">CRUD</th>
+<th scope="col" class="org-left">SQL</th>
+<th scope="col" class="org-left">HTTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Create</td>
+<td class="org-left">INSERT</td>
+<td class="org-left">POST, PUT (no <code>id</code>)</td>
+</tr>
+
+<tr>
+<td class="org-left">Read</td>
+<td class="org-left">SELECT</td>
+<td class="org-left">GET</td>
+</tr>
+
+<tr>
+<td class="org-left">Update</td>
+<td class="org-left">UPDATE</td>
+<td class="org-left">PUT (replace), PATCH (modify)</td>
+</tr>
+
+<tr>
+<td class="org-left">Delete</td>
+<td class="org-left">DELETE</td>
+<td class="org-left">DELETE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-ID-5e54b9ac-f972-4443-a90e-e70a26d0282d" class="outline-2">
+<h2 id="ID-5e54b9ac-f972-4443-a90e-e70a26d0282d"><a href="#ID-5e54b9ac-f972-4443-a90e-e70a26d0282d">HATEOAS (Hypermedia As The Engine of Application State)</a></h2>
+<div class="outline-text-2" id="text-HATEOAS%20%28Hypermedia%20As%20The%20Engine%20of%20Application%20State%29">
+<p>
+<a href="world_wide_web.html#ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd">Hypermedia</a> As The Engine of Application State (HATEOAS) is a constraint of the
+<a href="rest.html#ID-8db9d845-d62c-43f4-930c-779acbc36ea2">REST</a> architecture known as the uniform interface constraint.
+</p>
+
+<p>
+Using HATEOAS, servers provide self-described APIs through hypermedia, which
+decouples client and server and enables functionality to evolve without separate
+documentation or versioning.
+</p>
+</div>
+<div id="outline-container-Example" class="outline-3">
+<h3 id="Example"><a href="#Example">Example</a></h3>
+<div class="outline-text-3" id="text-Example">
+<p>
+Following HTML response carries along all API information necessary to continue
+interacting with the system directly within itself (depositing, transferring,
+etc.), thus making it the engine of application state.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><code>HTTP/1.1 200 OK
+
+&lt;<span class="org-function-name">html</span>&gt;
+    &lt;<span class="org-function-name">body</span>&gt;
+        &lt;<span class="org-function-name">div</span>&gt;Account number: 12345&lt;/<span class="org-function-name">div</span>&gt;
+        &lt;<span class="org-function-name">div</span>&gt;Balance: $100.00 USD&lt;/<span class="org-function-name">div</span>&gt;
+        &lt;<span class="org-function-name">div</span>&gt;Links:
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"/accounts/12345/deposits"</span>&gt;deposits&lt;/<span class="org-function-name">a</span>&gt;
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"/accounts/12345/withdrawals"</span>&gt;withdrawals&lt;/<span class="org-function-name">a</span>&gt;
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"/accounts/12345/transfers"</span>&gt;transfers&lt;/<span class="org-function-name">a</span>&gt;
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"/accounts/12345/close-requests"</span>&gt;close-requests&lt;/<span class="org-function-name">a</span>&gt;
+        &lt;/<span class="org-function-name">div</span>&gt;
+    &lt;<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</code></pre>
+</div>
+
+<p>
+The JSON response on the other hand is not self describing, since the client
+must know how to display the information and what actions are available, all
+derived from outside the response (e.g. swagger API documentation, etc.). This
+makes it a RPC style of API, where client and server are coupled.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-json"><code>HTTP/1.1 200 OK
+
+{
+    "account_number": 12345,
+    "balance": {
+        "currency": "usd",
+        "value": 100.00
+     },
+     "status": "good"
+}
+</code></pre>
+</div>
+
+<p>
+Advantages:
+</p>
+<ul class="org-ul">
+<li>Enter RESTful system through a single URL entrypoint</li>
+<li>Actions taken within are then provided through self-describing hypermedia</li>
+<li>Thus, no need to version or even document the API</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://htmx.org/essays/hateoas/">HATEOAS - An Alternative Explanation</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/">How Did REST Come To Mean The Opposite of REST?</a></li>
 </ul>

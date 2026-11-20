@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Artificial intelligence (AI) in video games</title>
+<title>AI in games</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,29 +199,29 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
 </header>
-</header>
 <main id="content" class="content">
-<div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/gamedev.html">gamedev</a> ]</code></div></div><h1>Artificial intelligence (AI) in video games</h1>
+<div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/gamedev.html">gamedev</a> ]</code></div></div><h1>AI in games</h1>
 <p>
-The term <a href="ai.html#ID-9a9cc192-3dde-49f4-8c81-92aa7636a305">artificial intelligence</a> - or AI - in the field of <a href="gamedev.html#ID-1b2ad773-6a69-4f5f-999a-87f8cadcb804">game developement</a>
+The term artificial intelligence - or AI - in the field of game developement
 encompasses all mechanisms that serve to improve the intelligence (or the
 illusion of intelligence) of computer controlled entities (NPCs).
 </p>
@@ -242,7 +243,7 @@ Technologies that are usually responsibility of the AI subsystem in a game:
 <li>Pathfinding (often using the A* algorithm)</li>
 <li>Perception system (Line of sight, hearing sounds)</li>
 <li>Decision making logic</li>
-<li>and much more&#x2026;</li>
+<li>and much more&hellip;</li>
 </ul>
 <div id="outline-container-ID-bbcec203-73db-460d-a4eb-21ee902144eb" class="outline-2">
 <h2 id="ID-bbcec203-73db-460d-a4eb-21ee902144eb"><a href="#ID-bbcec203-73db-460d-a4eb-21ee902144eb">Behavior Tree</a></h2>

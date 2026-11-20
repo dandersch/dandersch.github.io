@@ -88,8 +88,9 @@
 
 (defun entry-href (entry)
   "Site path of an entry. Notes live outside the repo, so their path is rewritten."
-  (if (string-prefix-p "~/org/roam" (car entry))
-      (string-replace ".org" ".html" (string-replace "~/org/roam" "/notes" (car entry)))
+  (if (string-prefix-p (file-name-as-directory (expand-file-name org-roam-directory))
+                       (car entry))
+      (concat "/notes/" (url-hexify-string (file-name-base (car entry))) ".html")
     (concat "/" (string-replace "/index.org" "" (car entry)))))
 
 (setq tags-to-ignore '("noexport"
@@ -304,18 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
                              ("project" . ,project-keyword-list)
                              ("other"   . ,other-keyword-list)))))
 
-; fill & sort keyword-lists for notes/ (called by roam project)
-(defun roam-fill-keyword-lists ()
-  (dolist (note (get-org-files org-roam-directory))
-    (let ((notes-keywords (get-org-file-keywords note)))
-      (unless (roam-note-marked-for-noexport-p notes-keywords)
-        (push (get-org-file-keywords note) notes-keyword-list))))
-  (setq notes-keyword-list (sort-keyword-list-by-date notes-keyword-list t))
-
-  ; article-keyword-list == (cdr (assoc "article" keyword-list))
-  (setq keyword-list `(,(cons "notes" notes-keyword-list)))
-  )
-
 (defun generate-main-rss-feed ()
   ; rss header, check with  https://validator.w3.org/feed/
   (with-temp-file "feed.xml"
@@ -402,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   (setq notes-tags '())
   (dolist (notes notes-keyword-list)
-     (setq notes-tags (cl-remove-if #'string-empty-p (append (split-string (cadr (assoc "FILETAGS" (cadr notes)))  ":") notes-tags))))
+    (setq notes-tags (append (entry-tags notes) notes-tags)))
   (delete-dups notes-tags)
 
   (setq all-tags '())
@@ -440,8 +429,16 @@ document.addEventListener('DOMContentLoaded', function() {
   (generate-main-rss-feed)
   (generate-tag-files))
 
-(defun  roam-prepare-publishing (project-properties)
-  (roam-fill-keyword-lists))
+(defun roam-prepare-publishing (project-properties)
+  (let ((index (expand-file-name "index.org" org-roam-directory)))
+    (setq notes-keyword-list
+          (cl-stable-sort
+           (cl-loop for file in (org-publish-get-base-files
+                                 (cons "roam.andersch.dev" project-properties))
+                    for entry = (unless (equal file index) (get-org-file-keywords file))
+                    when (and entry (not (roam-note-marked-for-noexport-p entry)))
+                    collect entry)
+           #'string> :key (lambda (entry) (or (entry-date entry) ""))))))
 
 (defun org-html-publish-to-html-noexport (plist filename pub-dir)
   "Publish an org file to HTML except one's that are tagged noexport"
@@ -597,6 +594,29 @@ document.addEventListener('DOMContentLoaded', function() {
 ;; TODO roam-andersch-dev-attachment
 
 (setq org-publish-project-alist (list andersch-dev roam-andersch-dev-images roam-andersch-dev))
+
+(defun generate-reading-column (entries &optional dates-only)
+  (concat (if dates-only "<div class=\"column-list dates-only\">\n"
+            "<div class=\"column-list\">\n")
+          (mapconcat
+           (lambda (entry)
+             (let ((image (keyword-value entry "IMAGE"))
+                   (href (entry-href entry)))
+               (format "<div class=\"column-entry\">%s<span class=\"column-body\"><span class=\"column-heading\"><a class=\"column-title\" href=\"%s\">%s</a><span class=\"column-date\">%s</span></span><span class=\"column-desc\">%s</span><span class=\"column-tags\">%s</span></span></div>\n"
+                       (if dates-only ""
+                         (format "<span class=\"column-aside\">%s</span>"
+                                 (if (and image (not (string-empty-p image)))
+                                     (format "<img src=\"%s/%s\" alt=\"\">" href image)
+                                   "")))
+                       href
+                       (org-html-encode-plain-text (or (keyword-value entry "TITLE")
+                                                       (file-name-base (car entry))))
+                       (or (entry-date entry) "")
+                       (org-html-encode-plain-text (or (keyword-value entry "DESCRIPTION") ""))
+                       (mapconcat (lambda (tag) (format "<a href=\"/tag/%s.html\">%s</a>" tag tag))
+                                  (entry-tags entry) " "))))
+           entries "")
+          "</div>\n"))
 
 ; caching
 (setq org-publish-timestamp-directory "./.org-timestamps/")

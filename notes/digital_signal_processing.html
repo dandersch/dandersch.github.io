@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-08 Sun></span></div><div class="tags"><code>[ <a href="/tag/dsp.html">dsp</a> ]</code></div></div><h1>Digital Signal Processing (DSP)</h1>
@@ -225,12 +226,12 @@ on digital signals.
 </p>
 
 <p>
-Signal processing in general may comprise&#x2026;
+Signal processing in general may comprise&hellip;
 </p>
 <ul class="org-ul">
 <li>filtering</li>
 <li>enhancement</li>
-<li>transformation (such as <a href="fourier_transform.html#ID-e411ef50-b922-49f3-957b-6fd9ea475971">Fourier Transformation</a>)</li>
+<li>transformation (such as <a href="#ID-e411ef50-b922-49f3-957b-6fd9ea475971">Fourier Transformation</a>)</li>
 <li>analysis</li>
 <li>synthesis</li>
 <li>pattern recognition</li>
@@ -246,12 +247,62 @@ A signal may be a function of
 <ul class="org-ul">
 <li>time      (speech signal: amplitude by time)</li>
 <li>location  (image  signal: color by row n and column m)</li>
-<li>or both (video) or more&#x2026;</li>
+<li>or both (video) or more&hellip;</li>
 </ul>
 
 <p>
 Most signals are either analog (continuous in both time and amplitude) or
 digital (discrete in time and amplitude).
+</p>
+</div>
+</div>
+<div id="outline-container-ID-f8b41590-e878-4fd0-8007-89175423e126" class="outline-2">
+<h2 id="ID-f8b41590-e878-4fd0-8007-89175423e126"><a href="#ID-f8b41590-e878-4fd0-8007-89175423e126">Convolution&nbsp;&nbsp;&nbsp<span class="tag"><span class="math">math</span></span></a></h2>
+<div class="outline-text-2" id="text-Convolution">
+<p>
+Convolution is a mathematical operation. For FIR filters, the impulse response
+describes the whole system. By convolution of the impulse response and the input
+signal, we get the output signal. So convolution can be used to get the output
+of the FIR filter just by its impulse response
+</p>
+
+<p>
+Convolution in the time-domain means a multiplication in frequency-domain.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-e411ef50-b922-49f3-957b-6fd9ea475971" class="outline-2">
+<h2 id="ID-e411ef50-b922-49f3-957b-6fd9ea475971"><a href="#ID-e411ef50-b922-49f3-957b-6fd9ea475971">Fourier Transform (FT)&nbsp;&nbsp;&nbsp<span class="tag"><span class="math">math</span></span></a></h2>
+<div class="outline-text-2" id="text-Fourier%20Transform%20%28FT%29">
+<p>
+The Fourier Transform (FT) is a mathematical method that allows a signal to be
+decomposed into its frequency spectrum.
+</p>
+
+<p>
+An example application would be the decomposition of an audio signal in waveform
+into its pitches (and the intensities of these).
+</p>
+
+<p>
+The standard FT describes the case for continuous signals, while the Discrete
+Fourier Transform (DFT) is the more commonly used variant.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-41f12789-2ec3-4ae4-9a66-b54ecac7b7fe" class="outline-2">
+<h2 id="ID-41f12789-2ec3-4ae4-9a66-b54ecac7b7fe"><a href="#ID-41f12789-2ec3-4ae4-9a66-b54ecac7b7fe">Sampling Theorem (Nyquist-Shannon)</a></h2>
+<div class="outline-text-2" id="text-Sampling%20Theorem%20%28Nyquist-Shannon%29">
+<p>
+The conversion of continuous signals to discrete signals is governed by the
+Nyquist–Shannon sampling theorem, which serves as a foundational theorem of
+<a href="digital_signal_processing.html#ID-b65a1617-b9a0-4bae-b035-5fb4b2da435c">digital signal processing</a>.
+</p>
+
+<p>
+In its simplest form, the theorem states: <i>"Any band limited continuous-time
+signal can be accurately converted to and from digital signals when sampled at a
+rate, at least twice as high as the highest frequency component of the waveform"</i>
 </p>
 </div>
 </div>
@@ -264,7 +315,16 @@ digital (discrete in time and amplitude).
 <li>H.-W. Schüßler: Digitale Signalverarbeitung 1, Springer-Verlag, 1994</li>
 <li><a href="https://www.songho.ca/dsp">Song Ho Ahn - Notes on DSP</a></li>
 <li><a href="https://www.youtube.com/watch?v=cIQ9IXSUzuM">D/A and A/D | Digital Show and Tell (Monty Montgomery @ xiph.org)</a></li>
+<li><a href="https://www.youtube.com/watch?v=spUNpyF58BY">But what is the Fourier Transform? A visual introduction.</a></li>
 </ul>
+</div>
+<div id="outline-container-z-Transform" class="outline-3">
+<h3 id="z-Transform"><a href="#z-Transform">z-Transform</a></h3>
+<div class="outline-text-3" id="text-z-Transform">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=5Z3KAKs-EZs">Z-Transform - Practical Applications</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

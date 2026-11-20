@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,30 +199,30 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-11-01 Fri></span></div><div class="tags"><code>[ <a href="/tag/web.html">web</a> ]</code></div></div><h1>HTMX</h1>
 <p>
-HTMX is a <a href="html_over_the_wire.html#ID-58fb8b14-9d55-4d3a-91cd-d04917d58428">HTML-over-the-wire</a> <a href="javascript.html#ID-a0222a34-b3ec-4ed1-906c-195c89bf9b4c">JavaScript</a> library that extends HTML with
-attributes to facilitate <a href="javascript.html#ID-ab164c58-00fe-416f-aad1-e2b41367edb8">AJAX</a> requests, WebSocket connections, <a href="css.html#ID-4229f1fd-d234-4290-9e50-5ff51459622a">CSS</a> Transitions,
+HTMX is a <a href="#ID-58fb8b14-9d55-4d3a-91cd-d04917d58428">HTML-over-the-wire</a> JavaScript library that extends HTML with
+attributes to facilitate AJAX requests, WebSocket connections, CSS Transitions,
 and server-sent events directly in HTML.
 </p>
 <div id="outline-container-Core%20Attributes" class="outline-2">
@@ -234,7 +235,7 @@ and server-sent events directly in HTML.
 <code>hx-push-url</code>   push a URL into the browser location bar to create history
 <code>hx-select</code>     select content to swap in from a response
 <code>hx-select-oob</code> select content to swap in from a response, somewhere other than the target (out of band)
-<code>hx-swap</code>       controls how content will swap in (<code>outerHTML</code>, <code>beforeend</code>, <code>afterend</code>, &#x2026;)
+<code>hx-swap</code>       controls how content will swap in (<code>outerHTML</code>, <code>beforeend</code>, <code>afterend</code>, &hellip;)
 <code>hx-swap-oob</code>   mark element to swap in from a response (out of band)
 <code>hx-target</code>     specifies the target element to be swapped
 <code>hx-trigger</code>    specifies the event that triggers the request
@@ -272,7 +273,7 @@ Swap Options (e.g. <code>hx-swap="outerHTML ignoreTitle:true"</code>):
 <h2 id="HTMX%20and%20%5B%5Bid%3A80271fb3-7b1f-4cff-8576-0b7940b75a34%5D%5BGo%5D%5D"><a href="#HTMX%20and%20%5B%5Bid%3A80271fb3-7b1f-4cff-8576-0b7940b75a34%5D%5BGo%5D%5D">HTMX and <a href="go.html#ID-80271fb3-7b1f-4cff-8576-0b7940b75a34">Go</a></a></h2>
 <div class="outline-text-2" id="text-HTMX%20and%20%5B%5Bid%3A80271fb3-7b1f-4cff-8576-0b7940b75a34%5D%5BGo%5D%5D">
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
+<pre class="src src-html"><code>&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
 &lt;<span class="org-function-name">html</span>&gt;
 &lt;<span class="org-function-name">head</span>&gt;
     &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">htmx example</span></span>&lt;/<span class="org-function-name">title</span>&gt;
@@ -302,11 +303,11 @@ Swap Options (e.g. <code>hx-swap="outerHTML ignoreTitle:true"</code>):
     &lt;/<span class="org-function-name">form</span>&gt;
 &lt;/<span class="org-function-name">body</span>&gt;
 &lt;/<span class="org-function-name">html</span>&gt;
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-go">package main
+<pre class="src src-go"><code>package main
 
 import (
     "log"
@@ -344,7 +345,7 @@ func main() {
 
     log.Fatal(http.ListenAndServe(":8000", nil))
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -371,7 +372,7 @@ Only call routes you control
 Always use an auto-escaping template engine
 </p>
 <ul class="org-ul">
-<li>Replaces &amp;, &lt;, &gt;, ", &#x2026; with "&amp;amp;", "&amp;lt", etc.</li>
+<li>Replaces &amp;, &lt;, &gt;, ", &hellip; with "&amp;amp;", "&amp;lt", etc.</li>
 <li>Prevents Cross-Site Scripting (XSS) attacks</li>
 </ul>
 
@@ -396,9 +397,63 @@ See <a href="https://htmx.org/essays/web-security-basics-with-htmx/">Web Securit
 </p>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-fae6aa4e-3614-4559-8729-3cc7a6bf47f3" class="outline-2">
+<h2 id="ID-fae6aa4e-3614-4559-8729-3cc7a6bf47f3"><a href="#ID-fae6aa4e-3614-4559-8729-3cc7a6bf47f3">Datastar&nbsp;&nbsp;&nbsp<span class="tag"><span class="software">software</span></span></a></h2>
+<div class="outline-text-2" id="text-Datastar">
+<p>
+Datastar is a <a href="world_wide_web.html#ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd">hypermedia</a> frontend framework that uses HTML attributes and SSE.
+</p>
+
+<p>
+In D*, clicking a button sends a GET request and the server responds with zero
+or more SSE events over time.
+</p>
+</div>
+<div id="outline-container-HTMX%20vs.%20Datastar" class="outline-3">
+<h3 id="HTMX%20vs.%20Datastar"><a href="#HTMX%20vs.%20Datastar">HTMX vs. Datastar</a></h3>
+<div class="outline-text-3" id="text-HTMX%20vs.%20Datastar">
+<ul class="org-ul">
+<li>D* sends responses using SSE.</li>
+<li>HTMX supports SSE via extension, but only for server-initiated events.</li>
+<li>D* can do front-end using "signals". HTMX needs Hyperscript/AlpineJS/&hellip;</li>
+<li>HTMX supports OOB (out-of-band) patching, whereas D* has this as the default.</li>
+<li>HTMX is free, D* is freemium</li>
+<li>D* has a smaller library footprint (11kb vs 14kb)</li>
+<li>D* often needs fewer attributes to achieve same behavior</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://data-star.dev/">data-star.dev</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-58fb8b14-9d55-4d3a-91cd-d04917d58428" class="outline-2">
+<h2 id="ID-58fb8b14-9d55-4d3a-91cd-d04917d58428"><a href="#ID-58fb8b14-9d55-4d3a-91cd-d04917d58428">HTML-over-the-wire</a></h2>
+<div class="outline-text-2" id="text-HTML-over-the-wire">
+<p>
+<a href="world_wide_web.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a>-over-the-wire is an approach to building interactive web applications that
+uses server-side rendering (HTML sent from server to client). It contrasts with
+SPA approaches that rely on client-side rendering of JSON data.
+</p>
+
+<p>
+It can reduce the amount of JS code required and updates specific regions of the
+<a href="dom.html#ID-37c8079d-ecc0-48ab-bdd3-b9f06252808f">DOM</a> as a reconciliation strategy.
+</p>
+
+<p>
+Implementations include <a href="htmx.html#ID-3b22908e-c628-42ec-bb2d-9f9b59da2e90">htmx</a> and Hotwire.
+</p>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://htmx.org/docs/">htmx Documentation</a></li>
 <li><a href="https://unplannedobsolescence.com/blog/less-htmx-is-more/">Less htmx is More</a></li>

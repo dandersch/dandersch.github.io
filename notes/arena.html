@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2023-10-04 Wed></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Memory Arena</h1>
@@ -255,7 +256,7 @@ Types of arenas:
 <h3 id="nullprogram"><a href="#nullprogram">nullprogram</a></h3>
 <div class="outline-text-3" id="text-nullprogram">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
     <span class="org-type">char</span> *<span class="org-variable-name">beg</span>;
     <span class="org-type">char</span> *<span class="org-variable-name">end</span>;
 } <span class="org-type">arena</span>;
@@ -273,14 +274,14 @@ Types of arenas:
     <span class="org-type">ptrdiff_t</span> <span class="org-variable-name">avail</span> = a-&gt;end - a-&gt;beg;
     <span class="org-type">ptrdiff_t</span> <span class="org-variable-name">padding</span> = -(<span class="org-type">uintptr_t</span>)a-&gt;beg &amp; (align - 1);
     <span class="org-keyword">if</span> (count &gt; (avail - padding)/size) {
-        abort();  <span class="org-comment-delimiter">// </span><span class="org-comment">one possible out-of-memory policy</span>
-    }
+        abort();  <span class="org-comment-delimiter">// </span><span class="org-comment">one possible out-of-memory policy
+</span>    }
     <span class="org-type">ptrdiff_t</span> <span class="org-variable-name">total</span> = size * count;
     <span class="org-type">char</span> *<span class="org-variable-name">p</span> = a-&gt;beg + padding;
     a-&gt;beg += padding + total;
     <span class="org-keyword">return</span> memset(p, 0, total);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -303,7 +304,7 @@ Characteristics:
 API:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_COMMIT_GRANULARITY</span> Kilobytes(4)
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_COMMIT_GRANULARITY</span> Kilobytes(4)
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_DECOMMIT_THRESHOLD</span> Megabytes(64)
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">Arena</span> <span class="org-type">Arena</span>;
@@ -340,14 +341,14 @@ API:
 <span class="org-type">Temp</span> <span class="org-function-name">TempBegin</span>(<span class="org-type">Arena</span> *<span class="org-variable-name">arena</span>) { <span class="org-type">Temp</span> <span class="org-variable-name">temp</span> = {0}; temp.arena = arena; temp.pos = arena-&gt;pos; <span class="org-keyword">return</span> temp; }
 <span class="org-type">void</span> <span class="org-function-name">TempEnd</span>(<span class="org-type">Temp</span> <span class="org-variable-name">temp</span>) { ArenaPopTo(temp.arena, temp.pos); }
 <span class="org-preprocessor">#define</span> <span class="org-function-name">ArenaTempBlock</span>(<span class="org-variable-name">arena</span>, <span class="org-variable-name">name</span>) <span class="org-type">Temp</span> <span class="org-variable-name">name</span> = {0}; DeferLoop(name = TempBegin(arena), TempEnd(name))
-</pre>
+</code></pre>
 </div>
 
 <p>
 Implementation:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">Arena</span>* <span class="org-function-name">ArenaAlloc</span>(<span class="org-type">U64</span> <span class="org-variable-name">size</span>)
+<pre class="src src-C"><code><span class="org-type">Arena</span>* <span class="org-function-name">ArenaAlloc</span>(<span class="org-type">U64</span> <span class="org-variable-name">size</span>)
 {
     <span class="org-comment-delimiter">/* </span><span class="org-comment">arena is always a multiple of 64MB</span><span class="org-comment-delimiter"> */</span>
     <span class="org-type">U64</span> <span class="org-variable-name">size_roundup_granularity</span> = Megabytes(64);
@@ -402,7 +403,7 @@ Implementation:
 
     <span class="org-keyword">return</span> result;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -417,7 +418,7 @@ Implementation:
 API:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_HEADER_SIZE</span>              128
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_HEADER_SIZE</span>              128
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_RESERVE_SIZE</span>             MB(64)
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_COMMIT_SIZE</span>              KB(64)
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">ARENA_RESERVE_SIZE_LARGE_PAGES</span> MB(8)
@@ -469,14 +470,14 @@ internal <span class="org-type">B32</span> <span class="org-function-name">ensur
 <span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">push_array_no_zero</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">T</span>,<span class="org-variable-name">c</span>) (<span class="org-type">T</span>*)arena_push((a), <span class="org-keyword">sizeof</span>(T)*(c))
 <span class="org-preprocessor">#define</span> <span class="org-function-name">push_array</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">T</span>,<span class="org-variable-name">c</span>) (<span class="org-type">T</span>*)MemoryZero(push_array_no_zero(a,T,c), <span class="org-keyword">sizeof</span>(T)*(c))
-</pre>
+</code></pre>
 </div>
 
 <p>
 Implementation:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">Arena</span>* <span class="org-function-name">arena_alloc__sized</span>(<span class="org-type">U64</span> <span class="org-variable-name">init_res</span>, <span class="org-type">U64</span> <span class="org-variable-name">init_cmt</span>)
+<pre class="src src-C"><code><span class="org-type">Arena</span>* <span class="org-function-name">arena_alloc__sized</span>(<span class="org-type">U64</span> <span class="org-variable-name">init_res</span>, <span class="org-type">U64</span> <span class="org-variable-name">init_cmt</span>)
 {
   ProfBeginFunction();
   Assert(ARENA_HEADER_SIZE &lt; init_cmt &amp;&amp; init_cmt &lt;= init_res);
@@ -537,7 +538,7 @@ Implementation:
   <span class="org-keyword">return</span> arena;
 }
 
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -557,7 +558,7 @@ Two options to design APIs using scratch arenas:
 Option 1: Make caller pass in scratch arena when the function needs it
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">caller</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">caller</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">mem_arena_t</span> <span class="org-variable-name">scratch</span> = mem_arena_scratch(0);
 compute_number(3.5f, scratch);
 
@@ -566,27 +567,27 @@ compute_number(3.5f, scratch);
 <span class="org-type">int</span> <span class="org-function-name">compute_number</span>(<span class="org-type">float</span> <span class="org-variable-name">value</span>, <span class="org-type">mem_arena_t</span> <span class="org-variable-name">scratch</span>)
 {
     <span class="org-type">void</span>* <span class="org-variable-name">data</span> = mem_arena_alloc(&amp;scratch, <span class="org-keyword">sizeof</span>(<span class="org-type">float</span>) * 5);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-}
-</pre>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>}
+</code></pre>
 </div>
 
 <p>
 Option 2: Pass normal arena and let function create scratch arena
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">caller</span><span class="org-comment-delimiter"> */</span>
-compute_number(3.5f, arena);
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">caller</span><span class="org-comment-delimiter"> */</span>
+compute_number(3.5f, <span class="org-type">arena</span>);
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">callee</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">int</span> <span class="org-function-name">compute_number</span>(<span class="org-type">float</span> <span class="org-variable-name">value</span>, <span class="org-type">mem_arena_t</span>* <span class="org-variable-name">arena</span>)
 {
     <span class="org-type">mem_arena_t</span> <span class="org-variable-name">scratch</span> = mem_arena_scratch(arena);
     <span class="org-type">void</span>* <span class="org-variable-name">scratch</span> = mem_arena_alloc(&amp;scratch, <span class="org-keyword">sizeof</span>(<span class="org-type">float</span>) * 5);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-    mem_arena_unscratch(&amp;scratch);
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>    mem_arena_unscratch(&amp;scratch);
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -604,24 +605,24 @@ b) Have fixed scratch arenas that get reused
 Take following arena with its implied memory layout:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">arena_t</span> {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">arena bounds, will get reset implicitly when passed by value</span>
-    <span class="org-type">u8</span>* <span class="org-variable-name">beg</span>;
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">arena_t</span> {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">arena bounds, will get reset implicitly when passed by value
+</span>    <span class="org-type">u8</span>* <span class="org-variable-name">beg</span>;
     <span class="org-type">u8</span>* <span class="org-variable-name">end</span>;
 };
 
-<span class="org-comment-delimiter">/*</span>
-<span class="org-comment">    Memory layout (if arena is allocated in-place):</span>
+<span class="org-comment-delimiter">/*</span><span class="org-comment">
+    Memory layout (if arena is allocated in-place):
 
-<span class="org-comment">           +-------------+</span>
-<span class="org-comment">           |     +-------|------------------------</span>
-<span class="org-comment">           |     |       |                       |</span>
-<span class="org-comment">        |-----|-----|----v-----------------------v</span>
-<span class="org-comment">        | beg | end |xxxxx                       |</span>
-<span class="org-comment">        |-----------|----------------------------|</span>
-<span class="org-comment">           arena_t      memory</span>
-<span class="org-comment-delimiter">*/</span>
-</pre>
+           +-------------+
+           |     +-------|------------------------
+           |     |       |                       |
+        |-----|-----|----v-----------------------v
+        | beg | end |xxxxx                       |
+        |-----------|----------------------------|
+           arena_t      memory
+</span><span class="org-comment-delimiter">*/</span>
+</code></pre>
 </div>
 
 <p>
@@ -631,7 +632,7 @@ call (i.e. it acts as a scratch arena);
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">void</span> <span class="org-function-name">do_stuff</span>(<span class="org-type">int</span> <span class="org-variable-name">param1</span>, <span class="org-type">arena_t</span>* <span class="org-variable-name">arena</span>, <span class="org-type">arena_t</span> <span class="org-variable-name">scratch</span>)
+<pre class="src src-C"><code><span class="org-type">void</span> <span class="org-function-name">do_stuff</span>(<span class="org-type">int</span> <span class="org-variable-name">param1</span>, <span class="org-type">arena_t</span>* <span class="org-variable-name">arena</span>, <span class="org-type">arena_t</span> <span class="org-variable-name">scratch</span>)
 {
     <span class="org-type">void</span>* <span class="org-variable-name">scratch_data</span> = arena_alloc(&amp;scratch, 1024);
 
@@ -643,7 +644,7 @@ call (i.e. it acts as a scratch arena);
 
     <span class="org-keyword">return</span>;
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -651,12 +652,12 @@ We can upgrade the arena structure to support keeping track of its commit
 position when it's passed by value:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">arena_t</span> {
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">arena_t</span> {
     <span class="org-type">u8</span>*   <span class="org-variable-name">beg</span>;
     <span class="org-type">u8</span>*   <span class="org-variable-name">end</span>;
-    <span class="org-type">u8</span>**  <span class="org-variable-name">commit</span> <span class="org-comment-delimiter">// </span><span class="org-comment">commit bound, data is located elsewhere stable</span>
-};
-</pre>
+    <span class="org-type">u8</span>**  <span class="org-variable-name">commit</span> <span class="org-comment-delimiter">// </span><span class="org-comment">commit bound, data is located elsewhere stable
+</span>};
+</code></pre>
 </div>
 
 <p>
@@ -664,7 +665,7 @@ The memory layout would look something like this (i.e. there would be an
 additional header for the arena):
 </p>
 <div class="org-src-container">
-<pre class="src src-nil">                +-----------------------+
+<pre class="src src-nil"><code>                +-----------------------+
                 |     +-----------------|----------------------+
                 |     |                 |                      |
 |------------|--------|-----------|-----v----------------------v
@@ -672,7 +673,7 @@ additional header for the arena):
 |-----^------|---------------|----|------------------^---------|
       |        arena_t       |           memory      |
       +----------------------+                   commit_pos
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -682,16 +683,16 @@ keeps a pointer to it:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">arena_t</span> {
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">arena_t</span> {
     <span class="org-type">arena_header_t</span>* <span class="org-variable-name">header</span>;
     <span class="org-type">u8</span>*   <span class="org-variable-name">beg</span>;
     <span class="org-type">u8</span>*   <span class="org-variable-name">end</span>;
 };
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-nil">                +-----------------------+
+<pre class="src src-nil"><code>                +-----------------------+
                 |     +-----------------|----------------------+
                 |     |                 |                      |
 |------------|--------|-----------|-----v----------------------v
@@ -699,7 +700,7 @@ keeps a pointer to it:
 |-----^------|---------------|----|----------------------------|
       |        arena_t       |           memory
       +----------------------+
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -709,11 +710,11 @@ from a function using the arena as scratch.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">arena_header_t</span> {
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">arena_header_t</span> {
     <span class="org-type">u8</span>* <span class="org-variable-name">commit</span>;
-    <span class="org-type">arena_header_t</span>* <span class="org-variable-name">next</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">chained arenas</span>
-};
-</pre>
+    <span class="org-type">arena_header_t</span>* <span class="org-variable-name">next</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">chained arenas
+</span>};
+</code></pre>
 </div>
 </div>
 </div>
@@ -733,11 +734,11 @@ cleanup functions inside the arena via a new arena API call.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">mem_arena_t</span> {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-    <span class="org-comment-delimiter">/* </span><span class="org-comment">arena fields</span><span class="org-comment-delimiter"> */</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-    <span class="org-type">cleanup_node_t</span>* <span class="org-variable-name">head</span>;
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">mem_arena_t</span> {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>    <span class="org-comment-delimiter">/* </span><span class="org-comment">arena fields</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>    <span class="org-type">cleanup_node_t</span>* <span class="org-variable-name">head</span>;
 };
 <span class="org-keyword">struct</span> <span class="org-type">cleanup_node_t</span>  {
     <span class="org-type">cleanup_node_t</span>* <span class="org-variable-name">next</span>;
@@ -757,7 +758,7 @@ cleanup functions inside the arena via a new arena API call.
 <span class="org-comment-delimiter">/* </span><span class="org-comment">usage</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">resource_t</span>* <span class="org-variable-name">res</span> = mem_arena_alloc(...);
 mem_arena_add_cleanup(&amp;res_release, &amp;res);
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -777,6 +778,16 @@ See <a href="https://www.ea.com/frostbite/news/scope-stack-allocation">Scope Sta
 <li><a href="https://github.com/tsoding/arena/blob/master/arena.h">https://github.com/tsoding/arena/blob/master/arena.h</a></li>
 <li><a href="https://nullprogram.com/blog/2024/04/14/">Speculations on arenas and custom strings in C++</a></li>
 <li><a href="https://nullprogram.com/blog/2024/05/25/">Arenas and the almighty concatenation operator</a></li>
+</ul>
+
+<p>
+Memory Allocation Strategies:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.gingerbill.org/series/memory-allocation-strategies/">Memory Allocation Strategies</a></li>
+<li><a href="https://people.freebsd.org/~lstewart/articles/cpumemory.pdf">What Every Programmer Should Know About Memory</a></li>
+<li><a href="https://www.youtube.com/watch?v=UYLHA_Ey8Ys">Do we even need Garbage Collector anymore?</a></li>
+<li><a href="https://nullprogram.com/blog/2023/12/17/">So you want custom allocator support in your C library</a></li>
 </ul>
 </div>
 </div>

@@ -321,7 +321,7 @@ the stringify macro. In C/C++ we then <code>#include</code> that<sup><a id="fnr.
 <span class="org-keyword">layout</span>(location = 0) <span class="org-keyword">in</span> <span class="org-type">vec3</span> <span class="org-variable-name">aPos</span>;
 <span class="org-type">void</span> <span class="org-function-name">main</span>()
 {
-    <span class="org-glsl-shader-variable-name">gl_Position</span> = <span class="org-type">vec4</span>(aPos, 1);
+    <span class="org-glsl-shader-variable-name">gl_Position</span> = <span class="org-type">vec4</span>(<span class="org-type">aPos</span>, 1);
 }
 )
 </code></pre>
@@ -391,14 +391,14 @@ enable/disable certain parts of the code<sup><a id="fnr.directives-within-macro"
     <span class="org-type">vec3</span> <span class="org-variable-name">color</span> = <span class="org-type">vec3</span>(0,0,0);
 
 <span class="org-preprocessor">    #if</span> (SHADER_FEATURE &amp; SHADER_RED_PULSE)
-    color.r = <span class="org-glsl-builtins">sin</span>(time)*0.5+0.5;
+    color.r = <span class="org-glsl-builtins">sin</span>(<span class="org-type">time</span>)*0.5+0.5;
 <span class="org-preprocessor">    #endif</span>
 
 <span class="org-preprocessor">    #if</span> (SHADER_FEATURE &amp; SHADER_GREEN_PULSE)
-    color.g = <span class="org-glsl-builtins">cos</span>(time)*0.5+0.5;
+    color.g = <span class="org-glsl-builtins">cos</span>(<span class="org-type">time</span>)*0.5+0.5;
 <span class="org-preprocessor">    #endif</span>
 
-    FragColor  = <span class="org-type">vec4</span>(color, 1.0);
+    FragColor  = <span class="org-type">vec4</span>(<span class="org-type">color</span>, 1.0);
 }
 )
 <span class="org-preprocessor">#undef</span> SHADER_FEATURE
@@ -532,7 +532,7 @@ We can even keep <code>struct</code> definitions in sync between both parts of t
 
 <div class="org-src-container">
 <pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">main.c</span><span class="org-comment-delimiter"> */</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">T</span>(<span class="org-variable-name">name</span>, <span class="org-variable-name">def</span>) <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">name</span> <span class="org-type">def</span> <span class="org-type">name</span>;
+<span class="org-preprocessor">#define</span> <span class="org-function-name">T</span>(<span class="org-variable-name">name</span>, <span class="org-variable-name">def</span>) <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">name</span> <span class="org-type">def</span> name;
 <span class="org-preprocessor">#include</span> <span class="org-string">"common.h"</span> <span class="org-comment-delimiter">// </span><span class="org-comment">typedef struct camera_t { vec4 pos; vec4 dir; } camera_t;
 </span>
 <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">shader_src</span> =
@@ -583,7 +583,7 @@ loaded in the new DLL:
 }
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">fill function pointers
-</span>create_shaders = (<span class="org-type">void</span> (*)(<span class="org-type">state_t</span>*)) <span class="org-function-name">dlsym</span>(dll_handle, <span class="org-string">"create_shaders"</span>);
+</span>create_shaders = (<span class="org-type">void</span> (*)(<span class="org-type">state_t</span>*)) <span class="org-function-name">dlsym</span>(<span class="org-type">dll_handle</span>, <span class="org-string">"create_shaders"</span>);
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">reload all shaders
 </span>create_shaders(&amp;state);

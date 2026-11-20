@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,37 +199,122 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-10-26 Sat></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Structure from Motion (SfM)</h1>
 <p>
 Structure from Motion (SfM) is a photogrammetric technique to construct 3D
-structures from a 2D images taken from different angles.
+structures from 2D images taken from different angles.
 </p>
 
 <p>
-It involves identifying key features and matching them across images, and using
-the camera position and direction to triangulate 3D coordinates of these
-features. The output of this process is a sparse 3D point cloud.
+SfM identifies key features and matches them across images and uses camera
+positions &amp; directions to triangulate 3D coordinates of these features.
 </p>
+
+<p>
+The output is typically:
+</p>
+<ul class="org-ul">
+<li>A sparse 3D point cloud of the scene</li>
+<li>Pose of each camera (extrinsics, i.e. position &amp; orientation)</li>
+<li>Intrinsic camera parameters (focal length, distortion, etc.)</li>
+</ul>
+<div id="outline-container-ID-6d0d61ea-5c17-4df0-bad9-ad794a10f164" class="outline-2">
+<h2 id="ID-6d0d61ea-5c17-4df0-bad9-ad794a10f164"><a href="#ID-6d0d61ea-5c17-4df0-bad9-ad794a10f164">COLMAP</a></h2>
+<div class="outline-text-2" id="text-COLMAP">
+<p>
+COLMAP (Collaborative Mapping) is an open-source Structure-from-Motion (SfM) and
+Multi-View Stereo (MVS) pipeline used in 3D reconstruction from images.
+</p>
+
+<p>
+COLMAP Pipeline
+</p>
+<ol class="org-ol">
+<li><i>Feature Extraction</i>: detect keypoints in each image and compute descriptors</li>
+<li><i>Feature Matching</i>: find correspondences using a matching strategy</li>
+<li><i>Geometric Verification</i>: filter out false positives using RANSAC</li>
+<li><i>Sparse Reconstruction (SfM)</i>: estimate camera poses &amp; triangulate 3d points</li>
+<li><i>Dense Reconstruction (MVS)</i>: produce dense point cloud (mesh), optional</li>
+</ol>
+
+<p>
+COLMAP stores intermediate data in an SQLite database. It contains:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Table</th>
+<th scope="col" class="org-left">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">cameras</td>
+<td class="org-left">intrinsics (focal length, model type, distortion params)</td>
+</tr>
+
+<tr>
+<td class="org-left">images</td>
+<td class="org-left">metadata (filename, camera ID, pose estimates)</td>
+</tr>
+
+<tr>
+<td class="org-left">keypoints</td>
+<td class="org-left">detected feature points (x, y) per image</td>
+</tr>
+
+<tr>
+<td class="org-left">descriptors</td>
+<td class="org-left">feature descriptors (e.g. SIFT vectors) per keypoint</td>
+</tr>
+
+<tr>
+<td class="org-left">matches</td>
+<td class="org-left">raw feature matches between image pairs</td>
+</tr>
+
+<tr>
+<td class="org-left">two<sub>view</sub><sub>geometries</sub></td>
+<td class="org-left">geometric matches, incl. fundamental/essential matrix</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+GLOMAP (GLObal MAPping) is a newer system that uses global rather than
+incremental methods for sparse reconstruction (step 4). It estimates all camera
+poses simultaneously rather than one-by-one. It is significantly faster for
+large datasets and maintains comparable accuracy.
+</p>
+</div>
+</div>
 </main>
 </body>
 </html>

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,29 +199,29 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-10-26 Sat></span></div><div class="tags"><code>[ <a href="/tag/ai.html">ai</a> <a href="/tag/math.html">math</a> ]</code></div></div><h1>Gradient Descent</h1>
 <p>
-Gradient descent is an optimization algorithm used to minimize a <a href="cost_function.html#ID-7ae09725-e178-4a36-988a-e9e52ee4eca7">cost function</a>
+Gradient descent is an optimization algorithm used to minimize a <a href="machine_learning.html#ID-7ae09725-e178-4a36-988a-e9e52ee4eca7">cost function</a>
 by iteratively adjusting its parameters in the direction of the steepest
 descent, as indicated by the negative gradient of the function.
 </p>
@@ -256,7 +257,7 @@ function during the optimization process (i.e. how much to update the weights).
 Algebraic approach
 </p>
 <ul class="org-ul">
-<li>Symbolically manipulate cost function to get derivative (using <a href="derivate.html#ID-05cfd905-198e-42fb-a4a9-68577a675dea">rules</a>)</li>
+<li>Symbolically manipulate cost function to get derivative (using rules)</li>
 <li>✅ Perfect accuracy</li>
 <li>❌ Not feasible with long cost functions in practice</li>
 </ul>
@@ -281,7 +282,7 @@ Dual Numbers
 </ul>
 
 <p>
-<a href="backpropagation.html#ID-ae3d52ca-df3e-46c9-bf9c-5359ae842b15">Backpropagation</a> (hard)
+<a href="neural_network.html#ID-ae3d52ca-df3e-46c9-bf9c-5359ae842b15">Backpropagation</a> (hard)
 </p>
 <ul class="org-ul">
 <li>✅ Very fast, exact derivatives</li>
@@ -311,57 +312,57 @@ gradients, allowing for adaptive learning rates and faster convergence.</li>
 <h2 id="Code%20Examples"><a href="#Code%20Examples">Code Examples</a></h2>
 <div class="outline-text-2" id="text-Code%20Examples">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 
 <span class="org-type">double</span> <span class="org-function-name">mean_squared_error</span>(<span class="org-type">double</span> *<span class="org-variable-name">x</span>, <span class="org-type">double</span> *<span class="org-variable-name">y</span>, <span class="org-type">double</span> <span class="org-variable-name">m</span>, <span class="org-type">double</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
     <span class="org-type">double</span> <span class="org-variable-name">mse</span> = 0.0;
     <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
-        <span class="org-type">double</span> <span class="org-variable-name">prediction</span> = m * x[i] + b; <span class="org-comment-delimiter">// </span><span class="org-comment">y = mx + b</span>
-        mse += (y[i] - prediction) * (y[i] - prediction);
+        <span class="org-type">double</span> <span class="org-variable-name">prediction</span> = m * x[i] + b; <span class="org-comment-delimiter">// </span><span class="org-comment">y = mx + b
+</span>        mse += (y[i] - prediction) * (y[i] - prediction);
     }
-    <span class="org-keyword">return</span> mse / n; <span class="org-comment-delimiter">// </span><span class="org-comment">Return average</span>
-}
+    <span class="org-keyword">return</span> mse / n; <span class="org-comment-delimiter">// </span><span class="org-comment">Return average
+</span>}
 
 <span class="org-type">void</span> <span class="org-function-name">gradientDescent</span>(<span class="org-type">double</span> *<span class="org-variable-name">x</span>, <span class="org-type">double</span> *<span class="org-variable-name">y</span>, <span class="org-type">double</span> *<span class="org-variable-name">m</span>, <span class="org-type">double</span> *<span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>, <span class="org-type">double</span> <span class="org-variable-name">learningRate</span>, <span class="org-type">int</span> <span class="org-variable-name">iterations</span>) {
     <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">iter</span> = 0; iter &lt; iterations; iter++) {
         <span class="org-type">double</span> <span class="org-variable-name">m_gradient</span> = 0.0;
         <span class="org-type">double</span> <span class="org-variable-name">b_gradient</span> = 0.0;
 
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate gradients</span>
-        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Calculate gradients
+</span>        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
             <span class="org-type">double</span> <span class="org-variable-name">prediction</span> = (*m) * x[i] + (*b);
             m_gradient += -2 * x[i] * (y[i] - prediction);
             b_gradient += -2 * (y[i] - prediction);
         }
 
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Update parameters</span>
-        *m -= (m_gradient / n) * learningRate;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Update parameters
+</span>        *m -= (m_gradient / n) * learningRate;
         *b -= (b_gradient / n) * learningRate;
 
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Optionally print the MSE every 100 iterations</span>
-        <span class="org-keyword">if</span> (iter % 100 == 0) {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Optionally print the MSE every 100 iterations
+</span>        <span class="org-keyword">if</span> (iter % 100 == 0) {
             printf(<span class="org-string">"Iteration %d: MSE = %f\n"</span>, iter, mean_squared_error(x, y, *m, *b, n));
         }
     }
 }
 
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Sample data points (x, y)</span>
-    <span class="org-type">double</span> <span class="org-variable-name">x</span>[] = {1, 2, 3, 4, 5};  <span class="org-comment-delimiter">// </span><span class="org-comment">input</span>
-    <span class="org-type">double</span> <span class="org-variable-name">y</span>[] = {2, 3, 5, 7, 11}; <span class="org-comment-delimiter">// </span><span class="org-comment">target to predict</span>
-    <span class="org-type">int</span> <span class="org-variable-name">n</span> = <span class="org-keyword">sizeof</span>(x) / <span class="org-keyword">sizeof</span>(x[0]); <span class="org-comment-delimiter">// </span><span class="org-comment">Number of data points</span>
-
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Initial parameters (y = mx + b)</span>
-    <span class="org-type">double</span> <span class="org-variable-name">m</span> = 0.0; <span class="org-comment-delimiter">// </span><span class="org-comment">Slope</span>
-    <span class="org-type">double</span> <span class="org-variable-name">b</span> = 0.0; <span class="org-comment-delimiter">// </span><span class="org-comment">Intercept</span>
-    <span class="org-type">double</span> <span class="org-variable-name">learningRate</span> = 0.01;
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Sample data points (x, y)
+</span>    <span class="org-type">double</span> <span class="org-variable-name">x</span>[] = {1, 2, 3, 4, 5};  <span class="org-comment-delimiter">// </span><span class="org-comment">input
+</span>    <span class="org-type">double</span> <span class="org-variable-name">y</span>[] = {2, 3, 5, 7, 11}; <span class="org-comment-delimiter">// </span><span class="org-comment">target to predict
+</span>    <span class="org-type">int</span> <span class="org-variable-name">n</span> = <span class="org-keyword">sizeof</span>(x) / <span class="org-keyword">sizeof</span>(x[0]); <span class="org-comment-delimiter">// </span><span class="org-comment">Number of data points
+</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Initial parameters (y = mx + b)
+</span>    <span class="org-type">double</span> <span class="org-variable-name">m</span> = 0.0; <span class="org-comment-delimiter">// </span><span class="org-comment">Slope
+</span>    <span class="org-type">double</span> <span class="org-variable-name">b</span> = 0.0; <span class="org-comment-delimiter">// </span><span class="org-comment">Intercept
+</span>    <span class="org-type">double</span> <span class="org-variable-name">learningRate</span> = 0.01;
     <span class="org-type">int</span> <span class="org-variable-name">iterations</span> = 1000;
 
     gradientDescent(x, y, &amp;m, &amp;b, n, learningRate, iterations);
     printf(<span class="org-string">"Final parameters: m = %f, b = %f\n"</span>, m, b);
     <span class="org-keyword">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

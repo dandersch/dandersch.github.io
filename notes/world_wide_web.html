@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-04 Wed></span></div><div class="tags"><code>[ <a href="/tag/web.html">web</a> ]</code></div></div><h1>World Wide Web</h1>
@@ -223,16 +224,16 @@
 The World Wide Web (www) consists of four building blocks:
 </p>
 <ul class="org-ul">
-<li>A text format to represent documents:     <a href="html.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a></li>
-<li>A protocol to exchange HTML documents:    <a href="http.html#ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0">HTTP</a></li>
+<li>A text format to represent documents:     <a href="#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a></li>
+<li>A protocol to exchange HTML documents:    <a href="#ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0">HTTP</a></li>
 <li>A client program to view these documents: Web Browser</li>
-<li>A server to give access to the documents: <a href="web_server.html#ID-8415bf1e-3e4b-4004-a55c-6188551aff11">Web Server</a></li>
+<li>A server to give access to the documents: Web Server</li>
 </ul>
 
 <p>
 The web uses URLs of the form <code>http://website.org/index.html</code> to request the
 resource <code>index.html</code> from a webserver with an IP address that is acquired by
-resolving the domain name <code>website.org</code> using <a href="dns.html#ID-6b59a1aa-f7d5-4c26-8ccb-037b1d6d4ac3">DNS</a>.
+resolving the domain name <code>website.org</code> using <a href="#ID-6b59a1aa-f7d5-4c26-8ccb-037b1d6d4ac3">DNS</a>.
 </p>
 <div id="outline-container-ID-665b6602-c666-4f83-bfe0-9b25a8873d4a" class="outline-2">
 <h2 id="ID-665b6602-c666-4f83-bfe0-9b25a8873d4a"><a href="#ID-665b6602-c666-4f83-bfe0-9b25a8873d4a">Web 1.0</a></h2>
@@ -240,7 +241,7 @@ resolving the domain name <code>website.org</code> using <a href="dns.html#ID-6b
 <p>
 "Web 1.0" describes the first stage of the web, which made up the majority of
 the web from about 1991 to 2004. Websites during this era served mostly static
-content in the form <a href="html.html#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a>.
+content in the form <a href="#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a>.
 </p>
 
 <p>
@@ -251,12 +252,272 @@ Resources:
 </ul>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-6b59a1aa-f7d5-4c26-8ccb-037b1d6d4ac3" class="outline-2">
+<h2 id="ID-6b59a1aa-f7d5-4c26-8ccb-037b1d6d4ac3"><a href="#ID-6b59a1aa-f7d5-4c26-8ccb-037b1d6d4ac3">DNS (Domain Name System)</a></h2>
+<div class="outline-text-2" id="text-DNS%20%28Domain%20Name%20System%29">
+<p>
+The Domain Name System (DNS) describes both a protocol and the infrastructure
+that maps domain names to IP addresses.
+</p>
+
+<p>
+In this system, a DNS client issues DNS requests (or DNS address lookups) by
+sending a domain name to a nameserver (or DNS server).
+</p>
+</div>
+<div id="outline-container-DNS%20Hierarchy" class="outline-3">
+<h3 id="DNS%20Hierarchy"><a href="#DNS%20Hierarchy">DNS Hierarchy</a></h3>
+<div class="outline-text-3" id="text-DNS%20Hierarchy">
+<p>
+At the root of its hierarchy, the Domain Name System only has 13 named servers
+for IPv4.
+</p>
+</div>
+</div>
+<div id="outline-container-DNS%20Message%20Format" class="outline-3">
+<h3 id="DNS%20Message%20Format"><a href="#DNS%20Message%20Format">DNS Message Format</a></h3>
+<div class="outline-text-3" id="text-DNS%20Message%20Format">
+<p>
+The two types of DNS messages are query and response.
+</p>
+
+<p>
+<b>Header section</b> (12 Bytes):
+</p>
+<ul class="org-ul">
+<li>7 bit flag field containing..
+<ul class="org-ul">
+<li>AA: Authoritative Answer</li>
+<li>TC: Truncated Response</li>
+<li>RD: Recursion Desired</li>
+<li>RA: Recursion Available</li>
+<li>Reserved</li>
+<li>AD: Authentic Data (Reserved)</li>
+<li>CD: Checking Disabled (Reserved)</li>
+</ul></li>
+</ul>
+
+<p>
+<b>Question section</b>:
+</p>
+<ul class="org-ul">
+<li>&hellip;</li>
+</ul>
+
+<p>
+<b>Answer section</b>:
+</p>
+<ul class="org-ul">
+<li>&hellip;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<p>
+<a href="https://docstore.mik.ua/orelly/networking_2ndEd/dns/appa_02.htm">https://docstore.mik.ua/orelly/networking_2ndEd/dns/appa_02.htm</a>
+<a href="https://www.ques10.com/p/10908/explain-dns-message-format-with-neat-diagram-1/">https://www.ques10.com/p/10908/explain-dns-message-format-with-neat-diagram-1/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-3eec98f5-2b8b-4466-a778-bdd3112c296c" class="outline-2">
+<h2 id="ID-3eec98f5-2b8b-4466-a778-bdd3112c296c"><a href="#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a></h2>
+<div class="outline-text-2" id="text-HTML">
+<p>
+HTML (Hypertext Markup Language) is a Markup language used in web documents and
+rendered by web browsers.
+</p>
+
+<p>
+It primarily follows the syntax <code>&lt;tag attribute="value"&gt;&lt;/tag&gt;</code>.
+</p>
+</div>
+<div id="outline-container-Modal%20without%20Javascript" class="outline-3">
+<h3 id="Modal%20without%20Javascript"><a href="#Modal%20without%20Javascript">Modal without Javascript</a></h3>
+<div class="outline-text-3" id="text-Modal%20without%20Javascript">
+<div class="org-src-container">
+<pre class="src src-html"><code><span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">Button to open the modal</span><span class="org-comment-delimiter"> --&gt;</span>
+&lt;<span class="org-function-name">button</span> <span class="org-variable-name">popovertarget</span>=<span class="org-string">"mymodal"</span>&gt;Open Modal&lt;/<span class="org-function-name">button</span>&gt;
+
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">The modal/drawer</span><span class="org-comment-delimiter"> --&gt;</span>
+&lt;<span class="org-function-name">dialog</span> <span class="org-variable-name">popover</span>=<span class="org-string">"auto"</span> <span class="org-variable-name">id</span>=<span class="org-string">"mymodal"</span>&gt;
+  &lt;<span class="org-function-name">form</span> <span class="org-variable-name">method</span>=<span class="org-string">"dialog"</span>&gt;
+    &lt;<span class="org-function-name">p</span>&gt;Modal content&lt;/<span class="org-function-name">p</span>&gt;
+    &lt;<span class="org-function-name">button</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"document.getElementById('mymodal').hidePopover()"</span>&gt;Close&lt;/<span class="org-function-name">button</span>&gt;
+  &lt;/<span class="org-function-name">form</span>&gt;
+&lt;/<span class="org-function-name">dialog</span>&gt;
+
+&lt;<span class="org-function-name">style</span>&gt;
+  dialog           {  border-radius: 8px;                }
+  dialog::backdrop { background: rgba(0, 0, 0, 0.5);     }
+  button           { padding: 8px 16px; cursor: pointer; }
+&lt;/<span class="org-function-name">style</span>&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-HTML--Resources" class="outline-3">
+<h3 id="HTML--Resources"><a href="#HTML--Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-HTML--Resources">
+<ul class="org-ul">
+<li><a href="https://www.patrickweaver.net/blog/a-blog-post-with-every-html-element/">A Blog Post With Every HTML Element</a></li>
+<li><a href="https://iamwillwang.com/dollar/every-html-element/">Every HTML Element</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0" class="outline-2">
+<h2 id="ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0"><a href="#ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0">Hypertext Transfer Protocol (HTTP)</a></h2>
+<div class="outline-text-2" id="text-Hypertext%20Transfer%20Protocol%20%28HTTP%29">
+<p>
+Hypertext Transfer Protocol (HTTP) is a stateless protocol built on top of TCP.
+</p>
+
+<ul class="org-ul">
+<li>The usage of cookies developed later on to serve as state</li>
+<li>Handles requests and responses between a client and a server</li>
+<li>Every HTTP request (sent by client) and response (sent by server) consists of
+a header and a body</li>
+<li>Could only be sent as plaintext until HTTPS was introduced</li>
+<li>Types of HTTP headers: General, Response, Request</li>
+</ul>
+</div>
+<div id="outline-container-Components" class="outline-3">
+<h3 id="Components"><a href="#Components">Components</a></h3>
+<div class="outline-text-3" id="text-Components">
+<ul class="org-ul">
+<li>Method  : <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code></li>
+<li>Host    : <code>www.example.com</code></li>
+<li>Path    : <code>/api/connect</code></li>
+<li>Version : <code>HTTP/2</code></li>
+<li>Headers : <code>Content-Type application/json</code>, <code>Authorization: Basic Ezg6nnYnkTkk92kx</code></li>
+<li>Query   : <code>?q=my+search+term</code></li>
+<li>Body    : <code>{"q": "my search term"}</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-HTTP%20Routes" class="outline-3">
+<h3 id="HTTP%20Routes"><a href="#HTTP%20Routes">HTTP Routes</a></h3>
+<div class="outline-text-3" id="text-HTTP%20Routes">
+<p>
+An http route is a mapping between a path like <code>/api/connect</code> and a handler
+function that processes requests to that path. Routes define how the server
+should respond to requests based on the path and the http method.
+</p>
+
+<p>
+Example: A route for path <code>/users/{id}</code> triggers a function to retrieve user
+information based on the user ID.
+</p>
+</div>
+</div>
+<div id="outline-container-Main%20HTTP%20methods%3A" class="outline-3">
+<h3 id="Main%20HTTP%20methods%3A"><a href="#Main%20HTTP%20methods%3A">Main HTTP methods:</a></h3>
+<div class="outline-text-3" id="text-Main%20HTTP%20methods%3A">
+<ul class="org-ul">
+<li><code>GET</code>:    Retrieve data from server, e.g. an HTML document</li>
+<li><code>POST</code>:   Submit data to server, e.g. an HTML form</li>
+<li><code>PUT</code>:    Update data already on the server</li>
+<li><code>DELETE</code>: Deletes data from the server</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-HTTP%20status%20codes%3A" class="outline-3">
+<h3 id="HTTP%20status%20codes%3A"><a href="#HTTP%20status%20codes%3A">HTTP status codes:</a></h3>
+<div class="outline-text-3" id="text-HTTP%20status%20codes%3A">
+<ul class="org-ul">
+<li>1xx: Informational</li>
+<li>2xx: Success</li>
+<li>3xx: Redirect</li>
+<li>4xx: Client Error</li>
+<li>5xx: Server Error</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd" class="outline-2">
+<h2 id="ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd"><a href="#ID-9361ed10-d7fe-4af2-a663-dd953e8f84dd">Hypermedia</a></h2>
+<div class="outline-text-2" id="text-Hypermedia">
+<p>
+Hypermedia is a multimedia extension of hypertext, i.e. a medium that allows
+non-linear interactivity with elements such as text, images, audio, etc.
+</p>
+
+<p>
+The <a href="world_wide_web.html#ID-ce772f45-e356-4d64-9207-4da2b4b392a5">World Wide Web</a> (using <a href="#ID-3eec98f5-2b8b-4466-a778-bdd3112c296c">HTML</a> as the hypermedia language) is the classic
+example and allows interactive access to web content via hyperlinks.
+</p>
+</div>
+<div id="outline-container-Hypermedia--Resources" class="outline-3">
+<h3 id="Hypermedia--Resources"><a href="#Hypermedia--Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Hypermedia--Resources">
+<ul class="org-ul">
+<li><a href="https://hypermedia.systems/book/contents/">Hypermedia Systems</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-3423e762-7b02-4196-9f8a-a431c777baf6" class="outline-2">
+<h2 id="ID-3423e762-7b02-4196-9f8a-a431c777baf6"><a href="#ID-3423e762-7b02-4196-9f8a-a431c777baf6">WebSockets&nbsp;&nbsp;&nbsp<span class="tag"><span class="networking">networking</span></span></a></h2>
+<div class="outline-text-2" id="text-WebSockets">
+<p>
+WebSockets are a communication protocol that enables full-duplex, bidirectional
+communication between a client (typically a web browser) and a server over a a
+single TCP connection.
+</p>
+
+<p>
+Traditional <a href="#ID-dc24f1c0-d148-48bc-8b02-ee9d958e67a0">HTTP</a> requests are stateless and require a new connection for each
+request, meaning they are unfit for real-time data exchange with low latency and
+frequent updates. TCP connections would cover this use case, but since web
+browsers do not offer direct access to TCP sockets, WebSockets are the next
+closest thing.
+</p>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP">Evolution of HTTP</a></li>
 </ul>
+</div>
+<div id="outline-container-Web%20App%20Manifest%20%28webmanifest%29" class="outline-3">
+<h3 id="Web%20App%20Manifest%20%28webmanifest%29"><a href="#Web%20App%20Manifest%20%28webmanifest%29">Web App Manifest (webmanifest)</a></h3>
+<div class="outline-text-3" id="text-Web%20App%20Manifest%20%28webmanifest%29">
+<ul class="org-ul">
+<li><a href="https://github.com/chr15m/minimal-pwa">GitHub - chr15m/minimal-pwa: Minimal files + config for a PWA</a></li>
+<li><a href="https://pwascore.com/">PWAscore - Compare Progressive Web App capabilities across browsers</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Web%20Server" class="outline-3">
+<h3 id="Web%20Server"><a href="#Web%20Server">Web Server</a></h3>
+<div class="outline-text-3" id="text-Web%20Server">
+<ul class="org-ul">
+<li><a href="https://www.jmarshall.com/easy/http/">HTTP Made Really Easy</a></li>
+<li><a href="https://tinyhttpd.sourceforge.net/">tinyhttpd - a very simple webserver for educational uses</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-CSS%20%28Cascading%20Style%20Sheets%29" class="outline-3">
+<h3 id="CSS%20%28Cascading%20Style%20Sheets%29"><a href="#CSS%20%28Cascading%20Style%20Sheets%29">CSS (Cascading Style Sheets)</a></h3>
+<div class="outline-text-3" id="text-CSS%20%28Cascading%20Style%20Sheets%29">
+<ul class="org-ul">
+<li><a href="https://csszengarden.com/pages/alldesigns/">CSS Zen Garden: All Designs</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Email" class="outline-3">
+<h3 id="Email"><a href="#Email">Email</a></h3>
+<div class="outline-text-3" id="text-Email">
+<ul class="org-ul">
+<li><a href="https://useplaintext.email/">https://useplaintext.email/</a></li>
+<li><a href="https://drewdevault.com/2018/08/05/Local-mail-server.html">https://drewdevault.com/2018/08/05/Local-mail-server.html</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

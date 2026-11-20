@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-07-03 Wed></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Programming</h1>
@@ -245,6 +246,151 @@ in the IEC 61508 standard for functional safety. Achieving SIL4 requires
 rigorous risk assessment, comprehensive safety lifecycle processes, and the
 implementation of multiple layers of safety measures.
 </p>
+</div>
+</div>
+<div id="outline-container-ID-9ded862d-eacd-41dc-93e4-1a30fd547c94" class="outline-2">
+<h2 id="ID-9ded862d-eacd-41dc-93e4-1a30fd547c94"><a href="#ID-9ded862d-eacd-41dc-93e4-1a30fd547c94">Call Stack&nbsp;&nbsp;&nbsp<span class="tag"><span class="compsci">compsci</span></span></a></h2>
+<div class="outline-text-2" id="text-Call%20Stack">
+<p>
+A call stack (or execution stack) is a <a href="data_structure.html#ID-e4f56646-8e53-41f8-a58b-eccdac42d9ec">stack</a> that keeps track of the active
+function calls in a program. Each time a function is called, a new stack frame
+is pushed on the call stack with the function's parameters, local variables, and
+return address. The most recently called function is the first to be completed
+and removed from the stack (LIFO).
+</p>
+</div>
+</div>
+<div id="outline-container-ID-6c88dda7-d440-48d0-ad7b-9910400eab90" class="outline-2">
+<h2 id="ID-6c88dda7-d440-48d0-ad7b-9910400eab90"><a href="#ID-6c88dda7-d440-48d0-ad7b-9910400eab90">Metaprogramming</a></h2>
+<div class="outline-text-2" id="text-Metaprogramming">
+<p>
+Metaprogramming describes the programming paradigm of writing programs that
+output programs. Metaprograms generate source code in some form and can also
+have the source code of other programs as their input. Code generation thus is
+one aspect of metaprogramming.
+</p>
+
+<p>
+Use Cases
+</p>
+<ul class="org-ul">
+<li>Generating type-safe representations of embedded data in code</li>
+</ul>
+
+<p>
+Resources
+</p>
+<ul class="org-ul">
+<li><a href="https://odin.handmade.network/blog/p/1723-the_metaprogramming_dilemma">The Metaprogramming Dilemma</a>: Why Odin doesn't have Metaprogramming</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-ID-92f6afb5-d1f2-4067-8925-61168671dea7" class="outline-2">
+<h2 id="ID-92f6afb5-d1f2-4067-8925-61168671dea7"><a href="#ID-92f6afb5-d1f2-4067-8925-61168671dea7">Object-Oriented Programming (OOP)</a></h2>
+<div class="outline-text-2" id="text-Object-Oriented%20Programming%20%28OOP%29">
+<p>
+Object-oriented <a href="programming.html#ID-1205844d-e917-40cc-ab3c-2a178a3a7303">programming</a> (OOP) describes a programming paradigm in which data
+and functions that operate on - or are in any way associated with - that data
+are bundled into so called <i>classes</i>, while instantiations of these classes are
+referred to as <i>objects</i>. Functions of classes are usually called <i>methods</i> and any
+data variables that are marked as private are called <i>members.</i>
+</p>
+
+<p>
+The four foundations of OOP traditionally are
+</p>
+<ul class="org-ul">
+<li>Abstraction</li>
+<li>Encapsulation</li>
+<li>Polymorphism</li>
+<li>Inheritance</li>
+</ul>
+</div>
+<div id="outline-container-Principles" class="outline-3">
+<h3 id="Principles"><a href="#Principles">Principles</a></h3>
+<div class="outline-text-3" id="text-Principles">
+<p>
+The SOLID Principles:
+</p>
+<ul class="org-ul">
+<li><b>Single-Responsibility Principle</b>: A class should have only one reason to change.</li>
+<li><b>Open-Closed Principle</b>: Classes should be open for extension but closed for modification.</li>
+<li><b>Liskov substitution principle</b>.</li>
+<li><b>Interface segregation</b>: Program to interfaces, not implementations.</li>
+<li><b>Dependency Inversion Principle</b>: Depend on abstractions. Do not depend on
+concrete classes.</li>
+</ul>
+
+<p>
+Other principles:
+</p>
+<ul class="org-ul">
+<li>Encapsulate what varies.</li>
+<li>Favor composition over inheritance.</li>
+<li>Strive for loosely coupled designs between objects that interact.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-2">
+<h2 id="Resources"><a href="#Resources">Resources</a></h2>
+<div class="outline-text-2" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://www.andrewt.net/dithered-qr-codes/">Dithered QR Code Generator</a>: Embed images inside QR codes</li>
+<li><a href="https://alek-tron.com/AppChecklist/Checklist.html">Developing desktop apps from scratch: A feature checklist</a>
+<ul class="org-ul">
+<li>Open with&hellip;</li>
+<li>File drag &amp; drop</li>
+<li>Single instance</li>
+<li>Unsaved changes</li>
+<li>Recently opened files</li>
+<li>DPI awareness</li>
+<li>Save/Restore monitor</li>
+<li>Unicode support</li>
+<li>Undo/Redo</li>
+<li>De-/Serialization</li>
+<li>Versioning</li>
+<li>File references</li>
+<li>Multi-user file access</li>
+<li>Backups</li>
+<li>Crash reports</li>
+<li>Updates</li>
+</ul></li>
+</ul>
+
+<p>
+Serialization:
+</p>
+<ul class="org-ul">
+<li><a href="https://handmade.network/p/29/swedish-cubes-for-unity/blog/p/2723-how_media_molecule_does_serialization">How Media Molecule Does Serialization | Handmade Network</a></li>
+<li><a href="https://github.com/Lucrecious/imj">Lucrecious/imj: Header-only immediate mode JSON reader and writer in pure C</a></li>
+</ul>
+
+<p>
+Logging:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.dash0.com/guides/logging-in-go-with-slog">Logging in Go with Slog: A Practitioner's Guide</a></li>
+</ul>
+
+<p>
+Computer Science:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.algorithm-archive.org/">The Arcane Algorithm Archive</a></li>
+<li><a href="http://aggregate.org/MAGIC">The Aggregate Magic Algorithms</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLH2l6uzC4UEW0s7-KewFLBC1D0l6XRfye">Crash Course Computer Science</a></li>
+</ul>
+
+<p>
+Code Hot-Reloading:
+</p>
+<ul class="org-ul">
+<li><a href="https://zylinski.se/posts/hot-reload-gameplay-code/">Hot Reload Gameplay Code: What, why, limitations and examples!</a></li>
+<li><a href="https://github.com/fungos/cr">cr.h: A Simple C Hot Reload Header-only Library</a></li>
+<li><a href="https://slembcke.github.io/HotLoadC">Easy Hot-Loading for C</a></li>
+<li><a href="https://nullprogram.com/blog/2014/12/23/">Interactive Programming in C</a></li>
+</ul>
 </div>
 </div>
 </main>

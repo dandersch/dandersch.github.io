@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -195,39 +196,71 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin"><script type="text/javascript" src="/script.js" defer></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-02-28 Wed></span></div><div class="tags"><code>[ <a href="/tag/ai.html">ai</a> ]</code></div></div><h1>Machine Learning (ML)</h1>
 <p>
-Machine learning (ML) is a field in <a href="ai.html#ID-9a9cc192-3dde-49f4-8c81-92aa7636a305">artificial intelligence</a> focused on
+Machine learning (ML) is a field in artificial intelligence focused on
 developing algorithms that allow computers to learn from data and improve over
 time.
 </p>
 
 <p>
 Machine Learning includes various techniques like supervised learning,
-unsupervised learning, and <a href="reinforcement_learning.html#ID-fcc43854-b540-418c-b242-86962be242e4">reinforcement learning</a>. It uses a wide range of
+unsupervised learning, and <a href="#ID-fcc43854-b540-418c-b242-86962be242e4">reinforcement learning</a>. It uses a wide range of
 algorithms, such as decision trees, support vector machines, and <a href="linear_regression.html#ID-70c15ac7-89d9-4c06-8db6-80e13c1ebf92">linear
 regression</a>.
 </p>
@@ -238,13 +271,147 @@ specialized subset of machine learning called <i>Deep Learning</i> is often used
 neural networks consist of many layers (hence "deep") with large amounts of
 data.
 </p>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-7ae09725-e178-4a36-988a-e9e52ee4eca7" class="outline-2">
+<h2 id="ID-7ae09725-e178-4a36-988a-e9e52ee4eca7"><a href="#ID-7ae09725-e178-4a36-988a-e9e52ee4eca7">Loss/Cost Function&nbsp;&nbsp;&nbsp<span class="tag"><span class="math">math</span></span></a></h2>
+<div class="outline-text-2" id="text-Loss%2FCost%20Function">
+<p>
+The loss function refers to the error associated with a single training example
+in the context of <a href="machine_learning.html#ID-1842c07d-7dc6-437a-833f-0d2779acaca2">machine learning</a>. It quantifies how well the model's
+predictions match the actual target values for that specific instance.
+</p>
+
+<p>
+The cost function refers to the average of the loss function over the entire
+training dataset. It provides a measure of the model's overall performance
+across all training examples. The cost function is what is minimized during the
+training process using optimization algorithms like gradient descent.
+</p>
+</div>
+<div id="outline-container-Mean%20Squared%20Error%20%28MSE%29" class="outline-3">
+<h3 id="Mean%20Squared%20Error%20%28MSE%29"><a href="#Mean%20Squared%20Error%20%28MSE%29">Mean Squared Error (MSE)</a></h3>
+<div class="outline-text-3" id="text-Mean%20Squared%20Error%20%28MSE%29">
+<p>
+In regression tasks, a common loss function is the mean squared error (MSE). It
+measures the average squared difference between the predicted values generated
+by a model and the actual target values.
+</p>
+
+<p>
+It is used because it penalizes larger errors (due to the squaring), making it
+sensitive to outliers. A lower MSE indicates a better fit of the model to the
+data, while an MSE of zero indicates perfect predictions.
+</p>
+
+<p>
+The formula for MSE is:
+</p>
+
+<p>
+\[ MSE = \frac{1}{n} \sum_{i=1}^{n}​(y_{i}​ - \hat{y}_{i}​)^{2} \]
+</p>
+
+<p>
+n  := number of observations
+y<sub>i​</sub> := actual target values
+\(\hat{y}_{i}​\) := predicted values
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-fcc43854-b540-418c-b242-86962be242e4" class="outline-2">
+<h2 id="ID-fcc43854-b540-418c-b242-86962be242e4"><a href="#ID-fcc43854-b540-418c-b242-86962be242e4">Reinforcement Learning (RL)</a></h2>
+<div class="outline-text-2" id="text-Reinforcement%20Learning%20%28RL%29">
+<p>
+Reinforcement Learning (RL) is a type of <a href="machine_learning.html#ID-1842c07d-7dc6-437a-833f-0d2779acaca2">machine learning</a> where an agent (e.g. a
+model) learns to make decisions by taking actions in a system to maximize a
+reward.
+</p>
+
+<p>
+RL is used in robotics, game playing (e.g., AlphaGo), autonomous vehicles, and
+recommendation systems.
+</p>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://arxiv.org/abs/2412.05265">Reinforcement Learning: An Overview</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-55c2f889-0b71-4d38-8cbd-dfedc2851c7a" class="outline-2">
+<h2 id="ID-55c2f889-0b71-4d38-8cbd-dfedc2851c7a"><a href="#ID-55c2f889-0b71-4d38-8cbd-dfedc2851c7a">Tensor&nbsp;&nbsp;&nbsp<span class="tag"><span class="math">math</span></span></a></h2>
+<div class="outline-text-2" id="text-Tensor">
+<p>
+A tensor is a mathematical object that generalizes the concepts of scalars,
+vectors, and matrices. Tensors can be thought of as multi-dimensional arrays of
+numerical values that can represent data in various dimensions.
+</p>
+
+<p>
+Order (or Rank):
+</p>
+<ul class="org-ul">
+<li>The order of a tensor refers to the number of dimensions it has.</li>
+<li>A scalar (single number) is a 0th-order tensor.</li>
+<li>A vector (1D array) is a 1st-order tensor.</li>
+<li>A matrix (2D array) is a 2nd-order tensor.</li>
+<li>Higher-order tensors can have three or more dimensions.</li>
+</ul>
+
+<p>
+Components:
+</p>
+<ul class="org-ul">
+<li>Components are the values in the multi-dimensional array.</li>
+<li>Number of components depends on the order and the size of each dimension.</li>
+</ul>
+
+<p>
+In <a href="machine_learning.html#ID-1842c07d-7dc6-437a-833f-0d2779acaca2">deep learning</a>, tensors are used to represent data, such as images (3D
+tensors) or batches of data (4D tensors).
+</p>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/playlist?list=PLpM-Dvs8t0VZPZKggcql-MmjaBdZKeDMw">Machine Learning in C</a></li>
 <li><a href="https://lelouch.dev/blog/math-for-machine-learning/">Math For Machine Learning {Resources}</a></li>
 </ul>
+</div>
+<div id="outline-container-Diffusion" class="outline-3">
+<h3 id="Diffusion"><a href="#Diffusion">Diffusion</a></h3>
+<div class="outline-text-3" id="text-Diffusion">
+<ul class="org-ul">
+<li><a href="https://www.countbayesie.com/blog/2023/4/21/linear-diffusion">Linear Diffusion: Building a Diffusion Model from linear Components</a></li>
+<li><a href="https://github.com/nathan-barry/tiny-diffusion">GitHub - nathan-barry/tiny-diffusion: A character-level language diffusion mo&hellip;</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Artificial%20Intelligence%20%28AI%29" class="outline-3">
+<h3 id="Artificial%20Intelligence%20%28AI%29"><a href="#Artificial%20Intelligence%20%28AI%29">Artificial Intelligence (AI)</a></h3>
+<div class="outline-text-3" id="text-Artificial%20Intelligence%20%28AI%29">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=VMj-3S1tku0">The spelled-out intro to neural networks and backpropagation: building micrograd</a></li>
+<li><a href="https://nhlocal.github.io/AiTimeline/">Artificial Intelligence Timeline (2022 - Present)</a></li>
+<li><a href="https://www.latent.space/p/2025-papers">The 2025 AI Engineer Reading List</a></li>
+<li><a href="https://www.coryzue.com/writing/make-ai-pictures-of-yourself/">How to Train an AI Image Model on Yourself</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Autograd" class="outline-3">
+<h3 id="Autograd"><a href="#Autograd">Autograd</a></h3>
+<div class="outline-text-3" id="text-Autograd">
+<ul class="org-ul">
+<li><a href="https://github.com/karpathy/micrograd">micrograd -  A tiny scalar-valued autograd engine</a></li>
+<li><a href="https://github.com/tinygrad/tinygrad">tinygrad - deep learning framework</a></li>
+<li><a href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html">torch.autograd - PyTorch's automatic differentiation engine</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

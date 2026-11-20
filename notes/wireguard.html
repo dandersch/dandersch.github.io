@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,29 +199,29 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-02-06 Tue></span></div><div class="tags"><code>[ <a href="/tag/networking.html">networking</a> ]</code></div></div><h1>WireGuard</h1>
 <p>
-WireGuard is a tunneling protocol that can be used to implement a <a href="vpn.html#ID-575c5e42-0747-48f3-a5f4-7af6e166bcd3">VPN</a>.
+WireGuard is a tunneling protocol that can be used to implement a VPN.
 </p>
 <div id="outline-container-Establish%20Server%2FClient%20Connection" class="outline-2">
 <h2 id="Establish%20Server%2FClient%20Connection"><a href="#Establish%20Server%2FClient%20Connection">Establish Server/Client Connection</a></h2>
@@ -229,70 +230,70 @@ WireGuard is a tunneling protocol that can be used to implement a <a href="vpn.h
 Initial key generation and exchange
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">sudo pacman -S wireguard-tools <span class="org-comment-delimiter"># </span><span class="org-comment">install userspace utilities</span>
+<pre class="src src-bash"><code>sudo pacman -S wireguard-tools <span class="org-comment-delimiter"># </span><span class="org-comment">install userspace utilities
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">generate key pair on server
+</span>wg genkey | tee wg0-server.priv | wg pubkey &gt; wg0-server.pub
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">generate key pair on server</span>
-wg genkey | tee wg0-server.priv | wg pubkey &gt; wg0-server.pub
+<span class="org-comment-delimiter"># </span><span class="org-comment">generate key pair on client
+</span>wg genkey | tee wg0-client.priv | wg pubkey &gt; wg0-client.pub
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">generate key pair on client</span>
-wg genkey | tee wg0-client.priv | wg pubkey &gt; wg0-client.pub
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">exchange public keys</span>
-scp user@client:/path/to/wg0-client.pub  admin@server:
+<span class="org-comment-delimiter"># </span><span class="org-comment">exchange public keys
+</span>scp user@client:/path/to/wg0-client.pub  admin@server:
 scp admin@server:/path/to/wg0-server.pub user@client:
-</pre>
+</code></pre>
 </div>
 
 <p>
 On wireguard server (e.g. a VPS)
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">add interface and set ip address</span>
-ip link add dev wg0 type wireguard
+<pre class="src src-bash"><code><span class="org-comment-delimiter"># </span><span class="org-comment">add interface and set ip address
+</span>ip link add dev wg0 type wireguard
 ip addr add 10.0.0.1/24 dev wg0
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">set listening port and add private key</span>
-wg set wg0 listen-port 12345 private-key /path/to/wg0-server.priv
+<span class="org-comment-delimiter"># </span><span class="org-comment">set listening port and add private key
+</span>wg set wg0 listen-port 12345 private-key /path/to/wg0-server.priv
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">set peer (client) via their public key</span>
-wg set wg0 peer $(cat wg0-client.pub) allowed-ips 10.0.0.2/32
+<span class="org-comment-delimiter"># </span><span class="org-comment">set peer (client) via their public key
+</span>wg set wg0 peer $(cat wg0-client.pub) allowed-ips 10.0.0.2/32
 
 ip link set wg0 up
-</pre>
+</code></pre>
 </div>
 
 <p>
 On wireguard client (e.g. a home server behind NAT)
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">ip link add dev wg0 type wireguard
-ip addr add 10.0.0.2/24 dev wg0 <span class="org-comment-delimiter"># </span><span class="org-comment">must match allowed-ips above</span>
-wg set wg0 listen-port 12345 private-key /path/to/wg0-client.priv
+<pre class="src src-bash"><code>ip link add dev wg0 type wireguard
+ip addr add 10.0.0.2/24 dev wg0 <span class="org-comment-delimiter"># </span><span class="org-comment">must match allowed-ips above
+</span>wg set wg0 listen-port 12345 private-key /path/to/wg0-client.priv
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">set peer (server) via their public key and specify an endpoint</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">plus set keep alive so that connection doesnt die (e.g. when client switches ip)</span>
-wg set wg0 peer $(cat wg0-server.pub) allowed-ips 10.0.0.1/32 endpoint 12.34.678.9:12345 persistent-keepalive 25
+<span class="org-comment-delimiter"># </span><span class="org-comment">set peer (server) via their public key and specify an endpoint
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">plus set keep alive so that connection doesnt die (e.g. when client switches ip)
+</span>wg set wg0 peer $(cat wg0-server.pub) allowed-ips 10.0.0.1/32 endpoint 12.34.678.9:12345 persistent-keepalive 25
 
 ip link set wg0 up
-</pre>
+</code></pre>
 </div>
 
 <p>
 Test connection
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">first ping 10.0.0.1 from client to establish connection</span>
-ping 10.0.0.1
+<pre class="src src-bash"><code><span class="org-comment-delimiter"># </span><span class="org-comment">first ping 10.0.0.1 from client to establish connection
+</span>ping 10.0.0.1
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">now try pinging 10.0.0.2 from server</span>
-ping 10.0.0.2
+<span class="org-comment-delimiter"># </span><span class="org-comment">now try pinging 10.0.0.2 from server
+</span>ping 10.0.0.2
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">server should be able to ping client, even though no client endpoint was</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">defined thanks to the pre-established connection</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">check connections, allowed ips, etc. on server or client</span>
-wg
-</pre>
+<span class="org-comment-delimiter"># </span><span class="org-comment">server should be able to ping client, even though no client endpoint was
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">defined thanks to the pre-established connection
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">check connections, allowed ips, etc. on server or client
+</span>wg
+</code></pre>
 </div>
 </div>
 </div>
@@ -303,26 +304,26 @@ wg
 To be able to access other machines in the client's LAN
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">on server &amp; client, add the LAN subnetwork as allowed ips</span>
-wg set wg0 peer $(cat wg0-client.pub) allowed-ips 10.0.0.2/32,192.168.178.0/24
+<pre class="src src-bash"><code><span class="org-comment-delimiter"># </span><span class="org-comment">on server &amp; client, add the LAN subnetwork as allowed ips
+</span>wg set wg0 peer $(cat wg0-client.pub) allowed-ips 10.0.0.2/32,192.168.178.0/24
 wg set wg0 peer $(cat wg0-server.pub) allowed-ips 10.0.0.1/32,192.168.178.0/24
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">add route to the home server's LAN on server</span>
-ip route add 192.168.35.0/24 dev wg0
+<span class="org-comment-delimiter"># </span><span class="org-comment">add route to the home server's LAN on server
+</span>ip route add 192.168.35.0/24 dev wg0
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">check if ipv4 forwarding is enabled on client</span>
-sysctl -a | grep ip_forward
+<span class="org-comment-delimiter"># </span><span class="org-comment">check if ipv4 forwarding is enabled on client
+</span>sysctl -a | grep ip_forward
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">if net.ipv4.ip_forward = 0, enable it</span>
-sysctl -w net.ipv4.ip_forward=1
+<span class="org-comment-delimiter"># </span><span class="org-comment">if net.ipv4.ip_forward = 0, enable it
+</span>sysctl -w net.ipv4.ip_forward=1
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">enable ip masquerading according to https://unix.stackexchange.com/questions/638889/make-local-resources-available-when-connected-to-wireguard-vpn</span>
-iptables -t mangle -A PREROUTING -i wg0 -j MARK --set-mark 0x30
+<span class="org-comment-delimiter"># </span><span class="org-comment">enable ip masquerading according to https://unix.stackexchange.com/questions/638889/make-local-resources-available-when-connected-to-wireguard-vpn
+</span>iptables -t mangle -A PREROUTING -i wg0 -j MARK --set-mark 0x30
 iptables -t nat -A POSTROUTING ! -o wg0 -m mark --mark 0x30 -j MASQUERADE
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">test by pinging a machine in the client's LAN on the server</span>
-ping 192.168.178.30
-</pre>
+<span class="org-comment-delimiter"># </span><span class="org-comment">test by pinging a machine in the client's LAN on the server
+</span>ping 192.168.178.30
+</code></pre>
 </div>
 </div>
 </div>
@@ -330,26 +331,26 @@ ping 192.168.178.30
 <h2 id="Using%20wg.conf%20files%20with%20~wg-quick~"><a href="#Using%20wg.conf%20files%20with%20~wg-quick~">Using wg.conf files with <code>wg-quick</code></a></h2>
 <div class="outline-text-2" id="text-Using%20wg.conf%20files%20with%20~wg-quick~">
 <div class="org-src-container">
-<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">WireGuard config files live in /etc/wireguard/</span>
+<pre class="src src-bash"><code><span class="org-comment-delimiter"># </span><span class="org-comment">WireGuard config files live in /etc/wireguard/
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Manual setup from above can be saved with
+</span>wg showconf wg0 &gt; /etc/wireguard/wg0.conf
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">Manual setup from above can be saved with</span>
-wg showconf wg0 &gt; /etc/wireguard/wg0.conf
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">add Address = ... field in wg0.conf (used by wg-quick)</span>
-[Interface]
+<span class="org-comment-delimiter"># </span><span class="org-comment">add Address = ... field in wg0.conf (used by wg-quick)
+</span>[Interface]
 <span class="org-variable-name">Address</span> = 10.0.0.x/24
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">for more config options that only wg-quick uses, see</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">https://man.archlinux.org/man/wg-quick.8#CONFIGURATION</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">for more config options that only wg-quick uses, see
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">https://man.archlinux.org/man/wg-quick.8#CONFIGURATION
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Start wireguard using wg0 config with
+</span>wg-quick up wg0
+<span class="org-comment-delimiter"># </span><span class="org-comment">Or
+</span>systemctl start wg-quick@wg0.service
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">Start wireguard using wg0 config with</span>
-wg-quick up wg0
-<span class="org-comment-delimiter"># </span><span class="org-comment">Or</span>
-systemctl start wg-quick@wg0.service
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">To persist across reboots</span>
-systemctl enable wg-quick@wg0.service
-</pre>
+<span class="org-comment-delimiter"># </span><span class="org-comment">To persist across reboots
+</span>systemctl enable wg-quick@wg0.service
+</code></pre>
 </div>
 </div>
 </div>

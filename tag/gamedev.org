@@ -2,7 +2,7 @@
 #+TAG_INDEX: gamedev
 
 #+begin_export html
-<div class="tag-heading"><h1>Pages tagged <span>gamedev</span></h1><span class="tag-count">19 pages</span></div>
+<div class="tag-heading"><h1>Pages tagged <span>gamedev</span></h1><span class="tag-count">6 pages</span></div>
 <section class="index-section">
 <h2><a href="/project">project/</a></h2>
 <div class="index-list">
@@ -13,23 +13,10 @@
 <section class="index-section">
 <h2><a href="/notes">notes/</a></h2>
 <div class="index-list">
-<div class="index-row"><span class="index-date">2025-10-11</span><a class="index-title" href="/notes/netcode.html">Netcode</a><span class="index-tags"><a href="/tag/networking.html">networking</a><a href="/tag/programming.html">programming</a><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2025-05-26</span><a class="index-title" href="/notes/steamworks.html">Steamworks API</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
 <div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/game_engine.html">Game Engine</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/unreal_engine.html">Unreal Engine</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2024-05-29</span><a class="index-title" href="/notes/nanite.html">Nanite</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2024-01-08</span><a class="index-title" href="/notes/game_loop.html">Game Loop</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2023-04-10</span><a class="index-title" href="/notes/game_package.html">Game Package Formats</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
 <div class="index-row"><span class="index-date">2023-04-09</span><a class="index-title" href="/notes/2d_physics.html">2D Physics</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2023-04-09</span><a class="index-title" href="/notes/physics_engine.html">Physics Engine</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2023-04-08</span><a class="index-title" href="/notes/godot.html">Godot</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/game_ai.html">AI in games</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/entity_system.html">Entity System</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/game_ai.html">Artificial intelligence (AI) in video games</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/gamedev.html">Game development</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/sprite.html">Sprite</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/collision_detection.html">Collision detection</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/pixel_art.html">Pixel Art</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a><a href="/tag/art.html">art</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/timestep.html">Timestep (Delta Time)</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a></span></div>
 </div>
 </section>
 #+end_export

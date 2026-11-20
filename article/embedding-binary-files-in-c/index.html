@@ -279,7 +279,7 @@ embedding, you could include the following in your build script:
 </p>
 <div class="org-src-container">
 <pre class="src src-sh"><code><span class="org-comment-delimiter"># </span><span class="org-comment">generate a C char array for all files in the "res" folder
-</span><span class="org-keyword">for</span> i<span class="org-keyword"> in</span> $(<span class="org-sh-quoted-exec">ls "res"</span>)
+</span><span class="org-keyword">for</span> i<span class="org-keyword"> in</span> $(ls <span class="org-string">"res"</span>)
 <span class="org-keyword">do</span>
     xxd -i <span class="org-string">"res/${i}"</span> | sed -e 1d -e <span class="org-string">'$d'</span> | sed -e <span class="org-string">'$d'</span> &gt; <span class="org-string">"inc/${i}"</span>
 <span class="org-keyword">done</span>
@@ -363,7 +363,7 @@ Can be generalized in your build script like this:
 </p>
 <div class="org-src-container">
 <pre class="src src-bash"><code><span class="org-variable-name">OBJECT_FILES</span>=()
-<span class="org-keyword">for</span> i<span class="org-keyword"> in</span> $(<span class="org-sh-quoted-exec">ls "res"</span>)
+<span class="org-keyword">for</span> i<span class="org-keyword"> in</span> $(ls <span class="org-string">"res"</span>)
 <span class="org-keyword">do</span>
     <span class="org-builtin">cd</span> <span class="org-string">"res"</span>
     <span class="org-variable-name">OBJECT_FILES</span>+=<span class="org-string">"${i%.*}.o "</span>
@@ -408,7 +408,7 @@ Which makes usage look like this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><code><span class="org-function-name">BINARY_INCLUDE</span>(data, bin); <span class="org-comment-delimiter">// </span><span class="org-comment">filename &amp; ext separated by a comma without quotes
+<pre class="src src-C"><code><span class="org-function-name">BINARY_INCLUDE</span>(<span class="org-type">data</span>, <span class="org-type">bin</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">filename &amp; ext separated by a comma without quotes
 </span>
 <span class="org-type">int</span> <span class="org-function-name">main</span>()
 {
@@ -471,7 +471,7 @@ the linking step from before inside the application code:
 Usage code becomes:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><code>BINARY_ASM_INCLUDE(<span class="org-string">"image.png"</span>, image_buf);
+<pre class="src src-C"><code>BINARY_ASM_INCLUDE(<span class="org-string">"image.png"</span>, <span class="org-type">image_buf</span>);
 
 <span class="org-type">int</span> <span class="org-function-name">main</span>()
 {
@@ -516,7 +516,7 @@ The usage code looks basically like this:
 </span><span class="org-preprocessor">#define</span> <span class="org-variable-name">INCBIN_STYLE</span> INCBIN_STYLE_SNAKE <span class="org-comment-delimiter">// </span><span class="org-comment">data instead of Data
 </span><span class="org-preprocessor">#include</span> <span class="org-string">"incbin.h"</span>
 
-<span class="org-function-name">INCBIN</span>(song, <span class="org-string">"music.mp3"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">defines song_data, song_end and song_size</span>
+<span class="org-function-name">INCBIN</span>(<span class="org-type">song</span>, <span class="org-string">"music.mp3"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">defines song_data, song_end and song_size</span>
 </code></pre>
 </div>
 </div>

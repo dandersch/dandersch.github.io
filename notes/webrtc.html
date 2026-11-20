@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,31 +199,31 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-11-20 Wed></span></div><div class="tags"><code>[ <a href="/tag/web.html">web</a> ]</code></div></div><h1>WebRTC (Web Real-Time Communication)</h1>
 <p>
 WebRTC (Web Real-Time Communication) is an open-source project that provides web
 browsers with peer-to-peer data sharing, without the need for intermediary
-servers. It leverages technologies like <a href="stun_turn.html#ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536">STUN and TURN</a> for NAT traversal.
+servers. It leverages technologies like <a href="#ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536">STUN and TURN</a> for NAT traversal.
 </p>
 
 <p>
@@ -250,8 +251,8 @@ Channels.
 <h2 id="Steps"><a href="#Steps">Steps</a></h2>
 <div class="outline-text-2" id="text-Steps">
 <ol class="org-ol">
-<li><i>Signaling</i>: Finding peers using <a href="sdp.html#ID-79c3e761-b8c9-4d97-931e-798a6c8b32f9">SDP</a></li>
-<li><i>Connecting</i>: NAT traversal using <a href="ice.html#ID-06c213f8-b02d-40b1-9d1b-fdc572b88f0d">ICE</a> with <a href="stun_turn.html#ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536">STUN/TURN</a></li>
+<li><i>Signaling</i>: Finding peers using <a href="#ID-79c3e761-b8c9-4d97-931e-798a6c8b32f9">SDP</a></li>
+<li><i>Connecting</i>: NAT traversal using <a href="#ID-06c213f8-b02d-40b1-9d1b-fdc572b88f0d">ICE</a> with <a href="#ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536">STUN/TURN</a></li>
 <li><i>Securing</i>: Encryption using DTLS (TLS for UDP) and SRTP (Secure RTP)</li>
 <li><i>Communicating</i>: Media exchange using RTP and DataChannel messages using SCTP</li>
 </ol>
@@ -261,25 +262,25 @@ Channels.
 <h2 id="Javascript%20API"><a href="#Javascript%20API">Javascript API</a></h2>
 <div class="outline-text-2" id="text-Javascript%20API">
 <div class="org-src-container">
-<pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">RTCPeerConnection</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">createOffer()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">createAnswer()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">setLocalDescription()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">setRemoteDescription()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">addIceCandidate()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">getStats()</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">MediaStream</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">getTracks()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">getAudioTracks()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">getVideoTracks()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">addTrack()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">removeTrack()</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">RTCDataChannel</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">send()</span>
-<span class="org-comment-delimiter">//   </span><span class="org-comment">close()</span>
-</pre>
+<pre class="src src-js"><code><span class="org-comment-delimiter">// </span><span class="org-comment">RTCPeerConnection
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">createOffer()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">createAnswer()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">setLocalDescription()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">setRemoteDescription()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">addIceCandidate()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">getStats()
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">MediaStream
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">getTracks()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">getAudioTracks()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">getVideoTracks()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">addTrack()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">removeTrack()
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">RTCDataChannel
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">send()
+</span><span class="org-comment-delimiter">//   </span><span class="org-comment">close()</span>
+</code></pre>
 </div>
 </div>
 </div>
@@ -340,9 +341,187 @@ MCU (Multi-point Conferencing Unit)
 </ul>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-06c213f8-b02d-40b1-9d1b-fdc572b88f0d" class="outline-2">
+<h2 id="ID-06c213f8-b02d-40b1-9d1b-fdc572b88f0d"><a href="#ID-06c213f8-b02d-40b1-9d1b-fdc572b88f0d">ICE (Interactive Connectivity Establishment)</a></h2>
+<div class="outline-text-2" id="text-ICE%20%28Interactive%20Connectivity%20Establishment%29">
+<p>
+ICE (Interactive Connectivity Establishment) is a framework used to discover the
+best network path between two peers. It is used in <a href="webrtc.html#ID-939ea193-fe39-4d55-8fbf-19fe5d88ad74">WebRTC</a> to set up real-time
+media streams over potentially complex network topologies.
+</p>
+
+<p>
+Since clients might be behind NATs or firewalls, they need to determine their
+public-facing network addresses. So-called ICE candidates carry this network
+connectivity information.
+</p>
+
+<p>
+ICE candidates are:
+</p>
+<ul class="org-ul">
+<li><b>Host Candidates</b>: Direct IP addresses from client's network interface.</li>
+<li><b>Server Reflexive Candidates</b>: Public IP+port by STUN server (for NAT clients)</li>
+<li><b>Relayed Candidates</b>: Provided by TURN server when direct connectivity fails</li>
+<li><b>Peer-Reflexive Candidates</b>: Addresses discovered during ICE connectivity checks</li>
+</ul>
+
+<p>
+A peer's candidates are sent to the remote peer as part of the signaling
+process. ICE then performs connectivity checks to determine which pair of
+candidates works best for media transmission.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-79c3e761-b8c9-4d97-931e-798a6c8b32f9" class="outline-2">
+<h2 id="ID-79c3e761-b8c9-4d97-931e-798a6c8b32f9"><a href="#ID-79c3e761-b8c9-4d97-931e-798a6c8b32f9">SDP (Session Description Protocol)</a></h2>
+<div class="outline-text-2" id="text-SDP%20%28Session%20Description%20Protocol%29">
+<p>
+Session Description Protocol (SDP) is used to describe multimedia sessions. It
+contains information necessary to set up a media stream between two peers.
+</p>
+
+<p>
+It is one of the two key pieces of information (next to ICE candidates) to
+establish a peer-to-peer media connection using <a href="webrtc.html#ID-939ea193-fe39-4d55-8fbf-19fe5d88ad74">WebRTC</a>.
+</p>
+</div>
+<div id="outline-container-Offers%2FAnswers" class="outline-3">
+<h3 id="Offers%2FAnswers"><a href="#Offers%2FAnswers">Offers/Answers</a></h3>
+<div class="outline-text-3" id="text-Offers%2FAnswers">
+<p>
+Establishing a media session requires peers determining acceptable parameters.
+This offer/answer process is defined by RFC 3264.
+</p>
+
+<ul class="org-ul">
+<li>SDP Offer: Details capabilities (supported codecs) and types of media the peer
+intends to send &amp; receive.</li>
+
+<li>SDP Answer: Specifies what peer agrees to, including own capabilities and
+selected media parameters.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536" class="outline-2">
+<h2 id="ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536"><a href="#ID-d8d4b0e9-4efc-4eaf-9b4d-05cdf2be3536">STUN/TURN Servers&nbsp;&nbsp;&nbsp<span class="tag"><span class="networking">networking</span></span></a></h2>
+<div class="outline-text-2" id="text-STUN%2FTURN%20Servers">
+<p>
+STUN (Session Traversal Utilities for NAT) and TURN (Traversal Using Relays
+around NAT) servers are used to establish peer-to-peer (P2P) connections between
+clients that are behind <a href="networking.html#ID-57bfe430-52b3-436c-aa3c-503ec346227a">NATs</a> (Network Address Translators) or firewalls.
+</p>
+
+<p>
+These types of servers are commonly used in <a href="webrtc.html#ID-939ea193-fe39-4d55-8fbf-19fe5d88ad74">WebRTC</a>.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Feature</th>
+<th scope="col" class="org-left">STUN</th>
+<th scope="col" class="org-left">TURN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>Purpose</b></td>
+<td class="org-left">Discover public IP and port</td>
+<td class="org-left">Relay media when P2P fails</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Operation</b></td>
+<td class="org-left">exchanges IP/port</td>
+<td class="org-left">Relays full media traffic</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Use Case</b></td>
+<td class="org-left">Works for most NAT types</td>
+<td class="org-left">For restrictive NATs/firewalls</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Network Load</b></td>
+<td class="org-left">Low</td>
+<td class="org-left">High (relays media data)</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Reliability</b></td>
+<td class="org-left">Limited by NAT type</td>
+<td class="org-left">Works when STUN fails</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-STUN%20%28Session%20Traversal%20Utilities%20for%20NAT%29" class="outline-3">
+<h3 id="STUN%20%28Session%20Traversal%20Utilities%20for%20NAT%29"><a href="#STUN%20%28Session%20Traversal%20Utilities%20for%20NAT%29">STUN (Session Traversal Utilities for NAT)</a></h3>
+<div class="outline-text-3" id="text-STUN%20%28Session%20Traversal%20Utilities%20for%20NAT%29">
+<p>
+Functionality:
+</p>
+<ul class="org-ul">
+<li>STUN discovers a client's public IP + port when they are behind a NAT</li>
+<li>Lightweight, efficient and works well for most NAT types</li>
+<li>May struggle with more restrictive types, such as symmetric NATs</li>
+</ul>
+
+<p>
+Example of how STUN works:
+</p>
+<ul class="org-ul">
+<li>WebRTC client (e.g. browser) initiates a P2P connection.</li>
+<li>Sends a request to a STUN server</li>
+<li>STUN server responds with client's public-facing IP address and port</li>
+<li>Information is shared with peer during WebRTC's signaling process</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-TURN%20%28Traversal%20Using%20Relays%20around%20NAT%29" class="outline-3">
+<h3 id="TURN%20%28Traversal%20Using%20Relays%20around%20NAT%29"><a href="#TURN%20%28Traversal%20Using%20Relays%20around%20NAT%29">TURN (Traversal Using Relays around NAT)</a></h3>
+<div class="outline-text-3" id="text-TURN%20%28Traversal%20Using%20Relays%20around%20NAT%29">
+<p>
+Functionality:
+</p>
+<ul class="org-ul">
+<li>TURN is more complex and is used as a fallback for direct P2P connections</li>
+<li>Relays media traffic between clients (acting as intermediary for the data)</li>
+</ul>
+
+<p>
+How TURN works:
+</p>
+<ul class="org-ul">
+<li>Clients unable to connect directly (using STUN)</li>
+<li>TURN server comes in and acts as relay (receives media data and forwards it)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://news.ycombinator.com/item?id=43510710">How to Self-Host an (Almost) Free, Open Source TURN Server</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://webrtcforthecurious.com">WebRTC For The Curious</a>: Open-source book by WebRTC implementers</li>
 <li><a href="https://webrtchacks.com/the-unofficial-guide-to-openai-realtime-webrtc-api/">The Unofficial Guide to OpenAI Realtime WebRTC API</a></li>

@@ -2,14 +2,10 @@
 #+TAG_INDEX: datastructure
 
 #+begin_export html
-<div class="tag-heading"><h1>Pages tagged <span>datastructure</span></h1><span class="tag-count">6 pages</span></div>
+<div class="tag-heading"><h1>Pages tagged <span>datastructure</span></h1><span class="tag-count">2 pages</span></div>
 <section class="index-section">
 <h2><a href="/notes">notes/</a></h2>
 <div class="index-list">
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/dht.html">Distributed Hash Table (DHT)</a><span class="index-tags"><a href="/tag/networking.html">networking</a><a href="/tag/datastructure.html">datastructure</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/stack.html">Stack</a><span class="index-tags"><a href="/tag/datastructure.html">datastructure</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-17</span><a class="index-title" href="/notes/hashtable.html">Hashtable</a><span class="index-tags"><a href="/tag/datastructure.html">datastructure</a><a href="/tag/algorithm.html">algorithm</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-17</span><a class="index-title" href="/notes/tree.html">Tree</a><span class="index-tags"><a href="/tag/datastructure.html">datastructure</a><a href="/tag/compsci.html">compsci</a></span></div>
 <div class="index-row"><span class="index-date">2024-01-08</span><a class="index-title" href="/notes/data_structure.html">Data structure</a><span class="index-tags"><a href="/tag/datastructure.html">datastructure</a></span></div>
 <div class="index-row"><span class="index-date">2024-01-08</span><a class="index-title" href="/notes/linked_list.html">Linked List</a><span class="index-tags"><a href="/tag/datastructure.html">datastructure</a></span></div>
 </div>

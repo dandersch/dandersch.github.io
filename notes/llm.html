@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,30 +199,30 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-10-26 Sat></span></div><div class="tags"><code>[ <a href="/tag/ai.html">ai</a> ]</code></div></div><h1>LLM (Large Language Model)</h1>
 <p>
 Large Language Models (LLMs) are a form of advanced <a href="neural_network.html#ID-9bb8cbbf-7568-4838-9b4e-ae18b5cdfe94">neural network</a> models
-designed to understand, generate, and <a href="nlp.html#ID-5f2e4bbc-3185-4e0e-86bd-92ab2dd9a9c1">process natural language</a>. They are trained
+designed to understand, generate, and process natural language. They are trained
 on vast amounts of text using unsupervised or semi-supervised learning
 techniques to learn to predict the next word in a sentence, which helps them
 understand patterns, grammar, context, and semantics.
@@ -378,7 +379,7 @@ Example: <a href="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct">ib
 
 <tr>
 <td class="org-left">Initialization std</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">Standard deviation used for parameter initialization</td>
 </tr>
 
@@ -494,7 +495,7 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <td class="org-left">64k</td>
 <td class="org-right">50</td>
 <td class="org-left">20k</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 
 <tr>
@@ -507,7 +508,7 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <td class="org-left">8k</td>
 <td class="org-right">50</td>
 <td class="org-left">40k</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
@@ -521,7 +522,7 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <td class="org-left">8k</td>
 <td class="org-right">∞</td>
 <td class="org-left">∞</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
@@ -533,20 +534,20 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <td class="org-left">$0</td>
 <td class="org-left">128k</td>
 <td class="org-left">16k</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
 <td class="org-left">Gemini 2.5 Flash</td>
 <td class="org-left">Google</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">1m</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-right">10</td>
 <td class="org-left">250k</td>
 <td class="org-right">500</td>
@@ -555,11 +556,11 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <tr>
 <td class="org-left">Gemini 2.5 Pro</td>
 <td class="org-left">Google</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">1m</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-right">N/A</td>
 <td class="org-left">N/A</td>
 <td class="org-right">N/A</td>
@@ -570,9 +571,9 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <td class="org-left">Google</td>
 <td class="org-left">$0.15</td>
 <td class="org-left">$3.5</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">1m</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-right">1000</td>
 <td class="org-left">1m</td>
 <td class="org-right">10k</td>
@@ -583,9 +584,9 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 <td class="org-left">Google</td>
 <td class="org-left">$2.5</td>
 <td class="org-left">$15</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">1m</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-right">1500</td>
 <td class="org-left">2m</td>
 <td class="org-right">1000</td>
@@ -593,114 +594,114 @@ See <a href="https://www.llm-prices.com/">LLM pricing calculator</a>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://openrouter.ai/">OpenRouter</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://groq.com/">groq</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://glhf.chat">glhf.chat</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://cerebras.ai/">Cerebras</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://deepinfra.com/">DeepInfra</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://www.together.ai/">together.ai</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://replicate.com/">Replicate</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left"><a href="https://nebius.com/">Nebius</a></td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-right">&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -796,60 +797,71 @@ Resources
 </ul>
 </div>
 </div>
-<div id="outline-container-Claude%20Prompting%20Guide" class="outline-2">
-<h2 id="Claude%20Prompting%20Guide"><a href="#Claude%20Prompting%20Guide">Claude Prompting Guide</a></h2>
-<div class="outline-text-2" id="text-Claude%20Prompting%20Guide">
+<div id="outline-container-ID-5ba83354-18a1-4488-a2f2-57404aaf3991" class="outline-2">
+<h2 id="ID-5ba83354-18a1-4488-a2f2-57404aaf3991"><a href="#ID-5ba83354-18a1-4488-a2f2-57404aaf3991">Embeddings</a></h2>
+<div class="outline-text-2" id="text-Embeddings">
 <p>
-General tips
+Embeddings are vectors in multidimensional space (the latent space) that can
+capture the meaning of words, phrases, or other data. Embedding also describes
+the process itself, i.e. the step of translating inputs into this numerical
+format.
 </p>
-<ul class="org-ul">
-<li>Be clear, specific, provide context and break complex tasks down</li>
-<li>Provide examples of the kind of output you're looking for</li>
-<li>Encourage thinking (ask to "think step-by-step" or "explain your reasoning.)</li>
-<li>Iterative refinement (ask for clarifications/modifications)</li>
-<li>Leverage Claude's knowledge (ask for explanations or background information)</li>
-<li>Use role-playing (ask to adopt a specific role or perspective)</li>
-</ul>
 
 <p>
-Content Creation
+<a href="neural_network.html#ID-9bb8cbbf-7568-4838-9b4e-ae18b5cdfe94">Neural networks</a> can use embeddings to understand context, identify patterns, and
+perform tasks like translation, sentiment analysis, and generating text.
 </p>
-<ul class="org-ul">
-<li>Specify your audience</li>
-<li>Define the tone and style</li>
-<li>Define output structure (Provide basic outline of points you want covered)</li>
-<li>Specify the desired output format</li>
-</ul>
 
 <p>
-Document summary and Q&amp;A
+Embeddings can also provide useful applications outside of neural networks, as
+similar concepts are positioned closer together in the numerical space,
+embeddings allow for similarity comparisons of complex information.
 </p>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
 <ul class="org-ul">
-<li>Refer to attached documents by name.</li>
-<li>Ask for citations from the document in its answers</li>
-</ul>
-
-<p>
-Brainstorming
-</p>
-<ul class="org-ul">
-<li>Use Claude to generate ideas by asking for a list of possibilities</li>
-<li>Request responses in specific formats (bullet points, lists, or tables)</li>
-</ul>
-
-<p>
-Troubleshooting, minimizing hallucinations, and maximizing performance
-</p>
-<ul class="org-ul">
-<li>Allow Claude to acknowledge uncertainty ("If unsure, say you don't know")</li>
-<li>Break down complex tasks into smaller steps</li>
-<li>Include all contextual information for new conversations</li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#">llm embed</a>: CLI tool to perform embeddings</li>
+<li><a href="https://jasonjmcghee.github.io/portable-hnsw/">Portable HNSW - Use natural language to search 50k blog posts without a server</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+</div>
+<div id="outline-container-ID-72c54ace-4302-47d9-9c7b-cce152945796" class="outline-2">
+<h2 id="ID-72c54ace-4302-47d9-9c7b-cce152945796"><a href="#ID-72c54ace-4302-47d9-9c7b-cce152945796">Low-Rank Adaptation (LoRA)</a></h2>
+<div class="outline-text-2" id="text-Low-Rank%20Adaptation%20%28LoRA%29">
+<p>
+LoRA (Low-Rank Adaptation) is a technique used to fine-tune (i.e. adapt to
+specific tasks) pre-trained <a href="llm.html#ID-b7c95b8a-cf51-4996-8d0a-4cff64ec83d1">LLMs</a> efficiently.
+</p>
+
+<p>
+Instead of updating all the parameters of a large model during the fine-tuning
+process, LoRA introduces low-rank matrices that are added to the existing
+weights of the model. This approach makes it possible to adapt large models to
+new tasks with less computational resources and faster training times.
+</p>
+
+<p>
+The key idea behind LoRA is to decompose the weight updates into low-rank
+matrices, which can capture the necessary adaptations without the full overhead
+of modifying the entire model.
+</p>
+</div>
+<div id="outline-container-Low-Rank%20Adaptation%20%28LoRA%29--Resources" class="outline-3">
+<h3 id="Low-Rank%20Adaptation%20%28LoRA%29--Resources"><a href="#Low-Rank%20Adaptation%20%28LoRA%29--Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Low-Rank%20Adaptation%20%28LoRA%29--Resources">
+<ul class="org-ul">
+<li><a href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a></li>
+<li><a href="https://www.youtube.com/watch?v=DhRoTONcyZE">What Is Low-Rank Adaptation (LoRA) | Explained by the Inventor</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://llmresourceshub.vercel.app/">LLM Resources Hub</a></li>
 <li><a href="https://bbycroft.net/llm">LLM Visualizer</a></li>

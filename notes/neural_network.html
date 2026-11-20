@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-02-28 Wed></span></div><div class="tags"><code>[ <a href="/tag/ai.html">ai</a> ]</code></div></div><h1>Neural Network</h1>
@@ -248,7 +249,7 @@ Deep Neural Network (DNN):
 <ul class="org-ul">
 <li>Type of feedforward neural network with multiple hidden layers (hence "deep").</li>
 <li>DNNs can learn complex patterns in data by stacking layers of neurons.</li>
-<li>Use Cases: Speech recognition, Image classification, <a href="nlp.html#ID-5f2e4bbc-3185-4e0e-86bd-92ab2dd9a9c1">NLP</a>, &#x2026;</li>
+<li>Use Cases: Speech recognition, Image classification, NLP, &hellip;</li>
 </ul>
 
 <p>
@@ -288,8 +289,86 @@ Recurrent Neural Network (RNN):
 <li><b>Mini-Batching</b>: Updating weights and biases several times during an epoch</li>
 <li><b>Learning Rate</b>: How much to update the weights during training</li>
 <li><a href="gradient_descent.html#ID-17216e76-b020-47db-b5d2-bce1349b653d">Gradient Descent</a>: How neural networks are trained.</li>
-<li><a href="cost_function.html#ID-7ae09725-e178-4a36-988a-e9e52ee4eca7">Cost Function</a>: Says how wrong the output is for that input.</li>
+<li><a href="machine_learning.html#ID-7ae09725-e178-4a36-988a-e9e52ee4eca7">Cost Function</a>: Says how wrong the output is for that input.</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-ID-ae3d52ca-df3e-46c9-bf9c-5359ae842b15" class="outline-2">
+<h2 id="ID-ae3d52ca-df3e-46c9-bf9c-5359ae842b15"><a href="#ID-ae3d52ca-df3e-46c9-bf9c-5359ae842b15">Backpropagation</a></h2>
+<div class="outline-text-2" id="text-Backpropagation">
+<p>
+In machine learning, backpropagation is a gradient estimation method commonly
+used for training neural networks to optimize the weights during training (using
+an optimizer such as <a href="gradient_descent.html#ID-17216e76-b020-47db-b5d2-bce1349b653d">gradient descent</a>).
+</p>
+
+<p>
+The method relies on applying the chain rule of calculus to neural networks.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">the cost function is a nested function
+</span><span class="org-type">float</span> <span class="org-variable-name">cost</span>   = cost_fn(activation_fn(output));
+<span class="org-type">float</span> <span class="org-variable-name">output</span> = input1 * weight1 + input2 * weight2 + ... + bias;
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">this means that in order to find the derivative, we can use the chain rule
+</span><span class="org-comment-delimiter">//    </span><span class="org-comment">h(x) = f(g(x)) =&gt;  h'(x) = f'(g(x))g'(x)
+</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">f'(x)          = d f(x) / d x
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">=&gt; cost_fn'       = d cost_fn / d activation_fn
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">=&gt; activation_fn' = d activation_fn / d output
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">=&gt; input1         = d output / d weight1
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">=&gt; cost_fn' = cost_fn'(activation_fn(output)) * activation_fn'(output) * input1</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-4eeb5051-633e-4d8f-ba23-67e3f4c39e60" class="outline-2">
+<h2 id="ID-4eeb5051-633e-4d8f-ba23-67e3f4c39e60"><a href="#ID-4eeb5051-633e-4d8f-ba23-67e3f4c39e60">Transformer Architecture</a></h2>
+<div class="outline-text-2" id="text-Transformer%20Architecture">
+<p>
+The Transformer model is a foundational architecture in NLP and has influenced
+various other domains. It was introduced in the 2017 paper <i>"Attention is All
+You Need"</i>. It is built upon the concept of Attention that was introduced in
+another paper 3 years earlier.
+</p>
+
+<p>
+Modern <a href="llm.html#ID-b7c95b8a-cf51-4996-8d0a-4cff64ec83d1">LLMs</a> are based on a transformer architecture, which allows them to
+process and generate text efficiently. Transformers use mechanisms like
+self-attention to weigh the importance of different words in a sentence,
+enabling them to capture context better than previous models.
+</p>
+
+<p>
+Key features of Transformers:
+</p>
+<ul class="org-ul">
+<li><b>Self-Attention Mechanism</b>: Can capture contextual relationships</li>
+<li><b>Parallelization</b>: Can process entire sequences of data simultaneously</li>
+<li><b>Positional Encoding</b>: Provide information about position of each word in input</li>
+<li><b>Encoder-Decoder Structure</b>: Layers of self-attention and feed-forward NNs</li>
+<li><b>Scalability</b>: Can be scaled up effectively</li>
+</ul>
+
+<blockquote>
+<p>
+Attention is a brilliant (data-dependent) weighted average operation. It is a
+form of global pooling, a reduction, communication. It is a way to aggregate
+relevant information from multiple nodes (tokens, image patches, or etc.). It is
+expressive, powerful, has plenty of parallelism, and is efficiently optimizable.
+</p>
+
+<p>
+&ndash; Andrej Karpathy
+</p>
+</blockquote>
+
+<p>
+Diagram:
+<img src="./transformer-architecture.png" alt="transformer-architecture.png" />
+</p>
 </div>
 </div>
 <div id="outline-container-Resources" class="outline-2">
@@ -298,9 +377,19 @@ Recurrent Neural Network (RNN):
 <ul class="org-ul">
 <li><a href="https://karpathy.ai/zero-to-hero.html">Neural Networks: Zero to Hero (Andrej Karpathy)</a></li>
 <li><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">3Blue1Brown: Neural Networks</a></li>
-<li><a href="https://www.youtube.com/watch?v=EvV5Qtp_fYg">How to Train Simple AIs</a> + <a href="https://www.youtube.com/watch?v=9gQQAO4I1Ck">&#x2026;to Balance a Double Pendulum</a></li>
+<li><a href="https://www.youtube.com/watch?v=EvV5Qtp_fYg">How to Train Simple AIs</a> + <a href="https://www.youtube.com/watch?v=9gQQAO4I1Ck">&hellip;to Balance a Double Pendulum</a></li>
 <li><a href="https://maxliani.wordpress.com/2023/03/17/dnnd-1-a-deep-neural-network-dive/">DNND 1: a Deep Neural Network Dive</a></li>
-<li><a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">What Is ChatGPT Doing &#x2026; and Why Does It Work?</a></li>
+<li><a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">What Is ChatGPT Doing &hellip; and Why Does It Work?</a></li>
+</ul>
+
+<p>
+Transformer:
+</p>
+<ul class="org-ul">
+<li><a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a></li>
+<li><a href="https://gwern.net/blog/2025/you-could-have-invented-transformers">You Could’ve Invented Transformers, by Gwern · Gwern.net</a></li>
+<li><a href="https://arxiv.org/abs/1409.0473">Neural Machine Translation by Jointly Learning to Align and Translate (introduced the concept of Attention)</a></li>
+<li><a href="https://x.com/karpathy/status/1864023344435380613">The (true) story of development and inspiration behind the "attention" operator</a></li>
 </ul>
 </div>
 </div>

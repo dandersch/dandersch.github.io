@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-01-08 Mon></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Strings</h1>
@@ -243,26 +244,26 @@ string is defined by a pointer and a size.
 <h2 id="String%20API"><a href="#String%20API">String API</a></h2>
 <div class="outline-text-2" id="text-String%20API">
 <div class="org-src-container">
-<pre class="src src-C" id="string_api"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">string_t</span>
+<pre class="src src-C" id="string_api"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">string_t</span>
 {
     <span class="org-type">char</span>*  <span class="org-variable-name">data</span>;
-    <span class="org-type">int</span>    <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE needs to be signed, so no size_t</span>
-} <span class="org-type">string_t</span>;
+    <span class="org-type">int</span>    <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE needs to be signed, so no size_t
+</span>} <span class="org-type">string_t</span>;
 
-<span class="org-preprocessor">#define</span> <span class="org-function-name">c_string</span>(<span class="org-variable-name">str</span>) (string_t) { str, <span class="org-keyword">sizeof</span>(str) }
+<span class="org-preprocessor">#define</span> <span class="org-function-name">c_string</span>(<span class="org-variable-name">str</span>) (<span class="org-type">string_t</span>) { str, <span class="org-keyword">sizeof</span>(str) }
 
-<span class="org-type">int</span>      <span class="org-function-name">string_valid</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">string</span>);                        <span class="org-comment-delimiter">// </span><span class="org-comment">is size &gt; 0?</span>
-<span class="org-type">int</span>      <span class="org-function-name">string_match</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">a</span>, <span class="org-type">string_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);      <span class="org-comment-delimiter">// </span><span class="org-comment">flags == case in-/sensitive</span>
-<span class="org-type">int</span>      <span class="org-function-name">string_contains</span>       (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
+<span class="org-type">int</span>      <span class="org-function-name">string_valid</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">string</span>);                        <span class="org-comment-delimiter">// </span><span class="org-comment">is size &gt; 0?
+</span><span class="org-type">int</span>      <span class="org-function-name">string_match</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">a</span>, <span class="org-type">string_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);      <span class="org-comment-delimiter">// </span><span class="org-comment">flags == case in-/sensitive
+</span><span class="org-type">int</span>      <span class="org-function-name">string_contains</span>       (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_substring</span>      (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">size_t</span> <span class="org-variable-name">from</span>, <span class="org-type">size_t</span> <span class="org-variable-name">to</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_find_first</span>     (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_find_last</span>      (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_remove_prefix</span>  (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">prefix</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_remove_suffix</span>  (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">suffix</span>);
-<span class="org-type">string_t</span> <span class="org-function-name">string_pop_first_split</span>(<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">split_delimiter</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">returns e.g. 2020 for ("2020/01", "/")</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">if C11</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">string_pop_first_split_</span>(<span class="org-variable-name">src</span>, <span class="org-variable-name">split_delimiter</span>) \
+<span class="org-type">string_t</span> <span class="org-function-name">string_pop_first_split</span>(<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">split_delimiter</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">returns e.g. 2020 for ("2020/01", "/")
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">if C11
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">string_pop_first_split_</span>(<span class="org-variable-name">src</span>, <span class="org-variable-name">split_delimiter</span>) \
     <span class="org-keyword">_Generic</span>(split_delimiter, <span class="org-keyword">const</span> <span class="org-type">char</span>*: string_pop_first_split(src, c_string(split_delimiter) \
                               string_t:    string_pop_first_split(src, c_string(split_delimiter)))
 
@@ -272,7 +273,7 @@ string is defined by a pointer and a size.
        <span class="org-function-name">macro_var</span>(split_by_) = split_by;                                       \
        str_valid(macro_var(src_));                                            \
        iter = str_pop_first_split(&amp;macro_var(src_), macro_var(split_by_)))
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -285,26 +286,26 @@ an allocator (e.g. an <a href="arena.html#ID-7629c564-ec09-4a74-be59-32e6bf702e3
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C" id="string_builder"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">string_t</span>
+<pre class="src src-C" id="string_builder"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">string_t</span>
 {
     <span class="org-type">char</span>*  <span class="org-variable-name">data</span>;
-    <span class="org-type">int</span>    <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE needs to be signed, so no size_t</span>
-} <span class="org-type">string_t</span>;
+    <span class="org-type">int</span>    <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE needs to be signed, so no size_t
+</span>} <span class="org-type">string_t</span>;
 
-<span class="org-preprocessor">#define</span> <span class="org-function-name">c_string</span>(<span class="org-variable-name">str</span>) (string_t) { str, <span class="org-keyword">sizeof</span>(str) }
+<span class="org-preprocessor">#define</span> <span class="org-function-name">c_string</span>(<span class="org-variable-name">str</span>) (<span class="org-type">string_t</span>) { str, <span class="org-keyword">sizeof</span>(str) }
 
-<span class="org-type">int</span>      <span class="org-function-name">string_valid</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">string</span>);                        <span class="org-comment-delimiter">// </span><span class="org-comment">is size &gt; 0?</span>
-<span class="org-type">int</span>      <span class="org-function-name">string_match</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">a</span>, <span class="org-type">string_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);      <span class="org-comment-delimiter">// </span><span class="org-comment">flags == case in-/sensitive</span>
-<span class="org-type">int</span>      <span class="org-function-name">string_contains</span>       (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
+<span class="org-type">int</span>      <span class="org-function-name">string_valid</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">string</span>);                        <span class="org-comment-delimiter">// </span><span class="org-comment">is size &gt; 0?
+</span><span class="org-type">int</span>      <span class="org-function-name">string_match</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">a</span>, <span class="org-type">string_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);      <span class="org-comment-delimiter">// </span><span class="org-comment">flags == case in-/sensitive
+</span><span class="org-type">int</span>      <span class="org-function-name">string_contains</span>       (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_substring</span>      (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">size_t</span> <span class="org-variable-name">from</span>, <span class="org-type">size_t</span> <span class="org-variable-name">to</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_find_first</span>     (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_find_last</span>      (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_remove_prefix</span>  (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">prefix</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_remove_suffix</span>  (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">suffix</span>);
-<span class="org-type">string_t</span> <span class="org-function-name">string_pop_first_split</span>(<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">split_delimiter</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">returns e.g. 2020 for ("2020/01", "/")</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">if C11</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">string_pop_first_split_</span>(<span class="org-variable-name">src</span>, <span class="org-variable-name">split_delimiter</span>) \
+<span class="org-type">string_t</span> <span class="org-function-name">string_pop_first_split</span>(<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">split_delimiter</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">returns e.g. 2020 for ("2020/01", "/")
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">if C11
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">string_pop_first_split_</span>(<span class="org-variable-name">src</span>, <span class="org-variable-name">split_delimiter</span>) \
     <span class="org-keyword">_Generic</span>(split_delimiter, <span class="org-keyword">const</span> <span class="org-type">char</span>*: string_pop_first_split(src, c_string(split_delimiter) \
                               string_t:    string_pop_first_split(src, c_string(split_delimiter)))
 
@@ -328,7 +329,7 @@ an allocator (e.g. an <a href="arena.html#ID-7629c564-ec09-4a74-be59-32e6bf702e3
 <span class="org-type">void</span>             <span class="org-function-name">string_builder_insert</span>(<span class="org-type">string_builder_t</span>* <span class="org-variable-name">builder</span>, <span class="org-type">string_t</span> <span class="org-variable-name">string</span>, <span class="org-type">size_t</span> <span class="org-variable-name">at</span>);
 <span class="org-type">void</span>             <span class="org-function-name">string_builder_remove</span>(<span class="org-type">string_builder_t</span>* <span class="org-variable-name">builder</span>, <span class="org-type">size_t</span> <span class="org-variable-name">from</span>, <span class="org-type">size_t</span> <span class="org-variable-name">to</span>);
 <span class="org-type">string_t</span>         <span class="org-function-name">string_builder_finish</span>(<span class="org-type">string_builder_t</span>* <span class="org-variable-name">builder</span>);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -336,26 +337,26 @@ an allocator (e.g. an <a href="arena.html#ID-7629c564-ec09-4a74-be59-32e6bf702e3
 <h2 id="String%20API%20Usage%20Code"><a href="#String%20API%20Usage%20Code">String API Usage Code</a></h2>
 <div class="outline-text-2" id="text-String%20API%20Usage%20Code">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">string_t</span>
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">string_t</span>
 {
     <span class="org-type">char</span>*  <span class="org-variable-name">data</span>;
-    <span class="org-type">int</span>    <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE needs to be signed, so no size_t</span>
-} <span class="org-type">string_t</span>;
+    <span class="org-type">int</span>    <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE needs to be signed, so no size_t
+</span>} <span class="org-type">string_t</span>;
 
-<span class="org-preprocessor">#define</span> <span class="org-function-name">c_string</span>(<span class="org-variable-name">str</span>) (string_t) { str, <span class="org-keyword">sizeof</span>(str) }
+<span class="org-preprocessor">#define</span> <span class="org-function-name">c_string</span>(<span class="org-variable-name">str</span>) (<span class="org-type">string_t</span>) { str, <span class="org-keyword">sizeof</span>(str) }
 
-<span class="org-type">int</span>      <span class="org-function-name">string_valid</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">string</span>);                        <span class="org-comment-delimiter">// </span><span class="org-comment">is size &gt; 0?</span>
-<span class="org-type">int</span>      <span class="org-function-name">string_match</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">a</span>, <span class="org-type">string_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);      <span class="org-comment-delimiter">// </span><span class="org-comment">flags == case in-/sensitive</span>
-<span class="org-type">int</span>      <span class="org-function-name">string_contains</span>       (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
+<span class="org-type">int</span>      <span class="org-function-name">string_valid</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">string</span>);                        <span class="org-comment-delimiter">// </span><span class="org-comment">is size &gt; 0?
+</span><span class="org-type">int</span>      <span class="org-function-name">string_match</span>          (<span class="org-type">string_t</span> <span class="org-variable-name">a</span>, <span class="org-type">string_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);      <span class="org-comment-delimiter">// </span><span class="org-comment">flags == case in-/sensitive
+</span><span class="org-type">int</span>      <span class="org-function-name">string_contains</span>       (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_substring</span>      (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">size_t</span> <span class="org-variable-name">from</span>, <span class="org-type">size_t</span> <span class="org-variable-name">to</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_find_first</span>     (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_find_last</span>      (<span class="org-type">string_t</span> <span class="org-variable-name">haystack</span>, <span class="org-type">string_t</span> <span class="org-variable-name">needle</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_remove_prefix</span>  (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">prefix</span>);
 <span class="org-type">string_t</span> <span class="org-function-name">string_remove_suffix</span>  (<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">suffix</span>);
-<span class="org-type">string_t</span> <span class="org-function-name">string_pop_first_split</span>(<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">split_delimiter</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">returns e.g. 2020 for ("2020/01", "/")</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">if C11</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">string_pop_first_split_</span>(<span class="org-variable-name">src</span>, <span class="org-variable-name">split_delimiter</span>) \
+<span class="org-type">string_t</span> <span class="org-function-name">string_pop_first_split</span>(<span class="org-type">string_t</span> <span class="org-variable-name">src</span>, <span class="org-type">string_t</span> <span class="org-variable-name">split_delimiter</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">returns e.g. 2020 for ("2020/01", "/")
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">if C11
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">string_pop_first_split_</span>(<span class="org-variable-name">src</span>, <span class="org-variable-name">split_delimiter</span>) \
     <span class="org-keyword">_Generic</span>(split_delimiter, <span class="org-keyword">const</span> <span class="org-type">char</span>*: string_pop_first_split(src, c_string(split_delimiter) \
                               string_t:    string_pop_first_split(src, c_string(split_delimiter)))
 
@@ -390,7 +391,7 @@ an allocator (e.g. an <a href="arena.html#ID-7629c564-ec09-4a74-be59-32e6bf702e3
     <span class="org-keyword">if</span> (string_valid(test))  { printf(<span class="org-string">"2: %s, size: %i\n"</span>, test.data,  test.size); }
     <span class="org-keyword">if</span> (string_valid(test2)) { printf(<span class="org-string">"3: %s, size: %i\n"</span>, test2.data, test2.size); }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -403,6 +404,14 @@ an allocator (e.g. an <a href="arena.html#ID-7629c564-ec09-4a74-be59-32e6bf702e3
 <li><a href="https://github.com/tsoding/sv/blob/master/sv.h">sv.h - String View implementation for C</a></li>
 <li><a href="https://thasso.xyz/2024/12/16/fixing-c-strings.html">Fixing C Strings</a></li>
 </ul>
+</div>
+<div id="outline-container-UTF-8" class="outline-3">
+<h3 id="UTF-8"><a href="#UTF-8">UTF-8</a></h3>
+<div class="outline-text-3" id="text-UTF-8">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=vpSkBV5vydg">UTF-8, Explained Simply - YouTube</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

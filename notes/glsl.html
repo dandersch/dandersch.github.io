@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-07-03 Wed></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>OpenGL Shading Language (GLSL)</h1>
@@ -230,11 +231,11 @@ GLSL uses column major order matrices. The mapping from a subscript operator to
 an element in the matrix can be illustrated like this:
 </p>
 <div class="org-src-container">
-<pre class="src src-C">[0][0]  [1][0]  [2][0]  [3][0]
+<pre class="src src-C"><code>[0][0]  [1][0]  [2][0]  [3][0]
 [0][1]  [1][1]  [2][1]  [3][1]
 [0][2]  [1][2]  [2][2]  [3][2]
 [0][3]  [1][3]  [2][3]  [3][3]
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -305,12 +306,12 @@ Downsides:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C" id="shader.glsl"><span class="org-type">SHADER_VERSION_STRING</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.h"    // shared code between C and GLSL</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.glsl" // shared code between shaders</span>
-<span class="org-function-name">S</span>(
-<span class="org-comment-delimiter">//</span><span class="org-comment">\n#version 430 core\n // also works, but we cannot include .glsl files then...</span>
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+<pre class="src src-C" id="shader.glsl"><code><span class="org-type">SHADER_VERSION_STRING</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.h"    // shared code between C and GLSL
+</span><span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.glsl" // shared code between shaders
+</span><span class="org-function-name">S</span>(
+<span class="org-comment-delimiter">//</span><span class="org-comment">\n#version 430 core\n // also works, but we cannot include .glsl files then...
+</span><span class="org-type">int</span> <span class="org-function-name">main</span>() {
     <span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>;
 
 <span class="org-preprocessor">#if</span> (SHADER_DEFINES &amp; SHADER_MVP)
@@ -325,11 +326,11 @@ Downsides:
 }
 )
 <span class="org-preprocessor">#undef</span> SHADER_DEFINES
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">shader features (can't be an enum)</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span>    <span class="org-variable-name">SHADER_NONE</span>  (     0)
@@ -343,11 +344,11 @@ Downsides:
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">SHADER_DEFINES</span> (SHADER_MVP)
 <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">shader1_src</span> =
                           SHADER_VERSION_STRING
-                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.h"    // shared code between C and GLSL</span>
-                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.glsl" // shared code between shaders</span>
-                          S(
-                          <span class="org-comment-delimiter">//</span><span class="org-comment">\n#version 430 core\n // also works, but we cannot include .glsl files then...</span>
-                          <span class="org-type">int</span> <span class="org-function-name">main</span>() {
+                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.h"    // shared code between C and GLSL
+</span>                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.glsl" // shared code between shaders
+</span>                          S(
+                          <span class="org-comment-delimiter">//</span><span class="org-comment">\n#version 430 core\n // also works, but we cannot include .glsl files then...
+</span>                          <span class="org-type">int</span> <span class="org-function-name">main</span>() {
                               <span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>;
 
 <span class="org-preprocessor">                          #if</span> (SHADER_DEFINES &amp; SHADER_MVP)
@@ -361,17 +362,17 @@ Downsides:
 <span class="org-preprocessor">                          #endif</span>
                           }
                           )
-<span class="org-preprocessor">                          #undef</span> SHADER_DEFINES <span class="org-comment-delimiter">//</span><span class="org-comment">#include "shader.glsl"</span>
-                       ;
+<span class="org-preprocessor">                          #undef</span> SHADER_DEFINES <span class="org-comment-delimiter">//</span><span class="org-comment">#include "shader.glsl"
+</span>                       ;
 
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">SHADER_DEFINES</span> (SHADER_LIGHT)
 <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">shader2_src</span> =
                           SHADER_VERSION_STRING
-                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.h"    // shared code between C and GLSL</span>
-                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.glsl" // shared code between shaders</span>
-                          S(
-                          <span class="org-comment-delimiter">//</span><span class="org-comment">\n#version 430 core\n // also works, but we cannot include .glsl files then...</span>
-                          <span class="org-type">int</span> <span class="org-function-name">main</span>() {
+                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.h"    // shared code between C and GLSL
+</span>                          <span class="org-comment-delimiter">//</span><span class="org-comment">#include "common.glsl" // shared code between shaders
+</span>                          S(
+                          <span class="org-comment-delimiter">//</span><span class="org-comment">\n#version 430 core\n // also works, but we cannot include .glsl files then...
+</span>                          <span class="org-type">int</span> <span class="org-function-name">main</span>() {
                               <span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>;
 
 <span class="org-preprocessor">                          #if</span> (SHADER_DEFINES &amp; SHADER_MVP)
@@ -385,14 +386,14 @@ Downsides:
 <span class="org-preprocessor">                          #endif</span>
                           }
                           )
-<span class="org-preprocessor">                          #undef</span> SHADER_DEFINES <span class="org-comment-delimiter">//</span><span class="org-comment">#include "shader.glsl"</span>
-                       ;
+<span class="org-preprocessor">                          #undef</span> SHADER_DEFINES <span class="org-comment-delimiter">//</span><span class="org-comment">#include "shader.glsl"
+</span>                       ;
 
 <span class="org-type">int</span> <span class="org-function-name">main</span> () {
     printf(<span class="org-string">"%s\n"</span>, shader1_src);
     printf(<span class="org-string">"%s\n"</span>, shader2_src);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

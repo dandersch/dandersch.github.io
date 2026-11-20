@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-04 Wed></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>OpenGL</h1>
@@ -246,11 +247,11 @@ A vertex array object stores the following:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">u32</span> <span class="org-variable-name">vao</span>;
-glGenVertexArrays(1, &amp;vao); <span class="org-comment-delimiter">// </span><span class="org-comment">nr of vao's to generate &amp; where to store them</span>
-<span class="org-keyword">if</span> (vao == GL_INVALID_VALUE)
+<pre class="src src-C"><code><span class="org-type">u32</span> <span class="org-variable-name">vao</span>;
+glGenVertexArrays(1, &amp;vao); <span class="org-comment-delimiter">// </span><span class="org-comment">nr of vao's to generate &amp; where to store them
+</span><span class="org-keyword">if</span> (vao == GL_INVALID_VALUE)
     <span class="org-function-name">error</span>();
-</pre>
+</code></pre>
 </div></li>
 </ul>
 </div>
@@ -265,19 +266,19 @@ SDL/GLFW):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">prototype for callback</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">prototype for callback</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">void</span> <span class="org-variable-name">GLAPIENTRY</span> my_callback(<span class="org-type">GLenum</span> <span class="org-variable-name">source</span>, <span class="org-type">GLenum</span> <span class="org-variable-name">type</span>, <span class="org-type">GLuint</span> <span class="org-variable-name">id</span>,
                             <span class="org-type">GLenum</span> <span class="org-variable-name">severity</span>, <span class="org-type">GLsizei</span> <span class="org-variable-name">length</span>,
                             <span class="org-keyword">const</span> <span class="org-type">GLchar</span>* <span class="org-variable-name">message</span>, <span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">userParam</span>);
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">Set config flag with SDL/GLFW/...</span><span class="org-comment-delimiter"> */</span>
-<span class="org-function-name">SDL_GL_SetAttribute</span>(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
-<span class="org-function-name">glfwWindowHint</span>(GLFW_OPENGL_DEBUG_CONTEXT,1);
+<span class="org-function-name">SDL_GL_SetAttribute</span>(<span class="org-type">SDL_GL_CONTEXT_FLAGS</span>, <span class="org-type">SDL_GL_CONTEXT_DEBUG_FLAG</span>);
+<span class="org-function-name">glfwWindowHint</span>(<span class="org-type">GLFW_OPENGL_DEBUG_CONTEXT</span>,1);
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">add debug callback</span><span class="org-comment-delimiter"> */</span>
-<span class="org-function-name">glEnable</span>(GL_DEBUG_OUTPUT); <span class="org-comment-delimiter">// </span><span class="org-comment">or GL_DEBUG_OUTPUT_SYNCHRONOUS to avoid race conditions</span>
-<span class="org-function-name">glDebugMessageCallback</span>(my_callback, userdata);
-</pre>
+<span class="org-function-name">glEnable</span>(<span class="org-type">GL_DEBUG_OUTPUT</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">or GL_DEBUG_OUTPUT_SYNCHRONOUS to avoid race conditions
+</span><span class="org-function-name">glDebugMessageCallback</span>(<span class="org-type">my_callback</span>, <span class="org-type">userdata</span>);
+</code></pre>
 </div>
 
 <p>
@@ -297,7 +298,7 @@ context from the GPU.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONCAT</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) TOKEN_PASTE(a,b)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">/* </span><span class="org-comment">unique identifier</span><span class="org-comment-delimiter"> */</span>
@@ -338,48 +339,48 @@ context from the GPU.
          (UQ(i) == 0); (UQ(i) += 1, glClearColor(UQ(clear)[0], UQ(clear)[1], UQ(clear)[2], UQ(clear)[3])))
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">scope_gl_blend_func</span>(<span class="org-variable-name">src</span>,<span class="org-variable-name">dst</span>) \
-    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(s), <span class="org-function-name">UQ</span>(d), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_BLEND_SRC, &amp;UQ(s)), glGetIntegerv(GL_BLEND_DST, &amp;UQ(s), glBlendFunc(src, dst), 0); \
+    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(<span class="org-type">s</span>), <span class="org-function-name">UQ</span>(d), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_BLEND_SRC, &amp;UQ(s)), glGetIntegerv(GL_BLEND_DST, &amp;UQ(s), glBlendFunc(src, dst), 0); \
          (UQ(i) == 0); (UQ(i) += 1, glBlendFunc(UQ(s), UQ(d))))
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">scope_gl_blend_eq</span>(<span class="org-variable-name">eq</span>) \
-    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(e), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_BLEND_EQUATION, &amp;UQ(e)), glBlendEquation(eq), 0); \
+    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(<span class="org-type">e</span>), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_BLEND_EQUATION, &amp;UQ(e)), glBlendEquation(eq), 0); \
          (UQ(i) == 0); (UQ(i) += 1, glBlendEquation(UQ(e))))
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">scope_gl_cullface_mode</span>(<span class="org-variable-name">mode</span>) \
-    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(m), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_CULL_FACE_MODE, &amp;UQ(m)), glCullFace(mode), 0); \
+    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(<span class="org-type">m</span>), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_CULL_FACE_MODE, &amp;UQ(m)), glCullFace(mode), 0); \
          (UQ(i) == 0); (UQ(i) += 1, glCullFace(UQ(m))))
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">scope_gl_frontface_orient</span>(<span class="org-variable-name">orient</span>) \
-    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(fo), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_FRONT_FACE, &amp;UQ(fo)), glFrontFace(orient), 0); \
+    <span class="org-keyword">for</span> (<span class="org-type">GLint</span> <span class="org-function-name">UQ</span>(<span class="org-type">fo</span>), <span class="org-function-name">UQ</span>(i) = (glGetIntegerv(GL_FRONT_FACE, &amp;UQ(fo)), glFrontFace(orient), 0); \
          (UQ(i) == 0); (UQ(i) += 1, glFrontFace(UQ(fo))))
 
-<span class="org-comment-delimiter">/*</span>
-<span class="org-comment">  More possible push/pop functions include</span>
-<span class="org-comment">     glEnableVertexAttribArray/glDisableVertexAttribArray</span>
-<span class="org-comment">     glBindFramebuffer</span>
-<span class="org-comment">     glTexParameter : gl_texture2d_param(param,val)</span>
-<span class="org-comment">     glActiveTexture() : glGetIntegerv(GL_ACTIVE_TEXTURE, &amp;activeTextureUnit);</span>
+<span class="org-comment-delimiter">/*</span><span class="org-comment">
+  More possible push/pop functions include
+     glEnableVertexAttribArray/glDisableVertexAttribArray
+     glBindFramebuffer
+     glTexParameter : gl_texture2d_param(param,val)
+     glActiveTexture() : glGetIntegerv(GL_ACTIVE_TEXTURE, &amp;activeTextureUnit);
 
-<span class="org-comment">     look at cf push/pop drawing functions for more</span>
+     look at cf push/pop drawing functions for more
 
-<span class="org-comment">     one could also add calls to glError() at the end of every scope</span>
+     one could also add calls to glError() at the end of every scope
 
-<span class="org-comment">     gl_upload_uniform that wraps glUseProgram, glGetUniformLocation and glUniform{1iv,Matrix4fv,..}</span>
-<span class="org-comment">     maybe gl_upload_uniform(prog,name,type) glUseProgram(prog); glUniform##type(glGet(prog,"name"), ...);</span>
-<span class="org-comment-delimiter">*/</span>
+     gl_upload_uniform that wraps glUseProgram, glGetUniformLocation and glUniform{1iv,Matrix4fv,..}
+     maybe gl_upload_uniform(prog,name,type) glUseProgram(prog); glUniform##type(glGet(prog,"name"), ...);
+</span><span class="org-comment-delimiter">*/</span>
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-
-    <span class="org-comment-delimiter">//</span><span class="org-comment">scope_gl_use_program(prog_id)</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">scope_gl_bind_array_buffer(vbo)</span>
-    <span class="org-comment-delimiter">//  </span><span class="org-comment">scope_gl_bind_vertex_array(vao)</span>
-    <span class="org-comment-delimiter">//</span><span class="org-comment">{</span>
-    <span class="org-comment-delimiter">//    </span><span class="org-comment">// ...</span>
-    <span class="org-comment-delimiter">//    </span><span class="org-comment">glDrawArrays(GL_TRIANGLES, 0, vertex_count);</span>
-    <span class="org-comment-delimiter">//</span><span class="org-comment">}</span>
-}
-</pre>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>
+    <span class="org-comment-delimiter">//</span><span class="org-comment">scope_gl_use_program(prog_id)
+</span>    <span class="org-comment-delimiter">// </span><span class="org-comment">scope_gl_bind_array_buffer(vbo)
+</span>    <span class="org-comment-delimiter">//  </span><span class="org-comment">scope_gl_bind_vertex_array(vao)
+</span>    <span class="org-comment-delimiter">//</span><span class="org-comment">{
+</span>    <span class="org-comment-delimiter">//    </span><span class="org-comment">// ...
+</span>    <span class="org-comment-delimiter">//    </span><span class="org-comment">glDrawArrays(GL_TRIANGLES, 0, vertex_count);
+</span>    <span class="org-comment-delimiter">//</span><span class="org-comment">}
+</span>}
+</code></pre>
 </div>
 </div>
 </div>

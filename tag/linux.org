@@ -2,14 +2,11 @@
 #+TAG_INDEX: linux
 
 #+begin_export html
-<div class="tag-heading"><h1>Pages tagged <span>linux</span></h1><span class="tag-count">4 pages</span></div>
+<div class="tag-heading"><h1>Pages tagged <span>linux</span></h1><span class="tag-count">1 page</span></div>
 <section class="index-section">
 <h2><a href="/notes">notes/</a></h2>
 <div class="index-list">
-<div class="index-row"><span class="index-date">2025-04-19</span><a class="index-title" href="/notes/epoll.html">epoll</a><span class="index-tags"><a href="/tag/linux.html">linux</a><a href="/tag/os.html">os</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/arch_linux.html">Arch Linux</a><span class="index-tags"><a href="/tag/os.html">os</a><a href="/tag/linux.html">linux</a></span></div>
 <div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/linux.html">Linux</a><span class="index-tags"><a href="/tag/linux.html">linux</a><a href="/tag/os.html">os</a></span></div>
-<div class="index-row"><span class="index-date">2023-03-26</span><a class="index-title" href="/notes/wine.html">WINE</a><span class="index-tags"><a href="/tag/linux.html">linux</a><a href="/tag/os.html">os</a></span></div>
 </div>
 </section>
 #+end_export

@@ -262,13 +262,15 @@ see on this page is <a href="https://orgmode.org/manual/Extracting-Source-Code.h
 <li><a href="#Add%20projects%20to%20~org-publish-project-alist~">15.3. Add projects to <code>org-publish-project-alist</code></a></li>
 </ul>
 </li>
-<li><a href="#org-publish">16. org-publish</a></li>
-<li><a href="#Code%20snippets">17. Code snippets</a>
+<li><a href="#Code%20snippets">16. Code snippets</a>
 <ul>
-<li><a href="#Generate%20Article%20Image%20Preview">17.1. Generate Article Image Preview</a></li>
-<li><a href="#Generate%20Article%20Snippets">17.2. Generate Article Snippets</a></li>
+<li><a href="#Generate%20Article%20Image%20Preview">16.1. Generate Article Image Preview</a></li>
+<li><a href="#Generate%20a%20dated%20index">16.2. Generate a dated index</a></li>
+<li><a href="#Generate%20a%20reading%20column">16.3. Generate a reading column</a></li>
+<li><a href="#Generate%20Article%20Snippets">16.4. Generate Article Snippets</a></li>
 </ul>
 </li>
+<li><a href="#org-publish">17. org-publish</a></li>
 <li><a href="#Resources">18. Resources</a></li>
 </ul>
 </div>
@@ -358,16 +360,44 @@ see on this page is <a href="https://orgmode.org/manual/Extracting-Source-Code.h
   <span class="org-doc">"Sort the list by the date value of the form &lt;YYYY-MM-DD HH:MM&gt;"</span>
   (sort keyword-list
         (<span class="org-keyword">lambda</span> (a b)
-          (<span class="org-keyword">let*</span> ((date-str-a (replace-regexp-in-string <span class="org-string">"&lt;\\[</span><span class="org-string"><span class="org-constant">\\</span></span><span class="org-string">]&gt;"</span> <span class="org-string">""</span> (cadr (assoc <span class="org-string">"DATE"</span> (cadr a)))))
-                 (date-str-b (replace-regexp-in-string <span class="org-string">"&lt;\\[</span><span class="org-string"><span class="org-constant">\\</span></span><span class="org-string">]&gt;"</span> <span class="org-string">""</span> (cadr (assoc <span class="org-string">"DATE"</span> (cadr b))))))
+          (<span class="org-keyword">let*</span> ((date-str-a (replace-regexp-in-string <span class="org-string">"&lt;\\[\\]&gt;"</span> <span class="org-string">""</span> (cadr (assoc <span class="org-string">"DATE"</span> (cadr a)))))
+                 (date-str-b (replace-regexp-in-string <span class="org-string">"&lt;\\[\\]&gt;"</span> <span class="org-string">""</span> (cadr (assoc <span class="org-string">"DATE"</span> (cadr b))))))
             (<span class="org-keyword">if</span> new-to-old
               (string&gt; date-str-a date-str-b)
               (string&lt; date-str-a date-str-b))))))
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">article-marked-for-noexport-p</span> (article)
   (string-match-p (regexp-quote <span class="org-string">"noexport"</span>) (cadr (assoc <span class="org-string">"TAGS[]"</span> (cadr article)))))
+</code></pre>
+</div>
 
-(<span class="org-keyword">setq</span> tags-to-ignore '(<span class="org-string">"noexport"</span>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">keyword-value</span> (entry key)
+  <span class="org-doc">"Value of KEY in an entry from the keyword lists, or nil."</span>
+  (cadr (assoc key (cadr entry))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">entry-date</span> (entry)
+  <span class="org-doc">"YYYY-MM-DD from an entry's DATE keyword, dropping the Org brackets and weekday."</span>
+  (<span class="org-keyword">when-let</span> ((date (keyword-value entry <span class="org-string">"DATE"</span>)))
+    (<span class="org-keyword">and</span> (string-match <span class="org-string">"</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(</span></span><span class="org-string">[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string">"</span> date)
+         (match-string 1 date))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">entry-tags</span> (entry)
+  <span class="org-doc">"FILETAGS of an entry as a list, without the empty strings the colon syntax produces."</span>
+  (<span class="org-keyword">when-let</span> ((filetags (keyword-value entry <span class="org-string">"FILETAGS"</span>)))
+    (cl-remove-if #'string-empty-p (split-string filetags <span class="org-string">":"</span>))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">entry-href</span> (entry)
+  <span class="org-doc">"Site path of an entry. Notes live outside the repo, so their path is rewritten."</span>
+  (<span class="org-keyword">if</span> (string-prefix-p (file-name-as-directory (expand-file-name org-roam-directory))
+                       (car entry))
+      (concat <span class="org-string">"/notes/"</span> (url-hexify-string (file-name-base (car entry))) <span class="org-string">".html"</span>)
+    (concat <span class="org-string">"/"</span> (string-replace <span class="org-string">"/index.org"</span> <span class="org-string">""</span> (car entry)))))
+</code></pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> tags-to-ignore '(<span class="org-string">"noexport"</span>
                        <span class="org-string">"economics"</span>
                        <span class="org-string">"philosophy"</span>
                        <span class="org-string">"music"</span>
@@ -691,18 +721,6 @@ Fills the primary datastructure of this script of the form:
                            `((<span class="org-string">"article"</span> . ,article-keyword-list)
                              (<span class="org-string">"project"</span> . ,project-keyword-list)
                              (<span class="org-string">"other"</span>   . ,other-keyword-list)))))
-
-<span class="org-comment-delimiter">; </span><span class="org-comment">fill &amp; sort keyword-lists for notes/ (called by roam project)
-</span>(<span class="org-keyword">defun</span> <span class="org-function-name">roam-fill-keyword-lists</span> ()
-  (<span class="org-keyword">dolist</span> (note (get-org-files org-roam-directory))
-    (<span class="org-keyword">let</span> ((notes-keywords (get-org-file-keywords note)))
-      (<span class="org-keyword">unless</span> (roam-note-marked-for-noexport-p notes-keywords)
-        (<span class="org-keyword">push</span> (get-org-file-keywords note) notes-keyword-list))))
-  (<span class="org-keyword">setq</span> notes-keyword-list (sort-keyword-list-by-date notes-keyword-list t))
-
-  <span class="org-comment-delimiter">; </span><span class="org-comment">article-keyword-list == (cdr (assoc "article" keyword-list))
-</span>  (<span class="org-keyword">setq</span> keyword-list `(,(cons <span class="org-string">"notes"</span> notes-keyword-list)))
-  )
 </code></pre>
 </div>
 </div>
@@ -766,7 +784,32 @@ Generates a <code>tag.org</code> for every unique tag across all articles.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">generate-tag-files</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">generate-dated-index</span> (sections <span class="org-type">&amp;optional</span> limit)
+  <span class="org-doc">"Render SECTIONS as dated rows, optionally showing only LIMIT entries per section."</span>
+  (mapconcat
+   (<span class="org-keyword">lambda</span> (section)
+     (<span class="org-keyword">let*</span> ((entries (caddr section))
+            (shown (<span class="org-keyword">if</span> limit (seq-take entries limit) entries))
+            (rest (- (length entries) (length shown))))
+       (concat <span class="org-string">"&lt;section class=\"index-section\"&gt;\n"</span>
+               (format <span class="org-string">"&lt;h2&gt;&lt;a href=\"/%s\"&gt;%s&lt;/a&gt;&lt;/h2&gt;\n"</span> (car section) (cadr section))
+               <span class="org-string">"&lt;div class=\"index-list\"&gt;\n"</span>
+               (mapconcat
+                (<span class="org-keyword">lambda</span> (entry)
+                  (format <span class="org-string">"&lt;div class=\"index-row\"&gt;&lt;span class=\"index-date\"&gt;%s&lt;/span&gt;&lt;a class=\"index-title\" href=\"%s\"&gt;%s&lt;/a&gt;&lt;span class=\"index-tags\"&gt;%s&lt;/span&gt;&lt;/div&gt;\n"</span>
+                          (<span class="org-keyword">or</span> (entry-date entry) <span class="org-string">""</span>)
+                          (entry-href entry)
+                          (keyword-value entry <span class="org-string">"TITLE"</span>)
+                          (mapconcat (<span class="org-keyword">lambda</span> (tag) (format <span class="org-string">"&lt;a href=\"/tag/%s.html\"&gt;%s&lt;/a&gt;"</span> tag tag))
+                                     (<span class="org-keyword">or</span> (entry-tags entry) '()) <span class="org-string">""</span>)))
+                shown <span class="org-string">""</span>)
+               <span class="org-string">"&lt;/div&gt;\n"</span>
+               (<span class="org-keyword">when</span> (&gt; rest 0)
+                 (format <span class="org-string">"&lt;a class=\"index-more\" href=\"/%s\"&gt;&lt;span&gt;%d more&lt;/span&gt;&lt;/a&gt;\n"</span> (car section) rest))
+               <span class="org-string">"&lt;/section&gt;\n"</span>)))
+   sections <span class="org-string">""</span>))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">generate-tag-files</span> ()
 
   <span class="org-comment-delimiter">; </span><span class="org-comment">collect all tags
 </span>  (<span class="org-keyword">setq</span> article-tags '())
@@ -787,55 +830,38 @@ Generates a <code>tag.org</code> for every unique tag across all articles.
 
   (<span class="org-keyword">setq</span> notes-tags '())
   (<span class="org-keyword">dolist</span> (notes notes-keyword-list)
-     (<span class="org-keyword">setq</span> notes-tags (cl-remove-if #'string-empty-p (append (split-string (cadr (assoc <span class="org-string">"FILETAGS"</span> (cadr notes)))  <span class="org-string">":"</span>) notes-tags))))
+    (<span class="org-keyword">setq</span> notes-tags (append (entry-tags notes) notes-tags)))
   (delete-dups notes-tags)
 
   (<span class="org-keyword">setq</span> all-tags '())
   (<span class="org-keyword">setq</span> all-tags (cl-concatenate 'list article-tags project-tags other-tags notes-tags))
   (delete-dups all-tags)
 
-  <span class="org-comment-delimiter">; </span><span class="org-comment">generate .org files for all tags
-</span>  (<span class="org-keyword">dolist</span> (tag all-tags)
-    (<span class="org-keyword">with-temp-file</span> (format <span class="org-string">"tag/%s.org"</span> tag)
-      (insert (format <span class="org-string">"#+TITLE: Pages tagged %s\n"</span> tag))))
-
-  <span class="org-comment-delimiter">; </span><span class="org-comment">append "* Articles" headline
-</span>  (<span class="org-keyword">dolist</span> (tag article-tags)
-    (write-region (format <span class="org-string">"* Articles tagged ~%s~\n"</span> tag) nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append))
-  <span class="org-comment-delimiter">; </span><span class="org-comment">add entry of an article to its tag.org's
-</span>  (<span class="org-keyword">dolist</span> (article article-keyword-list)
-    (<span class="org-keyword">dolist</span> (tag (split-string (cadr (assoc <span class="org-string">"TAGS[]"</span> (cadr article)))  <span class="org-string">" +"</span>))
-      (write-region (format <span class="org-string">"- [[../%s][%s]]\n"</span> (car article) (cadr (assoc <span class="org-string">"TITLE"</span> (cadr article))))
-                    nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append)))
-
-  <span class="org-comment-delimiter">; </span><span class="org-comment">append "* Projects" headline
-</span>  (<span class="org-keyword">dolist</span> (tag project-tags)
-    (write-region (format <span class="org-string">"* Projects tagged ~%s~\n"</span> tag) nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append))
-  <span class="org-comment-delimiter">; </span><span class="org-comment">add entry of a project to its tag.org's
-</span>  (<span class="org-keyword">dolist</span> (project project-keyword-list)
-    (<span class="org-keyword">dolist</span> (tag (split-string (cadr (assoc <span class="org-string">"TAGS[]"</span> (cadr project)))  <span class="org-string">" +"</span>))
-      (write-region (format <span class="org-string">"- [[../%s][%s]]\n"</span> (car project) (cadr (assoc <span class="org-string">"TITLE"</span> (cadr project))))
-                    nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append)))
-
-  <span class="org-comment-delimiter">; </span><span class="org-comment">append "* Other" headline
-</span>  (<span class="org-keyword">dolist</span> (tag other-tags)
-    (write-region (format <span class="org-string">"* Other tagged ~%s~\n"</span> tag) nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append))
-  <span class="org-comment-delimiter">; </span><span class="org-comment">add entry of other to its tag.org's
-</span>  (<span class="org-keyword">dolist</span> (other other-keyword-list)
-    (<span class="org-keyword">dolist</span> (tag (split-string (cadr (assoc <span class="org-string">"TAGS[]"</span> (cadr other)))  <span class="org-string">" +"</span>))
-      (write-region (format <span class="org-string">"- [[../%s][%s]]\n"</span> (car other) (cadr (assoc <span class="org-string">"TITLE"</span> (cadr other))))
-                    nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append)))
-
-  <span class="org-comment-delimiter">; </span><span class="org-comment">append "* Notes" headline
-</span>  (<span class="org-keyword">dolist</span> (tag notes-tags)
-    (write-region (format <span class="org-string">"* Notes tagged ~%s~\n"</span> tag) nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append))
-  <span class="org-comment-delimiter">; </span><span class="org-comment">add entry of notes to its tag.org's
-</span>  (<span class="org-keyword">dolist</span> (notes notes-keyword-list)
-    (<span class="org-keyword">dolist</span> (tag (cl-remove-if #'string-empty-p (split-string (cadr (assoc <span class="org-string">"FILETAGS"</span> (cadr notes)))  <span class="org-string">":"</span>)))
-      <span class="org-comment-delimiter">; </span><span class="org-comment">TODO hardcoded string-replace
-</span>      (write-region (format <span class="org-string">"- [[../%s][%s]]\n"</span> (string-replace <span class="org-string">"~/org/roam"</span> <span class="org-string">"notes"</span> (car notes)) (cadr (assoc <span class="org-string">"TITLE"</span> (cadr notes))))
-                    nil (format <span class="org-string">"tag/%s.org"</span> tag) 'append)))
-  )
+  (<span class="org-keyword">dolist</span> (tag all-tags)
+    (<span class="org-keyword">let*</span> ((sections
+            (delq nil
+                 (mapcar
+                  (<span class="org-keyword">lambda</span> (section)
+                    (<span class="org-keyword">let</span> ((entries
+                           (cl-remove-if-not
+                            (<span class="org-keyword">lambda</span> (entry)
+                              (member tag (<span class="org-keyword">if</span> (equal (car section) <span class="org-string">"notes"</span>)
+                                              (entry-tags entry)
+                                            (split-string (keyword-value entry <span class="org-string">"TAGS[]"</span>) <span class="org-string">" +"</span>))))
+                            (caddr section))))
+                      (<span class="org-keyword">when</span> entries (list (car section) (cadr section) entries))))
+                  (list (list <span class="org-string">"article"</span> <span class="org-string">"article/"</span> article-keyword-list)
+                        (list <span class="org-string">"project"</span> <span class="org-string">"project/"</span> project-keyword-list)
+                        (list <span class="org-string">"other"</span> <span class="org-string">"other/"</span> other-keyword-list)
+                        (list <span class="org-string">"notes"</span> <span class="org-string">"notes/"</span> notes-keyword-list)))))
+           (count (apply #'+ (mapcar (<span class="org-keyword">lambda</span> (section) (length (caddr section))) sections))))
+      (<span class="org-keyword">with-temp-file</span> (format <span class="org-string">"tag/%s.org"</span> tag)
+        (insert (format <span class="org-string">"#+TITLE: Pages tagged %s\n#+TAG_INDEX: %s\n\n#+begin_export html\n"</span> tag tag))
+        (insert (format <span class="org-string">"&lt;div class=\"tag-heading\"&gt;&lt;h1&gt;Pages tagged &lt;span&gt;%s&lt;/span&gt;&lt;/h1&gt;&lt;span class=\"tag-count\"&gt;%d %s&lt;/span&gt;&lt;/div&gt;\n"</span>
+                        (org-html-encode-plain-text tag)
+                        count (<span class="org-keyword">if</span> (= count 1) <span class="org-string">"page"</span> <span class="org-string">"pages"</span>)))
+        (insert (generate-dated-index sections))
+        (insert <span class="org-string">"#+end_export\n"</span>)))))
 </code></pre>
 </div>
 </div>
@@ -853,8 +879,16 @@ Gets called by <code>org-publish</code> before the main publishing step.
   (generate-main-rss-feed)
   (generate-tag-files))
 
-(<span class="org-keyword">defun</span>  <span class="org-function-name">roam-prepare-publishing</span> (project-properties)
-  (roam-fill-keyword-lists))
+(<span class="org-keyword">defun</span> <span class="org-function-name">roam-prepare-publishing</span> (project-properties)
+  (<span class="org-keyword">let</span> ((index (expand-file-name <span class="org-string">"index.org"</span> org-roam-directory)))
+    (<span class="org-keyword">setq</span> notes-keyword-list
+          (cl-stable-sort
+           (<span class="org-keyword">cl-loop</span> for file in (org-publish-get-base-files
+                                 (cons <span class="org-string">"roam.andersch.dev"</span> project-properties))
+                    for entry = (<span class="org-keyword">unless</span> (equal file index) (get-org-file-keywords file))
+                    when (<span class="org-keyword">and</span> entry (not (roam-note-marked-for-noexport-p entry)))
+                    collect entry)
+           #'string&gt; <span class="org-builtin">:key</span> (<span class="org-keyword">lambda</span> (entry) (<span class="org-keyword">or</span> (entry-date entry) <span class="org-string">""</span>))))))
 </code></pre>
 </div>
 </div>
@@ -889,8 +923,10 @@ Gets called by <code>org-publish</code> before the main publishing step.
   <span class="org-comment-delimiter">; </span><span class="org-comment">insert after :PROPERTY: drawer
 </span>  (<span class="org-keyword">if</span> (string-match-p <span class="org-string">":PROPERTIES:"</span> (thing-at-point 'line t))
      (<span class="org-keyword">progn</span> (search-forward <span class="org-string">":END:"</span> nil t) (forward-line 1)))
-  (<span class="org-keyword">unless</span> (string= (org-get-title) <span class="org-string">"andersch.dev"</span>) <span class="org-comment-delimiter">; </span><span class="org-comment">NOTE: hardcoded workaround
-</span>  (<span class="org-keyword">when</span> (eq backend 'html)
+  <span class="org-comment-delimiter">; </span><span class="org-comment">section indexes are lists, so they get no heading; articles still do
+</span>  (<span class="org-keyword">unless</span> (<span class="org-keyword">or</span> (member (org-get-title) '(<span class="org-string">"andersch.dev"</span> <span class="org-string">"Articles"</span> <span class="org-string">"Projects"</span> <span class="org-string">"Other"</span> <span class="org-string">"Notes"</span>))
+              (assoc <span class="org-string">"TAG_INDEX"</span> (org-collect-keywords '(<span class="org-string">"TAG_INDEX"</span>))))
+  (<span class="org-keyword">when</span> (eq backend 'html)
     (<span class="org-keyword">let*</span> ((tags (<span class="org-keyword">if</span> org-file-tags org-file-tags nil))
            (date (cadar (org-collect-keywords '(<span class="org-string">"DATE"</span>))))
            (description (cadar (org-collect-keywords '(<span class="org-string">"DESCRIPTION"</span>))))
@@ -946,7 +982,7 @@ See <a href="https://www.gnu.org/software/emacs/manual/html_node/org/Publishing-
                                      (postamble <span class="org-string">"footer"</span> <span class="org-string">"postamble"</span>))
              <span class="org-builtin">:html-html5-fancy</span>     t
              <span class="org-comment-delimiter">; </span><span class="org-comment">TODO head defined else where and noweb it here
-</span>             <span class="org-builtin">:html-head</span>            (concat <span class="org-string">"&lt;link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\"&gt;\n"</span>
+</span>             <span class="org-builtin">:html-head</span>            (concat <span class="org-string">"&lt;link rel=\"icon\" type=\"image/png\" href=\"/favicon.png?v=2\"&gt;\n"</span>
                                            <span class="org-string">"&lt;link rel=\"stylesheet\" href=\"/style.css\"&gt;\n"</span>
                                            <span class="org-comment-delimiter">; </span><span class="org-comment">NOTE import ubuntu font for now TODO embed in repo
 </span>                                           <span class="org-string">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin\"&gt;"</span>
@@ -1021,7 +1057,7 @@ Wiki portion of the site as a separate project.
              <span class="org-builtin">:html-html5-fancy</span>     t
              <span class="org-comment-delimiter">; </span><span class="org-comment">TODO head defined else where and noweb it here
 </span>             <span class="org-builtin">:html-head</span>            (concat <span class="org-string">"&lt;title&gt;andersch.dev&lt;/title&gt;\n"</span>
-                                           <span class="org-string">"&lt;link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\"&gt;\n"</span>
+                                           <span class="org-string">"&lt;link rel=\"icon\" type=\"image/png\" href=\"/favicon.png?v=2\"&gt;\n"</span>
                                            <span class="org-string">"&lt;link rel=\"stylesheet\" href=\"/style.css\"&gt;\n"</span>
                                            <span class="org-comment-delimiter">; </span><span class="org-comment">NOTE import ubuntu font for now TODO embed in repo
 </span>                                           <span class="org-string">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin\"&gt;"</span>
@@ -1061,9 +1097,76 @@ Wiki portion of the site as a separate project.
 </div>
 </div>
 </div>
-<div id="outline-container-org-publish" class="outline-2">
-<h2 id="org-publish"><span class="section-number-2">16.</span> <a href="#org-publish">org-publish</a></h2>
+<div id="outline-container-Code%20snippets" class="outline-2">
+<h2 id="Code%20snippets"><span class="section-number-2">16.</span> <a href="#Code%20snippets">Code snippets</a></h2>
 <div class="outline-text-2" id="text-16">
+</div>
+<div id="outline-container-Generate%20Article%20Image%20Preview" class="outline-3">
+<h3 id="Generate%20Article%20Image%20Preview"><span class="section-number-3">16.1.</span> <a href="#Generate%20Article%20Image%20Preview">Generate Article Image Preview</a></h3>
+<div class="outline-text-3" id="text-16-1">
+<p>
+TODO only used to generate preview image, move to filter function
+</p>
+</div>
+</div>
+<div id="outline-container-Generate%20a%20dated%20index" class="outline-3">
+<h3 id="Generate%20a%20dated%20index"><span class="section-number-3">16.2.</span> <a href="#Generate%20a%20dated%20index">Generate a dated index</a></h3>
+<div class="outline-text-3" id="text-16-2">
+<p>
+One line per entry: full date, title, tags. Shared by the homepage and tag
+indexes. The homepage limits each section; tag indexes show every match.
+</p>
+</div>
+</div>
+<div id="outline-container-Generate%20a%20reading%20column" class="outline-3">
+<h3 id="Generate%20a%20reading%20column"><span class="section-number-3">16.3.</span> <a href="#Generate%20a%20reading%20column">Generate a reading column</a></h3>
+<div class="outline-text-3" id="text-16-3">
+<p>
+Preview on the left, title and date on the right. Used by the article/,
+project/ and other/ indexes. The notes/ index uses the same layout without
+previews. The title link covers the row, and tag links sit above it so each
+can be opened separately.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">generate-reading-column</span> (entries <span class="org-type">&amp;optional</span> dates-only)
+  (concat (<span class="org-keyword">if</span> dates-only <span class="org-string">"&lt;div class=\"column-list dates-only\"&gt;\n"</span>
+            <span class="org-string">"&lt;div class=\"column-list\"&gt;\n"</span>)
+          (mapconcat
+           (<span class="org-keyword">lambda</span> (entry)
+             (<span class="org-keyword">let</span> ((image (keyword-value entry <span class="org-string">"IMAGE"</span>))
+                   (href (entry-href entry)))
+               (format <span class="org-string">"&lt;div class=\"column-entry\"&gt;%s&lt;span class=\"column-body\"&gt;&lt;span class=\"column-heading\"&gt;&lt;a class=\"column-title\" href=\"%s\"&gt;%s&lt;/a&gt;&lt;span class=\"column-date\"&gt;%s&lt;/span&gt;&lt;/span&gt;&lt;span class=\"column-desc\"&gt;%s&lt;/span&gt;&lt;span class=\"column-tags\"&gt;%s&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;\n"</span>
+                       (<span class="org-keyword">if</span> dates-only <span class="org-string">""</span>
+                         (format <span class="org-string">"&lt;span class=\"column-aside\"&gt;%s&lt;/span&gt;"</span>
+                                 (<span class="org-keyword">if</span> (<span class="org-keyword">and</span> image (not (string-empty-p image)))
+                                     (format <span class="org-string">"&lt;img src=\"%s/%s\" alt=\"\"&gt;"</span> href image)
+                                   <span class="org-string">""</span>)))
+                       href
+                       (org-html-encode-plain-text (<span class="org-keyword">or</span> (keyword-value entry <span class="org-string">"TITLE"</span>)
+                                                       (file-name-base (car entry))))
+                       (<span class="org-keyword">or</span> (entry-date entry) <span class="org-string">""</span>)
+                       (org-html-encode-plain-text (<span class="org-keyword">or</span> (keyword-value entry <span class="org-string">"DESCRIPTION"</span>) <span class="org-string">""</span>))
+                       (mapconcat (<span class="org-keyword">lambda</span> (tag) (format <span class="org-string">"&lt;a href=\"/tag/%s.html\"&gt;%s&lt;/a&gt;"</span> tag tag))
+                                  (entry-tags entry) <span class="org-string">" "</span>))))
+           entries <span class="org-string">""</span>)
+          <span class="org-string">"&lt;/div&gt;\n"</span>))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-Generate%20Article%20Snippets" class="outline-3">
+<h3 id="Generate%20Article%20Snippets"><span class="section-number-3">16.4.</span> <a href="#Generate%20Article%20Snippets">Generate Article Snippets</a></h3>
+<div class="outline-text-3" id="text-16-4">
+<p>
+Kept for the per-article export. The section indexes no longer call this.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org-publish" class="outline-2">
+<h2 id="org-publish"><span class="section-number-2">17.</span> <a href="#org-publish">org-publish</a></h2>
+<div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code><span class="org-comment-delimiter">; </span><span class="org-comment">caching
 </span>(<span class="org-keyword">setq</span> org-publish-timestamp-directory <span class="org-string">"./.org-timestamps/"</span>)
@@ -1088,22 +1191,6 @@ Wiki portion of the site as a separate project.
 (message <span class="org-string">"Build complete: andersch.dev"</span>)
 </code></pre>
 </div>
-</div>
-</div>
-<div id="outline-container-Code%20snippets" class="outline-2">
-<h2 id="Code%20snippets"><span class="section-number-2">17.</span> <a href="#Code%20snippets">Code snippets</a></h2>
-<div class="outline-text-2" id="text-17">
-</div>
-<div id="outline-container-Generate%20Article%20Image%20Preview" class="outline-3">
-<h3 id="Generate%20Article%20Image%20Preview"><span class="section-number-3">17.1.</span> <a href="#Generate%20Article%20Image%20Preview">Generate Article Image Preview</a></h3>
-<div class="outline-text-3" id="text-17-1">
-<p>
-TODO only used to generate preview image, move to filter function
-</p>
-</div>
-</div>
-<div id="outline-container-Generate%20Article%20Snippets" class="outline-3">
-<h3 id="Generate%20Article%20Snippets"><span class="section-number-3">17.2.</span> <a href="#Generate%20Article%20Snippets">Generate Article Snippets</a></h3>
 </div>
 </div>
 <div id="outline-container-Resources" class="outline-2">

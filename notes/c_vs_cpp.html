@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-07-03 Wed></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>C vs. C++</h1>
@@ -232,7 +233,7 @@ Top C features missing from C++
 </p>
 <ul class="org-ul">
 <li>Better initializers</li>
-<li>&#x2026;</li>
+<li>&hellip;</li>
 </ul>
 </div>
 </div>
@@ -243,6 +244,9 @@ Top C features missing from C++
 Top C++ features missing from C
 </p>
 <ul class="org-ul">
+<li>Operator overloading (for matrix math)</li>
+<li>Function overloading</li>
+<li>typesafe enums (<code>enum class</code>)</li>
 <li>Lambdas (just to implement <code>defer</code>)</li>
 <li><code>auto</code> keyword for type inference</li>
 <li>Compile-Time String Hashes</li>
@@ -251,6 +255,112 @@ Top C++ features missing from C
 <li>Methods (for chaining: <code>thing.do().make().finish()</code>)</li>
 <li>Struct Namespaces</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-ID-80c2bb59-9fc3-4d2b-8ae3-574a6b24d089" class="outline-2">
+<h2 id="ID-80c2bb59-9fc3-4d2b-8ae3-574a6b24d089"><a href="#ID-80c2bb59-9fc3-4d2b-8ae3-574a6b24d089">C++</a></h2>
+<div class="outline-text-2" id="text-C%2B%2B">
+<p>
+C++ is a systems <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming language</a> that extends <a href="c.html#ID-3a2b1a06-f048-460c-9944-04b11d4fdbcd">C</a> with <a href="programming.html#ID-92f6afb5-d1f2-4067-8925-61168671dea7">object-oriented</a>
+features.
+</p>
+</div>
+<div id="outline-container-Standard%20Template%20Library%20%28STL%29" class="outline-3">
+<h3 id="Standard%20Template%20Library%20%28STL%29"><a href="#Standard%20Template%20Library%20%28STL%29">Standard Template Library (STL)</a></h3>
+<div class="outline-text-3" id="text-Standard%20Template%20Library%20%28STL%29">
+<p>
+The C++ STL offers a collection of algorithms and data structures using
+templates.
+</p>
+
+<p>
+Containers:
+</p>
+<ul class="org-ul">
+<li>Sequential:  <code>vector</code>, <code>deque</code>, <code>list</code></li>
+<li>Associative: <code>set</code>, <code>map</code>, <code>multiset</code>, <code>multimap</code></li>
+<li>Unordered:   <code>unordered_set</code>, <code>unordered_map</code>, <code>unordered_multiset</code>, <code>unordered_multimap</code></li>
+<li>Wrappers:    <code>stack</code>, <code>queue</code>, <code>priority_queue</code></li>
+</ul>
+
+<p>
+Iterators: <code>&lt;iterator&gt;</code>
+</p>
+<ul class="org-ul">
+<li>Input/Output: <code>std::begin</code>, <code>std::rbegin</code>, <code>std::end</code>, <code>std::rend</code></li>
+<li>Advance:      <code>std::next</code>,  <code>std::prev</code>, <code>std::advance</code></li>
+</ul>
+
+<p>
+Algorithms: <code>&lt;algorithm&gt;</code>
+</p>
+<ul class="org-ul">
+<li>Sorting:        <code>sort</code>, <code>stable_sort</code></li>
+<li>Searching:      <code>find</code>, <code>binary_search</code></li>
+<li>Transformation: <code>copy</code>, <code>transform</code>, <code>reverse</code></li>
+<li>Set Operations: <code>set_union</code>, <code>set_intersection</code></li>
+</ul>
+
+<p>
+Misc.:
+</p>
+<ul class="org-ul">
+<li>Input/Output:                <code>&lt;iostream&gt;</code></li>
+<li>Strings:                     <code>std::string</code>, <code>std::string_view</code></li>
+<li>Time:                        <code>&lt;chrono&gt;</code></li>
+<li>Memory Management:           <code>&lt;memory&gt;</code>, <code>std::unique_ptr</code>, <code>std::shared_ptr</code></li>
+<li>Threading:                   <code>&lt;thread&gt;</code></li>
+<li>File System:                 <code>&lt;filesystem&gt;</code></li>
+<li>Function Objects (Functors): <code>operator()</code>, <code>std::function</code></li>
+<li>Exception Handling:          <code>&lt;exception&gt;</code>, <code>std::exception</code></li>
+<li>Allocators:                  <code>std::allocator</code>, custom allocators</li>
+<li>Random:                      <code>&lt;random&gt;</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Templates" class="outline-3">
+<h3 id="Templates"><a href="#Templates">Templates</a></h3>
+<div class="outline-text-3" id="text-Templates">
+<p>
+Key tools:
+</p>
+<ul class="org-ul">
+<li><code>template &lt;typename T&gt;</code>: Declare a template</li>
+<li><code>decltype</code>: Get type at compile-time</li>
+<li><code>auto</code>: Infer type</li>
+<li><code>constexpr</code>: Function can be evaluated at compile-time</li>
+<li><code>&lt;type_traits&gt;</code>: <code>std::is_same</code>, <code>std::is_integral</code>, <code>std::enable_if</code>, <code>std::conditional</code></li>
+<li><code>template &lt;typename... Args&gt;</code>: Variadic template accepts variable parameters</li>
+<li>Template Specialization: Define template for a specific type</li>
+</ul>
+</div>
+<div id="outline-container-Simple%20Example" class="outline-4">
+<h4 id="Simple%20Example"><a href="#Simple%20Example">Simple Example</a></h4>
+<div class="outline-text-4" id="text-Simple%20Example">
+<div class="org-src-container">
+<pre class="src src-cpp"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+
+<span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">T</span>&gt; <span class="org-comment-delimiter">// </span><span class="org-comment">typename or class
+</span><span class="org-type">void</span> <span class="org-function-name">swap</span>(<span class="org-type">T</span>&amp; <span class="org-variable-name">a</span>, <span class="org-type">T</span>&amp; <span class="org-variable-name">b</span>) {
+    <span class="org-type">T</span> <span class="org-variable-name">temp</span> = a;
+    a = b;
+    b = temp;
+}
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-type">int</span> <span class="org-variable-name">x</span> = 10;
+    <span class="org-type">int</span> <span class="org-variable-name">y</span> = 20;
+
+    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Before swap: x = "</span> &lt;&lt; x &lt;&lt; <span class="org-string">", y = "</span> &lt;&lt; y &lt;&lt; <span class="org-constant">std</span>::endl;
+    swap(x, y);
+    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"After swap: x = "</span> &lt;&lt; x &lt;&lt; <span class="org-string">", y = "</span> &lt;&lt; y &lt;&lt; <span class="org-constant">std</span>::endl;
+
+    <span class="org-keyword">return</span> 0;
+}
+</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </main>

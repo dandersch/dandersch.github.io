@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-10-26 Sat></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Gaussian Splatting</h1>
@@ -237,23 +238,6 @@ To achieve the optimal parameters that accurately captures the real-life scene
 for these splats, <a href="gradient_descent.html#ID-17216e76-b020-47db-b5d2-bce1349b653d">gradient descent</a> is used with the similarity to the references
 images from various angles being the loss function.
 </p>
-<div id="outline-container-COLMAP" class="outline-2">
-<h2 id="COLMAP"><a href="#COLMAP"><span class="todo TODO">TODO</span> COLMAP</a></h2>
-</div>
-<div id="outline-container-~.ply~%20File%20Format" class="outline-2">
-<h2 id="~.ply~%20File%20Format"><a href="#~.ply~%20File%20Format"><span class="todo TODO">TODO</span> <code>.ply</code> File Format</a></h2>
-</div>
-<div id="outline-container-Spatially%20Ordered%20Gaussians%20%28SOG%29" class="outline-2">
-<h2 id="Spatially%20Ordered%20Gaussians%20%28SOG%29"><a href="#Spatially%20Ordered%20Gaussians%20%28SOG%29"><span class="todo TODO">TODO</span> Spatially Ordered Gaussians (SOG)</a></h2>
-<div class="outline-text-2" id="text-Spatially%20Ordered%20Gaussians%20%28SOG%29">
-<p>
-<a href="https://github.com/playcanvas/splat-transform">GitHub - playcanvas/splat-transform: CLI tool for 3D Gaussian splat format conversion and transformation</a>
-</p>
-<ul class="org-ul">
-<li>Can losslessly compress a .ply by up to 95%</li>
-</ul>
-</div>
-</div>
 <div id="outline-container-Software" class="outline-2">
 <h2 id="Software"><a href="#Software">Software</a></h2>
 <div class="outline-text-2" id="text-Software">
@@ -261,6 +245,8 @@ images from various angles being the loss function.
 <li><a href="https://github.com/ArthurBrussee/brush">Brush - 3D Reconstruction for all</a></li>
 <li><a href="https://www.jawset.com/">Jawset Postshot</a></li>
 <li><a href="https://superspl.at/">SuperSplat - The Home for 3D Gaussian Splatting</a></li>
+<li><a href="https://github.com/playcanvas/splat-transform">splat-transform: CLI tool for 3D Gaussian splat format conversion and transformation</a></li>
+<li><a href="https://github.com/electronicarts/mesh2splat/blob/main/README.md">mesh2splat - convert 3D meshes into 3DGS models</a></li>
 </ul>
 </div>
 </div>
@@ -272,6 +258,10 @@ images from various angles being the loss function.
 <li><a href="https://guanjunwu.github.io/4dgs/">4D Gaussian Splatting for Real-Time Dynamic Scene Rendering</a></li>
 <li><a href="https://trianglesplatting2.github.io/trianglesplatting2/">Triangle Splatting+</a></li>
 <li><a href="https://repo-sam.inria.fr/nerphys/on-the-fly-nvs/">On-the-fly Reconstruction for Large-Scale Novel View Synthesis from Unposed Images</a></li>
+<li><a href="https://github.com/darshanmakwana412/tsplat#what-is-a-gaussian-splat">What is a gaussian splat?</a></li>
+<li><a href="https://3dgs.zip/">3dgs.zip: 3D Gaussian Splatting Resources</a></li>
+<li><a href="https://david-svitov.github.io/BBSplat_project_page/">BillBoard Splatting (BBSplat)</a></li>
+<li><a href="https://anttwo.github.io/sugar/">SuGaR: Surface-Aligned GS for Efficient 3D Mesh Reconstruction</a></li>
 </ul>
 </div>
 </div>

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-08 Sun></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Rendering API</h1>
@@ -233,7 +234,7 @@ List of common rendering APIs:
 <ul class="org-ul">
 <li><a href="opengl.html#ID-394d1edc-3e93-4914-ae21-6ffd17a6b163">OpenGL</a></li>
 <li>Vulkan</li>
-<li><a href="directx.html#ID-b99086b2-b138-4863-b51f-32f8912be018">DirectX</a> (i.e. Direct3D)</li>
+<li>DirectX (i.e. Direct3D)</li>
 <li>Metal</li>
 </ul>
 <div id="outline-container-Renderer%20API" class="outline-2">
@@ -247,9 +248,259 @@ Linux.
 </p>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-dfd099b9-db9a-4dc1-9fe5-5230edded61f" class="outline-2">
+<h2 id="ID-dfd099b9-db9a-4dc1-9fe5-5230edded61f"><a href="#ID-dfd099b9-db9a-4dc1-9fe5-5230edded61f">Batch Rendering</a></h2>
+<div class="outline-text-2" id="text-Batch%20Rendering">
+<p>
+Batch rendering is a rendering technique that most commonly describes a way to
+keep the number of draw calls issued per frame low by batching the relevant
+geometry beforehand.
+</p>
+</div>
+<div id="outline-container-Batch%20rendering%20with%20multiple%20textures" class="outline-3">
+<h3 id="Batch%20rendering%20with%20multiple%20textures"><a href="#Batch%20rendering%20with%20multiple%20textures">Batch rendering with multiple textures</a></h3>
+<div class="outline-text-3" id="text-Batch%20rendering%20with%20multiple%20textures">
+<p>
+Ways to use multiple textures with batch rendering in <a href="opengl.html#ID-394d1edc-3e93-4914-ae21-6ffd17a6b163">OpenGL</a>:
+</p>
+
+<ul class="org-ul">
+<li>Merge all textures on disk into one image offline and bind &amp; use it</li>
+
+<li>Build a texture atlas at runtime when loading in all spritesheets and use it</li>
+
+<li>Use texture arrays (<code>sampler2DArray</code>). Textures need to be same size or resized.</li>
+
+<li>Array of textures (<code>sampler2D tex_units[]</code>) inside fragment shader.
+<ul class="org-ul">
+<li>Bind textures as texture units and look up with index from VBO in a switch</li>
+<li>Indexing directly into array using a uniform is undefined behaviour</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://moonside.games/posts/sdl-gpu-sprite-batcher/">SDL GPU API Concepts: Sprite Batcher – Moonside Games</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-9740bdff-3438-4e3f-a434-ac8748f164bb" class="outline-2">
+<h2 id="ID-9740bdff-3438-4e3f-a434-ac8748f164bb"><a href="#ID-9740bdff-3438-4e3f-a434-ac8748f164bb">Command Buffer&nbsp;&nbsp;&nbsp<span class="tag"><span class="programming">programming</span></span></a></h2>
+<div class="outline-text-2" id="text-Command%20Buffer">
+<p>
+A command buffer (or pushbuffer) is a construct that enables a developer to
+collect <i>code as data</i> for later execution, e.g. by storing parameters to a
+function (and the function itself in some form) in a buffer and later iterating
+over that buffer and executing the function instead of calling the function
+directly then and there.
+</p>
+
+<p>
+Command buffers are popular in <a href="rendering_api.html#ID-aaa98db5-f284-4a8a-9b0e-9e650530df6d">rendering APIs</a>, since operations can be batched
+and uniformly performed on the buffer (such as sorting), before actually issuing
+draw calls.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-928c0300-64a6-4c56-9eb9-bd4b752de991" class="outline-2">
+<h2 id="ID-928c0300-64a6-4c56-9eb9-bd4b752de991"><a href="#ID-928c0300-64a6-4c56-9eb9-bd4b752de991">Drawing API</a></h2>
+<div class="outline-text-2" id="text-Drawing%20API">
+<p>
+A drawing API in a graphical application is built on top of a <a href="rendering_api.html#ID-aaa98db5-f284-4a8a-9b0e-9e650530df6d">renderer API</a> and
+distinguishes itself by being concerned with higher-level, cross-platform ways
+of issuing draw commands of e.g. shapes, lines and text (as opposed to vertices,
+buffers etc.). The distinction may blur when such functions are part of the
+renderer API.
+</p>
+</div>
+<div id="outline-container-Design" class="outline-3">
+<h3 id="Design"><a href="#Design">Design</a></h3>
+<div class="outline-text-3" id="text-Design">
+</div>
+<div id="outline-container-Buckets" class="outline-4">
+<h4 id="Buckets"><a href="#Buckets">Buckets</a></h4>
+<div class="outline-text-4" id="text-Buckets">
+<ul class="org-ul">
+<li>Idea: Encapsulate a command buffer in a data structure called bucket</li>
+<li>&hellip;</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">D_Bucket</span> <span class="org-type">D_Bucket</span>;
+<span class="org-keyword">struct</span> <span class="org-type">D_Bucket</span>
+{
+    <span class="org-type">R_PassList</span> <span class="org-variable-name">passes</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">pass list
+</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">pass parameter stacks
+</span>    <span class="org-type">U64</span> <span class="org-variable-name">last_cmd_stack_gen</span>;
+    <span class="org-type">U64</span> <span class="org-variable-name">current_stack_gen</span>;
+    D_DeclBucketStacks;
+};
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-API" class="outline-4">
+<h4 id="API"><a href="#API">API</a></h4>
+<div class="outline-text-4" id="text-API">
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-type">void</span> <span class="org-function-name">D_BeginFrame</span>();
+<span class="org-type">void</span> <span class="org-function-name">D_EndFrame</span>();
+
+<span class="org-type">D_Bucket</span> *<span class="org-function-name">D_BucketMake</span>(<span class="org-type">Arena</span> *<span class="org-variable-name">arena</span>);
+<span class="org-type">void</span> <span class="org-function-name">D_BucketConcatInPlace</span>(<span class="org-type">D_Bucket</span> *<span class="org-variable-name">to_push</span>);
+<span class="org-type">void</span> <span class="org-function-name">D_PushBucket</span>(<span class="org-type">Arena</span> *<span class="org-variable-name">arena</span>, <span class="org-type">D_Bucket</span> *<span class="org-variable-name">bucket</span>);
+<span class="org-type">void</span> <span class="org-function-name">D_PopBucket</span>(<span class="org-type">void</span>);
+<span class="org-preprocessor">#define</span> <span class="org-function-name">D_BucketScope</span>(<span class="org-variable-name">arena</span>, <span class="org-variable-name">bucket</span>) DeferLoop(D_PushBucket((arena), (bucket)), D_PopBucket())
+<span class="org-type">Arena</span> *<span class="org-function-name">D_ActiveArena</span>(<span class="org-type">void</span>);
+<span class="org-type">D_Bucket</span> *<span class="org-function-name">D_ActiveBucket</span>(<span class="org-type">void</span>);
+<span class="org-type">void</span> <span class="org-function-name">D_Submit</span>(<span class="org-type">R_Handle</span> <span class="org-variable-name">window_r</span>, <span class="org-type">D_Bucket</span> *<span class="org-variable-name">bucket</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">text drawing
+</span><span class="org-type">F32</span> <span class="org-function-name">D_Text2D</span>(<span class="org-type">Vec2F32</span> <span class="org-variable-name">position</span>, <span class="org-type">F_Tag</span> <span class="org-variable-name">font</span>, <span class="org-type">F32</span> <span class="org-variable-name">size</span>, <span class="org-type">Vec4F32</span> <span class="org-variable-name">color</span>, <span class="org-type">String8</span> <span class="org-variable-name">string</span>);
+<span class="org-type">F32</span> <span class="org-function-name">D_Text2DF</span>(<span class="org-type">Vec2F32</span> <span class="org-variable-name">position</span>, <span class="org-type">F_Tag</span> <span class="org-variable-name">font</span>, <span class="org-type">F32</span> <span class="org-variable-name">size</span>, <span class="org-type">Vec4F32</span> <span class="org-variable-name">color</span>, <span class="org-type">char</span> *<span class="org-variable-name">fmt</span>, ...);
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-c8d65220-e41a-4d09-904b-00b3b364af6b" class="outline-2">
+<h2 id="ID-c8d65220-e41a-4d09-904b-00b3b364af6b"><a href="#ID-c8d65220-e41a-4d09-904b-00b3b364af6b">Rasterization</a></h2>
+<div class="outline-text-2" id="text-Rasterization">
+<p>
+Rasterization describes the process of mapping vector graphics, 3D models or
+polygons onto a pixel grid, such that the resulting image looks like a realistic
+2D projection of the underlying shape onto the screen.
+</p>
+
+<p>
+Rasterization is the most common rendering technique in real-time rendering,
+where <a href="rendering_api.html#ID-aaa98db5-f284-4a8a-9b0e-9e650530df6d">rendering APIs</a> such as <a href="opengl.html#ID-394d1edc-3e93-4914-ae21-6ffd17a6b163">OpenGL</a> or Direct3D implement rasterization
+algorithms that deal primarily with the problem of rasterizing triangles.
+</p>
+</div>
+<div id="outline-container-Rasterization--Resources" class="outline-3">
+<h3 id="Rasterization--Resources"><a href="#Rasterization--Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Rasterization--Resources">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=yyJ-hdISgnw">Coding Adventure: Software Rasterizer</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-3854f976-cf4d-48a2-8cf6-1bbdec8a4e95" class="outline-2">
+<h2 id="ID-3854f976-cf4d-48a2-8cf6-1bbdec8a4e95"><a href="#ID-3854f976-cf4d-48a2-8cf6-1bbdec8a4e95">Render pass</a></h2>
+<div class="outline-text-2" id="text-Render%20pass">
+<p>
+A render pass is a term used in the context of multipass rendering techniques. A
+render pass takes a series of attachments (such as color, depth or stencil
+buffers) and forms operations as defined by a pipeline and a series of commands
+and outputs the rendered images to a frame buffer. It typically includes
+operations such as clearing the frame buffer, setting up render targets, binding
+shaders, and drawing geometry.
+</p>
+</div>
+<div id="outline-container-Example%20of%20a%20Render%20pass%20in%20OpenGL" class="outline-3">
+<h3 id="Example%20of%20a%20Render%20pass%20in%20OpenGL"><a href="#Example%20of%20a%20Render%20pass%20in%20OpenGL">Example of a Render pass in OpenGL</a></h3>
+<div class="outline-text-3" id="text-Example%20of%20a%20Render%20pass%20in%20OpenGL">
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">1. Create and bind a framebuffer object (FBO)</span><span class="org-comment-delimiter"> */</span>
+<span class="org-type">GLuint</span> <span class="org-variable-name">framebuffer</span>;
+glGenFramebuffers(1, &amp;framebuffer);
+<span class="org-function-name">glBindFramebuffer</span>(<span class="org-type">GL_FRAMEBUFFER</span>, <span class="org-type">framebuffer</span>);
+
+<span class="org-comment-delimiter">/* </span><span class="org-comment">2) Attach color and depth/stencil buffers to the FBO</span><span class="org-comment-delimiter"> */</span>
+<span class="org-type">GLuint</span> <span class="org-variable-name">colorTexture</span>;
+glGenTextures(1, &amp;colorTexture);
+<span class="org-function-name">glBindTexture</span>(<span class="org-type">GL_TEXTURE_2D</span>, <span class="org-type">colorTexture</span>);
+<span class="org-function-name">glTexImage2D</span>(<span class="org-type">GL_TEXTURE_2D</span>, 0, <span class="org-type">GL_RGBA</span>, <span class="org-type">width</span>, <span class="org-type">height</span>, 0, <span class="org-type">GL_RGBA</span>, <span class="org-type">GL_UNSIGNED_BYTE</span>, <span class="org-constant">NULL</span>);
+<span class="org-function-name">glFramebufferTexture2D</span>(<span class="org-type">GL_FRAMEBUFFER</span>, <span class="org-type">GL_COLOR_ATTACHMENT0</span>, <span class="org-type">GL_TEXTURE_2D</span>, <span class="org-type">colorTexture</span>, 0);
+
+<span class="org-type">GLuint</span> <span class="org-variable-name">depthBuffer</span>;
+glGenRenderbuffers(1, &amp;depthBuffer);
+<span class="org-function-name">glBindRenderbuffer</span>(<span class="org-type">GL_RENDERBUFFER</span>, <span class="org-type">depthBuffer</span>);
+<span class="org-function-name">glRenderbufferStorage</span>(<span class="org-type">GL_RENDERBUFFER</span>, <span class="org-type">GL_DEPTH24_STENCIL8</span>, <span class="org-type">width</span>, <span class="org-type">height</span>);
+<span class="org-function-name">glFramebufferRenderbuffer</span>(<span class="org-type">GL_FRAMEBUFFER</span>, <span class="org-type">GL_DEPTH_STENCIL_ATTACHMENT</span>, <span class="org-type">GL_RENDERBUFFER</span>, <span class="org-type">depthBuffer</span>);
+
+<span class="org-comment-delimiter">/* </span><span class="org-comment">3) Set up the viewport and clear the buffers</span><span class="org-comment-delimiter"> */</span>
+glViewport(0, 0, width, height);
+<span class="org-function-name">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+<span class="org-comment-delimiter">/* </span><span class="org-comment">4) Bind shaders, set uniforms, and draw geometry</span><span class="org-comment-delimiter"> */</span>
+<span class="org-function-name">glUseProgram</span>(<span class="org-type">shaderProgram</span>);
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Set uniforms</span><span class="org-comment-delimiter"> */</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Draw geometry</span><span class="org-comment-delimiter"> */</span>
+
+<span class="org-comment-delimiter">/* </span><span class="org-comment">5) End render pass and unbind the framebuffer</span><span class="org-comment-delimiter"> */</span>
+<span class="org-function-name">glBindFramebuffer</span>(<span class="org-type">GL_FRAMEBUFFER</span>, 0);
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-dfd8ffab-5509-4762-8b2c-4cd117ae7e4c" class="outline-2">
+<h2 id="ID-dfd8ffab-5509-4762-8b2c-4cd117ae7e4c"><a href="#ID-dfd8ffab-5509-4762-8b2c-4cd117ae7e4c">Texture maps</a></h2>
+<div class="outline-text-2" id="text-Texture%20maps">
+<p>
+Texture mapping refers to the method of mapping a 2D image (a texture) onto a 3D
+model. In its simplest form, the texture maps colored pixels onto the surfaces
+of the model using UV coordinates.
+</p>
+</div>
+<div id="outline-container-Types%20of%20maps" class="outline-3">
+<h3 id="Types%20of%20maps"><a href="#Types%20of%20maps">Types of maps</a></h3>
+<div class="outline-text-3" id="text-Types%20of%20maps">
+<ul class="org-ul">
+<li><b>Diffuse map</b>: An image that represents the color inside the flat surfaces of an
+object. When the size of the texels (texture pixels) is not equal to the size
+of the pixels on the screen, texture filtering methods are used to determine
+which pixels of the texture should be sampled and how.</li>
+
+<li><b>Albedo map</b>: These correspond to a diffuse map without any lighting information
+in it.</li>
+
+<li><b>Height map</b>: A grayscale image representing the surface elevation at each
+point. They range from 0 (lowest point) to 1 (highest point). They are also
+used outside of computer graphics.</li>
+
+<li><b>Bump map</b>: Refers to the usage of a heightmap to create shadows inside the flat
+surfaces of the model. The illusion usually breaks when viewing the material
+at an angle.</li>
+
+<li><b>Displacement map</b>: Refers to the usage of a heightmap to create displaced
+geometry on the flat surfaces of an object.</li>
+
+<li><b>Normal map</b>: An RGB image encoding the normal vectors on the flat surfaces of
+an object. The RGB components correspond to the XYZ coordinates. However, the
+orientation of the coordinate axes depends on the space that was used. The
+most commonly used encoding is tangent space.</li>
+</ul>
+
+<p>
+Others:
+</p>
+<ul class="org-ul">
+<li>Ambient occlusion (AO) maps</li>
+<li>Specularity maps</li>
+<li>Roughness maps or gloss maps</li>
+<li>Metallness maps</li>
+<li>Transmission maps</li>
+<li>Emission maps</li>
+<li>Subsurface color maps</li>
+<li>Alpha maps</li>
+<li>Position maps</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://alain.xyz/blog/comparison-of-modern-graphics-apis">https://alain.xyz/blog/comparison-of-modern-graphics-apis</a></li>
 <li><a href="https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/">https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/</a></li>
@@ -257,6 +508,47 @@ Linux.
 <li><a href="https://edw.is/learning-vulkan/">How I learned Vulkan and wrote a small game engine with it</a></li>
 <li><a href="https://www.sebastianaaltonen.com/blog/no-graphics-api">No Graphics API — Sebastian Aaltonen</a></li>
 </ul>
+</div>
+<div id="outline-container-Color%20Space" class="outline-3">
+<h3 id="Color%20Space"><a href="#Color%20Space">Color Space</a></h3>
+<div class="outline-text-3" id="text-Color%20Space">
+<ul class="org-ul">
+<li><a href="https://www.makingsoftware.com/chapters/color-spaces-models-and-gamuts">Making Software: What is a color space?</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Text%20Rendering%20%28Font%20Rasterization%29" class="outline-3">
+<h3 id="Text%20Rendering%20%28Font%20Rasterization%29"><a href="#Text%20Rendering%20%28Font%20Rasterization%29">Text Rendering (Font Rasterization)</a></h3>
+<div class="outline-text-3" id="text-Text%20Rendering%20%28Font%20Rasterization%29">
+<ul class="org-ul">
+<li><a href="https://poniesandlight.co.uk/reflect/debug_print_text/">Texture-less Text Rendering</a></li>
+<li><a href="https://www.youtube.com/watch?v=qcMuyHzhvpI">A Brief Look at Text Rendering</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Signed%20Distance%20Function" class="outline-3">
+<h3 id="Signed%20Distance%20Function"><a href="#Signed%20Distance%20Function">Signed Distance Function</a></h3>
+<div class="outline-text-3" id="text-Signed%20Distance%20Function">
+<ul class="org-ul">
+<li><a href="https://iquilezles.org/articles/distfunctions2d/">2D distance functions</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-WebGL" class="outline-3">
+<h3 id="WebGL"><a href="#WebGL">WebGL</a></h3>
+<div class="outline-text-3" id="text-WebGL">
+<ul class="org-ul">
+<li><a href="https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html">WebGL State Diagram</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-DirectX%20%28Direct3D%29" class="outline-3">
+<h3 id="DirectX%20%28Direct3D%29"><a href="#DirectX%20%28Direct3D%29">DirectX (Direct3D)</a></h3>
+<div class="outline-text-3" id="text-DirectX%20%28Direct3D%29">
+<ul class="org-ul">
+<li><a href="https://gist.github.com/d7samurai/261c69490cce0620d0bfc93003cd1052">Minimal D3D11 Implementation</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

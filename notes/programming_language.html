@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,31 +199,31 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Programming Language</h1>
 <p>
 A programming language and its associated tools facilitate the conversion of
 human-readable programming code into machine code execution. The program that
-performs this conversion is called <a href="compiler.html#ID-5d27e875-01bf-4848-9470-613abbc3107b">compiler</a>.
+performs this conversion is called compiler.
 </p>
 <div id="outline-container-ID-ef4cab8b-c610-4b39-9d49-b0ebcc631a75" class="outline-2">
 <h2 id="ID-ef4cab8b-c610-4b39-9d49-b0ebcc631a75"><a href="#ID-ef4cab8b-c610-4b39-9d49-b0ebcc631a75">Awk</a></h2>
@@ -281,14 +282,54 @@ Features:
 </ul>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-af799584-9463-4c17-a749-7291ef235158" class="outline-2">
+<h2 id="ID-af799584-9463-4c17-a749-7291ef235158"><a href="#ID-af799584-9463-4c17-a749-7291ef235158">Abstract Syntax Tree (AST)&nbsp;&nbsp;&nbsp<span class="tag"><span class="compiler">compiler</span></span></a></h2>
+<div class="outline-text-2" id="text-Abstract%20Syntax%20Tree%20%28AST%29">
+<p>
+In <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming languages</a>, an abstract syntax tree (AST) describes a structural,
+hierarchical representation of a computer program.
+</p>
+</div>
+<div id="outline-container-Abstract%20Syntax%20Trees%20vs.%20Concrete%20Syntax%20Trees%20%28CST%29" class="outline-3">
+<h3 id="Abstract%20Syntax%20Trees%20vs.%20Concrete%20Syntax%20Trees%20%28CST%29"><a href="#Abstract%20Syntax%20Trees%20vs.%20Concrete%20Syntax%20Trees%20%28CST%29">Abstract Syntax Trees vs. Concrete Syntax Trees (CST)</a></h3>
+<div class="outline-text-3" id="text-Abstract%20Syntax%20Trees%20vs.%20Concrete%20Syntax%20Trees%20%28CST%29">
+<blockquote>
+<p>
+The difference is pretty simple, there's nothing too hard about it. In a CST, a
+= ((b + c) * d will have parenthesis and operator tokens encoded in it. AST will
+omit it. Standalone compilers usually parse straight to AST. CST only matters if
+you're building an IDE
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees">https://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://thesephist.com/posts/pl/">Build your own programming language</a></li>
 <li><a href="https://github.com/Robert-van-Engelen/tinylisp/blob/main/tinylisp.pdf">Lisp in 99 lines of C and how to write one yourself</a></li>
 <li><a href="https://bernsteinbear.com/blog/pl-writing/">Writing that changed how I think about PL</a></li>
 </ul>
+</div>
+<div id="outline-container-Tree-sitter" class="outline-3">
+<h3 id="Tree-sitter"><a href="#Tree-sitter">Tree-sitter</a></h3>
+<div class="outline-text-3" id="text-Tree-sitter">
+<ul class="org-ul">
+<li>Practical Algorithms for Incremental Software Development Environments. Tim A.
+Wagner. 1998</li>
+<li><a href="https://siraben.dev/2022/03/01/tree-sitter.html">How to write a tree-sitter grammar in an afternoon</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

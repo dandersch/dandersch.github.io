@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2025-01-07 Tue></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Asynchronous Programming</h1>
@@ -245,9 +246,79 @@ Asynchronous programming can be implemented in various ways:
 Examples of asynchrony:
 </p>
 <ul class="org-ul">
-<li><a href="javascript.html#ID-ab164c58-00fe-416f-aad1-e2b41367edb8">AJAX</a></li>
-<li><a href="async_io.html#ID-57e8f5d2-3139-44a9-9133-d0ae21099a76">async<sub>io</sub></a></li>
+<li>AJAX</li>
+<li><a href="#ID-57e8f5d2-3139-44a9-9133-d0ae21099a76">async<sub>io</sub></a></li>
 </ul>
+<div id="outline-container-ID-57e8f5d2-3139-44a9-9133-d0ae21099a76" class="outline-2">
+<h2 id="ID-57e8f5d2-3139-44a9-9133-d0ae21099a76"><a href="#ID-57e8f5d2-3139-44a9-9133-d0ae21099a76">Asynchronous IO (async<sub>io</sub>/asio)&nbsp;&nbsp;&nbsp<span class="tag"><span class="concurrency">concurrency</span></span></a></h2>
+<div class="outline-text-2" id="text-Asynchronous%20IO%20%28async_io%2Fasio%29">
+<p>
+In programming, the conventional form of handling Input/Output (IO) operations
+is to issue synchronous (or blocking) IO calls where the program has to wait for
+the IO operation to finish.
+</p>
+
+<p>
+To avoid this, the program could open a thread solely for performing the IO
+operation, but this comes with typical <a href="multithreading.html#ID-08c89846-0c43-460d-931a-9c824b3980ad">multithreading</a> issues like overhead and
+problems like race conditions. Additionally, the programming environment might
+not have threading capabilities - such as a browser running JavaScript. The
+alternative is to use asynchronous IO calls, typically provided by the operating
+system.
+</p>
+
+<p>
+Using asynchronous IO makes the most sense when the program is IO-bound.
+</p>
+</div>
+<div id="outline-container-Example%20for%20synchronous%20IO" class="outline-3">
+<h3 id="Example%20for%20synchronous%20IO"><a href="#Example%20for%20synchronous%20IO">Example for synchronous IO</a></h3>
+<div class="outline-text-3" id="text-Example%20for%20synchronous%20IO">
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">BUFFER_SIZE</span> 13
+<span class="org-type">char</span> <span class="org-variable-name">buf</span>[BUFFER_SIZE] = {0};
+<span class="org-type">FILE</span>* <span class="org-variable-name">fp</span> = fopen(<span class="org-string">"async_io.org"</span>, <span class="org-string">"r"</span>);
+<span class="org-keyword">if</span> (<span class="org-negation-char">!</span>fp) { <span class="org-comment-delimiter">/* </span><span class="org-comment">handle error</span><span class="org-comment-delimiter"> */</span> }
+<span class="org-type">int</span> <span class="org-variable-name">ret</span> = fread(buf, 1, BUFFER_SIZE, fp);
+<span class="org-keyword">if</span> (<span class="org-negation-char">!</span>ret) { <span class="org-comment-delimiter">/* </span><span class="org-comment">read failed</span><span class="org-comment-delimiter"> */</span> }
+<span class="org-keyword">else</span>      { printf(<span class="org-string">"%s\n"</span>, buf); }
+<span class="org-function-name">fclose</span>(<span class="org-type">fp</span>);
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-Example%20for%20asynchronous%20IO%20using%20~aio.h~%20in%20%5B%5Bid%3A3a2b1a06-f048-460c-9944-04b11d4fdbcd%5D%5BC%5D%5D" class="outline-3">
+<h3 id="Example%20for%20asynchronous%20IO%20using%20~aio.h~%20in%20%5B%5Bid%3A3a2b1a06-f048-460c-9944-04b11d4fdbcd%5D%5BC%5D%5D"><a href="#Example%20for%20asynchronous%20IO%20using%20~aio.h~%20in%20%5B%5Bid%3A3a2b1a06-f048-460c-9944-04b11d4fdbcd%5D%5BC%5D%5D">Example for asynchronous IO using <code>aio.h</code> in <a href="c.html#ID-3a2b1a06-f048-460c-9944-04b11d4fdbcd">C</a></a></h3>
+<div class="outline-text-3" id="text-Example%20for%20asynchronous%20IO%20using%20~aio.h~%20in%20%5B%5Bid%3A3a2b1a06-f048-460c-9944-04b11d4fdbcd%5D%5BC%5D%5D">
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">BUFFER_SIZE</span> 13
+<span class="org-type">char</span> <span class="org-variable-name">buf</span>[BUFFER_SIZE];
+<span class="org-type">FILE</span>* <span class="org-variable-name">fp</span> = fopen(<span class="org-string">"async_io.org"</span>, <span class="org-string">"r"</span>);
+<span class="org-keyword">if</span> (<span class="org-negation-char">!</span>fp) { <span class="org-comment-delimiter">/* </span><span class="org-comment">handle error</span><span class="org-comment-delimiter"> */</span> }
+
+<span class="org-keyword">struct</span> <span class="org-type">aiocb</span>* <span class="org-variable-name">aio</span> = malloc(<span class="org-keyword">sizeof</span>(<span class="org-keyword">struct</span> <span class="org-type">aiocb</span>)); <span class="org-comment-delimiter">// </span><span class="org-comment">asynchronous IO control block
+</span><span class="org-keyword">if</span> (<span class="org-negation-char">!</span>aio) { <span class="org-comment-delimiter">/* </span><span class="org-comment">handle failed malloc</span><span class="org-comment-delimiter"> */</span> }
+
+<span class="org-function-name">memset</span>(<span class="org-type">aio</span>, 0, <span class="org-keyword">sizeof</span>(*aio));
+aio-&gt;aio_buf    = buf;
+aio-&gt;aio_fildes = fileno(fp);
+aio-&gt;aio_nbytes = BUFFER_SIZE;
+aio-&gt;aio_offset = 0;
+
+<span class="org-type">int</span> <span class="org-variable-name">result</span> = aio_read(aio);
+<span class="org-keyword">if</span> (result &lt; 0) { <span class="org-comment-delimiter">/* </span><span class="org-comment">read failed</span><span class="org-comment-delimiter"> */</span> }
+
+<span class="org-keyword">while</span>(aio_error(aio) == EINPROGRESS) { <span class="org-comment-delimiter">/* </span><span class="org-comment">perform operations while async IO is still busy</span><span class="org-comment-delimiter"> */</span> }
+
+<span class="org-type">int</span> <span class="org-variable-name">ret</span> = aio_return(aio);
+<span class="org-keyword">if</span> (<span class="org-negation-char">!</span>ret) { <span class="org-comment-delimiter">/* </span><span class="org-comment">read failed</span><span class="org-comment-delimiter"> */</span> }
+<span class="org-keyword">else</span>      { printf(<span class="org-string">"%s\n"</span>, buf); }
+<span class="org-function-name">fclose</span>(<span class="org-type">fp</span>);
+</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div id="outline-container-Resources" class="outline-2">
 <h2 id="Resources"><a href="#Resources">Resources</a></h2>
 <div class="outline-text-2" id="text-Resources">

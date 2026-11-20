@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2023-04-06 Thu></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Coroutine</h1>
@@ -264,7 +265,7 @@ integer is often called <code>index</code>, <code>line</code>, or <code>sequence
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C" id="simple_coroutine"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">coroutine_t</span> {
+<pre class="src src-C" id="simple_coroutine"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">coroutine_t</span> {
     <span class="org-type">int</span>   <span class="org-variable-name">index</span>;
     <span class="org-type">float</span> <span class="org-variable-name">elapsed</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">optional</span><span class="org-comment-delimiter"> */</span>
 } <span class="org-type">coroutine_t</span>;
@@ -277,7 +278,7 @@ integer is often called <code>index</code>, <code>line</code>, or <code>sequence
 <span class="org-comment-delimiter">/* </span><span class="org-comment">useful macros</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">COROUTINE_WAIT</span>(<span class="org-variable-name">co</span>, <span class="org-variable-name">time</span>, <span class="org-variable-name">dt</span>) <span class="org-keyword">do</span> { <span class="org-keyword">case</span> __LINE__: co-&gt;index = __LINE__; co-&gt;elapsed += dt; <span class="org-keyword">do</span> { <span class="org-keyword">if</span> (co-&gt;elapsed &lt; time) { <span class="org-keyword">goto</span> <span class="org-constant">__co_end</span>; } <span class="org-keyword">else</span> { co-&gt;elapsed = 0; } } <span class="org-keyword">while</span> (0); } <span class="org-keyword">while</span> (0)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">COROUTINE_CASE</span>(<span class="org-variable-name">co</span>, <span class="org-variable-name">name</span>)     <span class="org-keyword">case</span> __LINE__: <span class="org-constant">name</span>: co-&gt;index = __LINE__;
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -285,7 +286,7 @@ Usage code after macro expansion would look like this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">coroutine_t</span> {
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">coroutine_t</span> {
     <span class="org-type">int</span>   <span class="org-variable-name">index</span>;
     <span class="org-type">float</span> <span class="org-variable-name">elapsed</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">optional</span><span class="org-comment-delimiter"> */</span>
 } <span class="org-type">coroutine_t</span>;
@@ -300,18 +301,18 @@ Usage code after macro expansion would look like this:
 <span class="org-preprocessor">#define</span> <span class="org-function-name">COROUTINE_CASE</span>(<span class="org-variable-name">co</span>, <span class="org-variable-name">name</span>)     <span class="org-keyword">case</span> __LINE__: <span class="org-constant">name</span>: co-&gt;index = __LINE__;
 <span class="org-type">void</span> <span class="org-function-name">some_function</span>(<span class="org-type">coroutine_t</span>* <span class="org-variable-name">co</span>)
 {
-  <span class="org-keyword">switch</span> (co-&gt;index)  { <span class="org-keyword">default</span>:                               <span class="org-comment-delimiter">// </span><span class="org-comment">START</span>
-    printf(<span class="org-string">"First\n"</span>);
-    co-&gt;index = __LINE__; COROUTINE_EXIT(co); <span class="org-keyword">case</span> __LINE__:;  <span class="org-comment-delimiter">// </span><span class="org-comment">YIELD</span>
-    printf(<span class="org-string">"Third\n"</span>);
-  } co-&gt;index = 0; <span class="org-constant">__co_end</span>:;                                  <span class="org-comment-delimiter">// </span><span class="org-comment">END</span>
-}
+  <span class="org-keyword">switch</span> (co-&gt;index)  { <span class="org-keyword">default</span>:                               <span class="org-comment-delimiter">// </span><span class="org-comment">START
+</span>    printf(<span class="org-string">"First\n"</span>);
+    co-&gt;index = __LINE__; COROUTINE_EXIT(co); <span class="org-keyword">case</span> __LINE__:;  <span class="org-comment-delimiter">// </span><span class="org-comment">YIELD
+</span>    printf(<span class="org-string">"Third\n"</span>);
+  } co-&gt;index = 0; <span class="org-constant">__co_end</span>:;                                  <span class="org-comment-delimiter">// </span><span class="org-comment">END
+</span>}
 
 <span class="org-keyword">static</span> <span class="org-type">coroutine_t</span> <span class="org-variable-name">co</span>;
 some_function(&amp;co);
 printf(<span class="org-string">"Second\n"</span>);
 some_function(&amp;co);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -323,7 +324,7 @@ Implementation without having to specify COROUTINE<sub>END</sub>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">coroutine_t</span>
 {
@@ -354,8 +355,8 @@ Implementation without having to specify COROUTINE<sub>END</sub>.
         <span class="org-keyword">while</span>(1) {
             i--;
             printf(<span class="org-string">"in while\n"</span>);
-            <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>i) <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">breaking works now</span>
-            yield;
+            <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>i) <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">breaking works now
+</span>            yield;
         }
 
         <span class="org-keyword">case</span>(test);
@@ -375,14 +376,14 @@ Implementation without having to specify COROUTINE<sub>END</sub>.
 
     coro_func(&amp;co);
     coro_func(&amp;co);
-    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">0.3f</span>
-    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">0.6f</span>
-    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">0.9f</span>
-    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">1.2f</span>
-    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">1.2f</span>
-    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">1.2f</span>
-}
-</pre>
+    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">0.3f
+</span>    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">0.6f
+</span>    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">0.9f
+</span>    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">1.2f
+</span>    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">1.2f
+</span>    coro_func(&amp;co); <span class="org-comment-delimiter">// </span><span class="org-comment">1.2f
+</span>}
+</code></pre>
 </div>
 </div>
 </div>
@@ -390,13 +391,13 @@ Implementation without having to specify COROUTINE<sub>END</sub>.
 <h3 id="Alternative%20Macro%20Implementation"><a href="#Alternative%20Macro%20Implementation">Alternative Macro Implementation</a></h3>
 <div class="outline-text-3" id="text-Alternative%20Macro%20Implementation">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">dependency: sokol_time.h</span>
-<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">Coroutine</span> <span class="org-type">Coroutine</span>;
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">dependency: sokol_time.h
+</span><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">Coroutine</span> <span class="org-type">Coroutine</span>;
 <span class="org-keyword">struct</span> <span class="org-type">Coroutine</span>
 {
     <span class="org-type">S32</span> <span class="org-variable-name">line</span>;
-    <span class="org-type">U64</span> <span class="org-variable-name">start_time</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">used for CoroutineWait</span>
-    <span class="org-type">void</span>* <span class="org-variable-name">data</span>;
+    <span class="org-type">U64</span> <span class="org-variable-name">start_time</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">used for CoroutineWait
+</span>    <span class="org-type">void</span>* <span class="org-variable-name">data</span>;
 };
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CoroutineBegin</span>(<span class="org-variable-name">coro</span>)                 <span class="org-keyword">switch</span> (coro-&gt;line) {<span class="org-keyword">case</span> 0: coro-&gt;line = 0;
@@ -407,22 +408,22 @@ Implementation without having to specify COROUTINE<sub>END</sub>.
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CoroutineEnd</span>(<span class="org-variable-name">coro</span>)                   <span class="org-keyword">do</span> { coro-&gt;line = __LINE__; } <span class="org-keyword">while</span> (0); }
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CoroutineReset</span>(<span class="org-variable-name">coro</span>)                 <span class="org-keyword">do</span> { coro-&gt;line = 0; } <span class="org-keyword">while</span> (0); }
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CoroutineIsFinished</span>(<span class="org-variable-name">coro</span>)            (coro-&gt;line == -1)
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">switch</span> (coro-&gt;line) {<span class="org-keyword">case</span> 0: coro-&gt;line = 0;        <span class="org-comment-delimiter">// </span><span class="org-comment">BEGIN</span>
-  coro-&gt;line = __LINE__; <span class="org-keyword">return</span>; <span class="org-keyword">case</span> __LINE__:;    <span class="org-comment-delimiter">// </span><span class="org-comment">YIELD</span>
-
-  <span class="org-keyword">while</span> (<span class="org-negation-char">!</span>(condition)) { CoroutineYield(coro); }    <span class="org-comment-delimiter">// </span><span class="org-comment">YIELD UNTIL</span>
-
-  <span class="org-keyword">if</span> (coro-&gt;start_time == 0.0f) { coro-&gt;start_time = stm_now(); }  <span class="org-comment-delimiter">// </span><span class="org-comment">WAIT</span>
-  CoroutineYieldUntil(coro, stm_sec(stm_now()) &gt; stm_sec(coro-&gt;start_time) + (<span class="org-type">F64</span>)duration);
+<pre class="src src-C"><code><span class="org-keyword">switch</span> (coro-&gt;line) {<span class="org-keyword">case</span> 0: coro-&gt;line = 0;        <span class="org-comment-delimiter">// </span><span class="org-comment">BEGIN
+</span>  coro-&gt;line = __LINE__; <span class="org-keyword">return</span>; <span class="org-keyword">case</span> __LINE__:;    <span class="org-comment-delimiter">// </span><span class="org-comment">YIELD
+</span>
+  <span class="org-keyword">while</span> (<span class="org-negation-char">!</span>(condition)) { CoroutineYield(coro); }    <span class="org-comment-delimiter">// </span><span class="org-comment">YIELD UNTIL
+</span>
+  <span class="org-keyword">if</span> (coro-&gt;start_time == 0.0f) { coro-&gt;start_time = stm_now(); }  <span class="org-comment-delimiter">// </span><span class="org-comment">WAIT
+</span>  CoroutineYieldUntil(coro, stm_sec(stm_now()) &gt; stm_sec(coro-&gt;start_time) + (<span class="org-type">F64</span>)duration);
   coro-&gt;start_time = 0;
 
-coro-&gt;line = __LINE__; }                            <span class="org-comment-delimiter">// </span><span class="org-comment">END or..</span>
-coro-&gt;line = 0; }                                   <span class="org-comment-delimiter">// </span><span class="org-comment">...RESET</span>
-</pre>
+coro-&gt;line = __LINE__; }                            <span class="org-comment-delimiter">// </span><span class="org-comment">END or..
+</span>coro-&gt;line = 0; }                                   <span class="org-comment-delimiter">// </span><span class="org-comment">...RESET</span>
+</code></pre>
 </div>
 </div>
 </div>
@@ -436,17 +437,17 @@ using a coroutine passes that coroutine to another function using coroutines).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span>
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span>
 {
-    <span class="org-type">float</span> <span class="org-variable-name">elapsed</span>;                     <span class="org-comment-delimiter">// </span><span class="org-comment">timer</span>
-    <span class="org-type">int</span> <span class="org-variable-name">flag</span>;                          <span class="org-comment-delimiter">// </span><span class="org-comment">?</span>
-    <span class="org-type">int</span> <span class="org-variable-name">index</span>;                         <span class="org-comment-delimiter">// </span><span class="org-comment">code-line &amp; case-label</span>
-<span class="org-preprocessor">    #define</span> <span class="org-variable-name">COROUTINE_MAX_DEPTH</span> 8      <span class="org-comment-delimiter">// </span><span class="org-comment">how deep into nested coroutines we go</span>
-    <span class="org-type">int</span> <span class="org-variable-name">line</span>[COROUTINE_MAX_DEPTH];     <span class="org-comment-delimiter">// </span><span class="org-comment">keeps track of the sequence point of nested coroutines</span>
-    <span class="org-type">int</span> <span class="org-variable-name">stack_pointer</span>;                 <span class="org-comment-delimiter">// </span><span class="org-comment">used for pushing on to the stack</span>
-<span class="org-preprocessor">    #define</span> <span class="org-variable-name">COROUTINE_STACK_SIZE</span> (512) <span class="org-comment-delimiter">// </span><span class="org-comment">static stack size for every coroutine</span>
-    <span class="org-type">char</span> <span class="org-variable-name">stack</span>[COROUTINE_STACK_SIZE];  <span class="org-comment-delimiter">// </span><span class="org-comment">the stack, usage optional</span>
-} <span class="org-type">coroutine_t</span>;
+    <span class="org-type">float</span> <span class="org-variable-name">elapsed</span>;                     <span class="org-comment-delimiter">// </span><span class="org-comment">timer
+</span>    <span class="org-type">int</span> <span class="org-variable-name">flag</span>;                          <span class="org-comment-delimiter">// </span><span class="org-comment">?
+</span>    <span class="org-type">int</span> <span class="org-variable-name">index</span>;                         <span class="org-comment-delimiter">// </span><span class="org-comment">code-line &amp; case-label
+</span><span class="org-preprocessor">    #define</span> <span class="org-variable-name">COROUTINE_MAX_DEPTH</span> 8      <span class="org-comment-delimiter">// </span><span class="org-comment">how deep into nested coroutines we go
+</span>    <span class="org-type">int</span> <span class="org-variable-name">line</span>[COROUTINE_MAX_DEPTH];     <span class="org-comment-delimiter">// </span><span class="org-comment">keeps track of the sequence point of nested coroutines
+</span>    <span class="org-type">int</span> <span class="org-variable-name">stack_pointer</span>;                 <span class="org-comment-delimiter">// </span><span class="org-comment">used for pushing on to the stack
+</span><span class="org-preprocessor">    #define</span> <span class="org-variable-name">COROUTINE_STACK_SIZE</span> (512) <span class="org-comment-delimiter">// </span><span class="org-comment">static stack size for every coroutine
+</span>    <span class="org-type">char</span> <span class="org-variable-name">stack</span>[COROUTINE_STACK_SIZE];  <span class="org-comment-delimiter">// </span><span class="org-comment">the stack, usage optional
+</span>} <span class="org-type">coroutine_t</span>;
 
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">COROUTINE_CASE_OFFSET</span> (1024 * 1024)
 
@@ -457,20 +458,20 @@ using a coroutine passes that coroutine to another function using coroutines).
     co-&gt;stack_pointer = 0;
 }
 
-<span class="org-doc">/**</span>
-<span class="org-doc"> * Pops off `size` bytes from `co`'s fixed-size buffer for use as a local variable.</span>
-<span class="org-doc"> *</span>
-<span class="org-doc"> * void do_work(coroutine_t* co)</span>
-<span class="org-doc"> * {</span>
-<span class="org-doc"> *     int* a = (int*)coroutine_local_var(co, sizeof(int));</span>
-<span class="org-doc"> *     int* b = (int*)coroutine_local_var(co, sizeof(int));</span>
-<span class="org-doc"> *</span>
-<span class="org-doc"> *     COROUTINE_START(co); // Setup initial values here. This code runs just once.</span>
-<span class="org-doc"> *     *a = 3; *b = 7;</span>
-<span class="org-doc"> *     // ...</span>
-<span class="org-doc"> *     COROUTINE_END(co);</span>
-<span class="org-doc"> * }</span>
-<span class="org-doc"> */</span>
+<span class="org-doc">/**
+ * Pops off `size` bytes from `co`'s fixed-size buffer for use as a local variable.
+ *
+ * void do_work(coroutine_t* co)
+ * {
+ *     int* a = (int*)coroutine_local_var(co, sizeof(int));
+ *     int* b = (int*)coroutine_local_var(co, sizeof(int));
+ *
+ *     COROUTINE_START(co); // Setup initial values here. This code runs just once.
+ *     *a = 3; *b = 7;
+ *     // ...
+ *     COROUTINE_END(co);
+ * }
+ */</span>
 <span class="org-keyword">static</span> <span class="org-keyword">inline</span> <span class="org-type">void</span>* <span class="org-function-name">coroutine_local_var</span>(<span class="org-type">coroutine_t</span>* <span class="org-variable-name">co</span>, <span class="org-type">int</span> <span class="org-variable-name">size</span>)
 {
     COROUTINE_ASSERT(co-&gt;stack_pointer + size &lt; COROUTINE_STACK_SIZE);
@@ -487,7 +488,7 @@ using a coroutine passes that coroutine to another function using coroutines).
 <span class="org-comment-delimiter">/* </span><span class="org-comment">COROUTINE_CALL(co, call_some_other_func(co, my_params));</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">COROUTINE_CALL</span>(<span class="org-variable-name">co</span>, ...)      co-&gt;flag = 0; <span class="org-keyword">case</span> __LINE__: COROUTINE_ASSERT(co-&gt;index &lt; COROUTINE_MAX_DEPTH); co-&gt;line[co-&gt;index++] = __LINE__; __VA_ARGS__; co-&gt;index--; <span class="org-keyword">do</span> { <span class="org-keyword">if</span> (co-&gt;flag) { <span class="org-keyword">goto</span> <span class="org-constant">__co_end</span>; } <span class="org-keyword">else</span> { <span class="org-keyword">case</span> __LINE__ + COROUTINE_CASE_OFFSET: co-&gt;line[co-&gt;index] = __LINE__ + COROUTINE_CASE_OFFSET; } } <span class="org-keyword">while</span> (0)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">COROUTINE_END</span>(<span class="org-variable-name">co</span>)            } co-&gt;line[co-&gt;index] = 0; <span class="org-constant">__co_end</span>:; co-&gt;stack_pointer = 0; } <span class="org-keyword">while</span> (0)
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -500,7 +501,7 @@ using a coroutine passes that coroutine to another function using coroutines).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C" id="coroutine.h"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;setjmp.h&gt;</span>
+<pre class="src src-C" id="coroutine.h"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;setjmp.h&gt;</span>
 
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">STACK_SIZE</span> 16384
 
@@ -546,11 +547,11 @@ using a coroutine passes that coroutine to another function using coroutines).
     last_cr_ = cr;
     longjmp(first_cr_-&gt;ctx, 1);
 }
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;setjmp.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;setjmp.h&gt;</span>
 
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">STACK_SIZE</span> 16384
 
@@ -612,7 +613,7 @@ using a coroutine passes that coroutine to another function using coroutines).
     foo(5, <span class="org-string">"c"</span>);
     <span class="org-keyword">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -652,6 +653,7 @@ every coroutine has its own subarena
 <li><a href="https://gist.github.com/NoelFB/7a5fa66fc29dd7ed1c11042c30f1b00e">routine.h</a></li>
 <li><a href="https://github.com/codr7/hacktical-c/tree/main/task">Lightweight Concurrent Tasks in C</a></li>
 <li><a href="https://github.com/liuliu/co/blob/master/co.h">Stackless Coroutine in C That Maintains Local Variables</a></li>
+<li><a href="https://vittorioromeo.com/index/blog/sfex_coroutine.html">stackless coroutines for gamedev in ~200 lines of C++</a></li>
 </ul></li>
 
 <li><a href="https://www.youtube.com/watch?v=tGbzUjUiCsE">Video: Juggling Coroutine State between two Frame Arenas</a></li>

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2023-10-30 Mon></span></div><div class="tags"><code>[ <a href="/tag/dsp.html">dsp</a> <a href="/tag/audio.html">audio</a> ]</code></div></div><h1>Audio Programming</h1>
@@ -230,8 +231,76 @@ Audio programming is a form of <a href="digital_signal_processing.html#ID-b65a16
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-function-name">SDL_Init</span>(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC | SDL_INIT_AUDIO);
-</pre>
+<pre class="src src-C"><code><span class="org-function-name">SDL_Init</span>(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC | SDL_INIT_AUDIO);
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-72164354-8f75-4d8f-9362-f8425ce74b38" class="outline-2">
+<h2 id="ID-72164354-8f75-4d8f-9362-f8425ce74b38"><a href="#ID-72164354-8f75-4d8f-9362-f8425ce74b38">Sound Effects (SFX)</a></h2>
+<div class="outline-text-2" id="text-Sound%20Effects%20%28SFX%29">
+<p>
+Sound effects are sounds that were generated or enhanced artificially.
+</p>
+</div>
+<div id="outline-container-Techniques" class="outline-3">
+<h3 id="Techniques"><a href="#Techniques">Techniques</a></h3>
+<div class="outline-text-3" id="text-Techniques">
+<ul class="org-ul">
+<li><i>filtering</i> – Frequency ranges are emphasized or attenuated using low-pass,
+high-pass, band-pass or band-stop filters.</li>
+
+<li><i>equalization</i>: Different frequency bands are attenuated or boosted to produce
+desired spectral characteristics. Equalization is a form of filtering.</li>
+
+<li><i>echo</i>: Simulates the effect of reverberation. One or several delayed signals
+are added to the original signal.</li>
+
+<li><i>reverse echo</i> – a swelling effect created by reversing an audio signal and
+recording echo and/or delay whilst the signal runs in reverse. When played
+back forward the last echos are heard before the effected sound.</li>
+
+<li><i>chorus</i>: Conveys the effect of multiple voices. A delayed signal is added to
+the original signal with a constant delay and optionally pitch shifted. The
+delay has to be short in order not to be perceived as echo.</li>
+
+<li><i>flanger</i>: A delayed signal is added to the original signal with a continuously
+variable delay (usually smaller than 10 ms). This creates an unusual sound.</li>
+
+<li><i>phaser</i>: The signal is split, a portion is filtered with an all-pass filter to
+produce a phase-shift, and then the unfiltered and filtered signals are mixed.
+This creates and unusual sound.</li>
+
+<li><i>overdrive</i>: Can be used to produce distorted sounds. The most basic overdrive
+effect involves clipping the signal above a threshold.</li>
+
+<li><i>pitch shift</i>: Shifts a signal up/down in pitch.</li>
+
+<li><i>time stretching</i>: The opposite of pitch shift, that is, the process of changing
+the speed of an audio signal without affecting its pitch.</li>
+
+<li><i>resonators</i>: Emphasize harmonic frequency content on specified frequencies.</li>
+
+<li><i>synthesizer</i>: Generate new sounds by either imitating natural sounds or
+creating completely new sounds.</li>
+
+<li><i>modulation</i>: to change the frequency or amplitude of a carrier signal in
+relation to a predefined signal.</li>
+
+<li><i>compression</i>: The reduction of the dynamic range of a sound to avoid
+unintentional fluctuation in the dynamics.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-List%20of%20SFX%20generators" class="outline-3">
+<h3 id="List%20of%20SFX%20generators"><a href="#List%20of%20SFX%20generators">List of SFX generators</a></h3>
+<div class="outline-text-3" id="text-List%20of%20SFX%20generators">
+<ul class="org-ul">
+<li><a href="https://www.drpetter.se/project_sfxr.html">sfxr</a></li>
+<li><a href="https://www.bfxr.net/">bfxr - Based on sfxr</a></li>
+<li><a href="https://sfxr.me/">jsfxr -  Web javascript port of sfxr</a></li>
+<li><a href="https://sfbgames.itch.io/chiptone">ChipTone - prettied up generator based on bfxr (WIP)</a></li>
+</ul>
 </div>
 </div>
 </div>
@@ -244,6 +313,7 @@ Audio programming is a form of <a href="digital_signal_processing.html#ID-b65a16
 <li><a href="https://audiodev.blog/newbie-resources/">Getting Started with Audio Programming</a></li>
 <li><a href="https://www.youtube.com/watch?v=iA6wRgwl7k0">Sound and the Fourier Transform | Coding Adventure</a></li>
 <li><a href="https://www.youtube.com/watch?v=u6EuAUjq92k">A First Look At Raytraced Audio - YouTube</a></li>
+<li><a href="https://davidgow.net/handmadepenguin/ch7.html">Handmade Penguin Chapter 7: Initialising SDL Audio</a></li>
 </ul>
 </div>
 </div>

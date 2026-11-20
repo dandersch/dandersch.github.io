@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,36 +199,36 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-04 Wed></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>C#</h1>
 <p>
-C# is a a managed, garbage-collected, <a href="oop.html#ID-92f6afb5-d1f2-4067-8925-61168671dea7">object-oriented</a> <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming language</a> that
+C# is a a managed, garbage-collected, <a href="programming.html#ID-92f6afb5-d1f2-4067-8925-61168671dea7">object-oriented</a> <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming language</a> that
 is part of the <a href="#ID-253717d1-91a4-447e-a7e7-f62ce5678668">.NET</a> ecosystem. It is heavily inspired by Java.
 </p>
 <div id="outline-container-ID-253717d1-91a4-447e-a7e7-f62ce5678668" class="outline-2">
 <h2 id="ID-253717d1-91a4-447e-a7e7-f62ce5678668"><a href="#ID-253717d1-91a4-447e-a7e7-f62ce5678668">.NET</a></h2>
 <div class="outline-text-2" id="text-.NET">
 <p>
-.NET describes the Ecosystem that includes languages (C#, F#, VB, &#x2026;), runtimes
+.NET describes the Ecosystem that includes languages (C#, F#, VB, &hellip;), runtimes
 like the CLR (Common Language Runtime) and libraries like the BCL (Base Class
 Library).
 </p>
@@ -286,7 +287,7 @@ methods.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
+<pre class="src src-csharp"><code><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
 
 <span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Person</span>
 {
@@ -308,12 +309,12 @@ methods.
 <span class="org-comment-delimiter">/* </span><span class="org-comment">Usage:</span><span class="org-comment-delimiter"> */</span>
 <span class="org-keyword">class</span> <span class="org-type">_</span> { <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">Main</span>(<span class="org-type">string</span>[] <span class="org-variable-name">args</span>) {
     <span class="org-type">Person</span> <span class="org-variable-name">p</span> = <span class="org-keyword">new</span> <span class="org-type">Person</span>();
-    p.Name = <span class="org-string">"Alice"</span>;     <span class="org-comment-delimiter">// </span><span class="org-comment">Calls set</span>
-    <span class="org-type">string</span> <span class="org-variable-name">name</span> = p.Name; <span class="org-comment-delimiter">// </span><span class="org-comment">Calls get</span>
-    Console.<span class="org-function-name">WriteLine</span>($<span class="org-string">"Hello {p.Name}!"</span>);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">p.Age = -1; // would throw exception</span>
-}}
-</pre>
+    p.Name = <span class="org-string">"Alice"</span>;     <span class="org-comment-delimiter">// </span><span class="org-comment">Calls set
+</span>    <span class="org-type">string</span> <span class="org-variable-name">name</span> = p.Name; <span class="org-comment-delimiter">// </span><span class="org-comment">Calls get
+</span>    Console.<span class="org-function-name">WriteLine</span>($<span class="org-string">"Hello {p.Name}!"</span>);
+    <span class="org-comment-delimiter">// </span><span class="org-comment">p.Age = -1; // would throw exception
+</span>}}
+</code></pre>
 </div>
 </div>
 </div>
@@ -327,7 +328,7 @@ C's <code>typedef</code> to avoid function pointer syntax.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
+<pre class="src src-csharp"><code><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">define delegate type</span><span class="org-comment-delimiter"> */</span>
 <span class="org-keyword">public</span> <span class="org-keyword">delegate</span> <span class="org-type">int</span> <span class="org-function-name">MathOperation</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>, <span class="org-type">int</span> <span class="org-variable-name">b</span>);
@@ -335,21 +336,21 @@ C's <code>typedef</code> to avoid function pointer syntax.
 <span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Calculator</span>
 {
     <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-function-name">Add</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">y</span>) { <span class="org-keyword">return</span> x + y; }
-    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">Subtract</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">y</span>) =&gt; x - y; <span class="org-comment-delimiter">// </span><span class="org-comment">expression-bodied member syntax</span>
-}
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">Subtract</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">y</span>) =&gt; x - y; <span class="org-comment-delimiter">// </span><span class="org-comment">expression-bodied member syntax
+</span>}
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">Usage:</span><span class="org-comment-delimiter"> */</span>
 <span class="org-keyword">class</span> <span class="org-type">_</span> { <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">Main</span>(<span class="org-type">string</span>[] <span class="org-variable-name">args</span>) {
     <span class="org-comment-delimiter">/* </span><span class="org-comment">using predefined delegate</span><span class="org-comment-delimiter"> */</span>
-    <span class="org-type">MathOperation</span> <span class="org-variable-name">op1</span> = Calculator.Add; <span class="org-comment-delimiter">// </span><span class="org-comment">Points to static method</span>
-    <span class="org-type">Calculator</span> <span class="org-variable-name">calc</span>   = <span class="org-keyword">new</span> <span class="org-type">Calculator</span>();
+    <span class="org-type">MathOperation</span> <span class="org-variable-name">op1</span> = Calculator.Add; <span class="org-comment-delimiter">// </span><span class="org-comment">Points to static method
+</span>    <span class="org-type">Calculator</span> <span class="org-variable-name">calc</span>   = <span class="org-keyword">new</span> <span class="org-type">Calculator</span>();
 
     <span class="org-comment-delimiter">/* </span><span class="org-comment">using built-in generic 'Func' delegate</span><span class="org-comment-delimiter"> */</span>
-    <span class="org-type">Func</span>&lt;<span class="org-type">int</span>, <span class="org-type">int</span>, <span class="org-type">int</span>&gt; <span class="org-variable-name">op2</span> = calc.Subtract; <span class="org-comment-delimiter">// </span><span class="org-comment">Points to instance method</span>
-
+    <span class="org-type">Func</span>&lt;<span class="org-type">int</span>, <span class="org-type">int</span>, <span class="org-type">int</span>&gt; <span class="org-variable-name">op2</span> = calc.Subtract; <span class="org-comment-delimiter">// </span><span class="org-comment">Points to instance method
+</span>
     Console.<span class="org-function-name">WriteLine</span>(<span class="org-string">"{0}"</span>, <span class="org-function-name">op2</span>(<span class="org-function-name">op1</span>(5, 3),4));
 }}
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -364,25 +365,25 @@ C's <code>typedef</code> to avoid function pointer syntax.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
+<pre class="src src-csharp"><code><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
 <span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Button</span>
 {
-    <span class="org-keyword">public</span> <span class="org-keyword">delegate</span> <span class="org-type">void</span> <span class="org-function-name">ClickHandler</span>(<span class="org-type">object</span> <span class="org-variable-name">sender</span>, <span class="org-type">EventArgs</span> <span class="org-variable-name">e</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">Delegate for the event</span>
-    <span class="org-keyword">public</span> <span class="org-keyword">event</span> <span class="org-type">ClickHandler</span> <span class="org-variable-name">Clicked</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">The event (== null if no subscribes)</span>
-
+    <span class="org-keyword">public</span> <span class="org-keyword">delegate</span> <span class="org-type">void</span> <span class="org-function-name">ClickHandler</span>(<span class="org-type">object</span> <span class="org-variable-name">sender</span>, <span class="org-type">EventArgs</span> <span class="org-variable-name">e</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">Delegate for the event
+</span>    <span class="org-keyword">public</span> <span class="org-keyword">event</span> <span class="org-type">ClickHandler</span> <span class="org-variable-name">Clicked</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">The event (== null if no subscribes)
+</span>
     <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">SimulateClick</span>()
     {
-        Clicked?.<span class="org-function-name">Invoke</span>(<span class="org-keyword">this</span>, EventArgs.<span class="org-type">Empty</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">fire the event (null-conditional invoke)</span>
-    }
+        Clicked?.<span class="org-function-name">Invoke</span>(<span class="org-keyword">this</span>, EventArgs.<span class="org-type">Empty</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">fire the event (null-conditional invoke)
+</span>    }
 }
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">Usage:</span><span class="org-comment-delimiter"> */</span>
 <span class="org-keyword">class</span> <span class="org-type">_</span> { <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">Main</span>(<span class="org-type">string</span>[] <span class="org-variable-name">args</span>) {
     <span class="org-type">Button</span> <span class="org-variable-name">btn</span> = <span class="org-keyword">new</span> <span class="org-type">Button</span>();
-    btn.Clicked += (<span class="org-type">sender</span>, <span class="org-type">e</span>) =&gt; Console.<span class="org-function-name">WriteLine</span>(<span class="org-string">"Button was clicked!"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">Subscribe with a lambda</span>
-    btn.<span class="org-function-name">SimulateClick</span>();
+    btn.Clicked += (<span class="org-type">sender</span>, <span class="org-type">e</span>) =&gt; Console.<span class="org-function-name">WriteLine</span>(<span class="org-string">"Button was clicked!"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">Subscribe with a lambda
+</span>    btn.<span class="org-function-name">SimulateClick</span>();
 }}
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -395,19 +396,19 @@ sources (collections, databases, XML, etc.) in a type-safe way.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
+<pre class="src src-csharp"><code><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
 <span class="org-keyword">using</span> <span class="org-variable-name">System</span>.<span class="org-variable-name">Linq</span>;
 <span class="org-keyword">using</span> <span class="org-variable-name">System</span>.<span class="org-variable-name">Collections</span>.<span class="org-variable-name">Generic</span>;
 <span class="org-keyword">class</span> <span class="org-type">_</span> { <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">Main</span>(<span class="org-type">string</span>[] <span class="org-variable-name">args</span>) {
     <span class="org-type">List</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">numbers</span> = <span class="org-keyword">new</span> <span class="org-type">List</span>&lt;<span class="org-type">int</span>&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Query Syntax</span>
-    <span class="org-type">var</span> <span class="org-variable-name">evenNumbersQuery</span> = <span class="org-keyword">from</span> num <span class="org-keyword">in</span> numbers
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Query Syntax
+</span>    <span class="org-type">var</span> <span class="org-variable-name">evenNumbersQuery</span> = <span class="org-keyword">from</span> num <span class="org-keyword">in</span> numbers
                            <span class="org-keyword">where</span> num % 2 == 0
                            <span class="org-keyword">select</span> num * 2;
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Method Syntax (using extension methods and lambdas)</span>
-    <span class="org-type">var</span> <span class="org-variable-name">oddNumbersMethod</span> = numbers.<span class="org-function-name">Where</span>(num =&gt; num % 2 != 0)
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Method Syntax (using extension methods and lambdas)
+</span>    <span class="org-type">var</span> <span class="org-variable-name">oddNumbersMethod</span> = numbers.<span class="org-function-name">Where</span>(num =&gt; num % 2 != 0)
                                   .<span class="org-function-name">OrderByDescending</span>(num =&gt; num)
                                   .<span class="org-function-name">Select</span>(num =&gt; $<span class="org-string">"Odd: {num}"</span>);
 
@@ -416,7 +417,7 @@ sources (collections, databases, XML, etc.) in a type-safe way.
         Console.<span class="org-function-name">WriteLine</span>(<span class="org-type">num</span>);
     }
 }}
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -428,19 +429,19 @@ Used for <a href="async.html#ID-683de85f-5cd5-4095-9986-39b03e20aab8">asynchrono
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">public</span> <span class="org-keyword">async</span> <span class="org-type">Task</span>&lt;<span class="org-type">string</span>&gt; <span class="org-function-name">DownloadDataAsync</span>(<span class="org-type">string</span> <span class="org-variable-name">url</span>)
+<pre class="src src-csharp"><code><span class="org-keyword">public</span> <span class="org-keyword">async</span> <span class="org-type">Task</span>&lt;<span class="org-type">string</span>&gt; <span class="org-function-name">DownloadDataAsync</span>(<span class="org-type">string</span> <span class="org-variable-name">url</span>)
 {
     <span class="org-keyword">using</span> (<span class="org-type">HttpClient</span> <span class="org-variable-name">client</span> = <span class="org-keyword">new</span> <span class="org-type">HttpClient</span>())
     {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">await pauses execution here until GetStringAsync completes,</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">but doesn't block the calling thread.</span>
-        <span class="org-type">string</span> <span class="org-variable-name">data</span> = <span class="org-keyword">await</span> client.<span class="org-function-name">GetStringAsync</span>(url);
-        <span class="org-keyword">return</span> data; <span class="org-comment-delimiter">// </span><span class="org-comment">This runs after the await completes</span>
-    }
+        <span class="org-comment-delimiter">// </span><span class="org-comment">await pauses execution here until GetStringAsync completes,
+</span>        <span class="org-comment-delimiter">// </span><span class="org-comment">but doesn't block the calling thread.
+</span>        <span class="org-type">string</span> <span class="org-variable-name">data</span> = <span class="org-keyword">await</span> client.<span class="org-function-name">GetStringAsync</span>(url);
+        <span class="org-keyword">return</span> data; <span class="org-comment-delimiter">// </span><span class="org-comment">This runs after the await completes
+</span>    }
 }
 <span class="org-comment-delimiter">/* </span><span class="org-comment">Usage:</span><span class="org-comment-delimiter"> */</span>
 <span class="org-comment-delimiter">// </span><span class="org-comment">string content = await DownloadDataAsync("http://example.com");</span>
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -454,17 +455,17 @@ specifies the type being extended.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-keyword">class</span> <span class="org-type">StringExtensions</span>
+<pre class="src src-csharp"><code><span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-keyword">class</span> <span class="org-type">StringExtensions</span>
 {
-    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-function-name">WordCount</span>(<span class="org-keyword">this</span> <span class="org-type">string</span> <span class="org-variable-name">str</span>) <span class="org-comment-delimiter">// </span><span class="org-comment">'this' marks it as an extension method</span>
-    {
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-function-name">WordCount</span>(<span class="org-keyword">this</span> <span class="org-type">string</span> <span class="org-variable-name">str</span>) <span class="org-comment-delimiter">// </span><span class="org-comment">'this' marks it as an extension method
+</span>    {
         <span class="org-keyword">return</span> str.<span class="org-function-name">Split</span>(<span class="org-keyword">new</span> <span class="org-type">char</span>[] { <span class="org-string">' '</span>, <span class="org-string">'.'</span>, <span class="org-string">'?'</span> }, StringSplitOptions.<span class="org-type">RemoveEmptyEntries</span>).Length;
     }
 }
-<span class="org-comment-delimiter">// </span><span class="org-comment">Usage:</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">string s = "Hello C# world!";</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">int count = s.WordCount(); // Called as if it's an instance method of string</span>
-</pre>
+<span class="org-comment-delimiter">// </span><span class="org-comment">Usage:
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">string s = "Hello C# world!";
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">int count = s.WordCount(); // Called as if it's an instance method of string</span>
+</code></pre>
 </div>
 </div>
 </div>
@@ -501,11 +502,11 @@ implement <code>IDisposable</code>).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">using</span> (<span class="org-type">StreamReader</span> <span class="org-variable-name">reader</span> = <span class="org-keyword">new</span> <span class="org-type">StreamReader</span>(<span class="org-string">"file.txt"</span>))
+<pre class="src src-csharp"><code><span class="org-keyword">using</span> (<span class="org-type">StreamReader</span> <span class="org-variable-name">reader</span> = <span class="org-keyword">new</span> <span class="org-type">StreamReader</span>(<span class="org-string">"file.txt"</span>))
 {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Use reader</span>
-} <span class="org-comment-delimiter">// </span><span class="org-comment">reader.Dispose() is called here</span>
-</pre>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Use reader
+</span>} <span class="org-comment-delimiter">// </span><span class="org-comment">reader.Dispose() is called here</span>
+</code></pre>
 </div>
 </div>
 </div>
@@ -517,11 +518,11 @@ Allows value types (<code>int</code>, <code>bool</code>, <code>struct</code>) to
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
+<pre class="src src-csharp"><code><span class="org-keyword">using</span> <span class="org-variable-name">System</span>;
 <span class="org-keyword">class</span> <span class="org-type">_</span> { <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">Main</span>(<span class="org-type">string</span>[] <span class="org-variable-name">args</span>) {
 
-    <span class="org-type">int</span>?  <span class="org-variable-name">age</span>        = <span class="org-constant">null</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">A nullable integer</span>
-    <span class="org-type">bool</span>? <span class="org-variable-name">isEmployed</span> = <span class="org-constant">true</span>;
+    <span class="org-type">int</span>?  <span class="org-variable-name">age</span>        = <span class="org-constant">null</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">A nullable integer
+</span>    <span class="org-type">bool</span>? <span class="org-variable-name">isEmployed</span> = <span class="org-constant">true</span>;
 
     <span class="org-keyword">if</span> (age.HasValue) {
         Console.<span class="org-function-name">WriteLine</span>($<span class="org-string">"Age: {age.Value}"</span>);
@@ -530,12 +531,12 @@ Allows value types (<code>int</code>, <code>bool</code>, <code>struct</code>) to
     }
 
     <span class="org-comment-delimiter">/* </span><span class="org-comment">Null-coalescing operator</span><span class="org-comment-delimiter"> */</span>
-    <span class="org-type">int</span> <span class="org-variable-name">currentAge</span> = age ?? 25; <span class="org-comment-delimiter">// </span><span class="org-comment">If age is null, use 25 (else use age)</span>
-
+    <span class="org-type">int</span> <span class="org-variable-name">currentAge</span> = age ?? 25; <span class="org-comment-delimiter">// </span><span class="org-comment">If age is null, use 25 (else use age)
+</span>
     Console.<span class="org-function-name">WriteLine</span>($<span class="org-string">"{currentAge}"</span>);
 
 }}
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -548,14 +549,14 @@ properties, etc.). Can be queried at runtime using reflection.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp">[<span class="org-variable-name">Serializable</span>] <span class="org-comment-delimiter">// </span><span class="org-comment">An attribute</span>
-[<span class="org-function-name">Obsolete</span>(<span class="org-string">"Use NewMethod instead."</span>)]
+<pre class="src src-csharp"><code>[<span class="org-variable-name">Serializable</span>] <span class="org-comment-delimiter">// </span><span class="org-comment">An attribute
+</span>[<span class="org-function-name">Obsolete</span>(<span class="org-string">"Use NewMethod instead."</span>)]
 <span class="org-keyword">public</span> <span class="org-keyword">class</span> MyClass
 {
-    [<span class="org-function-name">Conditional</span>(<span class="org-string">"DEBUG"</span>)] <span class="org-comment-delimiter">// </span><span class="org-comment">Method only compiled/called in DEBUG builds</span>
-    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">DebugLog</span>(<span class="org-type">string</span> <span class="org-variable-name">message</span>) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
+    [<span class="org-function-name">Conditional</span>(<span class="org-string">"DEBUG"</span>)] <span class="org-comment-delimiter">// </span><span class="org-comment">Method only compiled/called in DEBUG builds
+</span>    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">DebugLog</span>(<span class="org-type">string</span> <span class="org-variable-name">message</span>) { <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -569,10 +570,10 @@ COM.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-type">dynamic</span> <span class="org-variable-name">obj</span> = <span class="org-function-name">GetSomeDynamicObject</span>();
-<span class="org-type">string</span> <span class="org-variable-name">name</span> = obj.Name; <span class="org-comment-delimiter">// </span><span class="org-comment">Property access resolved at runtime</span>
-obj.<span class="org-function-name">DoSomething</span>(10);    <span class="org-comment-delimiter">// </span><span class="org-comment">Method call resolved at runtime</span>
-</pre>
+<pre class="src src-csharp"><code><span class="org-type">dynamic</span> <span class="org-variable-name">obj</span> = <span class="org-function-name">GetSomeDynamicObject</span>();
+<span class="org-type">string</span> <span class="org-variable-name">name</span> = obj.Name; <span class="org-comment-delimiter">// </span><span class="org-comment">Property access resolved at runtime
+</span>obj.<span class="org-function-name">DoSomething</span>(10);    <span class="org-comment-delimiter">// </span><span class="org-comment">Method call resolved at runtime</span>
+</code></pre>
 </div>
 </div>
 </div>
@@ -587,17 +588,17 @@ properties. Often immutable by default.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="org-keyword">public</span> <span class="org-type">record</span> <span class="org-function-name">Person</span>(<span class="org-type">string</span> <span class="org-variable-name">FirstName</span>, <span class="org-type">string</span> <span class="org-variable-name">LastName</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">Concise immutable record</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">Equivalent to a class with properties, constructor, Equals, GetHashCode, etc.</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">Usage:</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">var person1 = new Person("John", "Doe");</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">var person2 = new Person("John", "Doe");</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">Console.WriteLine(person1 == person2); // True (value-based equality)</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">With-expressions for non-destructive mutation</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">var person3 = person1 with { LastName = "Smith" };</span>
-</pre>
+<pre class="src src-csharp"><code><span class="org-keyword">public</span> <span class="org-type">record</span> <span class="org-function-name">Person</span>(<span class="org-type">string</span> <span class="org-variable-name">FirstName</span>, <span class="org-type">string</span> <span class="org-variable-name">LastName</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">Concise immutable record
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">Equivalent to a class with properties, constructor, Equals, GetHashCode, etc.
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">Usage:
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">var person1 = new Person("John", "Doe");
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">var person2 = new Person("John", "Doe");
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">Console.WriteLine(person1 == person2); // True (value-based equality)
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">With-expressions for non-destructive mutation
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">var person3 = person1 with { LastName = "Smith" };</span>
+</code></pre>
 </div>
 </div>
 </div>

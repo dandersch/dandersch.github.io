@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,31 +199,31 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-11-01 Fri></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Go (Golang)</h1>
 <p>
 Go (Golang) is a statically-typed, compiled <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming language</a> by Google that
 has strong support for concurrent programming. Its standard library (with a
-built-in HTTP server, JSON support, etc.) makes it a suitable <a href="frontend_backend.html#ID-424d54cd-71b1-4a5a-9a4e-5facc9b8c692">backend</a> language
+built-in HTTP server, JSON support, etc.) makes it a suitable backend language
 for scalable and high-performance web applications.
 </p>
 
@@ -241,7 +242,7 @@ simultaneously with minimal complexity.
 <code>package</code> / <code>import</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-go">/* The first line of every ~.go~ file specifies the package name. */
+<pre class="src src-go"><code>/* The first line of every ~.go~ file specifies the package name. */
 package main // declare main package (must contain main() function)
 
 /* packages can be imported */
@@ -257,14 +258,14 @@ import (
 var foo := 3 // private to package
 var Bar := 3 // will be exported
 func DoThing() { /* ... */ } // can be called outside package
-</pre>
+</code></pre>
 </div>
 
 <p>
 <code>for</code>, <code>switch</code>, <code>range</code> (Control flow)
 </p>
 <div class="org-src-container">
-<pre class="src src-go">switch state {
+<pre class="src src-go"><code>switch state {
     case 1:
         goto label;
     case 2:
@@ -288,14 +289,14 @@ scores := map[string]int{"Alice": 90, "Bob":   85}
 for name, score := range scores {
     /* ... */
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
 Types
 </p>
 <div class="org-src-container">
-<pre class="src src-go">/* types */
+<pre class="src src-go"><code>/* types */
 var         // declare a variable
 const       // declare a constant
 map[string] // declare map type (hashtable/dictionary)
@@ -319,14 +320,14 @@ const (
     SATURDAY
     SUNDAY
 )
-</pre>
+</code></pre>
 </div>
 
 <p>
 Functions/Interfaces
 </p>
 <div class="org-src-container">
-<pre class="src src-go">// functions
+<pre class="src src-go"><code>// functions
 func example(var a int) (int, error) {
     defer fmt.Printf("Finished\n") // defer function call to end of function
     return a, nil
@@ -342,18 +343,18 @@ type Circle struct {
 func (c Circle) Area() float64 { // implement interface for Circle
     return 3.14 * c.radius * c.radius
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
 <code>go</code>, <code>chan</code>, <code>select</code> (Concurrency)
 </p>
 <div class="org-src-container">
-<pre class="src src-go">/* goroutines/channels */
+<pre class="src src-go"><code>/* goroutines/channels */
 go      // start a goroutine
 chan    // declare channel type
 select  // wait on multiple channel operations
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -365,7 +366,7 @@ A <code>goroutine</code> is a lightweight thread managed by the Go runtime.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-go">package main
+<pre class="src src-go"><code>package main
 
 import (
     "fmt"
@@ -382,14 +383,14 @@ func main() {
     time.Sleep(1 * time.Second) // wait for goroutines to finish
     fmt.Println("Finished.")
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
 Using <code>WaitGroup</code> to wait for <code>goroutine</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-go">package main
+<pre class="src src-go"><code>package main
 
 import (
     "fmt"
@@ -415,7 +416,7 @@ func main() {
     wg.Wait() // wait for all goroutines to finish
     fmt.Println("All workers completed.")
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -427,7 +428,7 @@ Channels enable communication between goroutines.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-go">package main
+<pre class="src src-go"><code>package main
 import "fmt"
 
 func calculateSquare(num int, ch chan int) {
@@ -445,7 +446,7 @@ func main() {
         fmt.Println("Square:", &lt;-ch) // receive result from the channel
     }
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -453,10 +454,10 @@ Channels can be directional:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-go">var ch chan int       // bidirectional (send &amp; receive)
+<pre class="src src-go"><code>var ch chan int       // bidirectional (send &amp; receive)
 var sendCh chan&lt;- int // send-only channel
 var recvCh &lt;-chan int // receive-only channel
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -470,7 +471,7 @@ Channels can be buffered or unbuffered:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-go">// Unbuffered channel
+<pre class="src src-go"><code>// Unbuffered channel
 ch1 := make(chan int)
 // - Synchronous communication
 // - Sender blocks until receiver takes value
@@ -483,7 +484,7 @@ ch2 := make(chan int, 5) // Buffered with capacity 5
 // - Sender only blocks when buffer is full
 // - Receiver blocks only when buffer is empty
 // - Decouples sender and receiver timing
-</pre>
+</code></pre>
 </div>
 
 
@@ -491,14 +492,14 @@ ch2 := make(chan int, 5) // Buffered with capacity 5
 If no more messages need to be sent over the channel, it can be closed:
 </p>
 <div class="org-src-container">
-<pre class="src src-go">// sending side
+<pre class="src src-go"><code>// sending side
 close(ch) // close channel
 
 val, ok := &lt;-ch
 if !ok {
         // channel has closed (buffered channels stay open until emptied)
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -521,7 +522,7 @@ Characteristics:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-go">select {
+<pre class="src src-go"><code>select {
 case &lt;-ch1:
     // Execute if data received from ch1
 case x := &lt;-ch2:
@@ -533,7 +534,7 @@ case &lt;-time.After(1 * time.Second):
 default:
     // Execute if no other case is ready (optional)
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -563,172 +564,6 @@ The <code>go.mod</code> is the config file for a Go module.
 </div>
 </div>
 </div>
-<div id="outline-container-Libraries" class="outline-2">
-<h2 id="Libraries"><a href="#Libraries">Libraries</a></h2>
-<div class="outline-text-2" id="text-Libraries">
-</div>
-<div id="outline-container-~net%2Fhttp~" class="outline-3">
-<h3 id="~net%2Fhttp~"><a href="#~net%2Fhttp~"><code>net/http</code></a></h3>
-<div class="outline-text-3" id="text-~net%2Fhttp~">
-<p>
-Standard library <code>net/http</code> provides HTTP client/server implementations. It
-can be used to build web apps, APIs, and handling HTTP requests/responses.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-go">package main
-
-import (
-    "fmt"
-    "net/http"
-)
-
-func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello, World!")
-}
-
-func main() {
-    //http.Handle(pattern string, handler Handler)
-
-    //http.HandleFunc(pattern string, handler func(ResponseWriter, *Request))
-    http.HandleFunc("/", handler)
-
-    //http.ListenAndServe(addr string, handler Handler) error
-    http.ListenAndServe(":8080", nil)
-}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-~html%2Ftemplate~" class="outline-3">
-<h3 id="~html%2Ftemplate~"><a href="#~html%2Ftemplate~"><code>html/template</code></a></h3>
-<div class="outline-text-3" id="text-~html%2Ftemplate~">
-<p>
-Go provides templating utilities for text with <code>text/template</code>. For templating
-HTML, <code>html/template</code> should be used to ensure special characters are rendered as
-plaintext (preventing Cross-Site Scripting (XSS) attacks).
-</p>
-
-<div class="org-src-container">
-<pre class="src src-go">package main
-
-import (
-    "html/template"
-    "net/http"
-)
-
-// Data structure to hold the template data
-type Data struct {
-    Name  string
-    Count int
-}
-
-// HTML template string
-const htmlTmplStr = `&lt;h1&gt;Hello, {{.Name}}!&lt;/h1&gt;&lt;p&gt;You have {{.Count}} new messages.&lt;/p&gt;`
-
-// HTTP handler function
-func handler(w http.ResponseWriter, r *http.Request) {
-    tmpl, err := template.New("greeting").Parse(htmlTmplStr)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-
-    data := Data{Name: "Alice", Count: 5}
-    err = tmpl.Execute(w, data)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-    }
-}
-
-func main() {
-    http.HandleFunc("/", handler)
-    http.ListenAndServe(":8080", nil)
-}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-~database%2Fsql~" class="outline-3">
-<h3 id="~database%2Fsql~"><a href="#~database%2Fsql~"><code>database/sql</code></a></h3>
-<div class="outline-text-3" id="text-~database%2Fsql~">
-<div class="org-src-container">
-<pre class="src src-go">package main
-
-import (
-        "database/sql"
-        "fmt"
-        "log"
-        "time"
-
-        _ "github.com/lib/pq" // PostgreSQL driver
-)
-
-type User struct {
-        ID        int
-        Email     string
-        CreatedAt time.Time
-}
-
-func main() {
-        // Connect to database
-        connStr := "postgres://user:password@localhost/dbname?sslmode=disable"
-        db, _ := sql.Open("postgres", connStr)
-        defer db.Close()
-
-        // create table
-        db.Exec(`
-                CREATE TABLE IF NOT EXISTS users (
-                        id SERIAL PRIMARY KEY,
-                        email TEXT NOT NULL UNIQUE,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                )
-        `)
-
-        // inserting data
-        email := "test@example.com"; var id int
-        err = db.QueryRow("INSERT INTO users (email) VALUES ($1) RETURNING id", email,).Scan(&amp;id)
-        fmt.Printf("Inserted user with ID: %d\n", id)
-
-        // Query single row
-        var user User
-        err = db.QueryRow("SELECT id, email, created_at FROM users WHERE id = $1", id).Scan(&amp;user.ID, &amp;user.Email, &amp;user.CreatedAt)
-        fmt.Printf("User: %+v\n", user)
-
-        // Query multiple rows
-        rows, err := db.Query("SELECT id, email, created_at FROM users")
-        defer rows.Close()
-
-        fmt.Println("\nAll users:")
-        for rows.Next() {
-                var u User
-                if err := rows.Scan(&amp;u.ID, &amp;u.Email, &amp;u.CreatedAt); err != nil {
-                        log.Fatal(err)
-                }
-                fmt.Printf("%+v\n", u)
-        }
-
-        // use prepared statement
-        stmt, _ := db.Prepare("UPDATE users SET email = $1 WHERE id = $2")
-        defer stmt.Close()
-
-        res, _ := stmt.Exec("updated@example.com", id)
-        rowsAffected, _ := res.RowsAffected()
-        fmt.Printf("\nUpdated %d rows\n", rowsAffected)
-
-        // Transaction example
-        tx, err := db.Begin()
-
-        _, err = tx.Exec("INSERT INTO users (email) VALUES ($1)", "transaction@example.com")
-        if err != nil { tx.Rollback() }
-
-        err = tx.Commit()
-}
-</pre>
-</div>
-</div>
-</div>
-</div>
 <div id="outline-container-Idioms" class="outline-2">
 <h2 id="Idioms"><a href="#Idioms">Idioms</a></h2>
 <div class="outline-text-2" id="text-Idioms">
@@ -742,7 +577,7 @@ type can then call methods of that embedded type directly.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-go">import "sync"
+<pre class="src src-go"><code>import "sync"
 
 type Message struct {
     sync.RWMutex
@@ -753,7 +588,7 @@ func main() {
     msg := Message{}
     msg.Lock(); defer msg.Unlock();
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -761,10 +596,10 @@ func main() {
 <h3 id="Shorthand%20for%20Error%20Handling"><a href="#Shorthand%20for%20Error%20Handling">Shorthand for Error Handling</a></h3>
 <div class="outline-text-3" id="text-Shorthand%20for%20Error%20Handling">
 <div class="org-src-container">
-<pre class="src src-go">if err := writer.Close(); err != nil {
+<pre class="src src-go"><code>if err := writer.Close(); err != nil {
     panic(err)
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -776,8 +611,8 @@ Ensure a type implements interfaces at compile time:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-go">var _ io.Reader = (*MyType)(nil)
-</pre>
+<pre class="src src-go"><code>var _ io.Reader = (*MyType)(nil)
+</code></pre>
 </div>
 
 <p>

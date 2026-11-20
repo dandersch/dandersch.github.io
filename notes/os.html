@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-06-08 Sat></span></div><div class="tags"><code>[ <a href="/tag/os.html">os</a> ]</code></div></div><h1>Operating System (OS)</h1>
@@ -233,6 +234,172 @@ includes task scheduling, resource management, general device drivers and
 indeterminism (due to is scheduler) among its characteristics - unlike most
 RTOS.
 </p>
+</div>
+</div>
+<div id="outline-container-ID-09cac5ef-b737-453a-9f6d-95d0a93407e0" class="outline-2">
+<h2 id="ID-09cac5ef-b737-453a-9f6d-95d0a93407e0"><a href="#ID-09cac5ef-b737-453a-9f6d-95d0a93407e0">Application Binary Interface (ABI)</a></h2>
+<div class="outline-text-2" id="text-Application%20Binary%20Interface%20%28ABI%29">
+<p>
+The Application Binary Interface (ABI) specifies how software (libraries, apps,
+<a href="os.html#ID-d56ff446-ec55-45fd-a392-8e238759ef8a">OS</a>) communicate with each other at the binary level (machine code). The
+counterpart API defines functions and types programmers use to interact with
+other software at source-code level.
+</p>
+
+<p>
+An ABI includes:
+</p>
+<ul class="org-ul">
+<li><a href="#ID-d15ca5dd-3ff3-42e2-97cf-f54825479db3">Calling Convention</a>: How functions receive parameters and return values.</li>
+<li><b>Data Types and Alignment</b>: Representation in memory (sizes and alignment)</li>
+<li><b>Binary Format</b>: Format for <a href="executable_image.html#ID-e75c5304-7ad8-4e5b-b8ba-69f875eedd75">executable files</a>, object files, and shared libraries</li>
+<li><b>System Calls</b>: Conventions for making system calls to the OS</li>
+</ul>
+</div>
+<div id="outline-container-ID-d15ca5dd-3ff3-42e2-97cf-f54825479db3" class="outline-3">
+<h3 id="ID-d15ca5dd-3ff3-42e2-97cf-f54825479db3"><a href="#ID-d15ca5dd-3ff3-42e2-97cf-f54825479db3">Calling Convention&nbsp;&nbsp;&nbsp<span class="tag"><span class="programming">programming</span></span></a></h3>
+<div class="outline-text-3" id="text-Calling%20Convention">
+<p>
+Calling conventions in programming define how functions receive parameters from
+the caller and how they return values. <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">Programming languages</a> and architectures
+may use different calling conventions.
+</p>
+
+<p>
+They define:
+</p>
+<ul class="org-ul">
+<li>Which registers are used to pass arguments.</li>
+<li>How the stack is used for additional arguments.</li>
+<li>How the return value is passed back to the caller.</li>
+<li>Who is responsible for cleaning up the stack (caller or callee).</li>
+</ul>
+
+<p>
+Common calling conventions include:
+</p>
+<ul class="org-ul">
+<li><code>cdecl</code>: Used in C where the caller cleans the stack</li>
+<li><code>stdcall</code>: Used in Windows API calls, where the callee cleans the stack</li>
+<li><code>fastcall</code>: Passes some arguments in registers for efficiency</li>
+<li><code>x86-64 System V ABI</code>: Defines calling conventions for x86-64 architecture,
+including how parameters are passed in registers and on the stack.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-e739cbc3-7eb6-4f73-a628-a373e8d34e78" class="outline-2">
+<h2 id="ID-e739cbc3-7eb6-4f73-a628-a373e8d34e78"><a href="#ID-e739cbc3-7eb6-4f73-a628-a373e8d34e78">Loader</a></h2>
+<div class="outline-text-2" id="text-Loader">
+<p>
+The loader is the part of an <a href="os.html#ID-d56ff446-ec55-45fd-a392-8e238759ef8a">OS</a> that is responsible for parsing and
+instantiating programs and libraries (i.e <a href="executable_image.html#ID-e75c5304-7ad8-4e5b-b8ba-69f875eedd75">executable images</a>) in order to prepare
+them for execution.
+</p>
+
+<p>
+The loader executes when the user launches a program, or when an already running
+program dynamically loads another image (e.g. via <code>LoadLibrary</code> on Windows or
+<code>dlopen</code> on Linux).
+</p>
+</div>
+</div>
+<div id="outline-container-ID-5bed8fa5-0012-4c40-bce0-39403b4da877" class="outline-2">
+<h2 id="ID-5bed8fa5-0012-4c40-bce0-39403b4da877"><a href="#ID-5bed8fa5-0012-4c40-bce0-39403b4da877">POSIX Signals</a></h2>
+<div class="outline-text-2" id="text-POSIX%20Signals">
+<p>
+Signals are a way to notify running programs of events to trigger a response,
+such as quitting or <a href="error_handling.html#ID-b3063a31-6107-417a-894b-62ef3061ebf0">error handling</a>. They are used in Unix and POSIX-compliant
+<a href="os.html#ID-d56ff446-ec55-45fd-a392-8e238759ef8a">operating systems</a> and represent a form of inter-process communication (IPC).
+</p>
+</div>
+<div id="outline-container-Setting%20a%20signal%20handler%20in%20C" class="outline-3">
+<h3 id="Setting%20a%20signal%20handler%20in%20C"><a href="#Setting%20a%20signal%20handler%20in%20C">Setting a signal handler in C</a></h3>
+<div class="outline-text-3" id="text-Setting%20a%20signal%20handler%20in%20C">
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdlib.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;signal.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+
+<span class="org-type">void</span> <span class="org-function-name">sig_segv_handler</span>(<span class="org-type">int</span> <span class="org-variable-name">signum</span>) { printf(<span class="org-string">"SEGV ignored.\n"</span>); }
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span>** <span class="org-variable-name">argv</span>)
+{
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">int signal () (int signum, void (*func)(int))</span><span class="org-comment-delimiter"> */</span>
+    signal(SIGSEGV, sig_segv_handler);
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">cause intentional segmentation fault (also gets picked up by gcc as stack-smashing)
+</span>    <span class="org-type">float</span>* <span class="org-variable-name">arr</span> = (<span class="org-type">float</span>*) malloc(<span class="org-keyword">sizeof</span>(<span class="org-type">float</span>) * 3);
+    arr        = (<span class="org-type">float</span>[3]) {0.4f, 0.3f, 3.2f};
+    arr[3]     = 11.0f;
+    printf(<span class="org-string">"%.1f %.1f %.1f\n"</span>, arr[0], arr[1], arr[2]);
+}
+</code></pre>
+</div>
+
+<p>
+Compile with <code>gcc -O0 handler.c -o handler -fno-stack-protector</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://dsa.cs.tsinghua.edu.cn/oj/static/unix_signal.html">POSIX signals</a></li>
+<li><a href="https://metricpanda.com/rival-fortress-update-35-crash-resurrection-for-c-cpp-game-engines">Simple Crash Resurrection For C/C++ Game Engines</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-d205bd1d-7f00-4fb4-a3ee-bd2660189590" class="outline-2">
+<h2 id="ID-d205bd1d-7f00-4fb4-a3ee-bd2660189590"><a href="#ID-d205bd1d-7f00-4fb4-a3ee-bd2660189590">Process</a></h2>
+<div class="outline-text-2" id="text-Process">
+<p>
+A process is an instance of a running program inside an <a href="os.html#ID-d56ff446-ec55-45fd-a392-8e238759ef8a">OS</a>. It can contain
+several modules (loaded <a href="executable_image.html#ID-e75c5304-7ad8-4e5b-b8ba-69f875eedd75">executable images</a>) and is executed by one or more
+<a href="multithreading.html#ID-ae75ed1e-d6de-48f9-b82b-e603a67f8ccd">threads</a>. A process also represents the granularity at which the OS assigns
+<a href="#ID-bee48bff-a2c6-4e62-9ff9-c905121f8383">virtual address spaces</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-ID-bee48bff-a2c6-4e62-9ff9-c905121f8383" class="outline-2">
+<h2 id="ID-bee48bff-a2c6-4e62-9ff9-c905121f8383"><a href="#ID-bee48bff-a2c6-4e62-9ff9-c905121f8383">Virtual Address Space</a></h2>
+<div class="outline-text-2" id="text-Virtual%20Address%20Space">
+<p>
+Virtual address spaces refer to a memory management technique where each process
+or program is given a separate space of memory addresses. The platform provides
+a mapping of these virtual addresses to physical addresses. This allows multiple
+processes to run concurrently without interfering with each other's memory, as
+each process can access only its own virtual address space. Virtual address
+spaces can be much larger than the actual physical RAM.
+</p>
+</div>
+<div id="outline-container-Page%20Tables" class="outline-3">
+<h3 id="Page%20Tables"><a href="#Page%20Tables">Page Tables</a></h3>
+<div class="outline-text-3" id="text-Page%20Tables">
+<p>
+The mapping from virtual to physical addresses is achieved using page tables. A
+page table can be used directly by the CPU in order to perform address
+translation at page-size granularity (e.g. 4kB on x64 Windows, 16 kB on an
+iPhone).
+</p>
+
+<p>
+If a virtual address is unmapped, then a <b>page fault</b> exception will be issued by
+the CPU, and execution is interrupted. Typically, the operating system takes
+over execution at this point.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
+<ul class="org-ul">
+<li><a href="https://github.com/7etsuo/windows-api-function-cheatsheets">Windows API Cheatsheet</a></li>
+</ul>
 </div>
 </div>
 </main>

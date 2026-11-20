@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2023-04-10 Mon></span></div><div class="tags"><code>[ <a href="/tag/compsci.html">compsci</a> ]</code></div></div><h1>Finite State Machines (FSM)</h1>
@@ -227,7 +228,7 @@ comprised of its states and transitions.
 <h2 id="Example%20implementation%20in%20C"><a href="#Example%20implementation%20in%20C">Example implementation in C</a></h2>
 <div class="outline-text-2" id="text-Example%20implementation%20in%20C">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">enum</span> <span class="org-type">game_transition_e</span>
+<pre class="src src-C++"><code><span class="org-keyword">enum</span> <span class="org-type">game_transition_e</span>
 {
     <span class="org-variable-name">GAME_TRANSITION_NONE</span>,
     <span class="org-variable-name">GAME_TRANSITION_TO_MENU</span>,
@@ -256,8 +257,8 @@ comprised of its states and transitions.
     <span class="org-type">int</span> <span class="org-variable-name">game_running</span> = 1;
     <span class="org-keyword">while</span> (game_running)
     {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">detect transition</span>
-        game_transition.type = GAME_TRANSITION_NONE;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">detect transition
+</span>        game_transition.type = GAME_TRANSITION_NONE;
 
         <span class="org-type">char</span> <span class="org-variable-name">input</span> = getchar();
         <span class="org-keyword">switch</span> (input)
@@ -292,12 +293,12 @@ comprised of its states and transitions.
             } <span class="org-keyword">break</span>;
         }
 
-        <span class="org-comment-delimiter">// </span><span class="org-comment">log</span>
-        printf(<span class="org-string">"TRANSITION: %u\n"</span>, game_transition.type);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">log
+</span>        printf(<span class="org-string">"TRANSITION: %u\n"</span>, game_transition.type);
         printf(<span class="org-string">"STATE:    %u\n"</span>, game_state.type);
     }
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -310,7 +311,7 @@ define default state transition (plus offer strings for all enums).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">NOTE: for this example, game states and transitions are identical</span><span class="org-comment-delimiter">  */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">NOTE: for this example, game states and transitions are identical</span><span class="org-comment-delimiter">  */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">GAME_STATES</span>(<span class="org-variable-name">X</span>) \
         X(NONE)   \
         X(MENU)   \
@@ -320,7 +321,7 @@ define default state transition (plus offer strings for all enums).
 <span class="org-keyword">typedef</span> <span class="org-keyword">enum</span> <span class="org-type">game_transition_e</span>
 {
 <span class="org-preprocessor">    #define</span> <span class="org-function-name">TRANSITION_ENUM</span>(<span class="org-variable-name">state</span>, ...) GAME_TRANSITION_TO_##state,
-    <span class="org-function-name">GAME_STATES</span>(TRANSITION_ENUM)
+    <span class="org-function-name">GAME_STATES</span>(<span class="org-type">TRANSITION_ENUM</span>)
     GAME_TRANSITION_COUNT
 } <span class="org-type">game_transition_e</span>;
 
@@ -331,7 +332,7 @@ define default state transition (plus offer strings for all enums).
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">enum</span> <span class="org-type">game_state_e</span> {
 <span class="org-preprocessor">    #define</span> <span class="org-function-name">STATE_ENUM</span>(<span class="org-variable-name">state</span>, ...) GAME_STATE_##state,
-    <span class="org-function-name">GAME_STATES</span>(STATE_ENUM)
+    <span class="org-function-name">GAME_STATES</span>(<span class="org-type">STATE_ENUM</span>)
     GAME_STATE_COUNT
 } <span class="org-type">game_state_e</span>;
 
@@ -405,7 +406,7 @@ define default state transition (plus offer strings for all enums).
         }
     }
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

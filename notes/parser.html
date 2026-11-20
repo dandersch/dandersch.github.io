@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,31 +199,31 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/compiler.html">compiler</a> ]</code></div></div><h1>Parser</h1>
 <p>
 In the area of <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming languages</a>, parsing describes the process of analyzing
 the string that makes up the programming code with the goal of creating a more
-formal structural representation - most commonly an <a href="abstract_syntax_tree.html#ID-af799584-9463-4c17-a749-7291ef235158">abstract syntax tree</a>.
+formal structural representation - most commonly an <a href="programming_language.html#ID-af799584-9463-4c17-a749-7291ef235158">abstract syntax tree</a>.
 </p>
 
 <p>
@@ -230,9 +231,104 @@ Parsing is usually the first major stage in any compiling pipeline - though it
 is often preceeded by a lexing or tokenization step that can be considered
 seperate from parsing.
 </p>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-e9a65644-e978-4826-a729-ab773b2af1b3" class="outline-2">
+<h2 id="ID-e9a65644-e978-4826-a729-ab773b2af1b3"><a href="#ID-e9a65644-e978-4826-a729-ab773b2af1b3">LR parser</a></h2>
+<div class="outline-text-2" id="text-LR%20parser">
+<p>
+An LR <a href="parser.html#ID-0c3b7a72-e74f-4e3b-9c02-55a8fa6b386c">parser</a> reads the characters of a text from beginning to end, i.e. left to
+right (LR), without ever backtracking. During this process, it groups the
+characters together to tokens using a lexer function. The tokens themselves are
+then grouped together to subtrees, which are stored on a stack. For every new
+token it decides what to do with the stack by consulting the <i>parse table</i>.
+</p>
+</div>
+<div id="outline-container-Example%20for%20LR-parsing%20a%20simple%20text" class="outline-3">
+<h3 id="Example%20for%20LR-parsing%20a%20simple%20text"><a href="#Example%20for%20LR-parsing%20a%20simple%20text">Example for LR-parsing a simple text</a></h3>
+<div class="outline-text-3" id="text-Example%20for%20LR-parsing%20a%20simple%20text">
+<ol class="org-ol">
+<li><p>
+Parser starts out at beginning of string. Stack is empty.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil"><code>Text:  x * y + z
+Pos:   ^
+Stack:
+</code></pre>
+</div></li>
+
+<li><p>
+Parser sees first character and recognizes it as a variable. Pushes [var] on the stack.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil"><code>Text:  x * y + z
+Pos:   ^
+Stack: [var]
+</code></pre>
+</div></li>
+
+<li><p>
+Same with the next 2 tokens.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil"><code>Text:  x * y + z
+Pos:        ^
+Stack: [var][*][var]
+</code></pre>
+</div></li>
+
+<li><p>
+Parser table for <code>+</code> specifies a reduction. This means the last 3 tokens get
+popped off the stack and get grouped together as a new parent subtree on the
+stack. Then the <code>+</code>  and the variable z can be pushed on.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil"><code>Text:  x * y + z
+Pos:           ^
+Stack: [(product var * var)][+][var]
+</code></pre>
+</div></li>
+
+<li><p>
+Reaching the end of the text means another reduction. This creates the root
+node of the final syntax tree.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil"><code>Text:  x * y + z
+Pos:           ^
+Stack: [(sum (product var * var) + var)]
+</code></pre>
+</div></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-Problems%20with%20LR%20parsing" class="outline-3">
+<h3 id="Problems%20with%20LR%20parsing"><a href="#Problems%20with%20LR%20parsing">Problems with LR parsing</a></h3>
+<div class="outline-text-3" id="text-Problems%20with%20LR%20parsing">
+<p>
+Take the Javascript code <code>x = (y);</code>. Here x is assigned to y. On the other hand,
+take <code>x = (y) =&gt; z;</code>. Here x is assigned to a function that takes y as a
+parameter.
+</p>
+
+<p>
+Without looking ahead or guessing and then checking, an LR parser cannot know
+which one it's gonna be. One way to solve this problem is to use generalized LR
+parsing - or GLR parsing.
+</p>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://en.wikipedia.org/wiki/LR_parser">https://en.wikipedia.org/wiki/LR_parser</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://tomassetti.me/guide-parsing-algorithms-terminology">Parsing Guide</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Lexer_hack">https://en.wikipedia.org/wiki/Lexer_hack</a></li>

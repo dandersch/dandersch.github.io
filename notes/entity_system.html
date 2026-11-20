@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,29 +199,29 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/gamedev.html">gamedev</a> ]</code></div></div><h1>Entity System</h1>
 <p>
-An entity system in <a href="gamedev.html#ID-1b2ad773-6a69-4f5f-999a-87f8cadcb804">game development</a> describes the structure a <a href="game_engine.html#ID-73576ff1-3ad3-419d-b114-7f9260c9ab2e">game engine</a> uses
+An entity system in game development describes the structure a <a href="game_engine.html#ID-73576ff1-3ad3-419d-b114-7f9260c9ab2e">game engine</a> uses
 to organize its entities. What is meant by an entity can differ depending on the
 system. Moreover, the term <i>entity system</i> itself and what it actually entails are
 still up for debate - as well as what the best practices should be when
@@ -291,27 +292,27 @@ Typical structure:
 In entity.h:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">entity_t</span> {
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">entity_t</span> {
     <span class="org-type">entity_type_e</span> <span class="org-variable-name">type</span>;
 
     <span class="org-keyword">union</span> {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-    };
+        <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>    };
 }
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">GET_ENT</span>(<span class="org-variable-name">e</span>, <span class="org-variable-name">entity_type</span>) ((e)-&gt;type == Entity_##entity_type ? &amp;(e)-&gt;entity_type : 0)
-</pre>
+</code></pre>
 </div>
 
 <p>
 Usage code:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">if</span> (<span class="org-keyword">auto</span>* <span class="org-variable-name">bomb</span> = GET_ENT(e, bomb))
+<pre class="src src-C"><code><span class="org-keyword">if</span> (<span class="org-keyword">auto</span>* <span class="org-variable-name">bomb</span> = GET_ENT(e, bomb))
 {
     bomb_blow_up(bomb);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

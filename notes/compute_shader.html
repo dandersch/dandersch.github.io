@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-07-03 Wed></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Compute Shader</h1>
@@ -229,7 +230,7 @@ graphics cards for general computing purposes.
 <p>
 They are a form of compute kernel and enable <i>general-purpose computing on
 graphics processing units</i>, or <a href="gpgpu.html#ID-97928916-e2f2-421c-9cde-b3c678261d03">GPGPU</a> for short. In that vein, they serve a
-similar purpose as OpenCL or <a href="cuda.html#ID-4d7a3b62-13fe-4633-a99d-5b645c01b6f1">CUDA</a>.
+similar purpose as OpenCL or CUDA.
 </p>
 <div id="outline-container-%5B%5Bid%3A394d1edc-3e93-4914-ae21-6ffd17a6b163%5D%5BOpenGL%5D%5D%20Compute%20Shaders" class="outline-2">
 <h2 id="%5B%5Bid%3A394d1edc-3e93-4914-ae21-6ffd17a6b163%5D%5BOpenGL%5D%5D%20Compute%20Shaders"><a href="#%5B%5Bid%3A394d1edc-3e93-4914-ae21-6ffd17a6b163%5D%5BOpenGL%5D%5D%20Compute%20Shaders"><a href="opengl.html#ID-394d1edc-3e93-4914-ae21-6ffd17a6b163">OpenGL</a> Compute Shaders</a></h2>
@@ -242,7 +243,7 @@ Compute shaders were introduced in OpenGL 4.3
 Example of a compute shader in <a href="glsl.html#ID-afe813b3-c18d-41c4-9e6e-dd8504f14184">GLSL</a>.
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#version</span> 430 core
+<pre class="src src-C"><code><span class="org-preprocessor">#version</span> 430 core
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">invocations</span><span class="org-comment-delimiter"> */</span>
 <span class="org-function-name">layout</span>(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
@@ -254,22 +255,22 @@ Example of a compute shader in <a href="glsl.html#ID-afe813b3-c18d-41c4-9e6e-dd8
     <span class="org-type">uvec3</span> <span class="org-variable-name">current_local_invocation_id</span>  = gl_LocalInvocationID;
 
     <span class="org-comment-delimiter">/* </span><span class="org-comment">derived inputs</span><span class="org-comment-delimiter"> */</span>
-    <span class="org-type">uvec3</span> <span class="org-variable-name">current_global_invocation_id</span> = gl_GlobalInvocationID;  <span class="org-comment-delimiter">// </span><span class="org-comment">== gl_WorkGroupID * gl_WorkGroupSize + gl_LocalInvocationID</span>
-    <span class="org-type">uint</span>  <span class="org-variable-name">current_local_invocation_idx</span> = glLocalInvocationIndex; <span class="org-comment-delimiter">// </span><span class="org-comment">3d gl_LocalInvocationID flattened to 1d index</span>
-
+    <span class="org-type">uvec3</span> <span class="org-variable-name">current_global_invocation_id</span> = gl_GlobalInvocationID;  <span class="org-comment-delimiter">// </span><span class="org-comment">== gl_WorkGroupID * gl_WorkGroupSize + gl_LocalInvocationID
+</span>    <span class="org-type">uint</span>  <span class="org-variable-name">current_local_invocation_idx</span> = glLocalInvocationIndex; <span class="org-comment-delimiter">// </span><span class="org-comment">3d gl_LocalInvocationID flattened to 1d index
+</span>
     <span class="org-comment-delimiter">/* </span><span class="org-comment">for workgroup sizes of 1, gl_WorkGroupID == gl_GlobalInvocationID</span><span class="org-comment-delimiter"> */</span>
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
 Usage code of a compute shader program:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-function-name">glUseProgram</span>(compute_shader)
-<span class="org-function-name">glDispatchCompute</span>(num_groups_x, num_groups_y, num_groups_z) <span class="org-comment-delimiter">// </span><span class="org-comment">number of work groups to be launched for every dimension</span>
-<span class="org-function-name">glMemoryBarrier</span>(GL_ALL_BARRIER_BITS);
-</pre>
+<pre class="src src-C"><code><span class="org-function-name">glUseProgram</span>(compute_shader)
+<span class="org-function-name">glDispatchCompute</span>(num_groups_x, num_groups_y, num_groups_z) <span class="org-comment-delimiter">// </span><span class="org-comment">number of work groups to be launched for every dimension
+</span><span class="org-function-name">glMemoryBarrier</span>(<span class="org-type">GL_ALL_BARRIER_BITS</span>);
+</code></pre>
 </div>
 </div>
 </div>
@@ -295,10 +296,10 @@ Common Warps:
 Getting warp at runtime:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">int</span> <span class="org-variable-name">work_grp_cnt</span>[3];
-<span class="org-function-name">glGetIntegeri_v</span>(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 0, &amp;work_grp_cnt[0]);
-<span class="org-function-name">glGetIntegeri_v</span>(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 1, &amp;work_grp_cnt[1]);
-<span class="org-function-name">glGetIntegeri_v</span>(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 2, &amp;work_grp cnt[2]);
+<pre class="src src-C"><code><span class="org-type">int</span> <span class="org-variable-name">work_grp_cnt</span>[3];
+<span class="org-function-name">glGetIntegeri_v</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_COUNT</span>, 0, &amp;work_grp_cnt[0]);
+<span class="org-function-name">glGetIntegeri_v</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_COUNT</span>, 1, &amp;work_grp_cnt[1]);
+<span class="org-function-name">glGetIntegeri_v</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_COUNT</span>, 2, &amp;work_grp cnt[2]);
 printf(<span class="org-string">"Max work groups per compute shader\n"</span>);
 printf(<span class="org-string">"   x: %i\n"</span>, work_grp_cnt[0]);
 printf(<span class="org-string">"   y: %i\n"</span>, work_grp_cnt[2]);
@@ -306,18 +307,18 @@ printf(<span class="org-string">"   z: %i\n"</span>, work_grp_cnt[3]);
 printf(<span class="org-string">"\n"</span>);
 
 <span class="org-type">int</span> <span class="org-variable-name">work_grp_size</span>[3];
-<span class="org-function-name">glGetIntegeri_v</span>(GL_MAX_COMPUTE_WORK_GROUP_SIZE, O, &amp;work_grp_size[0]);
-<span class="org-function-name">glGetIntegeri_v</span>(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 1, &amp;work_grp_size[1]);
-<span class="org-function-name">glGetIntegeri_v</span>(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 2, &amp;work_grp_size[2]);
+<span class="org-function-name">glGetIntegeri_v</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_SIZE</span>, <span class="org-type">O</span>, &amp;work_grp_size[0]);
+<span class="org-function-name">glGetIntegeri_v</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_SIZE</span>, 1, &amp;work_grp_size[1]);
+<span class="org-function-name">glGetIntegeri_v</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_SIZE</span>, 2, &amp;work_grp_size[2]);
 printf(<span class="org-string">"Max work group sizes\n"</span>);
 printf(<span class="org-string">"   x: %i\n"</span>, work_grp_size[0]);
 printf(<span class="org-string">"   y: %i\n"</span>, work_grp_size[2]);
 printf(<span class="org-string">"   z: %i\n"</span>, work_grp_size[3]);
 
 <span class="org-type">int</span> <span class="org-variable-name">work_grp_inv</span>;
-<span class="org-function-name">glGetIntegerv</span>(GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &amp;work_grp_inv);
+<span class="org-function-name">glGetIntegerv</span>(<span class="org-type">GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS</span>, &amp;work_grp_inv);
 printf(<span class="org-string">"Max invocations count per work group: %i\n"</span>, work_grp_inv);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -326,7 +327,7 @@ printf(<span class="org-string">"Max invocations count per work group: %i\n"</sp
 <div class="outline-text-2" id="text-SIMT%20-%20The%20Execution%20Model">
 <p>
 The parallel execution model of (compute) shader is referred to as <i>Single
-instruction, multiple threads</i> (SIMT). It combines <a href="simd.html#ID-01c09cff-4fd0-4ec4-bd84-f69a234c5941">SIMD</a> with multithreading.
+instruction, multiple threads</i> (SIMT). It combines <a href="cpu.html#ID-01c09cff-4fd0-4ec4-bd84-f69a234c5941">SIMD</a> with multithreading.
 </p>
 
 <p>
@@ -340,7 +341,7 @@ Each GPU has Cores which each have Wavefront which each have Threads.
 </p>
 
 <p>
-This means that&#x2026;
+This means that&hellip;
 </p>
 <ul class="org-ul">
 <li><i>Data changes per thread</i></li>
@@ -388,17 +389,17 @@ issued) can be considered constant for the duration of the drawcall</li>
 Take an <code>if</code> statement that is used just to set a variable to A or B:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">if</span> (condition) { color = red;  }
+<pre class="src src-C"><code><span class="org-keyword">if</span> (condition) { color = red;  }
 <span class="org-keyword">else</span>           { color = blue; }
-</pre>
+</code></pre>
 </div>
 
 <p>
 This can be rewritten as:
 </p>
 <div class="org-src-container">
-<pre class="src src-C">color = red * condition + (1-condition) * blue;
-</pre>
+<pre class="src src-C"><code>color = red * condition + (1-condition) * blue;
+</code></pre>
 </div>
 </div>
 </div>

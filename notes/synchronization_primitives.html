@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2025-04-20 Sun></span></div><div class="tags"><code>[ <a href="/tag/concurrency.html">concurrency</a> ]</code></div></div><h1>Synchronization Primitives</h1>
@@ -258,12 +259,12 @@ performance bottlenecks and deadlocks.
 Basic Mutex API:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">int</span> <span class="org-function-name">mutex_init</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);
-<span class="org-type">int</span> <span class="org-function-name">mutex_lock</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);    <span class="org-comment-delimiter">// </span><span class="org-comment">blocking, waits until mutex available</span>
-<span class="org-type">int</span> <span class="org-function-name">mutex_trylock</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">non-blocking, returns with success or failure</span>
-<span class="org-type">int</span> <span class="org-function-name">mutex_unlock</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">unlock a mutex</span>
-<span class="org-type">int</span> <span class="org-function-name">mutex_destroy</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);
-</pre>
+<pre class="src src-C"><code><span class="org-type">int</span> <span class="org-function-name">mutex_init</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);
+<span class="org-type">int</span> <span class="org-function-name">mutex_lock</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);    <span class="org-comment-delimiter">// </span><span class="org-comment">blocking, waits until mutex available
+</span><span class="org-type">int</span> <span class="org-function-name">mutex_trylock</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">non-blocking, returns with success or failure
+</span><span class="org-type">int</span> <span class="org-function-name">mutex_unlock</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">unlock a mutex
+</span><span class="org-type">int</span> <span class="org-function-name">mutex_destroy</span>(<span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);
+</code></pre>
 </div>
 </div>
 </div>
@@ -285,18 +286,18 @@ them suitable for for brief waits or very short critical sections.
 Code Example
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">volatile</span> <span class="org-type">int</span> <span class="org-type">spinlock_t</span>;
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">volatile</span> <span class="org-type">int</span> <span class="org-type">spinlock_t</span>;
 
 <span class="org-type">void</span> <span class="org-function-name">spin_lock</span>(<span class="org-type">spinlock_t</span> *<span class="org-variable-name">lock</span>) {
     <span class="org-keyword">while</span> (__sync_lock_test_and_set(lock, 1)) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Spin until lock is acquired</span>
-    }
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Spin until lock is acquired
+</span>    }
 }
 
 <span class="org-type">void</span> <span class="org-function-name">spin_unlock</span>(<span class="org-type">spinlock_t</span> *<span class="org-variable-name">lock</span>) {
     __sync_lock_release(lock);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -329,18 +330,18 @@ Core operations:
 Basic Semaphore API:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> {
     <span class="org-type">int</span> <span class="org-variable-name">value</span>;
     <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span>
 } <span class="org-type">semaphore</span>;
 
 <span class="org-type">void</span> <span class="org-function-name">sem_init</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>, <span class="org-type">int</span> <span class="org-variable-name">value</span>);
 <span class="org-type">void</span> <span class="org-function-name">sem_wait</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>);
-<span class="org-type">int</span>  <span class="org-function-name">sem_trywait</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">non-blocking</span>
-<span class="org-type">void</span> <span class="org-function-name">sem_post</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>);
+<span class="org-type">int</span>  <span class="org-function-name">sem_trywait</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">non-blocking
+</span><span class="org-type">void</span> <span class="org-function-name">sem_post</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>);
 <span class="org-type">int</span>  <span class="org-function-name">sem_value</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>, <span class="org-type">int</span> *<span class="org-variable-name">sval</span>);
 <span class="org-type">void</span> <span class="org-function-name">sem_destroy</span>(<span class="org-type">semaphore</span> *<span class="org-variable-name">sem</span>);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -354,7 +355,7 @@ suspended (sleeping), which avoids busy waiting (spinning).
 </p>
 
 <p>
-They are typically used alongside <a href="#ID-2fcbf4a7-b7d9-4264-8959-eadf8ce1b5f6">mutexes</a> to solve the <a href="producer_consumer_problem.html#ID-96b9e335-38fe-479b-9b74-2ee5af05eee4">producer-consumer problem</a>
+They are typically used alongside <a href="#ID-2fcbf4a7-b7d9-4264-8959-eadf8ce1b5f6">mutexes</a> to solve the <a href="concurrency.html#ID-96b9e335-38fe-479b-9b74-2ee5af05eee4">producer-consumer problem</a>
 and similar synchronization scenarios.
 </p>
 
@@ -371,13 +372,13 @@ Usage:
 Basic Condition Variable API
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">int</span> <span class="org-function-name">cond_init</span>(<span class="org-type">cond_t</span> **<span class="org-variable-name">cond</span>);
+<pre class="src src-C"><code><span class="org-type">int</span> <span class="org-function-name">cond_init</span>(<span class="org-type">cond_t</span> **<span class="org-variable-name">cond</span>);
 <span class="org-type">int</span> <span class="org-function-name">cond_wait</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>, <span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>);
 <span class="org-type">int</span> <span class="org-function-name">cond_timedwait</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>, <span class="org-type">mutex_t</span> *<span class="org-variable-name">mutex</span>, <span class="org-type">uint64_t</span> <span class="org-variable-name">timeout_ms</span>);
-<span class="org-type">int</span> <span class="org-function-name">cond_signal</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>);    <span class="org-comment-delimiter">// </span><span class="org-comment">awaken single waiting thread</span>
-<span class="org-type">int</span> <span class="org-function-name">cond_broadcast</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">awaken all waiting threads</span>
-<span class="org-type">int</span> <span class="org-function-name">cond_destroy</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>);
-</pre>
+<span class="org-type">int</span> <span class="org-function-name">cond_signal</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>);    <span class="org-comment-delimiter">// </span><span class="org-comment">awaken single waiting thread
+</span><span class="org-type">int</span> <span class="org-function-name">cond_broadcast</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">awaken all waiting threads
+</span><span class="org-type">int</span> <span class="org-function-name">cond_destroy</span>(<span class="org-type">cond_t</span> *<span class="org-variable-name">cond</span>);
+</code></pre>
 </div>
 </div>
 </div>

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-06-17 Mon></span></div><div class="tags"><code>[ <a href="/tag/compiler.html">compiler</a> ]</code></div></div><h1>Address Sanitization (ASan)</h1>
@@ -223,7 +224,7 @@
 Address Sanitization - as performed by a tool such as <a href="https://github.com/google/sanitizers/wiki/AddressSanitizer">AddressSanitizer (ASan)</a> -
 is a method for runtime memory error detection. It tries to detect invalid
 memory accesses, such as the ones caused by out-of-bounds array indices or
-use-after-free. It is a <a href="compiler.html#ID-5d27e875-01bf-4848-9470-613abbc3107b">compiler</a> feature in <a href="clang.html#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">clang</a> (LLVM) and GCC.
+use-after-free. It is a compiler feature in <a href="c.html#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">clang</a> (LLVM) and GCC.
 </p>
 
 <p>
@@ -254,7 +255,7 @@ the following preprocessor code:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#if</span> <span class="org-preprocessor">defined</span>(_MSC_VER)
+<pre class="src src-C"><code><span class="org-preprocessor">#if</span> <span class="org-preprocessor">defined</span>(_MSC_VER)
 <span class="org-preprocessor">  #if</span> <span class="org-preprocessor">defined</span>(__SANITIZE_ADDRESS__)
 <span class="org-preprocessor">    #define</span> <span class="org-variable-name">ASAN_ENABLED</span> 1
 <span class="org-preprocessor">    #define</span> <span class="org-variable-name">NO_ASAN</span> <span class="org-keyword">__declspec</span>(no_sanitize_address)
@@ -290,7 +291,7 @@ the following preprocessor code:
 <span class="org-preprocessor">  #define</span> <span class="org-function-name">asan_poison_memory_region</span>(<span class="org-variable-name">addr</span>, <span class="org-variable-name">size</span>)   ((<span class="org-type">void</span>)(addr), (<span class="org-type">void</span>)(size))
 <span class="org-preprocessor">  #define</span> <span class="org-function-name">asan_unpoison_memory_region</span>(<span class="org-variable-name">addr</span>, <span class="org-variable-name">size</span>) ((<span class="org-type">void</span>)(addr), (<span class="org-type">void</span>)(size))
 <span class="org-preprocessor">#endif</span>
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

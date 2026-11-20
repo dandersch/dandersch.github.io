@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,48 +199,37 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-06-08 Sat></span></div><div class="tags"><code>[ <a href="/tag/gamedev.html">gamedev</a> ]</code></div></div><h1>Game Engine</h1>
 <p>
-A game engine is a software framework used in <a href="gamedev.html#ID-1b2ad773-6a69-4f5f-999a-87f8cadcb804">game development</a>. It may or may
+A game engine is a software framework used in game development. It may or may
 not include dedicated tools such as an editor. Popular game engines include
-<a href="unreal_engine.html#ID-37e59caa-62ac-45a0-af09-2462b24c31e8">Unreal Engine</a>, Unity and <a href="godot.html#ID-f4b8e5a8-ae8f-4f34-bcc4-bfa33a030a0a">Godot</a>.
+Unreal Engine, Unity and Godot.
 </p>
 
 <p>
-Important parts of a common game engine include
+Important parts of a common game engine include the editor, renderer, audio
+engine, physics engine or scripting system.
 </p>
-<ul class="org-ul">
-<li>Editor</li>
-<li>Renderer</li>
-<li>Audio engine</li>
-<li><a href="physics_engine.html#ID-92d28569-4319-4031-bd53-22277c438672">Physics engine</a></li>
-<li>Scripting System</li>
-<li>Resource Manager</li>
-<li>Networking</li>
-<li>Support for exporting to various target platforms</li>
-<li>Support for importing commonly used file formats (<code>gltf</code>, <code>png</code>, <code>wav</code>, etc.)</li>
-<li>&#x2026;</li>
-</ul>
 <div id="outline-container-Comparison%20of%20popular%20engines" class="outline-2">
 <h2 id="Comparison%20of%20popular%20engines"><a href="#Comparison%20of%20popular%20engines">Comparison of popular engines</a></h2>
 <div class="outline-text-2" id="text-Comparison%20of%20popular%20engines">
@@ -263,7 +253,7 @@ Important parts of a common game engine include
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&nbsp;</th>
 <th scope="col" class="org-left">Godot (GDScript)</th>
 <th scope="col" class="org-left">Godot (C#)</th>
 <th scope="col" class="org-left">Godot (GDExtension)</th>
@@ -277,7 +267,7 @@ Important parts of a common game engine include
 <td class="org-left">Language</td>
 <td class="org-left">GDScript</td>
 <td class="org-left">C#</td>
-<td class="org-left">C/C++, Rust, &#x2026; (Bindings)</td>
+<td class="org-left">C/C++, Rust, &hellip; (Bindings)</td>
 <td class="org-left">C++ / Blueprints</td>
 <td class="org-left">C#</td>
 <td class="org-left">Any</td>
@@ -305,11 +295,11 @@ Important parts of a common game engine include
 
 <tr>
 <td class="org-left">Compile Times</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">&lt;5s</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">&lt;2s</td>
 </tr>
 
@@ -318,19 +308,19 @@ Important parts of a common game engine include
 <td class="org-left">1s</td>
 <td class="org-left">&gt;1s</td>
 <td class="org-left">&lt;1s</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">0s</td>
 </tr>
 
 <tr>
 <td class="org-left">Performance</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 </tr>
 
 <tr>
@@ -346,12 +336,12 @@ Important parts of a common game engine include
 <tbody>
 <tr>
 <td class="org-left">Export Targets</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 </tr>
 
 <tr>
@@ -427,12 +417,12 @@ Important parts of a common game engine include
 <tbody>
 <tr>
 <td class="org-left">Editors</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 </tr>
 
 <tr>
@@ -458,12 +448,12 @@ Important parts of a common game engine include
 <tbody>
 <tr>
 <td class="org-left">Renderer</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 </tr>
 
 <tr>
@@ -472,28 +462,28 @@ Important parts of a common game engine include
 <td class="org-left">Yes</td>
 <td class="org-left">Yes</td>
 <td class="org-left">..</td>
-<td class="org-left">&#x2026;</td>
+<td class="org-left">&hellip;</td>
 <td class="org-left">Yes</td>
 </tr>
 
 <tr>
 <td class="org-left">OpenGL</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 <td class="org-left">Yes</td>
 </tr>
 
 <tr>
-<td class="org-left">&#x2026;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">&hellip;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
 </tr>
 </tbody>
 <tbody>
@@ -531,14 +521,167 @@ Important parts of a common game engine include
 </table>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-859d6429-5bc7-4743-93ef-d8308877b4ec" class="outline-2">
+<h2 id="ID-859d6429-5bc7-4743-93ef-d8308877b4ec"><a href="#ID-859d6429-5bc7-4743-93ef-d8308877b4ec">Nanite</a></h2>
+<div class="outline-text-2" id="text-Nanite">
+<p>
+Nanite is a runtime, dynamic level-of-detail (LOD) system for 3D models. It is
+used in Unreal Engine 5 and is described as a "virtualized micropolygon geometry
+system". It is considered to be "virtualized", because it provides a virtualized
+representation of the geometry to the rendering system, even though it may load
+and stream parts of the model as needed - akin to the way virtual memory works.
+</p>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
 <ul class="org-ul">
-<li>Game Engine Architecture (Jason Gregory, 2008)</li>
+<li><a href="https://jglrxavpok.github.io/2024/03/12/recreating-nanite-faster-lod-generation.html">Recreating Nanite: LOD generation - faster, better, simpler</a></li>
+<li><a href="https://www.youtube.com/watch?v=eviSykqSUUw">A Deep Dive into Nanite Virtualized Geometry</a></li>
 </ul>
 </div>
 </div>
-</main>
+</div>
+<div id="outline-container-ID-3e3748dd-f125-432d-b08d-801a3a6f0c3e" class="outline-2">
+<h2 id="ID-3e3748dd-f125-432d-b08d-801a3a6f0c3e"><a href="#ID-3e3748dd-f125-432d-b08d-801a3a6f0c3e">Timestep (Delta Time)</a></h2>
+<div class="outline-text-2" id="text-Timestep%20%28Delta%20Time%29">
+<p>
+In real-time applications, an important aspect is the ongoing loop in which
+systems like the renderer or physics are updated. In game development, this loop
+is called the game loop<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
+</p>
+
+<p>
+The time that elapsed from the last iteration of the loop to the current
+iteration is often called Delta time and describes the time step. Timesteps in
+game loops can be fixed-time or variable-time.
+</p>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
+<ul class="org-ul">
+<li>Game Engine Architecture (Jason Gregory, 2008)</li>
+<li><a href="https://fabiensanglard.net/timer_and_framerate/index.php">https://fabiensanglard.net/timer_and_framerate/index.php</a></li>
+<li><a href="https://gafferongames.com/post/fix_your_timestep/">https://gafferongames.com/post/fix_your_timestep/</a></li>
+<li><a href="https://gameprogrammingpatterns.com/game-loop.html">https://gameprogrammingpatterns.com/game-loop.html</a></li>
+<li><a href="https://medium.com/@tglaiel/how-to-make-your-game-run-at-60fps-24c61210fe75">https://medium.com/@tglaiel/how-to-make-your-game-run-at-60fps-24c61210fe75</a></li>
+</ul>
+</div>
+<div id="outline-container-Netcode" class="outline-3">
+<h3 id="Netcode"><a href="#Netcode">Netcode</a></h3>
+<div class="outline-text-3" id="text-Netcode">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=b8J7fidxC8s">Why 1999 Quake 3 Netcode Belongs in Every CS Degree - YouTube</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Game%20Loop" class="outline-3">
+<h3 id="Game%20Loop"><a href="#Game%20Loop">Game Loop</a></h3>
+<div class="outline-text-3" id="text-Game%20Loop">
+<ul class="org-ul">
+<li><a href="https://www.rfleury.com/p/main-loops-refresh-rates-and-determinism">Main Loops, Refresh Rates, and Determinism</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Sprite" class="outline-3">
+<h3 id="Sprite"><a href="#Sprite">Sprite</a></h3>
+<div class="outline-text-3" id="text-Sprite">
+<ul class="org-ul">
+<li><a href="https://pastebin.com/q89H9jAk">single vertex sprite</a></li>
+<li><a href="https://moonside.games/posts/sdl-gpu-sprite-batcher/">SDL GPU API Concepts: Sprite Batcher</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Unreal%20Engine" class="outline-3">
+<h3 id="Unreal%20Engine"><a href="#Unreal%20Engine">Unreal Engine</a></h3>
+<div class="outline-text-3" id="text-Unreal%20Engine">
+<ul class="org-ul">
+<li><a href="https://www.unrealengine.com/en-US/linux">Unreal Engine for Linux - Prebuilt Binaries</a></li>
+<li><a href="https://neunerdhausen.de/posts/unreal-engine-5-with-vim/">Unreal Engine 5 with Vim or Emacs on Linux</a></li>
+<li><a href="https://forums.unrealengine.com/t/guide-on-how-to-use-vim-or-emacs-with-ue5-on-linux/694398/2">Generating compile<sub>commands.json</sub> from UE5</a></li>
+<li><a href="https://github.com/adamrehn/ue4cli">ue4cli - Command-line interface for Unreal Engine 4 (and 5)</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Pixel%20Art" class="outline-3">
+<h3 id="Pixel%20Art"><a href="#Pixel%20Art">Pixel Art</a></h3>
+<div class="outline-text-3" id="text-Pixel%20Art">
+<ul class="org-ul">
+<li><a href="https://saint11.org/pixel_articles">https://saint11.org/pixel_articles</a></li>
+<li><a href="https://saint11.org/blog/pixel-art-tutorials/">https://saint11.org/blog/pixel-art-tutorials/</a></li>
+<li><a href="https://lospec.com/pixel-art-tutorials">https://lospec.com/pixel-art-tutorials</a></li>
+<li><a href="https://www.youtube.com/watch?v=OqwQBWEzcxU">Pixel Art Class - Isometric Tile Basics! - YouTube</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Animation" class="outline-3">
+<h3 id="Animation"><a href="#Animation">Animation</a></h3>
+<div class="outline-text-3" id="text-Animation">
+<ul class="org-ul">
+<li><a href="https://veeenu.github.io/blog/implementing-skeletal-animation/">Implementing Skeletal Animation</a></li>
+<li><a href="https://veeenu.github.io/blog/implementing-keyframe-animation/">Implementing Keyframe Animation</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Game%20Package%20Formats" class="outline-3">
+<h3 id="Game%20Package%20Formats"><a href="#Game%20Package%20Formats">Game Package Formats</a></h3>
+<div class="outline-text-3" id="text-Game%20Package%20Formats">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=bMMOesLMWXs">Game Engine Programming: A Simple Package Format</a></li>
+<li><a href="https://github.com/raysan5/rres">rres: a simple and easy-to-use file-format to package resources</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Game%20development" class="outline-3">
+<h3 id="Game%20development"><a href="#Game%20development">Game development</a></h3>
+<div class="outline-text-3" id="text-Game%20development">
+<p>
+General:
+</p>
+<ul class="org-ul">
+<li><a href="https://gamedevgaiden.neocities.org/">https://gamedevgaiden.neocities.org/</a></li>
+<li><a href="https://www.gamedevs.org/">https://www.gamedevs.org/</a></li>
+<li><a href="http://www-cs-students.stanford.edu/~amitp/gameprog.html">Amit's Game Programming Information</a></li>
+<li><a href="https://hero.handmade.network/episode/code">Handmade Hero - Episode Guide</a></li>
+<li><a href="https://ca3stories.neocities.org/Pages/Tutorials">CA3 Game Dev Tutorials Collection</a></li>
+<li><a href="https://www.nand2tetris.org/">nand2tetris</a></li>
+<li><a href="https://www.raphkoster.com/2025/11/03/game-design-is-simple-actually">Game design is simple, actually – Raph Koster</a></li>
+</ul>
+
+<p>
+Other:
+</p>
+<ul class="org-ul">
+<li><a href="https://forums.tripwireinteractive.com/index.php?threads/regarding-one-frame-thread-lag.73155/">Regarding "One Frame Thread Lag"</a></li>
+<li><a href="https://easings.net/#">Easing functions cheatsheet</a></li>
+<li><a href="http://www.aydinafzoud.com/game-design--analysis.html">An in-depth analysis of aiming mechanics in first person shooters, and how they affect game-play and pacing.</a></li>
+</ul>
+
+<p>
+Math:
+</p>
+<ul class="org-ul">
+<li><a href="https://randygaul.github.io/math/2022/09/18/Game-Math-101-Writing-your-Own-2D-Math-in-CPP.html">Game Math 101, Writing your Own 2D Math in C++</a></li>
+<li><a href="https://www.youtube.com/watch?v=mr5xkf6zSzk">Math for Game Programmers - Fast and Funky 1D Nonlinear Transformations</a></li>
+<li><a href="https://gamemath.com/">3D Math Primer for Graphics and Game Development</a></li>
+<li><a href="https://www.youtube.com/watch?v=eRVRioN4GwA">What Kind of Math Should Game Developers Know?</a></li>
+<li><a href="https://www.youtube.com/watch?v=YJB1QnEmlTs">An In-Depth Look at Lerp, Smoothstep, and Shaping Functions</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h3 class="footnotes">Footnotes</h3>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">A game loop can also refer to a loop that only
+updates the game world while something like rendering happens in a seperate
+rendering loop</p></div></div>
+
+
+</div>
+</div></main>
 </body>
 </html>

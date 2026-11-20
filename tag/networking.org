@@ -2,26 +2,13 @@
 #+TAG_INDEX: networking
 
 #+begin_export html
-<div class="tag-heading"><h1>Pages tagged <span>networking</span></h1><span class="tag-count">16 pages</span></div>
+<div class="tag-heading"><h1>Pages tagged <span>networking</span></h1><span class="tag-count">3 pages</span></div>
 <section class="index-section">
 <h2><a href="/notes">notes/</a></h2>
 <div class="index-list">
-<div class="index-row"><span class="index-date">2025-10-11</span><a class="index-title" href="/notes/netcode.html">Netcode</a><span class="index-tags"><a href="/tag/networking.html">networking</a><a href="/tag/programming.html">programming</a><a href="/tag/gamedev.html">gamedev</a></span></div>
-<div class="index-row"><span class="index-date">2025-03-26</span><a class="index-title" href="/notes/bgp.html">Border Gateway Protocol (BGP)</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
 <div class="index-row"><span class="index-date">2025-03-26</span><a class="index-title" href="/notes/devops.html">DevOps</a><span class="index-tags"><a href="/tag/devops.html">devops</a><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2025-03-26</span><a class="index-title" href="/notes/rpc.html">RPC (Remote Procedure Call)</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2025-01-07</span><a class="index-title" href="/notes/nat.html">Network Address Translation (NAT)</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2024-11-20</span><a class="index-title" href="/notes/data_channel.html">Data Channel</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2024-11-20</span><a class="index-title" href="/notes/stun_turn.html">STUN/TURN Servers</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2024-11-20</span><a class="index-title" href="/notes/websocket.html">WebSockets</a><span class="index-tags"><a href="/tag/networking.html">networking</a><a href="/tag/web.html">web</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/dht.html">Distributed Hash Table (DHT)</a><span class="index-tags"><a href="/tag/networking.html">networking</a><a href="/tag/datastructure.html">datastructure</a></span></div>
-<div class="index-row"><span class="index-date">2024-07-24</span><a class="index-title" href="/notes/protocol.html">Protocol</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/vpn.html">Virtual Private Network (VPN)</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2024-02-28</span><a class="index-title" href="/notes/vps.html">Virtual Private Server (VPS)</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
 <div class="index-row"><span class="index-date">2024-02-06</span><a class="index-title" href="/notes/wireguard.html">WireGuard</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2023-04-06</span><a class="index-title" href="/notes/selfhosting.html">Self-hosting</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/networking.html">Networking</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/email.html">Email</a><span class="index-tags"><a href="/tag/networking.html">networking</a></span></div>
 </div>
 </section>
 #+end_export

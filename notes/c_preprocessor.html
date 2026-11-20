@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,35 +199,35 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-06-08 Sat></span></div><div class="tags"><code>[ <a href="/tag/c.html">c</a> ]</code></div></div><h1>C Preprocessor</h1>
 <p>
 The C preprocessor is a program that is invoked as a pre-compilation step for <a href="c.html#ID-3a2b1a06-f048-460c-9944-04b11d4fdbcd">C</a>,
-<a href="cpp.html#ID-80c2bb59-9fc3-4d2b-8ae3-574a6b24d089">C++</a> and Objective-C. It is concerned with the inclusion of header files, macro
+<a href="c_vs_cpp.html#ID-80c2bb59-9fc3-4d2b-8ae3-574a6b24d089">C++</a> and Objective-C. It is concerned with the inclusion of header files, macro
 expansion and conditional compilation.
 </p>
 
 <p>
-It can be used to have a rudimentary form of <a href="metaprogramming.html#ID-6c88dda7-d440-48d0-ad7b-9910400eab90">metaprogramming</a> inside C, e.g. by
+It can be used to have a rudimentary form of <a href="programming.html#ID-6c88dda7-d440-48d0-ad7b-9910400eab90">metaprogramming</a> inside C, e.g. by
 using <a href="x_macro.html#ID-03fc9819-f8da-43b5-b91e-c3fd9d435e55">X-Macros</a>.
 </p>
 <div id="outline-container-Tips%20%26%20Tricks" class="outline-2">
@@ -237,7 +238,7 @@ using <a href="x_macro.html#ID-03fc9819-f8da-43b5-b91e-c3fd9d435e55">X-Macros</a
 <h3 id="For-loop-based%20scope%20macros"><a href="#For-loop-based%20scope%20macros">For-loop-based scope macros</a></h3>
 <div class="outline-text-3" id="text-For-loop-based%20scope%20macros">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONCAT</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) TOKEN_PASTE(a,b)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">/* </span><span class="org-comment">unique identifier</span><span class="org-comment-delimiter"> */</span>
@@ -257,7 +258,7 @@ using <a href="x_macro.html#ID-03fc9819-f8da-43b5-b91e-c3fd9d435e55">X-Macros</a
 <span class="org-comment-delimiter">/* </span><span class="org-comment">defer expressions to the end of the scope (useful by itself)</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">scope_defer</span>(...) \
     <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-function-name">UQ</span>(i) = 0; UQ(i) == 0; (UQ(i) += 1), __VA_ARGS__)
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -265,8 +266,8 @@ using <a href="x_macro.html#ID-03fc9819-f8da-43b5-b91e-c3fd9d435e55">X-Macros</a
 <h3 id="Check%20for%20equality"><a href="#Check%20for%20equality">Check for equality</a></h3>
 <div class="outline-text-3" id="text-Check%20for%20equality">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#if</span> RENDERER_BACKEND == RENDERER_OPENGL
-</pre>
+<pre class="src src-C"><code><span class="org-preprocessor">#if</span> RENDERER_BACKEND == RENDERER_OPENGL
+</code></pre>
 </div>
 </div>
 </div>
@@ -279,25 +280,25 @@ It can also set <code>__FILE__</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#line</span> 0 <span class="org-string">"filename"</span>
-printf(<span class="org-string">"%d %s\n"</span>, __LINE__, __FILE__);
-</pre>
+<pre class="src src-C"><code><span class="org-preprocessor">#line</span> 0 <span class="org-string">"filename"</span>
+printf(<span class="org-string">"%d %s\n"</span>, <span class="org-type">__LINE__</span>, <span class="org-type">__FILE__</span>);
+</code></pre>
 </div>
 
 <p>
 This can be useful when <code>__LINE__</code> is used for setting bitfield values in a <code>.def</code> file:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/*</span>
-<span class="org-comment"> * Comment that would add to __LINE__, even though we want it to start at 0</span>
-<span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/*</span><span class="org-comment">
+ * Comment that would add to __LINE__, even though we want it to start at 0
+</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#line</span> 0
-<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   TRACE,        (1&lt;&lt;__LINE__),    <span class="org-string">"[TRACE]"</span>,     LOG_COLOR_GRAY    )
-<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   INFO,         (1&lt;&lt;__LINE__),    <span class="org-string">"[INFO ]"</span>,     LOG_COLOR_GREEN   )
-<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   WARN,         (1&lt;&lt;__LINE__),    <span class="org-string">"[WARN ]"</span>,     LOG_COLOR_YELLOW  )
-<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   ERROR,        (1&lt;&lt;__LINE__),    <span class="org-string">"[ERROR]"</span>,     LOG_COLOR_RED     )
-<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   FATAL,        (1&lt;&lt;__LINE__),    <span class="org-string">"[FATAL]"</span>,     LOG_COLOR_PURPLE  )
-</pre>
+<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   <span class="org-type">TRACE</span>,        (1&lt;&lt;__LINE__),    <span class="org-string">"[TRACE]"</span>,     <span class="org-type">LOG_COLOR_GRAY</span>    )
+<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   <span class="org-type">INFO</span>,         (1&lt;&lt;__LINE__),    <span class="org-string">"[INFO ]"</span>,     <span class="org-type">LOG_COLOR_GREEN</span>   )
+<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   <span class="org-type">WARN</span>,         (1&lt;&lt;__LINE__),    <span class="org-string">"[WARN ]"</span>,     <span class="org-type">LOG_COLOR_YELLOW</span>  )
+<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   <span class="org-type">ERROR</span>,        (1&lt;&lt;__LINE__),    <span class="org-string">"[ERROR]"</span>,     <span class="org-type">LOG_COLOR_RED</span>     )
+<span class="org-function-name">LOG_ENTRY_SEVERITY</span>(   <span class="org-type">FATAL</span>,        (1&lt;&lt;__LINE__),    <span class="org-string">"[FATAL]"</span>,     <span class="org-type">LOG_COLOR_PURPLE</span>  )
+</code></pre>
 </div>
 </div>
 </div>
@@ -310,15 +311,15 @@ an expression</a>:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">computes expressions a and b only once</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">max</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) ((a) &gt; (b) ? (a) : (b))
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">computes expressions a and b only once
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">max</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) ((a) &gt; (b) ? (a) : (b))
 <span class="org-preprocessor">#define</span> <span class="org-function-name">max_safe</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) ({<span class="org-type">int</span> <span class="org-variable-name">_a</span> = (a), <span class="org-variable-name">_b</span> = (b); _a &gt; _b ? _a : _b; })
 
 <span class="org-type">int</span> <span class="org-variable-name">a</span> = 4, <span class="org-variable-name">b</span> = 4;
 printf(<span class="org-string">"Normal macro: %i\n"</span>, max(++a, b));
 a = 4, b = 4;
 printf(<span class="org-string">"State expr:   %i\n"</span>, max_safe(++a, b));
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -339,38 +340,38 @@ See <a href="https://codecraft.co/2014/11/25/variadic-macros-tricks/">Variadic m
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C" id="macro_for_each"><span class="org-comment-delimiter">// </span><span class="org-comment">Accept any number of args &gt;= N, but expand to just the Nth one.</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">Here, N == 6.</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">_GET_NTH_ARG</span>(<span class="org-variable-name">_1</span>, <span class="org-variable-name">_2</span>, <span class="org-variable-name">_3</span>, <span class="org-variable-name">_4</span>, <span class="org-variable-name">_5</span>, <span class="org-variable-name">N</span>, ...) N
+<pre class="src src-C" id="macro_for_each"><code><span class="org-comment-delimiter">// </span><span class="org-comment">Accept any number of args &gt;= N, but expand to just the Nth one.
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">Here, N == 6.
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">_GET_NTH_ARG</span>(<span class="org-variable-name">_1</span>, <span class="org-variable-name">_2</span>, <span class="org-variable-name">_3</span>, <span class="org-variable-name">_4</span>, <span class="org-variable-name">_5</span>, <span class="org-variable-name">N</span>, ...) N
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Define some macros to help us create overrides based on the</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">arity of a for-each-style macro.</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">_fe_0</span>(<span class="org-variable-name">_call</span>, ...)
+<span class="org-comment-delimiter">// </span><span class="org-comment">Define some macros to help us create overrides based on the
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">arity of a for-each-style macro.
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">_fe_0</span>(<span class="org-variable-name">_call</span>, ...)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_fe_1</span>(<span class="org-variable-name">_call</span>, <span class="org-variable-name">x</span>) _call(x)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_fe_2</span>(<span class="org-variable-name">_call</span>, <span class="org-variable-name">x</span>, ...) _call(x) _fe_1(_call, __VA_ARGS__)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_fe_3</span>(<span class="org-variable-name">_call</span>, <span class="org-variable-name">x</span>, ...) _call(x) _fe_2(_call, __VA_ARGS__)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_fe_4</span>(<span class="org-variable-name">_call</span>, <span class="org-variable-name">x</span>, ...) _call(x) _fe_3(_call, __VA_ARGS__)
 
-<span class="org-doc">/**</span>
-<span class="org-doc"> * Provide a for-each construct for variadic macros. Supports up</span>
-<span class="org-doc"> * to 4 args.</span>
-<span class="org-doc"> *</span>
-<span class="org-doc"> * Example usage1:</span>
-<span class="org-doc"> *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> FWD_DECLARE_CLASS(cls) class cls;</span>
-<span class="org-doc"> *     CALL_MACRO_X_FOR_EACH(FWD_DECLARE_CLASS, Foo, Bar)</span>
-<span class="org-doc"> *</span>
-<span class="org-doc"> * Example usage 2:</span>
-<span class="org-doc"> *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> START_NS(ns) namespace ns {</span>
-<span class="org-doc"> *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> END_NS(ns) }</span>
-<span class="org-doc"> *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> MY_NAMESPACES System, Net, Http</span>
-<span class="org-doc"> *     CALL_MACRO_X_FOR_EACH(START_NS, MY_NAMESPACES)</span>
-<span class="org-doc"> *     typedef foo int;</span>
-<span class="org-doc"> *     CALL_MACRO_X_FOR_EACH(END_NS, MY_NAMESPACES)</span>
-<span class="org-doc"> */</span>
+<span class="org-doc">/**
+ * Provide a for-each construct for variadic macros. Supports up
+ * to 4 args.
+ *
+ * Example usage1:
+ *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> FWD_DECLARE_CLASS(cls) class cls;
+ *     CALL_MACRO_X_FOR_EACH(FWD_DECLARE_CLASS, Foo, Bar)
+ *
+ * Example usage 2:
+ *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> START_NS(ns) namespace ns {
+ *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> END_NS(ns) }
+ *     </span><span class="org-doc"><span class="org-doc-markup">#define</span></span><span class="org-doc"> MY_NAMESPACES System, Net, Http
+ *     CALL_MACRO_X_FOR_EACH(START_NS, MY_NAMESPACES)
+ *     typedef foo int;
+ *     CALL_MACRO_X_FOR_EACH(END_NS, MY_NAMESPACES)
+ */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CALL_MACRO_X_FOR_EACH</span>(<span class="org-variable-name">x</span>, ...) \
     _GET_NTH_ARG(<span class="org-string">"ignored"</span>, ##__VA_ARGS__, \
     _fe_4, _fe_3, _fe_2, _fe_1, _fe_0)(x, ##__VA_ARGS__)
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -378,39 +379,39 @@ See <a href="https://codecraft.co/2014/11/25/variadic-macros-tricks/">Variadic m
 <h3 id="Unix%20Timestamp"><a href="#Unix%20Timestamp">Unix Timestamp</a></h3>
 <div class="outline-text-3" id="text-Unix%20Timestamp">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/*</span>
-<span class="org-comment"> * compile_time.h</span>
-<span class="org-comment"> *</span>
-<span class="org-comment"> * Created: 30.05.2017 20:57:58</span>
-<span class="org-comment"> *  Author: Dennis (instructable.com/member/nqtronix)</span>
-<span class="org-comment"> *</span>
-<span class="org-comment"> * This code provides the macro __TIME_UNIX__ which returns the current time in UNIX format. It can</span>
-<span class="org-comment"> * be used to identify a version of code on an embedded device, to initialize its RTC and much more.</span>
-<span class="org-comment"> * Along that several more constants for seconds, minutes, etc. are provided</span>
-<span class="org-comment"> *</span>
-<span class="org-comment"> * The macro is based on __TIME__ and __DATE__, which are assumed to be formatted "HH:MM:SS" and</span>
-<span class="org-comment"> * "MMM DD YYYY", respectively. The actual value can be calculated by the C compiler at compile time</span>
-<span class="org-comment"> * as all inputs are literals. MAKE SURE TO ENABLE OPTIMISATION!</span>
-<span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/*</span><span class="org-comment">
+ * compile_time.h
+ *
+ * Created: 30.05.2017 20:57:58
+ *  Author: Dennis (instructable.com/member/nqtronix)
+ *
+ * This code provides the macro __TIME_UNIX__ which returns the current time in UNIX format. It can
+ * be used to identify a version of code on an embedded device, to initialize its RTC and much more.
+ * Along that several more constants for seconds, minutes, etc. are provided
+ *
+ * The macro is based on __TIME__ and __DATE__, which are assumed to be formatted "HH:MM:SS" and
+ * "MMM DD YYYY", respectively. The actual value can be calculated by the C compiler at compile time
+ * as all inputs are literals. MAKE SURE TO ENABLE OPTIMISATION!
+</span><span class="org-comment-delimiter"> */</span>
 
 <span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> COMPILE_TIME_H_
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">COMPILE_TIME_H_</span>
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">extracts 1..4 characters from a string and interprets it as a decimal value</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">CONV_STR2DEC_1</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)  (str[i]&gt;<span class="org-string">'0'</span>?str[i]-<span class="org-string">'0'</span>:0)
+<span class="org-comment-delimiter">// </span><span class="org-comment">extracts 1..4 characters from a string and interprets it as a decimal value
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">CONV_STR2DEC_1</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)  (str[i]&gt;<span class="org-string">'0'</span>?str[i]-<span class="org-string">'0'</span>:0)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONV_STR2DEC_2</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)  (CONV_STR2DEC_1(str, i)*10 + str[i+1]-<span class="org-string">'0'</span>)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONV_STR2DEC_3</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)  (CONV_STR2DEC_2(str, i)*10 + str[i+2]-<span class="org-string">'0'</span>)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONV_STR2DEC_4</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)  (CONV_STR2DEC_3(str, i)*10 + str[i+3]-<span class="org-string">'0'</span>)
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Some definitions for calculation</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">SEC_PER_MIN</span>             60UL
+<span class="org-comment-delimiter">// </span><span class="org-comment">Some definitions for calculation
+</span><span class="org-preprocessor">#define</span> <span class="org-variable-name">SEC_PER_MIN</span>             60UL
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">SEC_PER_HOUR</span>            3600UL
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">SEC_PER_DAY</span>             86400UL
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">SEC_PER_YEAR</span>            (SEC_PER_DAY*365)
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">UNIX_START_YEAR</span>         1970UL
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Custom "glue logic" to convert the month name to a usable number</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">GET_MONTH</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)      (str[i]==<span class="org-string">'J'</span> &amp;&amp; str[i+1]==<span class="org-string">'a'</span> &amp;&amp; str[i+2]==<span class="org-string">'n'</span> ? 1 :     \
+<span class="org-comment-delimiter">// </span><span class="org-comment">Custom "glue logic" to convert the month name to a usable number
+</span><span class="org-preprocessor">#define</span> <span class="org-function-name">GET_MONTH</span>(<span class="org-variable-name">str</span>, <span class="org-variable-name">i</span>)      (str[i]==<span class="org-string">'J'</span> &amp;&amp; str[i+1]==<span class="org-string">'a'</span> &amp;&amp; str[i+2]==<span class="org-string">'n'</span> ? 1 :     \
                                 str[i]==<span class="org-string">'F'</span> &amp;&amp; str[i+1]==<span class="org-string">'e'</span> &amp;&amp; str[i+2]==<span class="org-string">'b'</span> ? 2 :     \
                                 str[i]==<span class="org-string">'M'</span> &amp;&amp; str[i+1]==<span class="org-string">'a'</span> &amp;&amp; str[i+2]==<span class="org-string">'r'</span> ? 3 :     \
                                 str[i]==<span class="org-string">'A'</span> &amp;&amp; str[i+1]==<span class="org-string">'p'</span> &amp;&amp; str[i+2]==<span class="org-string">'r'</span> ? 4 :     \
@@ -461,7 +462,7 @@ See <a href="https://codecraft.co/2014/11/25/variadic-macros-tricks/">Variadic m
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
     printf(<span class="org-string">"%d\n"</span>, __TIME_UNIX__);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -469,13 +470,13 @@ See <a href="https://codecraft.co/2014/11/25/variadic-macros-tricks/">Variadic m
 <h3 id="Time%20as%20Integers"><a href="#Time%20as%20Integers">Time as Integers</a></h3>
 <div class="outline-text-3" id="text-Time%20as%20Integers">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-variable-name">DAY</span>    ((__DATE__[4] - <span class="org-string">'0'</span>) * 10 + (__DATE__[5] - <span class="org-string">'0'</span>))
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">DAY</span>    ((__DATE__[4] - <span class="org-string">'0'</span>) * 10 + (__DATE__[5] - <span class="org-string">'0'</span>))
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">YEAR</span>   ((__DATE__[7] - <span class="org-string">'0'</span>) * 1000 + (__DATE__[8] - <span class="org-string">'0'</span>) * 100 + (__DATE__[9] - <span class="org-string">'0'</span>) * 10 + (__DATE__[10] - <span class="org-string">'0'</span>))
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">HOUR</span>   ((__TIME__[0] - <span class="org-string">'0'</span>) * 10 + (__TIME__[1] - <span class="org-string">'0'</span>))
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">MINUTE</span> ((__TIME__[3] - <span class="org-string">'0'</span>) * 10 + (__TIME__[4] - <span class="org-string">'0'</span>))
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">SECOND</span> ((__TIME__[6] - <span class="org-string">'0'</span>) * 10 + (__TIME__[7] - <span class="org-string">'0'</span>))
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">TIMESTAMP</span> ((HOUR * 60 * 60) + (MINUTE * 60) + SECOND) <span class="org-comment-delimiter">// </span><span class="org-comment">seconds today</span>
-
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">TIMESTAMP</span> ((HOUR * 60 * 60) + (MINUTE * 60) + SECOND) <span class="org-comment-delimiter">// </span><span class="org-comment">seconds today
+</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
   printf(<span class="org-string">"%d:%d:%d\n"</span>, HOUR, MINUTE, SECOND);
@@ -486,7 +487,7 @@ See <a href="https://codecraft.co/2014/11/25/variadic-macros-tricks/">Variadic m
   printf(<span class="org-string">"%d\n"</span>, YEAR);
   printf(<span class="org-string">"%s\n"</span>, __TIMESTAMP__);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -500,7 +501,7 @@ using GNU statement expressions) use a combination of <code>goto</code>, <code>w
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">m</span>(<span class="org-variable-name">code</span>)              \
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">m</span>(<span class="org-variable-name">code</span>)              \
     <span class="org-keyword">if</span> (1) <span class="org-keyword">goto</span> <span class="org-constant">_body</span>;       \
     <span class="org-keyword">else</span> <span class="org-keyword">while</span> (1)           \
         <span class="org-keyword">if</span> (1) {             \
@@ -515,7 +516,7 @@ m({
   }) {
     printf(<span class="org-string">"Hello"</span>);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -523,7 +524,7 @@ m({
 <h3 id="Overriding%20Macros%20Based%20on%20Number%20of%20Arguments"><a href="#Overriding%20Macros%20Based%20on%20Number%20of%20Arguments">Overriding Macros Based on Number of Arguments</a></h3>
 <div class="outline-text-3" id="text-Overriding%20Macros%20Based%20on%20Number%20of%20Arguments">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">CAT</span>( <span class="org-variable-name">A</span>, <span class="org-variable-name">B</span> ) A ## B
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">CAT</span>( <span class="org-variable-name">A</span>, <span class="org-variable-name">B</span> ) A ## B
 <span class="org-preprocessor">#define</span> <span class="org-function-name">SELECT</span>( <span class="org-variable-name">NAME</span>, <span class="org-variable-name">NUM</span> ) CAT( NAME ## _, NUM )
 <span class="org-preprocessor">#define</span> <span class="org-function-name">GET_COUNT</span>( <span class="org-variable-name">_1</span>, <span class="org-variable-name">_2</span>, <span class="org-variable-name">_3</span>, <span class="org-variable-name">_4</span>, <span class="org-variable-name">_5</span>, <span class="org-variable-name">_6</span> <span class="org-comment-delimiter">/* </span><span class="org-comment">ad nauseam</span><span class="org-comment-delimiter"> */</span>, <span class="org-variable-name">COUNT</span>, ... ) COUNT
 <span class="org-preprocessor">#define</span> <span class="org-function-name">VA_SIZE</span>( ... ) GET_COUNT( __VA_ARGS__, 6, 5, 4, 3, 2, 1 )
@@ -535,7 +536,7 @@ m({
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_ret_2</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>)     <span class="org-keyword">struct</span> <span class="org-type">_</span>##a##b       { <span class="org-type">a</span> <span class="org-variable-name">_0</span>; <span class="org-type">b</span> <span class="org-variable-name">_1</span>; }
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_ret_3</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>,<span class="org-variable-name">c</span>)   <span class="org-keyword">struct</span> <span class="org-type">_</span>##a##b##c    { <span class="org-type">a</span> <span class="org-variable-name">_0</span>; <span class="org-type">b</span> <span class="org-variable-name">_1</span>; <span class="org-type">c</span> <span class="org-variable-name">_2</span>; }
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_ret_4</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>,<span class="org-variable-name">c</span>,<span class="org-variable-name">d</span>) <span class="org-keyword">struct</span> <span class="org-type">_</span>##a##b##c##d { <span class="org-type">a</span> <span class="org-variable-name">_0</span>; <span class="org-type">b</span> <span class="org-variable-name">_1</span>; <span class="org-type">c</span> <span class="org-variable-name">_2</span>; <span class="org-type">d</span> <span class="org-variable-name">_3</span>; }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -543,16 +544,16 @@ m({
 <h3 id="Resetting%20~__COUNTER__~"><a href="#Resetting%20~__COUNTER__~">Resetting <code>__COUNTER__</code></a></h3>
 <div class="outline-text-3" id="text-Resetting%20~__COUNTER__~">
 <div class="org-src-container">
-<pre class="src src-C">printf(<span class="org-string">"%i\n"</span>, __COUNTER__);
+<pre class="src src-C"><code>printf(<span class="org-string">"%i\n"</span>, <span class="org-type">__COUNTER__</span>);
 printf(<span class="org-string">"%i\n"</span>, __COUNTER__);
 printf(<span class="org-string">"%i\n"</span>, __COUNTER__);
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">safe line setting</span>
-<span class="org-preprocessor">#0</span><span class="org-string">""</span>1
+<span class="org-comment-delimiter">// </span><span class="org-comment">safe line setting
+</span><span class="org-preprocessor">#0</span><span class="org-string">""</span>1
 <span class="org-preprocessor">#line</span> __COUNTER__
-printf (<span class="org-string">"%i\n"</span>, __COUNTER__ - __LINE__ - 1); <span class="org-comment-delimiter">// </span><span class="org-comment">0</span>
-<span class="org-preprocessor">#0</span><span class="org-string">""</span>2
-</pre>
+printf (<span class="org-string">"%i\n"</span>, __COUNTER__ - __LINE__ - 1); <span class="org-comment-delimiter">// </span><span class="org-comment">0
+</span><span class="org-preprocessor">#0</span><span class="org-string">""</span>2
+</code></pre>
 </div>
 </div>
 </div>
@@ -573,7 +574,7 @@ to every function
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C" id="callstack_t"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C" id="callstack_t"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">callstack_t</span> {
@@ -589,8 +590,8 @@ to every function
         callstack.funcs[callstack.index] = function[i];
         callstack.index++;
     }
-    <span class="org-comment-delimiter">//</span><span class="org-comment">callstack.funcs[callstack.index++] = '\0';</span>
-    <span class="org-keyword">return</span> callstack;
+    <span class="org-comment-delimiter">//</span><span class="org-comment">callstack.funcs[callstack.index++] = '\0';
+</span>    <span class="org-keyword">return</span> callstack;
 }
 <span class="org-type">callstack_t</span> <span class="org-function-name">callstack_return_from_function</span>(<span class="org-type">callstack_t</span> <span class="org-variable-name">callstack</span>, <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">function</span>) {
     callstack.index -= strlen(function);
@@ -604,8 +605,8 @@ to every function
 <span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONCAT</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) TOKEN_PASTE(a,b)
-<span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">// </span><span class="org-comment">UNIQUE IDENTIFIER</span>
-
+<span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">// </span><span class="org-comment">UNIQUE IDENTIFIER
+</span>
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">TRACE_CALLSTACK</span>
 <span class="org-preprocessor">#ifdef</span> TRACE_CALLSTACK
 <span class="org-preprocessor">  #define</span> <span class="org-function-name">FUNC_DECL</span>(<span class="org-variable-name">ret</span>, <span class="org-variable-name">function</span>, ...) <span class="org-type">ret</span> <span class="org-function-name">function</span>(<span class="org-type">callstack_t</span> <span class="org-variable-name">callstack</span>, ##__VA_ARGS__)
@@ -616,7 +617,7 @@ to every function
 <span class="org-preprocessor">  #define</span> <span class="org-function-name">FUNC_DECL</span>(<span class="org-variable-name">ret</span>, <span class="org-variable-name">function</span>, ...) <span class="org-type">ret</span> <span class="org-function-name">function</span>(__VA_ARGS__)
 <span class="org-preprocessor">  #define</span> <span class="org-function-name">FUNC_CALL</span>(<span class="org-variable-name">function</span>, ...) function(__VA_ARGS__)
 <span class="org-preprocessor">#endif</span>
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -625,7 +626,7 @@ function declaration/implementation needs to be wrapped in a macro:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">callstack_t</span> {
@@ -641,8 +642,8 @@ function declaration/implementation needs to be wrapped in a macro:
         callstack.funcs[callstack.index] = function[i];
         callstack.index++;
     }
-    <span class="org-comment-delimiter">//</span><span class="org-comment">callstack.funcs[callstack.index++] = '\0';</span>
-    <span class="org-keyword">return</span> callstack;
+    <span class="org-comment-delimiter">//</span><span class="org-comment">callstack.funcs[callstack.index++] = '\0';
+</span>    <span class="org-keyword">return</span> callstack;
 }
 <span class="org-type">callstack_t</span> <span class="org-function-name">callstack_return_from_function</span>(<span class="org-type">callstack_t</span> <span class="org-variable-name">callstack</span>, <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">function</span>) {
     callstack.index -= strlen(function);
@@ -656,8 +657,8 @@ function declaration/implementation needs to be wrapped in a macro:
 <span class="org-comment-delimiter">/* </span><span class="org-comment">helper macros</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONCAT</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) TOKEN_PASTE(a,b)
-<span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">// </span><span class="org-comment">UNIQUE IDENTIFIER</span>
-
+<span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">// </span><span class="org-comment">UNIQUE IDENTIFIER
+</span>
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">TRACE_CALLSTACK</span>
 <span class="org-preprocessor">#ifdef</span> TRACE_CALLSTACK
 <span class="org-preprocessor">  #define</span> <span class="org-function-name">FUNC_DECL</span>(<span class="org-variable-name">ret</span>, <span class="org-variable-name">function</span>, ...) <span class="org-type">ret</span> <span class="org-function-name">function</span>(<span class="org-type">callstack_t</span> <span class="org-variable-name">callstack</span>, ##__VA_ARGS__)
@@ -670,14 +671,14 @@ function declaration/implementation needs to be wrapped in a macro:
 <span class="org-preprocessor">#endif</span>
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">USAGE</span><span class="org-comment-delimiter"> */</span>
-<span class="org-function-name">FUNC_DECL</span>(<span class="org-type">void</span>, helper_func_2) {
+<span class="org-function-name">FUNC_DECL</span>(<span class="org-type">void</span>, <span class="org-type">helper_func_2</span>) {
     callstack_print(callstack);
 }
 
-<span class="org-function-name">FUNC_DECL</span>(<span class="org-type">void</span>, helper_func, <span class="org-type">int</span> <span class="org-variable-name">a</span>);
+<span class="org-function-name">FUNC_DECL</span>(<span class="org-type">void</span>, <span class="org-type">helper_func</span>, <span class="org-type">int</span> <span class="org-variable-name">a</span>);
 
 
-<span class="org-function-name">FUNC_DECL</span>(<span class="org-type">void</span>, helper_func, <span class="org-type">int</span> <span class="org-variable-name">a</span>) {
+<span class="org-function-name">FUNC_DECL</span>(<span class="org-type">void</span>, <span class="org-type">helper_func</span>, <span class="org-type">int</span> <span class="org-variable-name">a</span>) {
     a += 5;
     FUNC_CALL(helper_func_2);
 }
@@ -686,7 +687,7 @@ function declaration/implementation needs to be wrapped in a macro:
     callstack_init();
     FUNC_CALL(helper_func, 5);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -719,7 +720,7 @@ See <a href="https://jadlevesque.github.io/PPMP-Iceberg/explanations#macro-expan
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#2</span><span class="org-string">""</span>3
+<pre class="src src-C"><code><span class="org-preprocessor">#2</span><span class="org-string">""</span>3
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">PRAGMA</span>(...) _Pragma(#__VA_ARGS__)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">REVIVE</span>(<span class="org-variable-name">m</span>) PRAGMA(push_macro(#m))PRAGMA(pop_macro(#m))
@@ -729,9 +730,9 @@ See <a href="https://jadlevesque.github.io/PPMP-Iceberg/explanations#macro-expan
     __VA_OPT__(+1 FX(HOW_MANY_ARGS, DEC(__VA_ARGS__)))
 
 <span class="org-type">int</span> <span class="org-function-name">main</span> () {
-    printf(<span class="org-string">"%i"</span>, HOW_MANY_ARGS(1,2,3,4,5)); <span class="org-comment-delimiter">// </span><span class="org-comment">5</span>
-}
-</pre>
+    printf(<span class="org-string">"%i"</span>, HOW_MANY_ARGS(1,2,3,4,5)); <span class="org-comment-delimiter">// </span><span class="org-comment">5
+</span>}
+</code></pre>
 </div>
 </div>
 </div>
@@ -759,7 +760,7 @@ realistically do is <code>_(a,b) = func();</code></li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C" id="multiple_return.h"><span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
+<pre class="src src-C" id="multiple_return.h"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONCAT</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) TOKEN_PASTE(a,b)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">/* </span><span class="org-comment">unique identifier</span><span class="org-comment-delimiter"> */</span>
 
@@ -806,14 +807,14 @@ realistically do is <code>_(a,b) = func();</code></li>
             _mret_assign(__VA_ARGS__) \
             <span class="org-keyword">break</span>;                    \
         } <span class="org-keyword">else</span> UQ(_body): UQ(__ret)
-</pre>
+</code></pre>
 </div>
 
 <p>
 Usage code:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">TOKEN_PASTE</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">CONCAT</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) TOKEN_PASTE(a,b)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">UQ</span>(<span class="org-variable-name">name</span>) CONCAT(name, __LINE__) <span class="org-comment-delimiter">/* </span><span class="org-comment">unique identifier</span><span class="org-comment-delimiter"> */</span>
 
@@ -868,9 +869,9 @@ Usage code:
 
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
     m(<span class="org-type">float</span>, <span class="org-type">int</span>)(a, b) = multiple_ret(3);
-    printf(<span class="org-string">"%.1f %d\n"</span>, a, b); <span class="org-comment-delimiter">// </span><span class="org-comment">7.2 -1</span>
-}
-</pre>
+    printf(<span class="org-string">"%.1f %d\n"</span>, a, b); <span class="org-comment-delimiter">// </span><span class="org-comment">7.2 -1
+</span>}
+</code></pre>
 </div>
 </div>
 </div>

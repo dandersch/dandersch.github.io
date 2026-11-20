@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-06-08 Sat></span></div><div class="tags"><code>[ <a href="/tag/linux.html">linux</a> <a href="/tag/os.html">os</a> ]</code></div></div><h1>Linux</h1>
@@ -232,10 +233,10 @@ to get a pointer to the struct containing the given member.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">container_of</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>) ({                      \
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">container_of</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>) ({                      \
         <span class="org-keyword">const</span> <span class="org-keyword">typeof</span>( ((<span class="org-type">type</span> *)0)-&gt;member ) *<span class="org-variable-name">__mptr</span> = (ptr);    \
         (<span class="org-type">type</span> *)((<span class="org-type">char</span> *)__mptr - offsetof(type,member));})
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -254,13 +255,13 @@ check.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">Are two types/vars the same type (ignoring qualifiers)?</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">Are two types/vars the same type (ignoring qualifiers)?</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">__same_type</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) __builtin_types_compatible_p(<span class="org-keyword">typeof</span>(a), <span class="org-keyword">typeof</span>(b))
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">new C11 version</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">container_of</span>(<span class="org-variable-name">ptr</span>, <span class="org-variable-name">type</span>, <span class="org-variable-name">member</span>) ({                        \
       <span class="org-type">void</span> *<span class="org-variable-name">__mptr</span> = (<span class="org-type">void</span> *)(ptr);                               \
-      _Static_assert(__same_type(*(ptr), ((<span class="org-type">type</span> *)0)-&gt;member) ||  \
+      <span class="org-keyword">_Static_assert</span>(__same_type(*(ptr), ((<span class="org-type">type</span> *)0)-&gt;member) ||  \
               __same_type(*(ptr), <span class="org-type">void</span>),                          \
               <span class="org-string">"pointer type mismatch in container_of()"</span>);         \
       ((<span class="org-type">type</span> *)(__mptr - offsetof(type, member))); })
@@ -273,12 +274,12 @@ check.
     <span class="org-keyword">if</span>   (__same_type(a,b)) { printf(<span class="org-string">"yes\n"</span>); }
     <span class="org-keyword">else</span>                    { printf(<span class="org-string">"no\n"</span>);  }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
 <div id="outline-container-ID-c0bb80b6-a485-483b-936c-6fc8dfd0c721" class="outline-2">
-<h2 id="ID-c0bb80b6-a485-483b-936c-6fc8dfd0c721"><a href="#ID-c0bb80b6-a485-483b-936c-6fc8dfd0c721">Wayland&#xa0;&#xa0;&#xa0;<span class="tag"><span class="software">software</span></span></a></h2>
+<h2 id="ID-c0bb80b6-a485-483b-936c-6fc8dfd0c721"><a href="#ID-c0bb80b6-a485-483b-936c-6fc8dfd0c721">Wayland&nbsp;&nbsp;&nbsp<span class="tag"><span class="software">software</span></span></a></h2>
 <div class="outline-text-2" id="text-Wayland">
 <p>
 Wayland is a Linux display server and compositor that aims to replace X11.
@@ -292,15 +293,212 @@ Resources:
 </ul>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-ID-97c2943d-baef-4b93-b25d-64576a9fba93" class="outline-2">
+<h2 id="ID-97c2943d-baef-4b93-b25d-64576a9fba93"><a href="#ID-97c2943d-baef-4b93-b25d-64576a9fba93">Binary Compatibility (OS)</a></h2>
+<div class="outline-text-2" id="text-Binary%20Compatibility%20%28OS%29">
+<p>
+Binary compatibility in <a href="os.html#ID-d56ff446-ec55-45fd-a392-8e238759ef8a">operating systems</a> refers to the ability of
+executables/binaries compiled for one OS to run successfully on another OS. This
+concept is relevant in the <a href="linux.html#ID-66b3106e-c8e0-49a0-adda-51d85991e240">Linux</a> ecosystem, where multiple distributions share
+the same kernel but may differ in other ways.
+</p>
+
+<p>
+The lack of wide binary compatibility on Linux popularized the use of tools like
+Flatpak, AppImage, and containers for distributing software.
+</p>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://jangafx.com/insights/linux-binary-compatibility">The Atrocious State Of Binary Compatibility on Linux and How To Address It.</a></li>
+<li><a href="https://github.com/corsix/polyfill-glibc">polyfill-glibc</a>: Patch Linux executables for compatibility with older glibc</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-e0a6b7c5-d403-4bd7-a9b4-ab7e53581d53" class="outline-2">
+<h2 id="ID-e0a6b7c5-d403-4bd7-a9b4-ab7e53581d53"><a href="#ID-e0a6b7c5-d403-4bd7-a9b4-ab7e53581d53">epoll</a></h2>
+<div class="outline-text-2" id="text-epoll">
+<p>
+<code>epoll</code> is a <a href="linux.html#ID-66b3106e-c8e0-49a0-adda-51d85991e240">Linux</a> system call that enables scalable I/O multiplexing. It allows
+for concurrency by monitoring multiple file descriptors to see which ones are
+ready for I/O operations. The POSIX predecessors for this call are <code>select</code> and
+<code>poll</code>, but while these have O(n) performance, <code>epoll</code> is O(1).
+</p>
+</div>
+<div id="outline-container-Example" class="outline-3">
+<h3 id="Example"><a href="#Example">Example</a></h3>
+<div class="outline-text-3" id="text-Example">
+<p>
+A toy example that monitors stdin. A more useful program would e.g. monitor
+network sockets.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdlib.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/epoll.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;fcntl.h&gt;</span>
+
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">MAX_EVENTS</span> 10
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-keyword">struct</span> <span class="org-type">epoll_event</span> <span class="org-variable-name">ev</span>, <span class="org-variable-name">events</span>[MAX_EVENTS];
+
+    <span class="org-type">int</span> <span class="org-variable-name">epoll_fd</span> = epoll_create1(0);
+    <span class="org-keyword">if</span> (epoll_fd == -1) { <span class="org-comment-delimiter">/* </span><span class="org-comment">error handling</span><span class="org-comment-delimiter"> */</span> }
+
+    <span class="org-type">int</span> <span class="org-variable-name">server_fd</span> = STDIN_FILENO; <span class="org-comment-delimiter">// </span><span class="org-comment">stdin as file descriptor to monitor
+</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">make stdin non-blocking
+</span>    fcntl(server_fd, F_SETFL, fcntl(server_fd, F_GETFL, 0) | O_NONBLOCK);
+
+    ev.events = EPOLLIN; <span class="org-comment-delimiter">// </span><span class="org-comment">Monitor for input events
+</span>    ev.data.fd = server_fd;
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">add file descriptor to epoll instance
+</span>    <span class="org-keyword">if</span> (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_fd, &amp;ev) == -1) {
+        perror(<span class="org-string">"epoll_ctl: server_fd"</span>);
+        exit(EXIT_FAILURE);
+    }
+
+    printf(<span class="org-string">"Monitoring stdin for input. Type something and press enter.\n"</span>);
+
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">event loop</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-keyword">while</span> (1) {
+        <span class="org-type">int</span> <span class="org-variable-name">nfds</span> = epoll_wait(epoll_fd, events, MAX_EVENTS, -1); <span class="org-comment-delimiter">// </span><span class="org-comment">-1 == wait indefinitely
+</span>        <span class="org-keyword">if</span> (nfds == -1) { <span class="org-comment-delimiter">/* </span><span class="org-comment">error handling</span><span class="org-comment-delimiter"> */</span> }
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Process events
+</span>        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; nfds; i++) {
+            <span class="org-keyword">if</span> (events[i].data.fd == server_fd) {
+                <span class="org-type">char</span> <span class="org-variable-name">buffer</span>[256];
+                <span class="org-type">int</span> <span class="org-variable-name">len</span> = read(server_fd, buffer, <span class="org-keyword">sizeof</span>(buffer) - 1);
+                <span class="org-keyword">if</span> (len &gt; 0) {
+                    buffer[len] = <span class="org-string">'\0'</span>;
+                    printf(<span class="org-string">"Received: %s"</span>, buffer);
+
+                    <span class="org-comment-delimiter">// </span><span class="org-comment">exit if user types "quit"
+</span>                    <span class="org-keyword">if</span> (strncmp(buffer, <span class="org-string">"quit"</span>, 4) == 0) {
+                        printf(<span class="org-string">"Exiting...\n"</span>);
+                        close(epoll_fd);
+                        exit(EXIT_SUCCESS);
+                    }
+                }
+            }
+        }
+    }
+
+    close(epoll_fd);
+    <span class="org-keyword">return</span> 0;
+}
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-epoll--Resources" class="outline-3">
+<h3 id="epoll--Resources"><a href="#epoll--Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-epoll--Resources">
+<ul class="org-ul">
+<li><a href="https://www.omarpolo.com/post/evloop.html">A small event loop library</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-b0a3062e-2985-4a26-8622-e76b6814a85e" class="outline-2">
+<h2 id="ID-b0a3062e-2985-4a26-8622-e76b6814a85e"><a href="#ID-b0a3062e-2985-4a26-8622-e76b6814a85e">OCI (Open Containers Initiative)&nbsp;&nbsp;&nbsp<span class="tag"><span class="devops">devops</span></span></a></h2>
+<div class="outline-text-2" id="text-OCI%20%28Open%20Containers%20Initiative%29">
+<p>
+The Open Containers Initiative (OCI) is a Linux Foundation project from 2015
+that standardizes container technology. Before OCI, Docker was the only
+container format and platform-agnostic standardization around container tooling
+was lacking.
+</p>
+
+<p>
+It provides a specification for container image formats (the OCI spec), to
+ensure interoperability across different container platforms.
+</p>
+</div>
+<div id="outline-container-OCI%20Image" class="outline-3">
+<h3 id="OCI%20Image"><a href="#OCI%20Image">OCI Image</a></h3>
+<div class="outline-text-3" id="text-OCI%20Image">
+<p>
+Four components:
+</p>
+<ul class="org-ul">
+<li><b>Layer</b>: What's inside an image, e.g. source code, container filesystem, etc.</li>
+<li><code>config.json</code>: How to run the container</li>
+<li><code>manifest.json</code>: Locate layers and config</li>
+<li><code>index.json</code>: index for a set of images spanning architectures and OS's</li>
+</ul>
+
+<p>
+Containerfile:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>FROM scratch           <span class="org-comment-delimiter"># </span><span class="org-comment">image based on empty base image
+</span>
+COPY ./hello ./        <span class="org-comment-delimiter"># </span><span class="org-comment">copy hello binary to the image
+</span>
+ENTRYPOINT [<span class="org-string">"./hello"</span>] <span class="org-comment-delimiter"># </span><span class="org-comment">set as entrypoint for container</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-OCI%20%28Open%20Containers%20Initiative%29--Resources" class="outline-3">
+<h3 id="OCI%20%28Open%20Containers%20Initiative%29--Resources"><a href="#OCI%20%28Open%20Containers%20Initiative%29--Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-OCI%20%28Open%20Containers%20Initiative%29--Resources">
+<ul class="org-ul">
+<li><a href="https://danishpraka.sh/posts/build-a-container-image-from-scratch/">Build a Container Image from Scratch</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://radek.io/posts/magical-container_of-macro/">The Magical container<sub>of</sub>() Macro</a></li>
 <li><a href="https://vccolombo.github.io/cybersecurity/linux-kernel-qemu-setup/">Linux kernel QEMU setup</a></li>
 <li><a href="https://commons.wikimedia.org/wiki/File:Linux_kernel_map.png">Linux kernel map</a></li>
 <li><a href="https://www.0xkato.xyz/linux-boot/">The Linux Boot Process: From Power Button to Kernel | 0xkato</a></li>
 </ul>
+</div>
+<div id="outline-container-Keyserver" class="outline-3">
+<h3 id="Keyserver"><a href="#Keyserver">Keyserver</a></h3>
+<div class="outline-text-3" id="text-Keyserver">
+<ul class="org-ul">
+<li><a href="https://gist.github.com/rjhansen/67ab921ffb4084c865b3618d6955275f">SKS Keyserver Network Under Attack</a>: Why keyservers are considered broken</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-WINE" class="outline-3">
+<h3 id="WINE"><a href="#WINE">WINE</a></h3>
+<div class="outline-text-3" id="text-WINE">
+<ul class="org-ul">
+<li><a href="https://werat.dev/blog/how-wine-works-101/">How Wine works 101</a></li>
+</ul>
+
+<p>
+Other:
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/mstorsjo/msvc-wine">Cross compilation with MSVC on Linux</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Arch%20Linux" class="outline-3">
+<h3 id="Arch%20Linux"><a href="#Arch%20Linux">Arch Linux</a></h3>
+<div class="outline-text-3" id="text-Arch%20Linux">
+<ul class="org-ul">
+<li><a href="https://bertptrs.nl/2026/01/30/how-to-review-an-aur-package.html">How to review an AUR package | bertptrs.nl</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2024-10-26 Sat></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>GPGPU</h1>
@@ -233,11 +234,11 @@ outperform CPUs by several magnitudes. This makes GPUs well-suited for e.g.
 Frameworks or platforms that facilitate GPGPU include:
 </p>
 <ul class="org-ul">
-<li><a href="cuda.html#ID-4d7a3b62-13fe-4633-a99d-5b645c01b6f1">CUDA</a> (NVIDIA)</li>
+<li>CUDA (NVIDIA)</li>
 <li>OpenCL (Cross-Platform)</li>
 <li><a href="compute_shader.html#ID-170eae14-5940-4b90-bcd3-34058ea7e11c">Compute Shaders</a></li>
 <li><a href="#ID-019a77b1-7a03-4868-9e39-71d63a0c4fa9">ROCm</a> (AMD)</li>
-<li>DirectML (<a href="directx.html#ID-b99086b2-b138-4863-b51f-32f8912be018">DirectX</a>)</li>
+<li>DirectML (DirectX)</li>
 </ul>
 </div>
 </div>
@@ -245,7 +246,7 @@ Frameworks or platforms that facilitate GPGPU include:
 <h2 id="ID-019a77b1-7a03-4868-9e39-71d63a0c4fa9"><a href="#ID-019a77b1-7a03-4868-9e39-71d63a0c4fa9">ROCm (Radeon Open Compute)</a></h2>
 <div class="outline-text-2" id="text-ROCm%20%28Radeon%20Open%20Compute%29">
 <p>
-Radeon Open Compute (ROCm) is AMD's rivaling product to NVIDIA's <a href="cuda.html#ID-4d7a3b62-13fe-4633-a99d-5b645c01b6f1">CUDA</a> for <a href="gpgpu.html#ID-97928916-e2f2-421c-9cde-b3c678261d03">GPGPU</a>
+Radeon Open Compute (ROCm) is AMD's rivaling product to NVIDIA's CUDA for <a href="gpgpu.html#ID-97928916-e2f2-421c-9cde-b3c678261d03">GPGPU</a>
 tasks. ROCm is an open-source software platform and provides tools, libraries,
 and frameworks that facilitate GPU programming.
 </p>
@@ -264,6 +265,47 @@ Key components:
 <li>Libraries for linear algebra, FFTs, deep learning and others</li>
 </ul></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-ID-86989ad2-4573-4c72-9034-003b68046bc8" class="outline-2">
+<h2 id="ID-86989ad2-4573-4c72-9034-003b68046bc8"><a href="#ID-86989ad2-4573-4c72-9034-003b68046bc8">SIMT (Single Instruction, Multiple Threads)&nbsp;&nbsp;&nbsp<span class="tag"><span class="concurrency">concurrency</span>&nbsp;<span class="hardware">hardware</span></span></a></h2>
+<div class="outline-text-2" id="text-SIMT%20%28Single%20Instruction%2C%20Multiple%20Threads%29">
+<p>
+Single Instruction, Multiple Threads (SIMT) is an execution model that allows
+for parallel processing in GPUs. It is a combination of <a href="cpu.html#ID-01c09cff-4fd0-4ec4-bd84-f69a234c5941">SIMD</a> &amp; <a href="multithreading.html#ID-08c89846-0c43-460d-931a-9c824b3980ad">multithreading</a>.
+</p>
+
+<p>
+This means that when a <code>float</code> is declared in a GPU program (like a <a href="shader.html#ID-31485523-e4ee-4ba5-b255-2e94067b2569">shader</a>),
+behind the scenes it is actually a 1024 bits vector <code>float&lt;32&gt;</code> (SIMD-like).
+However, the fetching &amp; saving of memory using <code>load/store</code> is different from
+SIMD, as it is implicit scatter gather (each thread in a <a href="compute_shader.html#ID-edf8f343-5805-424e-9a07-058c5379fd9d">warp</a> loads its own data
+from its own address), whereas with SIMD it is explicit.
+</p>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-2">
+<h2 id="Resources"><a href="#Resources">Resources</a></h2>
+<div class="outline-text-2" id="text-Resources">
+</div>
+<div id="outline-container-GPU%20%28Graphic%20Processing%20Unit%29" class="outline-3">
+<h3 id="GPU%20%28Graphic%20Processing%20Unit%29"><a href="#GPU%20%28Graphic%20Processing%20Unit%29">GPU (Graphic Processing Unit)</a></h3>
+<div class="outline-text-3" id="text-GPU%20%28Graphic%20Processing%20Unit%29">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=uBtuMsAY7J8">Zen, Cuda, and Tensor Cores - Part 1</a></li>
+<li><a href="https://jax-ml.github.io/scaling-book/gpus/">How to Think About GPUs | How To Scale Your Model</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-CUDA" class="outline-3">
+<h3 id="CUDA"><a href="#CUDA">CUDA</a></h3>
+<div class="outline-text-3" id="text-CUDA">
+<ul class="org-ul">
+<li><a href="https://modal.com/gpu-glossary/readme">NVIDIA GPU Glossary</a></li>
+<li><a href="https://jamesakl.com/posts/cuda-ontology/">CUDA ontology ~ James Akl</a></li>
+<li><a href="https://github.com/infatoshi/cuda-course">GitHub - Infatoshi/cuda-course</a></li>
+</ul>
+</div>
 </div>
 </div>
 </main>

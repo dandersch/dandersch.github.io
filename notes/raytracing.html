@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -195,27 +196,59 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin"><script type="text/javascript" src="/script.js" defer></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-19 Thu></span></div><div class="tags"><code>[ <a href="/tag/graphics.html">graphics</a> ]</code></div></div><h1>Raytracing</h1>
@@ -231,7 +264,7 @@ take from our eyes back to the light source.
 
 <p>
 The much more common rendering technique in CG (especially in real-time
-rendering) is <a href="rasterization.html#ID-c8d65220-e41a-4d09-904b-00b3b364af6b">rasterization</a>.
+rendering) is <a href="rendering_api.html#ID-c8d65220-e41a-4d09-904b-00b3b364af6b">rasterization</a>.
 </p>
 <div id="outline-container-How%20it%20works" class="outline-2">
 <h2 id="How%20it%20works"><a href="#How%20it%20works">How it works</a></h2>
@@ -258,14 +291,60 @@ a random direction until it hits a light source or exhausts the bounce limit.
 </p>
 </div>
 </div>
+<div id="outline-container-ID-809bc701-ebb1-4b1b-82a0-7134daabefcc" class="outline-2">
+<h2 id="ID-809bc701-ebb1-4b1b-82a0-7134daabefcc"><a href="#ID-809bc701-ebb1-4b1b-82a0-7134daabefcc">BRDF (Bidirectional Reflectance Distribution Function)</a></h2>
+<div class="outline-text-2" id="text-BRDF%20%28Bidirectional%20Reflectance%20Distribution%20Function%29">
+<p>
+The Bidirectional Reflectance Distribution Function (BRDF) is a 4D
+function<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> that
+describes how light reflects off a surface. It makes up a crucial part of the
+Rendering Equation.
+</p>
+
+<p>
+\[ BRDF(\omega_{o}, \omega_{i}) \]
+</p>
+
+<p>
+It takes an incoming light direction and an outgoing view direction and returns
+the ratio of reflected light (radiance) to incoming light (irradiance).
+</p>
+
+<p>
+<a href="raytracing.html#ID-7ed34075-d0fa-42c6-a35e-7d5a7020c632">Raytracing</a> applies the BRDF at surface intersections to calculate precisely how
+incoming light reflects and defines a material's reflective appearance (matte,
+shiny, etc.).
+</p>
+</div>
+</div>
 <div id="outline-container-Resources" class="outline-2">
 <h2 id="Resources"><a href="#Resources">Resources</a></h2>
 <div class="outline-text-2" id="text-Resources">
 <ul class="org-ul">
-<li><a href="https://www.scratchapixel.com">https://www.scratchapixel.com</a></li>
+<li><a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/phong-shader-BRDF/phong-illumination-models-brdf.html">scratchapixel.com - Introduction to Shaders and BRDFs</a></li>
+<li><a href="https://www.youtube.com/watch?v=gsZiJeaMO48">How Ray Tracing (Modern CGI) Works And How To Do It 600x Faster - YouTube</a></li>
+</ul>
+</div>
+<div id="outline-container-Raymarching" class="outline-3">
+<h3 id="Raymarching"><a href="#Raymarching">Raymarching</a></h3>
+<div class="outline-text-3" id="text-Raymarching">
+<ul class="org-ul">
+<li><a href="https://imadr.me/raymarching-explained-interactively/">Raymarching explained interactively</a></li>
+<li><a href="https://iquilezles.org/articles/">SDFs &amp; Raymarching</a></li>
+<li><a href="https://www.youtube.com/watch?v=nMAgogUyv3E">Raymarching explained in one minute</a></li>
+<li><a href="https://www.youtube.com/watch?v=Cp5WWtMoeKg">Coding Adventure: Ray Marching</a></li>
 </ul>
 </div>
 </div>
-</main>
+</div>
+<div id="footnotes">
+<h3 class="footnotes">Footnotes</h3>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">the two input directions are defined by two angles, hence 4D</p></div></div>
+
+
+</div>
+</div></main>
 </body>
 </html>

@@ -2,7 +2,7 @@
 #+TAG_INDEX: graphics
 
 #+begin_export html
-<div class="tag-heading"><h1>Pages tagged <span>graphics</span></h1><span class="tag-count">38 pages</span></div>
+<div class="tag-heading"><h1>Pages tagged <span>graphics</span></h1><span class="tag-count">18 pages</span></div>
 <section class="index-section">
 <h2><a href="/article">article/</a></h2>
 <div class="index-list">
@@ -19,39 +19,19 @@
 <section class="index-section">
 <h2><a href="/notes">notes/</a></h2>
 <div class="index-list">
-<div class="index-row"><span class="index-date">2025-08-25</span><a class="index-title" href="/notes/color_space.html">Color Space</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2025-06-09</span><a class="index-title" href="/notes/3_point_lighting.html">Three-point Lighting</a><span class="index-tags"><a href="/tag/art.html">art</a><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2025-05-01</span><a class="index-title" href="/notes/brdf.html">BRDF (Bidirectional Reflectance Distribution Function)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2025-04-26</span><a class="index-title" href="/notes/webgpu.html">WebGPU</a><span class="index-tags"><a href="/tag/web.html">web</a><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2025-03-07</span><a class="index-title" href="/notes/shader_cross_compilation.html">Shader Cross-Compilation</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-11-20</span><a class="index-title" href="/notes/text_rendering_font_rasterization.html">Text Rendering (Font Rasterization)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/cuda.html">CUDA</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/gaussian_splatting.html">Gaussian Splatting</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/gpgpu.html">GPGPU</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/spir_v.html">SPIR-V</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/structure_from_motion.html">Structure from Motion (SfM)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-07-07</span><a class="index-title" href="/notes/postprocessing.html">Post-Processing Effects</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-07-07</span><a class="index-title" href="/notes/sdf.html">Signed Distance Function</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a><a href="/tag/math.html">math</a></span></div>
-<div class="index-row"><span class="index-date">2024-07-05</span><a class="index-title" href="/notes/render_pass.html">Render pass</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-07-03</span><a class="index-title" href="/notes/compute_shader.html">Compute Shader</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/spir_v.html">SPIR-V</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/gpgpu.html">GPGPU</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2024-10-26</span><a class="index-title" href="/notes/gaussian_splatting.html">Gaussian Splatting</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2024-07-03</span><a class="index-title" href="/notes/glsl.html">OpenGL Shading Language (GLSL)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-07-03</span><a class="index-title" href="/notes/interpolation.html">Interpolation</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a><a href="/tag/math.html">math</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-17</span><a class="index-title" href="/notes/drawing_api.html">Drawing API</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-08</span><a class="index-title" href="/notes/texture.html">Texture</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2024-06-04</span><a class="index-title" href="/notes/webgl.html">WebGL</a><span class="index-tags"><a href="/tag/web.html">web</a><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2024-07-03</span><a class="index-title" href="/notes/compute_shader.html">Compute Shader</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2024-05-30</span><a class="index-title" href="/notes/model_view_projection.html">MVP (Model View Projection) Matrix</a><span class="index-tags"><a href="/tag/math.html">math</a><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2023-04-03</span><a class="index-title" href="/notes/raymarching.html">Raymarching</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2023-02-23</span><a class="index-title" href="/notes/deferred_rendering.html">Deferred Rendering</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2023-02-17</span><a class="index-title" href="/notes/texture_maps.html">Texture maps</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/rasterization.html">Rasterization</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/raytracing.html">Raytracing</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-19</span><a class="index-title" href="/notes/sprite.html">Sprite</a><span class="index-tags"><a href="/tag/gamedev.html">gamedev</a><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/directx.html">DirectX (Direct3D)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/imgui.html">Immediate mode GUI (IMGUI)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/rendering_api.html">Rendering API</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
+<div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/imgui.html">Immediate mode GUI (IMGUI)</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-08</span><a class="index-title" href="/notes/shader.html">Shader</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-05</span><a class="index-title" href="/notes/animation.html">Animation</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
-<div class="index-row"><span class="index-date">2022-05-05</span><a class="index-title" href="/notes/batch_rendering.html">Batch Rendering</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-05</span><a class="index-title" href="/notes/subpixel_rendering.html">Subpixel Rendering</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 <div class="index-row"><span class="index-date">2022-05-04</span><a class="index-title" href="/notes/opengl.html">OpenGL</a><span class="index-tags"><a href="/tag/graphics.html">graphics</a></span></div>
 </div>

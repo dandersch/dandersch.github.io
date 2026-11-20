@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,24 +199,24 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2025-04-15 Tue></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>Defer (Statement)</h1>
@@ -247,17 +248,17 @@ Zig (scope-based).
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">__DEFER__</span>(<span class="org-variable-name">F</span>, <span class="org-variable-name">V</span>)              \
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">__DEFER__</span>(<span class="org-variable-name">F</span>, <span class="org-variable-name">V</span>)              \
   <span class="org-keyword">auto</span> <span class="org-type">void</span> <span class="org-function-name">F</span>(<span class="org-type">int</span>*);                 \
   <span class="org-keyword">__attribute__</span>((<span class="org-type">cleanup</span>(<span class="org-variable-name">F</span>))) <span class="org-type">int</span> <span class="org-variable-name">V</span>; \
   <span class="org-keyword">auto</span> <span class="org-type">void</span> <span class="org-function-name">F</span>(<span class="org-type">int</span>*)
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">version using C23 [[attribute]] syntax</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">#define __DEFER__(F, V)      \</span>
-<span class="org-comment">//  auto void F(int*);         \</span>
-<span class="org-comment">//  [[gnu::cleanup(F)]] int V; \</span>
-<span class="org-comment">//  auto void F(int*)</span>
-
+<span class="org-comment-delimiter">// </span><span class="org-comment">version using C23 [[attribute]] syntax
+</span><span class="org-comment-delimiter">//</span><span class="org-comment">#define __DEFER__(F, V)      \
+//  auto void F(int*);         \
+//  [[gnu::cleanup(F)]] int V; \
+//  auto void F(int*)
+</span>
 <span class="org-preprocessor">#define</span> <span class="org-function-name">__DEFER</span>(<span class="org-variable-name">N</span>) __DEFER_(N)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">__DEFER_</span>(<span class="org-variable-name">N</span>) __DEFER__(__DEFER_FUNCTION_ ## N, __DEFER_VARIABLE_ ## N)
 <span class="org-preprocessor">#define</span> <span class="org-variable-name">defer</span> __DEFER(__COUNTER__)
@@ -286,18 +287,18 @@ Zig (scope-based).
         defer { mtx_unlock(i); }
 
         <span class="org-keyword">if</span> (i == 2) {
-            <span class="org-keyword">return</span> 1; <span class="org-comment-delimiter">// </span><span class="org-comment">works with early returns</span>
-        }
+            <span class="org-keyword">return</span> 1; <span class="org-comment-delimiter">// </span><span class="org-comment">works with early returns
+</span>        }
     }
 
     <span class="org-keyword">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">hc_id</span>(<span class="org-variable-name">x</span>, <span class="org-variable-name">y</span>)  _hc_id(x, y)
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">hc_id</span>(<span class="org-variable-name">x</span>, <span class="org-variable-name">y</span>)  _hc_id(x, y)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_hc_id</span>(<span class="org-variable-name">x</span>, <span class="org-variable-name">y</span>) x ## y
 <span class="org-preprocessor">#define</span> <span class="org-function-name">hc_unique</span>(<span class="org-variable-name">x</span>) hc_id(x, __COUNTER__)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">_hc_defer</span>(<span class="org-variable-name">_d</span>, <span class="org-variable-name">_v</span>, ...)                   \
@@ -316,7 +317,7 @@ Zig (scope-based).
 }
 
 <span class="org-function-name">assert</span>(foo == 2);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -328,7 +329,7 @@ See <a href="https://www.gingerbill.org/article/2015/08/19/defer-in-cpp/">A Defe
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">F</span>&gt;
+<pre class="src src-cpp"><code><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">F</span>&gt;
 <span class="org-keyword">struct</span> <span class="org-type">privDefer</span> {
     <span class="org-type">F</span> <span class="org-variable-name">f</span>;
     <span class="org-function-name">privDefer</span>(<span class="org-type">F</span> <span class="org-variable-name">f</span>) : f(f) {}
@@ -344,7 +345,7 @@ See <a href="https://www.gingerbill.org/article/2015/08/19/defer-in-cpp/">A Defe
 <span class="org-preprocessor">#define</span> <span class="org-function-name">DEFER_2</span>(<span class="org-variable-name">x</span>, <span class="org-variable-name">y</span>) DEFER_1(x, y)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">DEFER_3</span>(<span class="org-variable-name">x</span>)    DEFER_2(x, __COUNTER__)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">defer</span>(<span class="org-variable-name">code</span>)   <span class="org-keyword">auto</span> <span class="org-variable-name">DEFER_3</span>(_defer_) = defer_func([&amp;](){code;})
-</pre>
+</code></pre>
 </div>
 </div>
 </div>

@@ -55,6 +55,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -69,7 +70,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -198,30 +199,30 @@
 </head>
 <body>
 <header id="top" class="status">
-<header>
-<h1 class="title" id="title"><a href="/">andersch.dev</a></h1>
-
-<div class="icons">
-  	<a id="icon-github" href="https://github.com/dandersch" ><span>dandersch</span><img src="/icons/github.svg"></a>
-  	<a id="icon-feed"   href="https://andersch.dev/feed.xml" target="_blank"><img src="/icons/rss.svg"><span></span></a>
-  	<a id="icon-mail"><img src="/icons/mail.svg"><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
-</div>
-<div>
-	<nav class="nav">
-		<a class="nav-link" href="/article">article</a>
-		<a class="nav-link" href="/project">project</a>
-		<a class="nav-link" href="/other">other</a>
-		<a class="nav-link" href="/notes">wiki</a>
-	</nav>
+<div class="site-header">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="masthead">
+    <a class="site-name" id="title" href="/">andersch<span>.dev</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" href="/article">article/</a>
+      <a class="nav-link" href="/project">project/</a>
+      <a class="nav-link" href="/other">other/</a>
+      <a class="nav-link" href="/notes">notes/</a>
+    </nav>
+    <div class="icons" aria-label="Elsewhere">
+      <a id="icon-github" href="https://github.com/dandersch" aria-label="GitHub"><img src="/icons/github.svg" alt=""></a>
+      <a id="icon-feed" href="https://andersch.dev/feed.xml" aria-label="RSS feed"><img src="/icons/rss.svg" alt=""></a>
+      <a id="icon-mail" tabindex="0" aria-label="Email address"><img src="/icons/mail.svg" alt=""><span class="hidden email"><b>beb2b3a9bcbea9</b>9d<b>b0bcb4b1f3</b>bcb3b9b8afaebeb5f3b9b8ab</span></a>
+    </div>
+  </div>
 </div>
 <script src="https://ampcode.com/w/pw_2GtQV7ZT0GO7_LhadSivqXRTaXY2_EvmVhvRSD2nIGY.js" async></script>
-</header>
 </header>
 <main id="content" class="content">
 <div class="tags-date-box"><div class="date"><span class="timestamp"><2022-05-04 Wed></span></div><div class="tags"><code>[ <a href="/tag/programming.html">programming</a> ]</code></div></div><h1>C (Programming Language)</h1>
 <p>
 C is a compiled <a href="programming_language.html#ID-f0f41ee0-9623-4704-a4b8-7e6ea6eb108a">programming language</a> created in the 1970s. The most common C
-compilers are gcc, <a href="clang.html#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">clang</a> &amp; MSVC.
+compilers are gcc, <a href="#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">clang</a> &amp; MSVC.
 </p>
 <div id="outline-container-Programming%20Idioms" class="outline-2">
 <h2 id="Programming%20Idioms"><a href="#Programming%20Idioms">Programming Idioms</a></h2>
@@ -236,7 +237,7 @@ scope and the second argument before exiting it.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">token_paste</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">token_paste</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">concat</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) token_paste(a,b)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">macro_var</span>(<span class="org-variable-name">name</span>) concat(name, __LINE__)
 
@@ -245,13 +246,13 @@ scope and the second argument before exiting it.
     <span class="org-keyword">for</span>(start; <span class="org-negation-char">!</span>macro_var(_i_) != 0; (macro_var(_i_)++, end)) \
       <span class="org-keyword">for</span>(; <span class="org-negation-char">!</span>macro_var(_i_) != 0; macro_var(_i_)++)
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">usage</span>
-<span class="org-function-name">scoped</span>(printf(<span class="org-string">"Hel"</span>), printf(<span class="org-string">"rld\n"</span>))
+<span class="org-comment-delimiter">// </span><span class="org-comment">usage
+</span><span class="org-function-name">scoped</span>(printf(<span class="org-string">"Hel"</span>), printf(<span class="org-string">"rld\n"</span>))
 {
     printf(<span class="org-string">"lo Wo"</span>);
-    <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">still runs end expression</span>
-}
-</pre>
+    <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">still runs end expression
+</span>}
+</code></pre>
 </div>
 
 <p>
@@ -260,14 +261,14 @@ returns true (it will still evaluate the end expression, however):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">DeferLoopChecked</span>(<span class="org-variable-name">begin</span>, <span class="org-variable-name">end</span>) <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">_i_</span> = 2 * <span class="org-negation-char">!</span>(begin); (_i_ == 2 ? ((end), 0) : <span class="org-negation-char">!</span>_i_); _i_ += 1, (end))
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">DeferLoopChecked</span>(<span class="org-variable-name">begin</span>, <span class="org-variable-name">end</span>) <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">_i_</span> = 2 * <span class="org-negation-char">!</span>(begin); (_i_ == 2 ? ((end), 0) : <span class="org-negation-char">!</span>_i_); _i_ += 1, (end))
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">usage</span><span class="org-comment-delimiter"> */</span>
 DeferLoopChecked((0 == 1), printf(<span class="org-string">"World\n"</span>))
 {
     printf(<span class="org-string">"Hello\n"</span>);
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -279,7 +280,7 @@ Statement similar to python's <code>with</code> using macros:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">token_paste</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">token_paste</span>(<span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>) a##b
 <span class="org-preprocessor">#define</span> <span class="org-function-name">concat</span>(<span class="org-variable-name">a</span>,<span class="org-variable-name">b</span>) token_paste(a,b)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">macro_var</span>(<span class="org-variable-name">name</span>) concat(name, __LINE__)
 <span class="org-preprocessor">#define</span> <span class="org-function-name">with</span>(<span class="org-variable-name">declare</span>, <span class="org-variable-name">cleanup</span>)                                      \
@@ -296,25 +297,25 @@ Statement similar to python's <code>with</code> using macros:
 
     with (<span class="org-type">FILE</span> *<span class="org-variable-name">fp</span> = fopen(<span class="org-string">"c.org"</span>, <span class="org-string">"r"</span>), fclose(fp)) {
         printf(<span class="org-string">"with: %p\n"</span>, fp);
-        <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">cleanup still runs</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">return; // cleanup will NOT run</span>
-    }
+        <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">cleanup still runs
+</span>        <span class="org-comment-delimiter">// </span><span class="org-comment">return; // cleanup will NOT run
+</span>    }
 
     withif (<span class="org-type">FILE</span> *<span class="org-variable-name">fp</span> = fopen(<span class="org-string">"c.org"</span>, <span class="org-string">"r"</span>), fp != <span class="org-constant">NULL</span>, fclose(fp)) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">won't enter because fp == NULL</span>
-        printf(<span class="org-string">"withif: %p\n"</span>, fp);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">won't enter because fp == NULL
+</span>        printf(<span class="org-string">"withif: %p\n"</span>, fp);
     } <span class="org-keyword">else</span> {
         printf(<span class="org-string">"withif: no\n"</span>);
     }
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
 Take for example the SDL initialization boilerplate:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">if</span> (SDL_Init(SDL_INIT_VIDEO) &lt; 0) { SDL_Log(<span class="org-string">"Init error\n"</span>); }
+<pre class="src src-C"><code><span class="org-keyword">if</span> (SDL_Init(SDL_INIT_VIDEO) &lt; 0) { SDL_Log(<span class="org-string">"Init error\n"</span>); }
 
 <span class="org-type">SDL_Window</span>* <span class="org-variable-name">window</span> = SDL_CreateWindow(<span class="org-string">"window"</span>, 800, 600, 0);
 <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>window) {
@@ -329,26 +330,26 @@ Take for example the SDL initialization boilerplate:
   SDL_Quit();
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">main loop</span>
-
-<span class="org-function-name">SDL_DestroyRenderer</span>(renderer);
-<span class="org-function-name">SDL_DestroyWindow</span>(window);
+<span class="org-comment-delimiter">// </span><span class="org-comment">main loop
+</span>
+<span class="org-function-name">SDL_DestroyRenderer</span>(<span class="org-type">renderer</span>);
+<span class="org-function-name">SDL_DestroyWindow</span>(<span class="org-type">window</span>);
 <span class="org-function-name">SDL_Quit</span>();
-</pre>
+</code></pre>
 </div>
 
 <p>
 Now with the <code>withif</code> statement:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-function-name">withif</span> (<span class="org-type">int</span> <span class="org-variable-name">init</span> = SDL_Init(SDL_INIT_VIDEO), init &gt;= 0, <span class="org-type">SDL_Quit</span>()) {
+<pre class="src src-C"><code><span class="org-function-name">withif</span> (<span class="org-type">int</span> <span class="org-variable-name">init</span> = SDL_Init(<span class="org-type">SDL_INIT_VIDEO</span>), init &gt;= 0, <span class="org-type">SDL_Quit</span>()) {
   withif (<span class="org-type">SDL_Window</span>* <span class="org-variable-name">window</span> = SDL_CreateWindow(<span class="org-string">"window"</span>, 800, 600, 0), window != <span class="org-constant">NULL</span>, SDL_DestroyWindow(window)) {
     withif (<span class="org-type">SDL_Renderer</span>* <span class="org-variable-name">renderer</span> = SDL_CreateRenderer(window, <span class="org-constant">NULL</span>), renderer != <span class="org-constant">NULL</span>, SDL_DestroyRenderer(renderer)) {
-      <span class="org-comment-delimiter">// </span><span class="org-comment">main loop</span>
-    } <span class="org-keyword">else</span> { SDL_Log(<span class="org-string">"Renderer error\n"</span>); }
+      <span class="org-comment-delimiter">// </span><span class="org-comment">main loop
+</span>    } <span class="org-keyword">else</span> { SDL_Log(<span class="org-string">"Renderer error\n"</span>); }
   } <span class="org-keyword">else</span> { SDL_Log(<span class="org-string">"Window error\n"</span>); }
 } <span class="org-keyword">else</span> { SDL_Log(<span class="org-string">"Init error\n"</span>); }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -359,7 +360,7 @@ Now with the <code>withif</code> statement:
 You can put a <code>#define</code> close to the thing that relates to it:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">enum</span> <span class="org-type">renderer_entry_type</span>
+<pre class="src src-C"><code><span class="org-keyword">enum</span> <span class="org-type">renderer_entry_type</span>
 {
     <span class="org-variable-name">RENDERER_ENTRY_NULL</span>,
 
@@ -369,7 +370,7 @@ You can put a <code>#define</code> close to the thing that relates to it:
 <span class="org-preprocessor">    #define</span> <span class="org-variable-name">RENDERER_MAX_TEXTURES</span> 32768
     <span class="org-variable-name">RENDERER_REQUEST_texture</span>,
 };
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -382,8 +383,8 @@ expand to an expression:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">GET_FIRST_ELEM</span>(<span class="org-variable-name">a</span>) (assert(a-&gt;length &gt; 0), a-&gt;array[0])
-</pre>
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">GET_FIRST_ELEM</span>(<span class="org-variable-name">a</span>) (assert(a-&gt;length &gt; 0), a-&gt;array[0])
+</code></pre>
 </div>
 </div>
 </div>
@@ -398,17 +399,17 @@ From <a href="https://youtu.be/i-h95QIGchY?si=kznWxwdj6OTnbKMW&amp;t=5999">Andre
 Instead of copy-pasting comments about a constraint everywhere it is relevant:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">int</span> <span class="org-function-name">foo</span>() {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE: we assume float is 32 bit</span>
-    <span class="org-type">float</span> <span class="org-variable-name">b</span> = ...;
+<pre class="src src-C"><code><span class="org-type">int</span> <span class="org-function-name">foo</span>() {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE: we assume float is 32 bit
+</span>    <span class="org-type">float</span> <span class="org-variable-name">b</span> = ...;
 }
 
 <span class="org-type">int</span> <span class="org-function-name">bar</span>() {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE: we assume float is 32 bit</span>
-    <span class="org-type">float</span> <span class="org-variable-name">a</span> = ...;
+    <span class="org-comment-delimiter">// </span><span class="org-comment">NOTE: we assume float is 32 bit
+</span>    <span class="org-type">float</span> <span class="org-variable-name">a</span> = ...;
 }
 
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -416,8 +417,8 @@ Try <code>#defining</code> the comment as a macro, then use it in all places tha
 require code changes when the constraint is removed or changed:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-variable-name">ASSUME_FLOAT_IS_32BIT</span> <span class="org-comment-delimiter">// </span><span class="org-comment">we assume floats are 32bits right now</span>
-
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-variable-name">ASSUME_FLOAT_IS_32BIT</span> <span class="org-comment-delimiter">// </span><span class="org-comment">we assume floats are 32bits right now
+</span>
 <span class="org-type">int</span> <span class="org-function-name">foo</span>() {
     ASSUME_FLOAT_IS_32BIT
     <span class="org-type">float</span> <span class="org-variable-name">b</span> = ...;
@@ -428,7 +429,7 @@ require code changes when the constraint is removed or changed:
     <span class="org-type">float</span> <span class="org-variable-name">a</span> = ...;
 }
 
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -445,7 +446,7 @@ How to easily switch between e.g. game modes:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">b32</span> <span class="org-variable-name">keep_running</span> = <span class="org-constant">false</span>;
+<pre class="src src-C"><code><span class="org-type">b32</span> <span class="org-variable-name">keep_running</span> = <span class="org-constant">false</span>;
 <span class="org-keyword">do</span>
 {
     <span class="org-keyword">switch</span>(game_state-&gt;current_mode)
@@ -470,7 +471,7 @@ How to easily switch between e.g. game modes:
         } <span class="org-keyword">break</span>;
     }
 } <span class="org-keyword">while</span>(keep_running);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -483,7 +484,7 @@ to specify an access qualifier:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">library side</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">library side</span><span class="org-comment-delimiter"> */</span>
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> { <span class="org-type">int</span> <span class="org-variable-name">type</span>, <span class="org-variable-name">size</span>; } <span class="org-type">mu_BaseCommand</span>;
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> { <span class="org-type">mu_BaseCommand</span> <span class="org-variable-name">base</span>; <span class="org-type">void</span> *<span class="org-variable-name">dst</span>; } <span class="org-type">mu_JumpCommand</span>;
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> { <span class="org-type">mu_BaseCommand</span> <span class="org-variable-name">base</span>; <span class="org-type">mu_Rect</span> <span class="org-variable-name">rect</span>; <span class="org-type">mu_Color</span> <span class="org-variable-name">color</span>; } <span class="org-type">mu_RectCommand</span>;
@@ -501,9 +502,9 @@ to specify an access qualifier:
 {
     <span class="org-keyword">case</span> RECT_COMMAND: <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> <span class="org-keyword">break</span>;
     <span class="org-keyword">case</span> JUMP_COMMAND: <span class="org-comment-delimiter">/* </span><span class="org-comment">...</span><span class="org-comment-delimiter"> */</span> <span class="org-keyword">break</span>;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-}
-</pre>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>}
+</code></pre>
 </div>
 </div>
 </div>
@@ -511,7 +512,7 @@ to specify an access qualifier:
 <h3 id="Arrays%3A%20Store%202D%20array%20in%20a%201D%20array"><a href="#Arrays%3A%20Store%202D%20array%20in%20a%201D%20array">Arrays: Store 2D array in a 1D array</a></h3>
 <div class="outline-text-3" id="text-Arrays%3A%20Store%202D%20array%20in%20a%201D%20array">
 <div class="org-src-container">
-<pre class="src src-C">                x 12345
+<pre class="src src-C"><code>                x 12345
                   -----  y
 height = 3       |     | 1
 width  = 5       |   X | 2
@@ -520,7 +521,7 @@ idx    = 9       |     | 3
 
 x = idx % width       = 4
 y = ceil(idx / width) = 2
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -528,13 +529,13 @@ y = ceil(idx / width) = 2
 <h3 id="Arrays%3A%20Cycle%20through%20a%20ring%20buffer"><a href="#Arrays%3A%20Cycle%20through%20a%20ring%20buffer">Arrays: Cycle through a ring buffer</a></h3>
 <div class="outline-text-3" id="text-Arrays%3A%20Cycle%20through%20a%20ring%20buffer">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">u8</span> <span class="org-variable-name">ring_buf</span>[RING_BUF_SIZE];
+<pre class="src src-C"><code><span class="org-type">u8</span> <span class="org-variable-name">ring_buf</span>[RING_BUF_SIZE];
 
 <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; ENTRIES_TO_ADD; i++)
 {
     ring_buf[i % RING_BUF_SIZE] = entries[i];
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -542,14 +543,14 @@ y = ceil(idx / width) = 2
 <h3 id="Memory%3A%20Header%20and%20Data%20in%20a%20Single%20allocation"><a href="#Memory%3A%20Header%20and%20Data%20in%20a%20Single%20allocation">Memory: Header and Data in a Single allocation</a></h3>
 <div class="outline-text-3" id="text-Memory%3A%20Header%20and%20Data%20in%20a%20Single%20allocation">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">struct</span> <span class="org-type">header_and_data_t</span>
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">header_and_data_t</span>
 {
     <span class="org-type">u64</span> <span class="org-variable-name">cap</span>;
     <span class="org-type">u64</span> <span class="org-variable-name">len</span>;
     <span class="org-type">u8</span>* <span class="org-variable-name">data</span>;
 };
 header_and_data_t = malloc(<span class="org-keyword">sizeof</span>(header_and_data) + cap * <span class="org-keyword">sizeof</span>(u8))
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -560,7 +561,7 @@ header_and_data_t = malloc(<span class="org-keyword">sizeof</span>(header_and_da
 From <a href="https://floooh.github.io/2018/06/17/handles-vs-pointers.html">Handles are the better pointers</a>:
 </p>
 <ul class="org-ul">
-<li>move memory management into centralized systems (rendering, physics, &#x2026;)</li>
+<li>move memory management into centralized systems (rendering, physics, &hellip;)</li>
 <li>systems are the sole owner of their memory allocations</li>
 <li>group items of same type into arrays, treat base pointer as system-private</li>
 <li>creating an item only returns an 'index-handle' to the outside, not a pointer</li>
@@ -582,7 +583,7 @@ wrong type:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">implementation</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">implementation</span><span class="org-comment-delimiter"> */</span>
 <span class="org-type">void</span>* <span class="org-function-name">grow</span>(<span class="org-type">void</span>* <span class="org-variable-name">ptr</span>, <span class="org-type">int</span>* <span class="org-variable-name">len</span>, <span class="org-type">int</span>* <span class="org-variable-name">cap</span>);
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">defined in either usage or implementation code</span><span class="org-comment-delimiter"> */</span>
@@ -590,7 +591,7 @@ wrong type:
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">usage code</span><span class="org-comment-delimiter"> */</span>
 *vec_push(v) = 5;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -601,24 +602,24 @@ wrong type:
 <code>typedef</code> by default only creates a weak type alias:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-type">int</span> <span class="org-type">meters_t</span>;
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-type">int</span> <span class="org-type">meters_t</span>;
 <span class="org-keyword">typedef</span> <span class="org-type">int</span> <span class="org-type">hours_t</span>;
 
 <span class="org-type">meters_t</span> <span class="org-variable-name">m</span> = 1;
 <span class="org-type">hours_t</span>  <span class="org-variable-name">h</span> = m; <span class="org-comment-delimiter">// </span><span class="org-comment">not an error</span>
-</pre>
+</code></pre>
 </div>
 
 <p>
 Wrapping the types into a struct makes the code properly typesafe:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> { <span class="org-type">int</span> <span class="org-variable-name">val</span>; } <span class="org-type">meters_t</span>;
+<pre class="src src-C"><code><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> { <span class="org-type">int</span> <span class="org-variable-name">val</span>; } <span class="org-type">meters_t</span>;
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> { <span class="org-type">int</span> <span class="org-variable-name">val</span>; } <span class="org-type">hours_t</span>;
 
 <span class="org-type">meters_t</span> <span class="org-variable-name">m</span> = { 1 };
 <span class="org-type">hours_t</span> <span class="org-variable-name">h</span> = m;    <span class="org-comment-delimiter">// </span><span class="org-comment">compile error</span>
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -629,8 +630,8 @@ Wrapping the types into a struct makes the code properly typesafe:
 Writing a glsl shader string or similar comfortably with a macro
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#define</span> <span class="org-function-name">SHADER_STR</span>(<span class="org-variable-name">x</span>) <span class="org-string">"#version 330\n"</span> #x <span class="org-comment-delimiter">// </span><span class="org-comment">workaround to include strings starting with #</span>
-
+<pre class="src src-C"><code><span class="org-preprocessor">#define</span> <span class="org-function-name">SHADER_STR</span>(<span class="org-variable-name">x</span>) <span class="org-string">"#version 330\n"</span> #x <span class="org-comment-delimiter">// </span><span class="org-comment">workaround to include strings starting with #
+</span>
     <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">vs</span> = SHADER_STR(
         uniform <span class="org-type">mat4</span> <span class="org-variable-name">u_mvp</span>;
 
@@ -645,7 +646,7 @@ Writing a glsl shader string or similar comfortably with a macro
             gl_Position = u_mvp * vec4(in_pos, 0, 1);
         }
     );
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -653,7 +654,7 @@ Writing a glsl shader string or similar comfortably with a macro
 <h3 id="Struct%3A%20Default%20%26%20Named%20parameters"><a href="#Struct%3A%20Default%20%26%20Named%20parameters">Struct: Default &amp; Named parameters</a></h3>
 <div class="outline-text-3" id="text-Struct%3A%20Default%20%26%20Named%20parameters">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">thing_t</span> {
     <span class="org-type">int</span>    <span class="org-variable-name">foo</span>;
@@ -671,24 +672,24 @@ Writing a glsl shader string or similar comfortably with a macro
 }
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">default_and_named_args</span>(...) \
-        default_and_named_args_(&amp;(thing_t) { .width = 5,  __VA_ARGS__ })
+        default_and_named_args_(&amp;(<span class="org-type">thing_t</span>) { .width = 5,  __VA_ARGS__ })
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">#pragma GCC diagnostic push</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">#pragma GCC diagnostic ignored "-Winitializer-overrides"</span>
-<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">void</span>)
+<span class="org-comment-delimiter">//</span><span class="org-comment">#pragma GCC diagnostic push
+</span><span class="org-comment-delimiter">//</span><span class="org-comment">#pragma GCC diagnostic ignored "-Winitializer-overrides"
+</span><span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">void</span>)
 {
-    <span class="org-comment-delimiter">//</span><span class="org-comment">thing_t thing = { .foo = 3, .bar = 0.141f };</span>
-    <span class="org-comment-delimiter">//</span><span class="org-comment">default_and_named_args(&amp;thing);</span>
-
+    <span class="org-comment-delimiter">//</span><span class="org-comment">thing_t thing = { .foo = 3, .bar = 0.141f };
+</span>    <span class="org-comment-delimiter">//</span><span class="org-comment">default_and_named_args(&amp;thing);
+</span>
     default_and_named_args(.bar = 1.1f, .foo = 4);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">override default argument</span>
-    default_and_named_args(.width = 100, .foo = 22);
+    <span class="org-comment-delimiter">// </span><span class="org-comment">override default argument
+</span>    default_and_named_args(.width = 100, .foo = 22);
 
     <span class="org-keyword">return</span> 0;
 }
 <span class="org-comment-delimiter">//</span><span class="org-comment">#pragma GCC diagnostic pop</span>
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -700,15 +701,15 @@ C and C++ differ in their syntax for initializing structs:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C" id="ctor"><span class="org-preprocessor">#ifdef</span> __cplusplus
+<pre class="src src-C" id="ctor"><code><span class="org-preprocessor">#ifdef</span> __cplusplus
 <span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) (TYPE {__VA_ARGS__})
 <span class="org-preprocessor">#else</span>
-<span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) ((TYPE){__VA_ARGS__})
+<span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) ((<span class="org-type">TYPE</span>){__VA_ARGS__})
 <span class="org-preprocessor">#endif</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">aabb_t</span> { <span class="org-type">float</span> <span class="org-variable-name">min</span>, <span class="org-variable-name">max</span>; } <span class="org-type">aabb_t</span>;
 <span class="org-preprocessor">#define</span> <span class="org-function-name">aabb_t</span>(...)   ctor(aabb_t, __VA_ARGS__)
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -719,36 +720,36 @@ C and C++ differ in their syntax for initializing structs:
 Previous approach can be further used to introduce default values for members:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#ifdef</span> __cplusplus
+<pre class="src src-C"><code><span class="org-preprocessor">#ifdef</span> __cplusplus
 <span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) (TYPE {__VA_ARGS__})
 <span class="org-preprocessor">#else</span>
-<span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) ((TYPE){__VA_ARGS__})
+<span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) ((<span class="org-type">TYPE</span>){__VA_ARGS__})
 <span class="org-preprocessor">#endif</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">aabb_t</span> { <span class="org-type">float</span> <span class="org-variable-name">min</span>, <span class="org-variable-name">max</span>; } <span class="org-type">aabb_t</span>;
 <span class="org-preprocessor">#define</span> <span class="org-function-name">aabb_t</span>(...)   ctor(aabb_t, __VA_ARGS__)
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">line_t</span> { <span class="org-type">float</span> <span class="org-variable-name">a</span>, <span class="org-variable-name">b</span>; <span class="org-type">int</span> <span class="org-variable-name">foo</span>;  } <span class="org-type">line_t</span>;
-<span class="org-preprocessor">#define</span> <span class="org-function-name">line_t</span>(...)   ctor(line_t, .foo = 5, __VA_ARGS__) <span class="org-comment-delimiter">// </span><span class="org-comment">default value *before* __VA_ARGS__</span>
-
+<span class="org-preprocessor">#define</span> <span class="org-function-name">line_t</span>(...)   ctor(line_t, .foo = 5, __VA_ARGS__) <span class="org-comment-delimiter">// </span><span class="org-comment">default value *before* __VA_ARGS__
+</span>
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
     <span class="org-type">line_t</span> <span class="org-variable-name">line</span> = line_t();
     printf(<span class="org-string">"%f %f %i\n"</span>, line.a, line.b, line.foo);
 
-    line = line_t(.foo = 10); <span class="org-comment-delimiter">// </span><span class="org-comment">override default value</span>
-    printf(<span class="org-string">"%f %f %i\n"</span>, line.a, line.b, line.foo);
+    line = line_t(.foo = 10); <span class="org-comment-delimiter">// </span><span class="org-comment">override default value
+</span>    printf(<span class="org-string">"%f %f %i\n"</span>, line.a, line.b, line.foo);
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
 This is useful to set <a href="nil_struct_pointer.html#ID-bfeb5b2d-076a-4c2d-a02d-f89a2574104d">nil struct pointers</a>:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#ifdef</span> __cplusplus
+<pre class="src src-C"><code><span class="org-preprocessor">#ifdef</span> __cplusplus
 <span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) (TYPE {__VA_ARGS__})
 <span class="org-preprocessor">#else</span>
-<span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) ((TYPE){__VA_ARGS__})
+<span class="org-preprocessor">    #define</span> <span class="org-function-name">ctor</span>(<span class="org-variable-name">TYPE</span>, ...) ((<span class="org-type">TYPE</span>){__VA_ARGS__})
 <span class="org-preprocessor">#endif</span>
 
 <span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">aabb_t</span> { <span class="org-type">float</span> <span class="org-variable-name">min</span>, <span class="org-variable-name">max</span>; } <span class="org-type">aabb_t</span>;
@@ -767,7 +768,7 @@ This is useful to set <a href="nil_struct_pointer.html#ID-bfeb5b2d-076a-4c2d-a02
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
     <span class="org-type">entity_t</span> <span class="org-variable-name">ent</span> = entity_t(.next = 0);
 }
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -789,33 +790,33 @@ and easily add it to other structs without having to add an access qualifier
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">in renderer.h</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">RENDERER_COMMON_DATA</span>        \
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">in renderer.h
+</span><span class="org-preprocessor">#define</span> <span class="org-variable-name">RENDERER_COMMON_DATA</span>        \
 <span class="org-keyword">struct</span>                              \
 {                                   \
     <span class="org-type">RendererRequest</span> <span class="org-variable-name">active_request</span>; \
     <span class="org-type">i32</span> <span class="org-variable-name">flags</span>;                      \
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">in opengl_renderer.h</span>
-<span class="org-keyword">struct</span> <span class="org-type">opengl_renderer_t</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">in opengl_renderer.h
+</span><span class="org-keyword">struct</span> <span class="org-type">opengl_renderer_t</span>
 {
     RENDERER_COMMON_DATA;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">in software_renderer.h</span>
-<span class="org-keyword">struct</span> <span class="org-type">software_renderer_t</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">in software_renderer.h
+</span><span class="org-keyword">struct</span> <span class="org-type">software_renderer_t</span>
 {
     RENDERER_COMMON_DATA;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">accessing the common data:</span>
-<span class="org-type">opengl_renderer_t</span> <span class="org-variable-name">ogl_renderer</span> = {};
+<span class="org-comment-delimiter">// </span><span class="org-comment">accessing the common data:
+</span><span class="org-type">opengl_renderer_t</span> <span class="org-variable-name">ogl_renderer</span> = {};
 ogl_renderer.active_request = ...;
 <span class="org-keyword">if</span> (ogl_renderer.flags) ...
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -823,32 +824,32 @@ Compare this to:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">// </span><span class="org-comment">in renderer.h</span>
-<span class="org-keyword">struct</span> <span class="org-type">renderer_common_data_t</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">// </span><span class="org-comment">in renderer.h
+</span><span class="org-keyword">struct</span> <span class="org-type">renderer_common_data_t</span>
 {
     <span class="org-type">RendererRequest</span> <span class="org-variable-name">active_request</span>;
     <span class="org-type">i32</span> <span class="org-variable-name">flags</span>;
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">in opengl_renderer.h</span>
-<span class="org-keyword">struct</span> <span class="org-type">opengl_renderer</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">in opengl_renderer.h
+</span><span class="org-keyword">struct</span> <span class="org-type">opengl_renderer</span>
 {
     <span class="org-type">renderer_common_data_t</span> <span class="org-variable-name">common</span>;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">in software_renderer.h</span>
-<span class="org-keyword">struct</span> <span class="org-type">software_renderer</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">in software_renderer.h
+</span><span class="org-keyword">struct</span> <span class="org-type">software_renderer</span>
 {
     <span class="org-type">renderer_common_data_t</span> <span class="org-variable-name">common</span>;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
-};
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>};
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">accessing</span>
-<span class="org-type">opengl_renderer_t</span> <span class="org-variable-name">ogl_renderer</span> = {};
+<span class="org-comment-delimiter">// </span><span class="org-comment">accessing
+</span><span class="org-type">opengl_renderer_t</span> <span class="org-variable-name">ogl_renderer</span> = {};
 ogl_renderer.common.active_request = ...;
 <span class="org-keyword">if</span> (ogl_renderer.common.flags) ...
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -861,15 +862,19 @@ errors as a reminder to perform a code change that is related to those
 constants. Afterwards, change the static assert to not throw an error.
 </p>
 
+<p>
+Note: Bad example, better handled with compiler flag.
+</p>
+
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">enum</span> <span class="org-type">thing</span> {
+<pre class="src src-C"><code><span class="org-keyword">enum</span> <span class="org-type">thing</span> {
   <span class="org-variable-name">THING_ONE</span> = 0,
   <span class="org-variable-name">THING_TWO</span>,
   <span class="org-variable-name">THING_THREE</span>,
-  <span class="org-comment-delimiter">// </span><span class="org-comment">THING_FOUR, /* causes an error */</span>
-  <span class="org-variable-name">THING_COUNT</span>,
+  <span class="org-comment-delimiter">// </span><span class="org-comment">THING_FOUR, /* causes an error */
+</span>  <span class="org-variable-name">THING_COUNT</span>,
 };
-<span class="org-function-name">static_assert</span>(THING_COUNT == 3, <span class="org-string">"Remember to handle all enums"</span>);
+<span class="org-keyword">static_assert</span>(THING_COUNT == 3, <span class="org-string">"Remember to handle all enums"</span>);
 
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
     printf(<span class="org-string">"Hello\n"</span>);
@@ -882,7 +887,7 @@ constants. Afterwards, change the static assert to not throw an error.
             <span class="org-keyword">break</span>;
     }
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -939,7 +944,7 @@ The <code>_Generic</code> macro in C11 acts like a switch statement that switche
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">float</span> <span class="org-function-name">minf</span>(<span class="org-type">float</span> <span class="org-variable-name">a</span>, <span class="org-type">float</span> <span class="org-variable-name">b</span>) { <span class="org-keyword">if</span> (a &gt; b) { <span class="org-keyword">return</span> b; } <span class="org-keyword">else</span> { <span class="org-keyword">return</span> a; } }
+<pre class="src src-C"><code><span class="org-type">float</span> <span class="org-function-name">minf</span>(<span class="org-type">float</span> <span class="org-variable-name">a</span>, <span class="org-type">float</span> <span class="org-variable-name">b</span>) { <span class="org-keyword">if</span> (a &gt; b) { <span class="org-keyword">return</span> b; } <span class="org-keyword">else</span> { <span class="org-keyword">return</span> a; } }
 <span class="org-type">int</span> <span class="org-function-name">mini</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>, <span class="org-type">int</span> <span class="org-variable-name">b</span>) { <span class="org-keyword">if</span> (a &gt; b) { <span class="org-keyword">return</span> b; } <span class="org-keyword">else</span> { <span class="org-keyword">return</span> a; } };
 
 <span class="org-comment-delimiter">/* </span><span class="org-comment">_Generic ( controlling-expression , association-list )</span><span class="org-comment-delimiter"> */</span>
@@ -948,7 +953,7 @@ The <code>_Generic</code> macro in C11 acts like a switch statement that switche
 
 <span class="org-function-name">print_value</span>(min(4.2f,2.8f));
 <span class="org-function-name">print_value</span>(min(3,8));
-</pre>
+</code></pre>
 </div>
 
 
@@ -961,7 +966,7 @@ See <a href="https://www.chiark.greenend.org.uk/~sgtatham/quasiblog/c11-generic/
 To check for support of <code>_Generic</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-comment-delimiter">/* </span><span class="org-comment">check based on compiler support</span><span class="org-comment-delimiter"> */</span>
+<pre class="src src-C"><code><span class="org-comment-delimiter">/* </span><span class="org-comment">check based on compiler support</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#if</span> ((__GNUC__*10000+__GNUC_MINOR__*100+__GNUC_PATCHLEVEL__)&gt;=40900) || ((__clang_major__*10000+__clang_minor__*100+__clang_patchlevel__)&gt;=30000) || (__xlC__&gt;=0x1201)
 printf(<span class="org-string">"Generic supported\n"</span>);
 <span class="org-preprocessor">#endif</span>
@@ -969,7 +974,7 @@ printf(<span class="org-string">"Generic supported\n"</span>);
 <span class="org-comment-delimiter">/* </span><span class="org-comment">check based on C11 standard</span><span class="org-comment-delimiter"> */</span>
 <span class="org-preprocessor">#if</span> __STDC__==1 &amp;&amp; __STDC_VERSION &gt;= 201112L
 <span class="org-preprocessor">#endif</span>
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -977,7 +982,7 @@ X-macros can be used in combination with <code>_Generic</code>:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 
 <span class="org-preprocessor">#define</span> <span class="org-function-name">TYPES</span>(<span class="org-variable-name">X</span>) \
     X(<span class="org-type">int</span>)        \
@@ -1001,7 +1006,7 @@ X-macros can be used in combination with <code>_Generic</code>:
     serialize(b);
 }
 
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -1009,7 +1014,7 @@ X-macros can be used in combination with <code>_Generic</code>:
 <h2 id="C%20Source%20Files%20as%20Scripts"><a href="#C%20Source%20Files%20as%20Scripts">C Source Files as Scripts</a></h2>
 <div class="outline-text-2" id="text-C%20Source%20Files%20as%20Scripts">
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#if</span> 0
+<pre class="src src-C"><code><span class="org-preprocessor">#if</span> 0
 cc <span class="org-string">"$0"</span> -o <span class="org-string">"${0%.c}"</span>.out &amp;&amp; exec ./<span class="org-string">"${0%.c}"</span>.out || exit $?
 <span class="org-preprocessor">#endif</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
@@ -1017,11 +1022,11 @@ cc <span class="org-string">"$0"</span> -o <span class="org-string">"${0%.c}"</s
     printf (<span class="org-string">"hello, world\n"</span>);
     <span class="org-keyword">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-C">#<span class="org-negation-char">!</span>/bin/bash
+<pre class="src src-C"><code>#<span class="org-negation-char">!</span>/bin/bash
 sed -n -e <span class="org-warning">'</span>7,$p<span class="org-warning">'</span> &lt; <span class="org-string">"$0"</span> | /usr/bin/gcc -x c -o <span class="org-string">"$0.$$.out"</span> -
 $0.$$.out <span class="org-string">"$0"</span> <span class="org-string">"$@"</span>
 STATUS=$?
@@ -1036,13 +1041,97 @@ exit $STATUS
     printf(<span class="org-string">"argv[%d] -&gt; %s\n"</span>, i, argv[i]);
   <span class="org-keyword">return</span> 0;
 }
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-Resources" class="outline-2">
-<h2 id="Resources"><a href="#Resources">Resources</a></h2>
-<div class="outline-text-2" id="text-Resources">
+<div id="outline-container-Bounds%20Checking%20in%20C" class="outline-2">
+<h2 id="Bounds%20Checking%20in%20C"><a href="#Bounds%20Checking%20in%20C">Bounds Checking in C</a></h2>
+<div class="outline-text-2" id="text-Bounds%20Checking%20in%20C">
+<p>
+Via <code>-fbounds-safety</code>:
+</p>
+<ul class="org-ul">
+<li>Clang flag, as of now only available in LLVM fork</li>
+<li><a href="https://clang.llvm.org/docs/BoundsSafetyAdoptionGuide.html">Adoption Guide</a></li>
+<li><a href="https://godbolt.org/z/d76v7W7TW">code example</a></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-preprocessor">#include</span> <span class="org-string">&lt;ptrcheck.h&gt;</span>
+
+<span class="org-type">void</span> <span class="org-function-name">init_buf</span>(<span class="org-type">int</span> *<span class="org-function-name">__counted_by</span>(n) p, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
+   <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; ++i)
+      p[i] = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">ok; `p` is now has a type with bounds annotation.
+</span>}
+</code></pre>
+</div>
+
+<p>
+On struct members via <code>__counted_by__</code> attribute:
+</p>
+<ul class="org-ul">
+<li><a href="https://embeddedor.com/blog/2024/06/18/how-to-use-the-new-counted_by-attribute-in-c-and-linux/">How to use the new counted<sub>by</sub> attribute in C</a></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><code><span class="org-keyword">struct</span> <span class="org-type">bounded_flex_struct</span> {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">...
+</span>    <span class="org-type">size_t</span> <span class="org-variable-name">count</span>;
+    <span class="org-keyword">struct</span> <span class="org-type">foo</span> <span class="org-variable-name">flex_array</span>[] <span class="org-keyword">__attribute__</span>((<span class="org-type">__counted_by__</span>(<span class="org-variable-name">count</span>)));
+};
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2" class="outline-2">
+<h2 id="ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2"><a href="#ID-0edb9af0-b528-4ec8-a4b9-3a301b4c6ab2">Clang&nbsp;&nbsp;&nbsp<span class="tag"><span class="compiler">compiler</span></span></a></h2>
+<div class="outline-text-2" id="text-Clang">
+<p>
+Clang is a compiler for <a href="c.html#ID-3a2b1a06-f048-460c-9944-04b11d4fdbcd">C</a>, C++ and Objective-C. It is built on an LLVM back-end.
+</p>
+</div>
+<div id="outline-container-UndefinedBehaviorSanitizer%20%28UBSan%29" class="outline-3">
+<h3 id="UndefinedBehaviorSanitizer%20%28UBSan%29"><a href="#UndefinedBehaviorSanitizer%20%28UBSan%29">UndefinedBehaviorSanitizer (UBSan)</a></h3>
+<div class="outline-text-3" id="text-UndefinedBehaviorSanitizer%20%28UBSan%29">
+<p>
+Clang comes with is a runtime undefined behavior detector called <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html">UBSan</a>. It can
+detect:
+</p>
+
+<ul class="org-ul">
+<li>Array subscript out of bounds, where the bounds can be statically determined</li>
+<li>Bitwise shifts that are out of bounds for their data type</li>
+<li>Dereferencing misaligned or null pointers</li>
+<li>Signed integer overflow</li>
+<li>Conversion to, from, or between floating-point types which would overflow the destination</li>
+</ul>
+
+<p>
+To enable usage, compile with <code>-fsanitize=undefined</code>
+</p>
+</div>
+</div>
+<div id="outline-container--fbounds-safety" class="outline-3">
+<h3 id="-fbounds-safety"><a href="#-fbounds-safety">-fbounds-safety</a></h3>
+<div class="outline-text-3" id="text--fbounds-safety">
+<p>
+<a href="https://clang.llvm.org/docs/BoundsSafetyAdoptionGuide.html">https://clang.llvm.org/docs/BoundsSafetyAdoptionGuide.html</a>
+</p>
+</div>
+</div>
+<div id="outline-container-Resources" class="outline-3">
+<h3 id="Resources"><a href="#Resources">Resources</a></h3>
+<div class="outline-text-3" id="text-Resources">
+<ul class="org-ul">
+<li><a href="https://clang.llvm.org/docs/ClangCommandLineReference.html">Command Line Reference for Flags and Compiler Switches</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container---Resources" class="outline-2">
+<h2 id="--Resources"><a href="#--Resources">Resources</a></h2>
+<div class="outline-text-2" id="text---Resources">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=443UNeGrFoM">How I program C</a></li>
 <li><a href="https://nullprogram.com/blog/2023/10/08/">My personal C coding style as of late 2023</a></li>
